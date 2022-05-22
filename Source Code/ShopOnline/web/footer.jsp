@@ -54,3 +54,8 @@
         </div>
     </div>
 </footer>
+
+<button id="back-to-top" title="Go to top"><i class="fa-solid fa-angles-up"></i></button>
+
+<script src="js/tooltip.js"></script>
+<script src="js/scrollTop.js"></script>

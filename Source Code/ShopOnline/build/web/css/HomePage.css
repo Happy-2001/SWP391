@@ -1,6 +1,6 @@
 /*---------------------------------------- Slider ----------------------------------------------------*/
 .cover-slides{
-    max-height: 82vh;
+    height: 87vh;
     overflow: hidden;
     background: rgba(51, 51, 51, 0.5);
     opacity: 1;
@@ -9,7 +9,7 @@
     position: relative;
     z-index: -1;
     overflow: hidden;
-    height: 82vh;
+    height: 100%;
     width: 100%;
     object-position: center center;
     object-fit: cover;

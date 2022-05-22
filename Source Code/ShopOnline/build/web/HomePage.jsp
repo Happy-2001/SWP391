@@ -25,7 +25,7 @@
         <%@include file="header.jsp" %>
 
         <!-- Start Slider -->
-        <div id="slides-shop" class="carousel slide" data-bs-ride="carousel" style="margin-top: 91px;">
+        <div id="slides-shop" class="carousel slide" data-bs-ride="carousel" style="margin-top: 60px;">
             <div class="carousel-inner">
                 <div class="cover-slides carousel-item">
                     <img src="https://theme.hstatic.net/200000238513/1000665981/14/slider_1.jpg?v=23">
@@ -352,6 +352,5 @@
         <!-- End Blog  -->
         
         <%@include file="footer.jsp" %>
-        <script src="js/tooltip.js"></script>
     </body>
 </html>

@@ -82,7 +82,7 @@
         } else if (prevScrollpos > currentScrollPos) {
             document.getElementById("header").style.top = "0px";
         } else {
-            document.getElementById("header").style.top = "-91px";
+            document.getElementById("header").style.top = "-60px";
         }
         prevScrollpos = currentScrollPos;
     };
