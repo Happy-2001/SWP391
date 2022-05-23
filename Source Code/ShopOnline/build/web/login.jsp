@@ -25,8 +25,10 @@
                     <label for="password" class="form-label">Password</label>
                     <input id="password" name="password" type="password" placeholder="Enter password" class="form-control" value="">
                     <span class="form-message"></span>
+                    <label for="forgot" class="form-label-forgot"><a href="https://github.com/">Quên Mật Khẩu</a></label>
                 </div>
                 <button class="form-submit">Go</button>
+                
             </form>
         </div>
 

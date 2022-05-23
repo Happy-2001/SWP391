@@ -55,6 +55,13 @@ html {
     padding-bottom: 6px;
     line-height: 1.8rem;
     font-size: 1.4rem;
+  
+}
+.form-label-forgot {
+    padding-left: 200px;
+    padding-top: 15px;
+    color: #1ac7b6;
+    font-size: 1.4rem;
 }
 
 .form-control {
