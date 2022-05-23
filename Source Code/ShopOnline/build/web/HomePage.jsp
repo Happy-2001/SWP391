@@ -38,10 +38,6 @@
                             <a class="hvr-hover" href="ProductController">Click me!</a>
                         </p>
                     </div>
-                    <!-- <div class="container">
-                        <div class="row">
-                        </div>
-                    </div> -->
                 </div>
                 <div class="cover-slides carousel-item">
                     <img src="https://cdn.dribbble.com/users/2317528/screenshots/5332010/nike-adidas_shoe_slider.png" alt="">
@@ -54,10 +50,6 @@
                             <a class="hvr-hover" href="ProductController">Click me!</a>
                         </p>
                     </div>
-                    <!-- <div class="container">
-                        <div class="row">
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="slides-navigation">

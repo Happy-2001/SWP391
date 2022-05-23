@@ -2,52 +2,85 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login and Register</title>
-        <link rel="stylesheet" href="css/login.css">
-    </head>
-    <body>
-        <!-- partial:index.partial.html -->
-        <div class="main">
-            <form action="login" method="POST" class="form" id="form-2">
-                <h3 class="heading">Login</h3>
-                <c:if test="${ms1 ne null}">
-                    <p class="desc" style="color: red">${ms1}</p>
-                </c:if>
-                <div class="spacer"></div>
-                <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input id="email" name="email" type="text"  placeholder="VD: email@domain.com" class="form-control" value="">
-                    <span class="form-message"></span>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Shop Online</title>
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/fontAwesome.js"></script>
+
+    <!-- Bootstrap 5 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="Popup" id="myModal">
+        <div class="Popup-body">
+            <div class="Pop-title">
+                <h2>Login</h2>
+            </div>
+            <form action="login" method="POST">
+                <div class="Set-pop">
+                    <c:if test="${ms1 ne null}">
+                        <p class="alert alert-danger">${ms1}</p>
+                    </c:if>
+                    <div class="options">
+                        <input id="user-name" type="text" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="options">
+                        <input id="user-pass" type="password" name="password" placeholder="Password" required>
+                        <i class="fa-regular fa-eye-slash showPass"></i>
+                    </div>
+                    <div class="save-pass">
+                        <label class="save-pass-container">Remember password
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="options">
+                        <button class="opt-btn" type="submit" name="created">Go</button>
+                    </div>
+                    <div class="options-divider"></div>
+                    <div class="options">
+                        <div class="auth-actions">
+                            <a href="register">Register a new account</a>
+                            <a href="#">Forgot password?</a>
+                        </div>    
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input id="password" name="password" type="password" placeholder="Enter password" class="form-control" value="">
-                    <span class="form-message"></span>
-                    <label for="forgot" class="form-label-forgot"><a href="https://github.com/">Quên Mật Khẩu</a></label>
-                </div>
-                <button class="form-submit">Go</button>
-                
             </form>
         </div>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                Validator({
-                    form: '#form-2',
-                    formGroupSelector: '.form-group',
-                    errorSelector: '.form-message',
-                    rules: [
-                        Validator.isEmail('#email'),
-                        Validator.minLength('#password', 6),
-                    ],
-                });
+    <script>
+        var x = document.getElementById("user-pass");
+        var show = document.querySelector(".showPass");
+        show.onclick = () => {     
+            if (x.type === "password") {
+                x.type = "text";
+                show.classList.replace("fa-eye-slash","fa-eye");
+            } else {
+                x.type = "password";
+                show.classList.replace("fa-eye","fa-eye-slash");
+            }
+        };
+        document.addEventListener('DOMContentLoaded', function () {
+            Validator({
+                form: '#form-2',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+                    Validator.isEmail('#email'),
+                    Validator.minLength('#password', 6)
+                ]
             });
-        </script>
-        <!-- partial -->
-        <script src="js/login.js"></script>
-
-    </body>
-
+        });
+    </script>
+</body>
 </html>

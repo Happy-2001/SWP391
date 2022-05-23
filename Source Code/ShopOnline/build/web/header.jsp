@@ -42,10 +42,18 @@
                             </a>
                         </li>
                         <li class="account">
-                            <a href="login"><i class="fa fa-user"></i></a>
-                            <!-- <a href="profile.jsp" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-circle-user"></i> VoAnh</a>
-                            <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a>
-                            <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a> -->
+                            <c:choose>
+                                <c:when test="${sessionScope.userlogged eq null}">
+                                    <a href="login"><i class="fa fa-user"></i></a>
+                                </c:when>
+                                <c:when test="${sessionScope.userlogged ne null}">
+                                    <a href="profile.jsp" style="border-left: 2px solid #d33b33;">
+                                        <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
+                                    </a>
+                                    <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a>
+                                    <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a>
+                                </c:when>
+                            </c:choose>
                         </li>
                     </ul>
                 </div>
