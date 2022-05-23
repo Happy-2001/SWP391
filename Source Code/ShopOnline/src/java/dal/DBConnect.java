@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.Connection;
@@ -12,11 +7,8 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author nguye
- */
 public class DBConnect {
+
     // init database constants
     private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/Shop";
@@ -62,6 +54,7 @@ public class DBConnect {
             }
         }
     }
+    
     public static void main(String[] args) {
         try {
             DBConnect dBContext = new DBConnect();
