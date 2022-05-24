@@ -13,13 +13,34 @@ public class User {
     private int userid;
     private String username;
     private String password;
-    private String fullname;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+
     private int gender;
     private String phone;
     private String email;
     private int status;
     private String code;
     private int authorityid;
+
+    public User() {
+    }
+
+    public User(int userid, String username, String password, String firstname, String middlename, String lastname, int gender, String phone, String email, int status, String code, int authorityid) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.status = status;
+        this.code = code;
+        this.authorityid = authorityid;
+    }
 
     public int getUserid() {
         return userid;
@@ -45,12 +66,28 @@ public class User {
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getMiddlename() {
+        return middlename;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public int getGender() {
@@ -99,6 +136,9 @@ public class User {
 
     public void setAuthorityid(int authorityid) {
         this.authorityid = authorityid;
-    }    
-    
+    }
+
+    public String getFullname(){
+        return (firstname+" "+middlename+" "+lastname).trim();
+    }
 }
