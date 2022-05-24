@@ -98,6 +98,7 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
+
     public List<User> listUserCustomer() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM `user_account` WHERE authority_id = 3;";
@@ -209,15 +210,28 @@ public class UserDAO extends DBConnect {
     }
 
     public List<User> searchUserByName(String name, String authority_id) {
+        String[] wordName = name.split("\\s++");
+        String firstName = wordName[0];
+        String middleName = "";
+        for (int i = 1; i < wordName.length - 1; i++) {
+            middleName = wordName[i]+" ";
+
+        }
+        middleName = middleName.trim();
+        String lastName = wordName[wordName.length - 1];
+
         String s = "";
         if (authority_id.length() > 0) {
             s = "AND authority_id = " + authority_id;
         }
-        String sql = "SELECT * FROM `user_account` WHERE `full_name` LIKE ? " + s;
+        String sql = "SELECT * FROM `user_account` WHERE `first_name` LIKE ? AND `middle_name` LIKE ? AND `last_name` LIKE ?" + s;
         try {
             List<User> users = new ArrayList<>();
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setString(1, "%" + name + "%");
+            statement.setString(1, "%" + firstName + "%");
+            statement.setString(2, "%" + middleName + "%");
+            statement.setString(3, "%" + lastName + "%");
+
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 User u = new User();
@@ -246,10 +260,10 @@ public class UserDAO extends DBConnect {
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
         List<User> listUser = new ArrayList<>();
-        listUser = ud.listUserCustomer();
+        listUser = ud.searchUserByName("Nguyen", "1");
         for (User user : listUser) {
             System.out.println(user.getFullname());
         }
-            
+
     }
 }
