@@ -24,43 +24,42 @@
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
 
+        <!-- Start Top Search -->
+        <div class="top-search">
+            <div class="container">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+        </div>
+        <!-- End Top Search -->
+
         <!-- Start Slider -->
-        <div id="slides-shop" class="carousel slide" data-bs-ride="carousel" style="margin-top: 60px;">
-            <div class="carousel-inner">
-                <div class="cover-slides carousel-item">
-                    <img src="https://theme.hstatic.net/200000238513/1000665981/14/slider_1.jpg?v=23">
-                    <div class="carousel-caption">
-                        <h1><strong>3 Mẫu giày hot nhất</strong></h1>
-                        <p>
-                            <i>Đây là những mẫu bán chạy của shop,<br>Chiều chuộng những khách hàng khó tính nhất</i>
-                        </p>
-                        <p>
-                            <a class="hvr-hover" href="ProductController">Click me!</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="cover-slides carousel-item">
-                    <img src="https://cdn.dribbble.com/users/2317528/screenshots/5332010/nike-adidas_shoe_slider.png" alt="">
-                    <div class="carousel-caption">
-                        <h1><strong>3 Mẫu giày hot nhất</strong></h1>
-                        <p>
-                            <i>Đây là những mẫu bán chạy của shop,<br>Chiều chuộng những khách hàng khó tính nhất</i>
-                        </p>
-                        <p>
-                            <a class="hvr-hover" href="ProductController">Click me!</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div id="slides-shop" class="cover-slides">
+            <ul class="slides-container">
+                <c:forEach items="${slides}" var="s">
+                    <c:if test="${s.status}">
+                    <li class="text-left">
+                        <img src="${s.img}" alt="">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="m-b-20"><strong>${s.heading}</strong></h1>
+                                    <p class="m-b-40">${s.description}</p>
+                                    <p><a class="btn hvr-hover" href="${s.url}">${s.namebutton}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    </c:if>
+                </c:forEach>
+            </ul>
             <div class="slides-navigation">
-                <button class="carousel-control-prev" type="button" data-bs-target="#slides-shop" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#slides-shop" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
+                <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
             </div>
-            <script src="js/slide-show.js"></script>
         </div>
         <!-- End Slider -->
 
@@ -75,105 +74,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="row special-list">     
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
+                <div class="row special-list">
+                    <c:forEach items="${products}" var="product">
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="${product.img}" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="productDetail?product_id=${product.id}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        <a class="cart" href="#">Add to Cart</a>
+                                    </div>
                                 </div>
-                                <img src="images/2.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=2" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
+                                <div class="why-text">
+                                    <h4>${product.name}</h4>
+                                    <h5>${product.price} VND</h5>
                                 </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Chuck Taylor</h4>
-                                <h5>2350000.0 VND</h5>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
-                                </div>
-                                <img src="images/3.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=3" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Air Force 1</h4>
-                                <h5>2650000.0 VND</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
-                                </div>
-                                <img src="images/4.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=4" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>SlipOn</h4>
-                                <h5>1750000.0 VND</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
-                                </div>
-                                <img src="images/5.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=5" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Blazer</h4>
-                                <h5>3200000.0 VND</h5>
-                            </div>
-                        </div>
-                    </div> 
+                    </c:forEach>
                 </div>
             </div>
         </div>
         <!-- End Products  -->
-
-
-        <!-- Start Products  -->
+        
+        
+                <!-- Start Products  -->
         <div class="products-box">
             <div class="container">
                 <div class="row">
@@ -185,101 +117,72 @@
                     </div>
                 </div>
                 <div class="row special-list">
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
+                    <c:forEach items="${newproducts}" var="product">
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="${product.img}" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="productDetail?product_id=${product.id}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        <a class="cart" href="#">Add to Cart</a>
+                                    </div>
                                 </div>
-                                <img src="images/15.jpg" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=15" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
+                                <div class="why-text">
+                                    <h4>${product.name}</h4>
+                                    <h5>${product.price} VND</h5>
                                 </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Wmns Air Jordan 1</h4>
-                                <h5>5900000.0 VND</h5>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
-                                </div>
-                                <img src="images/14.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=14" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>NMD_R1 V2</h4>
-                                <h5>1700000.0 VND</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
-                                </div>
-                                <img src="images/13.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=13" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>PUMA RS-X3</h4>
-                                <h5>3250000.0 VND</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 special-grid best-seller">
-                        <div class="products-single fix">
-                            <div class="box-img-hover">
-                                <div class="type-lb">
-                                    <p class="sale">Sale</p>
-                                </div>
-                                <img src="images/12.jpg" class="img-fluid" alt="Image">
-                                <div class="mask-icon">
-                                    <ul>
-                                        <li><a href="productDetail?product_id=12" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                    </ul>
-                                    <a class="cart" href="#">Add to Cart</a>
-                                </div>
-                            </div>
-                            <div class="why-text">
-                                <h4>Continental</h4>
-                                <h5>1290000.0 VND</h5>
-                            </div>
-                        </div>
-                    </div>     
+                    </c:forEach>
                 </div>
             </div>
         </div>
         <!-- End Products  -->
+        
+
+        <!-- Start Blog  -->
+        <div class="latest-blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title-all text-center">
+                            <h1>LATEST BLOG</h1>
+                            <p>A place to share experiences </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <c:forEach begin="0" end="2" items="${blogs}" var="b">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <div class="blog-box">
+                            <div class="blog-img">
+                                <img class="img-fluid" src="${b.image}" alt="" />
+                            </div>
+                            <div class="blog-content">
+                                <div class="title-blog">
+                                    <a href="blogdetail?id=${b.id}" class="h3">${b.content}</a>
+                                    <p>${b.description}</p>
+                                </div>
+                                <ul class="option-blog">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Likes"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Views"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Comments"><i class="far fa-comments"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- End Blog  -->
 
 
         <!-- Start Blog  -->
