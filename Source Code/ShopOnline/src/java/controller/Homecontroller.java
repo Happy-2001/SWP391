@@ -5,6 +5,9 @@
  */
 package controller;
 
+import dal.BlogDAO;
+import dal.ProductDAO;
+import dal.SlideDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -12,6 +15,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Blog;
+import model.Product;
+import model.Slide;
 
 /**
  *
