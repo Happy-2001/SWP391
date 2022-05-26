@@ -17,6 +17,7 @@ import model.Slide;
  * @author Administrator
  */
 public class SlideDAO {
+
     DBConnect mysqlConnect = new DBConnect();
 
     public List<Slide> listSlide() {
@@ -43,5 +44,15 @@ public class SlideDAO {
             mysqlConnect.disconnect();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        SlideDAO slideDAO = new SlideDAO();
+
+        List<Slide> slides = slideDAO.listSlide();
+        for (Slide slide : slides) {
+            System.out.println(slide.getId());
+        }
+
     }
 }
