@@ -5,25 +5,25 @@
  */
 package controller;
 
-import dal.BlogDAO;
-import dal.ProductDAO;
-import dal.SlideDAO;
+import dal.CartDAO;
+import dal.PostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Blog;
-import model.Product;
-import model.Slide;
+import model.Cart;
 
 /**
  *
- * @author nguye
+ * @author Admin
  */
-public class Homecontroller extends HttpServlet {
+@WebServlet(name = "CartController", urlPatterns = {"/CartController"})
+public class CartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,12 @@ public class Homecontroller extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-        }
+        CartDAO pdb = new CartDAO();
+        List<Cart> carts = pdb.listAll();
+        int total = pdb.getAmount();
+        request.setAttribute("total", total);
+        request.setAttribute("carts", carts);
+        request.getRequestDispatcher("cartDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,26 +56,13 @@ public class Homecontroller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO pdb = new ProductDAO();
-        BlogDAO bdb = new BlogDAO();
-        SlideDAO slideDAO = new SlideDAO();
-
-        List<Blog> blogs = bdb.getBlogForHomePage();
-        List<Slide> slides = slideDAO.listSlide();
-        List<Product> products = pdb.listTop(4);
-        List<Product> newproducts = pdb.listTopNew(4);
-        request.setAttribute("blogs", blogs);
-        request.setAttribute("slides", slides);
-        request.setAttribute("products", products);
-        request.setAttribute("newproducts", newproducts);
-        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-        
+        processRequest(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @par am request servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
