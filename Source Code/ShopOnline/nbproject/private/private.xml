@@ -4,8 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/src/java/controller/Homecontroller.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/src/java/dal/SlideDAO.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/src/java/controller/CartController.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/web/cartDetail.jsp</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/src/java/dal/CartDAO.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/web/onlyuser.jsp</file>
             <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/web/HomePage.jsp</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%202/SWP3911/Source%20Code/ShopOnline/web/header.jsp</file>
         </group>
     </open-files>
 </project-private>
