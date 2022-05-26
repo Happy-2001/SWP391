@@ -24,9 +24,9 @@
                     </form>
                     <!-- End Top Search -->
                     <ul id="page-header" class="nav navbar-nav ms-auto">
-                        <li class="nav-item active"><a class="nav-link" href="HomeController">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog">Blogs</a></li>                       
-                        <li class="nav-item"><a class="nav-link" href="ProductController">Product</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="HomeController" title="Home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog" title="Blogs">Blogs</a></li>                       
+                        <li class="nav-item"><a class="nav-link" href="ProductController" title="Products">Product</a></li>
                     </ul>
                 </div>
 
@@ -37,14 +37,14 @@
                             <a href="#"><i class="fa fa-search"></i></a>
                         </li>
                         <li class="side-menu">
-                            <a href="CartController">
+                            <a href="CartController" title="Cart">
                                 <i class="fa fa-shopping-bag"></i>
                             </a>
                         </li>
                         <li class="account">
                             <c:choose>
                                 <c:when test="${sessionScope.userlogged eq null}">
-                                    <a href="login"><i class="fa fa-user"></i></a>
+                                    <a href="login" title="Login"><i class="fa fa-user"></i></a>
                                 </c:when>
                                 <c:when test="${sessionScope.userlogged ne null}">
                                     <a href="profile.jsp" style="border-left: 2px solid #d33b33;">
