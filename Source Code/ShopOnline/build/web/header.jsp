@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="header" class="bg-light">
     <header>
         <!-- Start Navigation -->
@@ -9,7 +10,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="HomeController"><img src="images/logo.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="home"><img src="images/logo.png" class="logo" alt=""></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <!-- Start Top Search -->
@@ -24,7 +25,7 @@
                     </form>
                     <!-- End Top Search -->
                     <ul id="page-header" class="nav navbar-nav ms-auto">
-                        <li class="nav-item active"><a class="nav-link" href="HomeController" title="Home">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="home" title="Home">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog" title="Blogs">Blogs</a></li>                       
                         <li class="nav-item"><a class="nav-link" href="ProductController" title="Products">Product</a></li>
                     </ul>
@@ -47,7 +48,7 @@
                                     <a href="login" title="Login"><i class="fa fa-user"></i></a>
                                 </c:when>
                                 <c:when test="${sessionScope.userlogged ne null}">
-                                    <a href="profile.jsp" style="border-left: 2px solid #d33b33;">
+                                    <a href="profileUser?userid=1${user.userid}" style="border-left: 2px solid #d33b33;">
                                         <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
                                     </a>
                                     <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a>
