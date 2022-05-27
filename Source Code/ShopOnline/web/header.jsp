@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="header" class="bg-light">
     <header>
         <!-- Start Navigation -->
@@ -42,10 +43,14 @@
                             </a>
                         </li>
                         <li class="account">
+                            <c:if test="${userlogged==null}">
                             <a href="login"><i class="fa fa-user"></i></a>
-                            <!-- <a href="profile.jsp" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-circle-user"></i> VoAnh</a>
-                            <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a>
-                            <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a> -->
+                            </c:if>
+                        <c:if test="${userlogged!=null}">
+                             <a href="profile.jsp" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-circle-user"></i> ${userlogged.username}</a>
+                            <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a><!--
+                            <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a> -->-->
+                            </c:if>
                         </li>
                     </ul>
                 </div>

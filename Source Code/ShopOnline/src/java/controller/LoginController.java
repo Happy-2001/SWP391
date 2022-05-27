@@ -25,12 +25,13 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         UserDAO userDAO = new UserDAO();
         User u = userDAO.getUser(email, password);
+        HttpSession session = request.getSession();
         if (u == null) {
             //show error
             request.setAttribute("ms1", "Check your account!");
            request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            HttpSession session = request.getSession();
+            
             session.setAttribute("userlogged", u);
             response.sendRedirect("home");
           
