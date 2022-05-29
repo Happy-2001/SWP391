@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LogoutController extends HttpServlet {
 
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,6 +34,12 @@ public class LogoutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //Returns the valid session object associated with the request
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //Returns the valid session object associated with the request
+
         HttpSession session = request.getSession();
         //Removes the object bound with the specified name from this session
         session.removeAttribute("userlogged");
@@ -40,6 +47,7 @@ public class LogoutController extends HttpServlet {
         session.invalidate();
         //Redirect to home page
         response.sendRedirect("home");
+
         }
     }
 
@@ -82,4 +90,7 @@ public class LogoutController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+=======
+    }
+>>>>>>> 7833b43e0f75183d417907403d9b702c273fb9aa
 }

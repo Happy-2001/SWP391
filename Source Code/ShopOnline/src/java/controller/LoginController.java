@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
         
         UserDAO userDAO = new UserDAO();
         User u = userDAO.getUser(email, password);
+
         
         if (u != null) { // login successfully!
             String remember = request.getParameter("remember");
@@ -40,12 +41,17 @@ public class LoginController extends HttpServlet {
             }
             
             HttpSession session = request.getSession();
+       
+        if (u == null) {
+            //show error
+            request.setAttribute("ms1", "Check your account!");
+           request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            
             session.setAttribute("userlogged", u);
             response.sendRedirect("home");
                   
-        } else { //login fail
-            request.setAttribute("ms1", "Check your account!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+        } 
+    }
     }
 }

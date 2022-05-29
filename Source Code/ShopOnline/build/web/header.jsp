@@ -43,6 +43,7 @@
                             </a>
                         </li>
                         <li class="account">
+<<<<<<< HEAD
                             <c:choose>
                                 <c:when test="${sessionScope.userlogged eq null}">
                                     <a href="login" title="Login"><i class="fa fa-user"></i></a>
@@ -55,6 +56,16 @@
                                     <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a>
                                 </c:when>
                             </c:choose>
+=======
+                            <c:if test="${userlogged==null}">
+                            <a href="login"><i class="fa fa-user"></i></a>
+                            </c:if>
+                        <c:if test="${userlogged!=null}">
+                             <a href="profile.jsp" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-circle-user"></i> ${userlogged.username}</a>
+                            <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a><!--
+                            <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a> -->-->
+                            </c:if>
+>>>>>>> 7833b43e0f75183d417907403d9b702c273fb9aa
                         </li>
                     </ul>
                 </div>
