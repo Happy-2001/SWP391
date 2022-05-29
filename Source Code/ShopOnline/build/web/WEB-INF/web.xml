@@ -10,6 +10,7 @@
     </servlet>
     <servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <servlet-name>changePassword</servlet-name>
         <servlet-class>controller.changePassword</servlet-class>
     </servlet>
@@ -42,6 +43,11 @@
         <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
 >>>>>>> 7833b43e0f75183d417907403d9b702c273fb9aa
+=======
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
+>>>>>>> 7833b43e0f75183d417907403d9b702c273fb9aa
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -51,6 +57,7 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <servlet-name>changePassword</servlet-name>
         <url-pattern>/changePassword</url-pattern>
@@ -79,6 +86,11 @@
         <servlet-name>ListProductController</servlet-name>
         <url-pattern>/listProduct</url-pattern>
     </servlet-mapping>
+=======
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+>>>>>>> 7833b43e0f75183d417907403d9b702c273fb9aa
 =======
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/logout</url-pattern>

@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
         
         UserDAO userDAO = new UserDAO();
         User u = userDAO.getUser(email, password);
+<<<<<<< HEAD
 
         
         if (u != null) { // login successfully!
@@ -42,6 +43,9 @@ public class LoginController extends HttpServlet {
             
             HttpSession session = request.getSession();
        
+=======
+        HttpSession session = request.getSession();
+>>>>>>> 7833b43e0f75183d417907403d9b702c273fb9aa
         if (u == null) {
             //show error
             request.setAttribute("ms1", "Check your account!");
