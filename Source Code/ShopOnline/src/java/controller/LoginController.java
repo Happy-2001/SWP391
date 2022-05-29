@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("userlogged", u);
             response.sendRedirect("home");
-            srout.println("<!DOCTYPE html>");
+            
                   
         } else { //login fail
             request.setAttribute("ms1", "Check your account!");
