@@ -31,3 +31,27 @@ public class BlogController extends HttpServlet {
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 }
+/*
+public class BlogController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        BlogDAO bdb = new BlogDAO();
+        String page = request.getParameter("page");
+        //Set page for root course page
+        if (page == null || page.equals("")) {
+            page = "" + 1;
+        }
+        //for style active
+        request.setAttribute("PAGE", page);
+        int pageNumber = Integer.parseInt(page);
+        int countPage = bdb.countPage();
+        request.setAttribute("countPage", countPage);
+        //get list courses for each pageNumber
+        List<Blog> blogsForEachPage = bdb.getBlogByPageNumber(pageNumber);
+        request.setAttribute("blogs", blogsForEachPage);
+        request.getRequestDispatcher("blog.jsp").forward(request, response);
+    }
+}
+*/
