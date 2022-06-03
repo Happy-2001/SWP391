@@ -37,12 +37,16 @@
         <servlet-class>controller.ListProductController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BlogDetailController</servlet-name>
-        <servlet-class>controller.BlogDetailController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>BlogSearch</servlet-name>
         <servlet-class>controller.BlogSearch</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>blog</servlet-name>
+        <servlet-class>controller.BlogController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>blogdetail</servlet-name>
+        <servlet-class>controller.BlogDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
@@ -81,12 +85,16 @@
         <url-pattern>/listProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BlogDetailController</servlet-name>
-        <url-pattern>/BlogDetailController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>BlogSearch</servlet-name>
         <url-pattern>/BlogSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>blog</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>blogdetail</servlet-name>
+        <url-pattern>/blogdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
