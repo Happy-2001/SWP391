@@ -1,3 +1,4 @@
+<%@page import="model.Cart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -91,27 +92,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <c:forEach items="${carts}" var="carts">
                                             <tr>
                                                 <td class="d-flex flex-row me-3">
                                                     <div class="image">
-                                                        <img src="images/2.jpg" class="img-fluid">
+                                                        <img src="${carts.url}" class="img-fluid">
                                                     </div>
                                                     <div class="d-flex flex-column">
-                                                        <span><strong>Wmns Air Jordan 1</strong></span>
+                                                        <span><strong>${carts.product_name}</strong></span>
                                                         <span>Color</span>
                                                         <span>Size</span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <input type="text" value="1" disabled>
+                                                    <input type="text" value="${carts.quantity}" disabled>
                                                 </td>
-                                                <td>300.000<i class="fa-solid fa-dong-sign"></i></td>
+                                                <td>${carts.unit_price*carts.quantity}<i class="fa-solid fa-dong-sign"></i></td>
                                                 <td><i class="fa-regular fa-trash-can remove-icon"></i></td>
-                                            </tr>
+                                            </tr>     
+                                            </c:forEach>
                                             <tr>
                                                 <td style="color: #d33b33; font-size: 20px; font-weight: 600;">Total:</td>
                                                 <td></td>
-                                                <td>300.000<i class="fa-solid fa-dong-sign"></i></td>
+                                                <td>${total}<i class="fa-solid fa-dong-sign"></i></td>
                                                 <td></td>
                                             </tr>
                                         </tbody>

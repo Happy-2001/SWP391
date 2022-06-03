@@ -48,6 +48,10 @@
         <servlet-name>blogdetail</servlet-name>
         <servlet-class>controller.BlogDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CardContact</servlet-name>
+        <servlet-class>controller.CardContact</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>blogdetail</servlet-name>
         <url-pattern>/blogdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CardContact</servlet-name>
+        <url-pattern>/CardContact</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -16,7 +16,7 @@
 .order-ls img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .order-ls input{
     padding: 0 8px;
