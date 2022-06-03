@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Shop Online</title>
+    <title>Forgot Password | Shop Online</title>
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -23,34 +23,24 @@
     <div class="Popup" id="myModal">
         <div class="Popup-body">
             <div class="Pop-title">
-                <h2>Login</h2>
+                <h2>Forgot Password</h2>
             </div>
-            <form action="login" method="POST">
+            <form action="forgot" method="POST">
                 <div class="Set-pop">
                     <c:if test="${ms1 ne null}">
                         <p class="alert alert-danger">${ms1}</p>
                     </c:if>
                     <div class="options">
-                        <input id="user-name" type="text" name="email" placeholder="Email" required>
+                        <input id="user-name" type="text" name="email" placeholder="Enter Your Email" required>
                     </div>
                     <div class="options">
-                        <input id="user-pass" type="password" name="password" placeholder="Password" required>
-                        <i class="fa-regular fa-eye-slash showPass"></i>
-                    </div>
-                    <div class="save-pass">
-                        <label class="save-pass-container">Remember password
-                            <input type="checkbox" name="remember">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="options">
-                        <button class="opt-btn" type="submit" name="created">Go</button>
+                        <button class="opt-btn" type="submit" name="created">Send Email</button>
                     </div>
                     <div class="options-divider"></div>
                     <div class="options">
                         <div class="auth-actions">
                             <a href="register">Register a new account</a>
-                            <a href="forgot">Forgot password?</a>
+                            <a href="login">Login</a>
                         </div>    
                     </div>
                 </div>
