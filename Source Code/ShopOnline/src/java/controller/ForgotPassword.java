@@ -96,7 +96,7 @@ public class ForgotPassword extends HttpServlet {
                 + "</body>\n"
                 + "\n"
                 + "</html>";
-        SendMail.send(mail, subject, message, "thachdp2808@gmail.com", "Phucthach2k1");
+        SendMail.send(mail, subject, message, "thachdphe151521@fpt.edu.vn", "Phucthach2k1");
         response.sendRedirect("login");
     }
 
