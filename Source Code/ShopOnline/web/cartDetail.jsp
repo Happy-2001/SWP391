@@ -112,7 +112,7 @@
                                             </td>
                                         </form>
                                     <td class="add-pr">
-                                        <a class="btn btn-success" href="CartContact">Buy Now</a>
+                                        <a class="btn btn-success" href="CardContact">Buy Now</a>
                                     </td>
                                     <td class="add-pr">
                                        <a class="btn btn-success" href="DeleteCartController?id=${carts.item_id}">Delete</a>

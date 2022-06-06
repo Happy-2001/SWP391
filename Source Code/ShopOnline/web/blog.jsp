@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+       <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Shop Online</title>
@@ -20,45 +20,49 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         
+
     </head>
 
     <body>
-        
-        
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
 
-        <div class="div-content">
-            <div class="div-title">
-                <h2>${post.content}</h2>
-                
-            </div>
-            <div class="div-content-1">
-                <div class="content-p">
-                    <p>
-                        ${post.noidung}
-                    </p>
-                </div>
-                <div class="content-sidebar">
-                    <form class="img-input" action="blogsearch" method="GET">
-                        <input type="text" name="search"> <input type="submit" value="Search" />
-                    </form>
-                    <div class="content-img">
-                        <c:forEach items="${postrecommend}" var="p">
-                            <div class="div-img">
-                                <a href="blogdetail?id=${p.id}">
-                                    <img src="${p.image}" alt="">
-                                </a>
-                                <a href="blogdetail?id=${p.id}" class="small-title">${p.content}</a>
-                            </div>     
-                        </c:forEach>
+        <div class="container my-5">
+
+            <form class="form-control mb-4" action="blogsearch" method="GET">
+                <input type="text" name="search" value="${requestScope.search}"> <input type="submit" value="Search" />
+            </form>
+
+
+            <c:forEach items="${blogs}" var="b">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="${b.image}" width="300px" height="200px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <a href="blogdetail?id=${b.id}" class="card-title h3">${b.content}</a>
+                                <p class="card-text">${b.description}</p>
+                                <p class="card-text"><small class="text-muted">${b.createdDate}</small></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </c:forEach>
+
+
+            <c:if test="${countPage != null}">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <c:forEach begin="1" end="${countPage}" var="p">
+                            <li class="page-item ${p == PAGE ? "active":""}"><a class="page-link" href="?page=${p}">${p}</a></li>
+                            </c:forEach>
+                    </ul>
+                </nav>
+            </c:if>
+
         </div>
-
-
-
         <!-- Start Footer  -->
         <footer>
             <div class="footer-main">

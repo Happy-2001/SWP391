@@ -321,6 +321,48 @@ nav.navbar.bootsnav ul.nav li.megamenu-fw > a:hover{
     background: #d33b33;
 }
 
+/* --------------------------------------------------------------------------------- */
+.why-text{
+    padding: 15px;
+}
+.why-text a{
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+}
+.why-text span{
+    color: #ffd55d;
+    font-weight: 700;
+    font-size: 20px;
+}
+.why-text .btn{
+    background-color: #d33b33;
+    color: #fff;
+    margin-top: 1rem;
+    transition: all 0.2s ease-out;
+}
+/* --------------------------------------------------------------------------------- */
+.all-title-box {
+    position: relative;
+    padding: 20px 0px;
+}
+.all-title-box .breadcrumb {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d33b33;
+}
+.all-title-box .breadcrumb li {
+    display: inline-block;
+    color: #010101;
+    font-size: 16px;
+    font-weight: 600;
+}
+.all-title-box .breadcrumb li a{
+    color: #010101;
+}
+.all-title-box .breadcrumb li a:hover{
+    color: #d33b33;
+}
 /*------------------------------------------ FOOTER -------------------------------------------*/
 .footer-main{
     padding: 70px 0px;

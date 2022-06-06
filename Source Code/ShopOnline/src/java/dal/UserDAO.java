@@ -70,6 +70,35 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
+    
+    public User getUserByEmail(String email) {
+        String sql = "SELECT * FROM `user_account` WHERE `email` = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setUserid(rs.getInt("user_id"));
+                u.setUsername(rs.getString("user_name"));
+                u.setFirstname(rs.getString("first_name"));
+                u.setMiddlename(rs.getString("middle_name"));
+                u.setLastname(rs.getString("last_name"));
+                u.setGender(rs.getInt("gender"));
+                u.setPassword(rs.getNString("password"));
+                u.setPhone(rs.getString("phone"));
+                u.setEmail(rs.getString("email"));
+                u.setStatus(rs.getInt("status_id"));
+                u.setAuthorityid(rs.getInt("authority_id"));
+                return u;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
 
     public List<User> listUser() {
         List<User> users = new ArrayList<>();

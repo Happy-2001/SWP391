@@ -50,7 +50,7 @@
                     <div class="options">
                         <div class="auth-actions">
                             <a href="register">Register a new account</a>
-                            <a href="changePassword">Forgot password?</a>
+                            <a href="forgot">Forgot password?</a>
                         </div>    
                     </div>
                 </div>
