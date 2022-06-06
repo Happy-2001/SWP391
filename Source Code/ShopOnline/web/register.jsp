@@ -30,35 +30,27 @@
                 <div class="Set-pop">
                     <div class="options">
                         <input id="user-name" type="text" name="uname" placeholder="User Name" required>
-                        <span class="form-message"></span>
                     </div>
                     <div class="options">
                         <div class="auth-actions">
                             <input id="full-name" type="text" name="firstname" placeholder="First Name" required>
-                            <span class="form-message"></span>
                             <input id="full-name" type="text" name="middlename" placeholder="Middle Name">
-                            <span class="form-message"></span>
                             <input id="full-name" type="text" name="lastname" placeholder="Last Name" required>
-                            <span class="form-message"></span>
                         </div>
                     </div>
                     <div class="options">
                         <input id="phone" type="tel" name="phone" placeholder="Phone" required>
-                        <span class="form-message"></span>
                     </div>
                     <div class="options">
                         <input id="email" type="text" name="email" placeholder="Email" required>
-                        <span class="form-message"></span>
                     </div>
                     <div class="options">
                         <input id="password" type="password" name="password" placeholder="Password" required>
                         <i class="fa-regular fa-eye-slash showPass"></i>
-                        <span class="form-message"></span>
                     </div>
                     <div class="options">
                         <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Enter password again" required>
                         <i class="fa-regular fa-eye-slash showPass"></i>
-                        <span class="form-message"></span>
                     </div>
                     <div class="save-pass">
                         <div class="auth-actions">
@@ -109,26 +101,5 @@
             }
         };
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        Validator({
-            form: '#form-1',
-            formGroupSelector: '.form-group',
-            errorSelector: '.form-message',
-            rules: [
-                Validator.isRequired('#fullname', 'Enter your fullname'),
-                Validator.isEmail('#email'),
-                Validator.minLength('#password', 6),
-                Validator.minLength('#username', 6),
-                Validator.isRequired('#password_confirmation'),
-                Validator.isConfirmed('#password_confirmation', function () {
-                    return document.querySelector('#form-1 #password').value;
-                }, 'Mật khẩu nhập lại không chính xác')
-            ]
-        });
-    });
-</script>
 </body>
-
 </html>

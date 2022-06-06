@@ -87,14 +87,15 @@
 .auth-actions {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
-.auth-actions a{
+a{
     color: #2f5acf;
     transition: .2s all;
     font-weight: 500;
 }
-.auth-actions a:hover{
-    color: #000;
+a:hover{
+    color: #000 !important;
     transition: .2s all;
 }
 .alert{
@@ -150,14 +151,26 @@
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+.radio-mark{
+    position: absolute;
+    top: 3px;
+    left: 10px;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
 
 /* On mouse-over, add a grey background color */
-.save-pass-container:hover input ~ .checkmark {
+.save-pass-container:hover input ~ .checkmark,
+.save-pass-container:hover input ~ .radio-mark {
     background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.save-pass-container input:checked ~ .checkmark {
+.save-pass-container input:checked ~ .checkmark,
+.save-pass-container input:checked ~ .radio-mark {
     background-color: #000;
 }
 
