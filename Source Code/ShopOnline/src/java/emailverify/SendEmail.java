@@ -5,10 +5,20 @@
  */
 package emailverify;
 
+import model.User;
+
 /**
  *
  * @author Manh_Hung
  */
 public class SendEmail {
+
+    public boolean sendEmail(User u, String subject, String message) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getRandom() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
