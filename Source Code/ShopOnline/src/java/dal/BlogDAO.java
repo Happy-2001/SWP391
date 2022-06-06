@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import model.Blog;
 
 /**
@@ -91,12 +92,45 @@ public class BlogDAO {
         return lc;
     }
 
-    public Object getBlogRecommend(String id, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Blog> getBlogRecommend(String id, int number) {
+        try {
+            List<Blog> blogs = new ArrayList<>();
+            String sql = "SELECT * FROM `blog` WHERE blog_id != ? LIMIT ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, id);
+            statement.setInt(2, number);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Blog b = new Blog(rs.getInt("blog_id"), rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), rs.getString("noidung"), rs.getString("img"), rs.getInt("category_blog_id"));
+                blogs.add(b);
+            }
+            return blogs;
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
     }
 
+     
+
     public Object getBlogById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "SELECT * FROM `blog` WHERE blog_id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Blog b = new Blog(rs.getInt("blog_id"), rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), rs.getString("noidung"), rs.getString("img"), rs.getInt("category_blog_id"));
+                return b;
+            }
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
     }
 
     public Object getBlogSearch(String search) {
