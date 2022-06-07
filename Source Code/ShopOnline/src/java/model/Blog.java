@@ -19,7 +19,8 @@ public class Blog {
     private String noidung;
     private String image;
     private int categoryId;
-
+    
+    
     public Blog() {
     }
 

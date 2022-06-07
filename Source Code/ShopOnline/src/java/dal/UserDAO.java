@@ -31,7 +31,7 @@ public class UserDAO extends DBConnect {
                 u.setEmail(email);
                 u.setStatus(rs.getInt("status_id"));
                 u.setCode(rs.getString("code"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                
                 return u;
             }
         } catch (SQLException e) {
@@ -60,7 +60,7 @@ public class UserDAO extends DBConnect {
                 u.setPhone(rs.getString("phone"));
                 u.setEmail(rs.getString("email"));
                 u.setStatus(rs.getInt("status_id"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                
                 return u;
             }
         } catch (SQLException e) {
