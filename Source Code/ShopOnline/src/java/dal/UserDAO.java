@@ -11,8 +11,8 @@ public class UserDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
 
-    public User getUser(String email, String password) {
-        String sql = "SELECT * FROM `user_account` WHERE `email` = ? AND `password` = ?";
+    public User getUser(String email, String password) {  // cần update data cho table electoronicaddress, sau đó có thể sử dụng hàm này(sql hàm chưa làm lại)
+        String sql = "SELECT * FROM `user_accounts` WHERE `email` = ? AND `password` = ?";   
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, email);
@@ -22,16 +22,47 @@ public class UserDAO extends DBConnect {
                 User u = new User();
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
-                u.setPassword(password);
+                u.setPassword(rs.getString("password"));
                 u.setFirstname(rs.getString("first_name"));
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(email);
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
                 u.setCode(rs.getString("code"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                u.setRole(rs.getString(4));
+                return u;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+    
+    public User getUserbyUserName(String username, String password) {  // cần update
+        String sql = "SELECT * FROM `user_accounts` WHERE `user_name` = ? AND `password` = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setUserid(rs.getInt("user_id"));
+                u.setUsername(rs.getString("user_name"));
+                u.setPassword(rs.getString("password"));
+                u.setFirstname(rs.getString("first_name"));
+                u.setMiddlename(rs.getString("middle_name"));
+                u.setLastname(rs.getString("last_name"));
+                u.setGender(rs.getInt("gender"));
+                u.setPhone("");
+                u.setEmail("");
+                u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 return u;
             }
         } catch (SQLException e) {
@@ -52,15 +83,16 @@ public class UserDAO extends DBConnect {
                 User u = new User();
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
+                u.setPassword(rs.getString("password"));
                 u.setFirstname(rs.getString("first_name"));
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
-                u.setPassword(rs.getNString("password"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                u.setCode("");
+                u.setRole("");
                 return u;
             }
         } catch (SQLException e) {
@@ -81,15 +113,16 @@ public class UserDAO extends DBConnect {
                 User u = new User();
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
+                u.setPassword(rs.getString("password"));
                 u.setFirstname(rs.getString("first_name"));
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
-                u.setPassword(rs.getNString("password"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                u.setCode("");
+                u.setRole("");
                 return u;
             }
         } catch (SQLException e) {
@@ -110,13 +143,16 @@ public class UserDAO extends DBConnect {
                 User u = new User();
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
+                u.setPassword(rs.getString("password"));
                 u.setFirstname(rs.getString("first_name"));
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                u.setEmail("");
+                u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 users.add(u);
             }
             return users;
@@ -138,13 +174,16 @@ public class UserDAO extends DBConnect {
                 User u = new User();
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
+                u.setPassword(rs.getString("password"));
                 u.setFirstname(rs.getString("first_name"));
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
-                u.setAuthorityid(rs.getInt("authority_id"));
+                u.setEmail("");
+                u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 users.add(u);
             }
             return users;
@@ -288,11 +327,8 @@ public class UserDAO extends DBConnect {
     //Column count doesn't match value count at row 1
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-        List<User> listUser = new ArrayList<>();
-        listUser = ud.searchUserByName("Nguyen", "1");
-        for (User user : listUser) {
-            System.out.println(user.getFullname());
-        }
+        User u = ud.getUserbyUserName("hoangadma", "123456");
+        System.out.println(u.getFullname());
 
     }
 }

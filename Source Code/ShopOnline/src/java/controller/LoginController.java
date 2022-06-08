@@ -22,16 +22,21 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
         
         UserDAO userDAO = new UserDAO();
-        User u = userDAO.getUser(email, password);
+        User u = null;
+        if(username.contains("@")){
+             u = userDAO.getUser(username, password);
+        }else{
+             u = userDAO.getUserbyUserName(username, password);
+        }
         
         if (u != null) { // login successfully!
             String remember = request.getParameter("remember");
             if (remember != null) {
-                Cookie c_user = new Cookie("email", email);
+                Cookie c_user = new Cookie("username", username);
                 Cookie c_pass = new Cookie("password", password);
                 c_user.setMaxAge(3600 * 24 * 30);
                 c_pass.setMaxAge(3600 * 24 * 30);
