@@ -62,7 +62,7 @@
                 <div class="col-lg-12">
                     <h2>Cart Detail</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="HomeController">Shop</a></li>
+                        <li class="breadcrumb-item"><a href="home">Shop</a></li>
                         <li class="breadcrumb-item active">Cart Detail</li>
                     </ul>
                 </div>
