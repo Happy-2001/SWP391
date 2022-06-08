@@ -56,10 +56,12 @@
         <servlet-name>ForgotPassword</servlet-name>
         <servlet-class>controller.ForgotPassword</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>BlogDetailController</servlet-name>
         <servlet-class>controller.BlogDetailController</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -115,11 +117,13 @@
     <servlet-mapping>
         <servlet-name>ForgotPassword</servlet-name>
         <url-pattern>/forgot</url-pattern>
-    </servlet-mapping>
+   </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>BlogDetailController</servlet-name>
         <url-pattern>/Blogdetai</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
