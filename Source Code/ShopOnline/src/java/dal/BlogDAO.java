@@ -9,10 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
+
+
 import java.util.List;
->>>>>>> main
+
 import model.Blog;
 
 /**
@@ -24,7 +24,7 @@ public class BlogDAO {
 
     public int countPage() {
         try {
-            String sql = "SELECT COUNT(*) AS TOTAL FROM `blog`";
+            String sql = "SELECT COUNT(*) AS TOTAL FROM `blogs`";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
@@ -48,7 +48,7 @@ public class BlogDAO {
         try {
             String sql = "SELECT blog_id , create_date, content, description, img "
                     + "FROM(SELECT blog_id , create_date, content, description, img, "
-                    + "ROW_NUMBER() OVER (ORDER BY create_date DESC) AS Seq FROM  `blog`) as x "
+                    + "ROW_NUMBER() OVER (ORDER BY create_date DESC) AS Seq FROM  `blogs`) as x "
                     + "WHERE Seq BETWEEN ? AND ? ";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, ((pageNumber - 1) * 2) + 1);
@@ -75,7 +75,7 @@ public class BlogDAO {
     public ArrayList<Blog> getBlogForHomePage() {
         ArrayList<Blog> lc = new ArrayList<>();
         try {
-            String sql = "SELECT blog_id , create_date, content, description, img FROM blog ORDER BY create_date DESC";
+            String sql = "SELECT blog_id , create_date, content, description, img FROM blogs ORDER BY create_date DESC";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -95,18 +95,14 @@ public class BlogDAO {
         return lc;
     }
 
-<<<<<<< HEAD
-    public Object getBlogRecommend(String id, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    public Object getBlogById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
+   
+
+    
     public List<Blog> getBlogRecommend(String id, int number) {
         try {
             List<Blog> blogs = new ArrayList<>();
-            String sql = "SELECT * FROM `blog` WHERE blog_id != ? LIMIT ?";
+            String sql = "SELECT * FROM `blogs` WHERE blog_id != ? LIMIT ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, id);
             statement.setInt(2, number);
@@ -127,7 +123,7 @@ public class BlogDAO {
 
     public Blog getBlogById(String id) {
         try {
-            String sql = "SELECT * FROM `blog` WHERE blog_id = ?";
+            String sql = "SELECT * FROM `blogs` WHERE blog_id = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, id);
             ResultSet rs = statement.executeQuery();
@@ -141,7 +137,7 @@ public class BlogDAO {
             mysqlConnect.disconnect();
         }
         return null;
->>>>>>> main
+
     }
 
     public Object getBlogSearch(String search) {

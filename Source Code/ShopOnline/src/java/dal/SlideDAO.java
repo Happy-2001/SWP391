@@ -22,7 +22,7 @@ public class SlideDAO {
 
     public List<Slide> listSlide() {
         List<Slide> slides = new ArrayList<>();
-        String sql = "SELECT * FROM `slide`";
+        String sql = "SELECT * FROM `slides`";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
