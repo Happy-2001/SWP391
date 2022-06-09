@@ -1,5 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,18 +21,20 @@
         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
         <!-- Site CSS -->
         <link rel="stylesheet" href="css/userprifile.css">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="css/responsive.css">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/custom.css">
-
+        <script src="js/fontAwesome.js"></script>
+        
         <meta name="author" content="Codeconvey" />
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        
         <!--Only for demo purpose - no need to add.-->
         <link rel="stylesheet" href="css/demo.css" />
 
@@ -71,7 +72,7 @@
                                     <tr>
                                         <th width="30%">Name</th>
                                         <td width="2%">:</td>
-                                        <td><h7>${user.fullname}</h7></td>
+                                        <td><h7>${user.firstname} ${user.middlename} ${user.lastname}</h7></td>
                                     </tr>
                                     <tr>
                                         <th width="30%">Phone</th>

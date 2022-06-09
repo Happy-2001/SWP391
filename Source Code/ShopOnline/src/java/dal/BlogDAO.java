@@ -9,7 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
 import java.util.List;
+
 import model.Blog;
 
 /**
@@ -92,6 +95,10 @@ public class BlogDAO {
         return lc;
     }
 
+
+   
+
+    
     public List<Blog> getBlogRecommend(String id, int number) {
         try {
             List<Blog> blogs = new ArrayList<>();
@@ -130,6 +137,7 @@ public class BlogDAO {
             mysqlConnect.disconnect();
         }
         return null;
+
     }
 
     public Object getBlogSearch(String search) {
