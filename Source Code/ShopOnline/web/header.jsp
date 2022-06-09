@@ -27,7 +27,7 @@
                     <ul id="page-header" class="nav navbar-nav ms-auto">
                         <li class="nav-item active"><a class="nav-link" href="home" title="Home">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog" title="Blogs">Blogs</a></li>                       
-                        <li class="nav-item"><a class="nav-link" href="ProductController" title="Products">Product</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.jsp" title="Products">Product</a></li>
                     </ul>
                 </div>
 
