@@ -2,6 +2,7 @@ package controller;
 
 import dal.UserDAO;
 import java.io.IOException;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -22,26 +23,33 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
         
         UserDAO userDAO = new UserDAO();
-        User u = userDAO.getUser(email, password);
-        
+        User u = null;
+        if(username.contains("@")){
+             u = userDAO.getUser(username, password);
+        }else{
+             u = userDAO.getUserbyUserName(username, password);
+        }
         if (u != null) { // login successfully!
             String remember = request.getParameter("remember");
             if (remember != null) {
-                Cookie c_user = new Cookie("email", email);
+                Cookie c_user = new Cookie("username", username);
                 Cookie c_pass = new Cookie("password", password);
                 c_user.setMaxAge(3600 * 24 * 30);
                 c_pass.setMaxAge(3600 * 24 * 30);
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
+                userDAO.insertTimeLogin(java.time.LocalDate.now().toString());
+                
             }
             
             HttpSession session = request.getSession();
             session.setAttribute("userlogged", u);
             response.sendRedirect("home");
+            
                   
         } else { //login fail
             request.setAttribute("ms1", "Check your account!");

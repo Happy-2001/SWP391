@@ -11,7 +11,7 @@ public class DBConnect {
 
     // init database constants
     private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/shop1";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/shop2";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
     private static final String MAX_POOL = "250";

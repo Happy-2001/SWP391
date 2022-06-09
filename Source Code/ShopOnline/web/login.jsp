@@ -31,7 +31,7 @@
                         <p class="alert alert-danger">${ms1}</p>
                     </c:if>
                     <div class="options">
-                        <input id="user-name" type="text" name="email" placeholder="Email" required>
+                        <input id="user-name" type="text" name="username" placeholder="Email or User Name" required>
                     </div>
                     <div class="options">
                         <input id="user-pass" type="password" name="password" placeholder="Password" required>
@@ -50,7 +50,7 @@
                     <div class="options">
                         <div class="auth-actions">
                             <a href="register">Register a new account</a>
-                            <a href="#">Forgot password?</a>
+                            <a href="forgot">Forgot password?</a>
                         </div>    
                     </div>
                 </div>
