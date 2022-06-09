@@ -368,143 +368,56 @@
                                 </ul>
                             </div>
                         </div>
+                    
                         <div class="row product-categorie-box">
                             <div class="products-box active" id="grid-view">
                                 <div class="container">
-                                    <div class="row">     
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single">
-                                                <div class="type-lb">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                                <div class="box-img-hover">
-                                                    <img src="images/2.jpg" class="img-fluid" alt="Image">
-                                                </div>
-                                                <div class="why-text">
-                                                    <a href="#">Chuck Taylor</a>
-                                                    <p class="text-muted">Chuck Taylor 1970s Low</p>
-                                                    <span>2350000.0 VND</span>
-                                                    <a href="#" class="btn">Add to Card</a>
-                                                    <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single">
-                                                <div class="type-lb">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                                <div class="box-img-hover">
-                                                    <img src="images/3.jpg" class="img-fluid" alt="Image">
-                                                </div>
-                                                <div class="why-text">
-                                                    <a href="#">Air Force 1</a>
-                                                    <p class="text-muted">Nike Air Force 1</p>
-                                                    <span>2650000.0 VND</span>
-                                                    <a href="#" class="btn">Add to Card</a>
-                                                    <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single">
-                                                <div class="type-lb">
-                                                    <p class="sale">Sale</p>
-                                                </div>
-                                                <div class="box-img-hover">
-                                                    <img src="images/4.jpg" class="img-fluid" alt="Image">
-                                                </div>
-                                                <div class="why-text">
-                                                    <a href="">SlipOn</a>
-                                                    <p class="text-muted">Vans Slip On cer</p>
-                                                    <span>1750000.0 VND</span>
-                                                    <a href="#" class="btn">Add to Card</a>
-                                                    <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="row">
+                        <c:forEach items="${productsForEachPage}" var="product">
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
                                     </div>
-                                    <ul class="pagination justify-content-end">
+                                    <img src="${product.img}" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="productDetail?product_id=${product.id}" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                            <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                        </ul>
+                                        <a class="cart" href="#">Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>${product.name}</h4>
+                                    <h5>${product.price} VND</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                         <c:if test="${countPage != null}">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination">
+                                                        <c:forEach begin="1" end="${countPage}" var="p">
+                                                            <li class="page-item ${p == PAGE ? "active":""}"><a class="page-link" href="?page=${p}">${p}</a></li>
+                                                            </c:forEach>
+                                                    </ul>
+                                                </nav>
+                                                <!--END PAGING-->
+                                            </c:if>
+<!--                                    <ul class="pagination justify-content-end">
                                         <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
                                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
                             </div>
                             
-                            <div class="products-box" id="list-view">
-                                <div class="container">
-                                    <div class="products-single">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="box-img-hover">
-                                                    <img src="images/2.jpg" class="img-fluid" alt="Image">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text">
-                                                    <a href="#">Chuck Taylor</a>
-                                                    <p class="text-muted">Chuck Taylor 1970s Low</p>
-                                                    <span>2350000.0 VND</span>
-                                                    <p>
-                                                        Converse Chuck Taylor All Star 1970s Low Top Black shoes are designed from lightweight canvas material, thick, stiffer form. The iconic and iconic Converse shoe line. Thick lining creates a smooth feeling when moving, thick fabric, stiffer form. The vintage ivory white sole is covered with a glossy outer layer that is a unique highlight for the 1970s line, easier to clean.
-                                                    </p>
-                                                    <a href="#" class="btn">Add to Card</a>
-                                                    <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="products-single">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="box-img-hover">
-                                                    <img src="images/3.jpg" class="img-fluid" alt="Image">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text">
-                                                    <a href="#">Air Force 1</a>
-                                                    <p class="text-muted">Nike Air Force 1</p>
-                                                    <span>2650000.0 VND</span>
-                                                    <p>
-                                                        Designed by Bruce Kilgore and introduced in 1982, the AF1 was the first basketball shoe to feature Nike Air Technologyârevolutionizing the game and sneaker
-                                                    </p>
-                                                    <a href="#" class="btn">Add to Card</a>
-                                                    <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="products-single">
-                                        <div class="row">                                              
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div class="box-img-hover">
-                                                    <img src="images/4.jpg" class="img-fluid" alt="Image">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div class="why-text">
-                                                    <a href="">SlipOn</a>
-                                                    <p class="text-muted">Vans Slip On cer</p>
-                                                    <span>1750000.0 VND</span>
-                                                    <a href="#" class="btn">Add to Card</a>
-                                                    <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="pagination justify-content-end">
-                                        <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
-                                    </ul>
+                            
                                 </div>
                             </div>    
                         </div>
