@@ -25,6 +25,10 @@
         <servlet-class>controller.ProductDetail</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ProfileUserController</servlet-name>
+        <servlet-class>controller.ProfileUserController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
@@ -45,8 +49,8 @@
         <servlet-class>controller.BlogDetailController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CartContact</servlet-name>
-        <servlet-class>controller.CartContact</servlet-class>
+        <servlet-name>CardContact</servlet-name>
+        <servlet-class>controller.CardContact</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPassword</servlet-name>
@@ -55,14 +59,6 @@
     <servlet>
         <servlet-name>BlogDetailController</servlet-name>
         <servlet-class>controller.BlogDetailController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteCartController</servlet-name>
-        <servlet-class>controller.DeleteCartController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProfileUserController</servlet-name>
-        <servlet-class>controller.ProfileUserController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProductController</servlet-name>
@@ -93,6 +89,10 @@
         <url-pattern>/productDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ProfileUserController</servlet-name>
+        <url-pattern>/profileUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
@@ -113,8 +113,8 @@
         <url-pattern>/blogdetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CartContact</servlet-name>
-        <url-pattern>/CartContact</url-pattern>
+        <servlet-name>CardContact</servlet-name>
+        <url-pattern>/CardContact</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPassword</servlet-name>
@@ -123,14 +123,6 @@
     <servlet-mapping>
         <servlet-name>BlogDetailController</servlet-name>
         <url-pattern>/Blogdetai</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteCartController</servlet-name>
-        <url-pattern>/DeleteCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProfileUserController</servlet-name>
-        <url-pattern>/ProfileUserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>

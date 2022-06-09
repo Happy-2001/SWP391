@@ -9,10 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-
 import java.util.List;
-
 import model.Blog;
 
 /**
@@ -95,10 +92,6 @@ public class BlogDAO {
         return lc;
     }
 
-
-   
-
-    
     public List<Blog> getBlogRecommend(String id, int number) {
         try {
             List<Blog> blogs = new ArrayList<>();
@@ -108,7 +101,7 @@ public class BlogDAO {
             statement.setInt(2, number);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                Blog b = new Blog(rs.getInt("blog_id"), rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), rs.getString("noidung"), rs.getString("img"), rs.getInt("category_blog_id"));
+                Blog b = new Blog(rs.getInt("blog_id"), rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), rs.getString("noidung"), rs.getString("img"), rs.getInt("blogCategoryID"));
                 blogs.add(b);
             }
             return blogs;
@@ -128,7 +121,7 @@ public class BlogDAO {
             statement.setString(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Blog b = new Blog(rs.getInt("blog_id"), rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), rs.getString("noidung"), rs.getString("img"), rs.getInt("category_blog_id"));
+                Blog b = new Blog(rs.getInt("blog_id"), rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), rs.getString("noidung"), rs.getString("img"), rs.getInt("blogCategoryID"));
                 return b;
             }
         } catch (SQLException ex) {
@@ -137,7 +130,6 @@ public class BlogDAO {
             mysqlConnect.disconnect();
         }
         return null;
-
     }
 
     public Object getBlogSearch(String search) {
