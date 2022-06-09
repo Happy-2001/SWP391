@@ -25,10 +25,6 @@
         <servlet-class>controller.ProductDetail</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProfileUserController</servlet-name>
-        <servlet-class>controller.ProfileUserController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
@@ -87,10 +83,6 @@
     <servlet-mapping>
         <servlet-name>ProductDetail</servlet-name>
         <url-pattern>/productDetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProfileUserController</servlet-name>
-        <url-pattern>/profileUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>

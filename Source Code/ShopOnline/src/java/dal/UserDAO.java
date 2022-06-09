@@ -74,7 +74,7 @@ public class UserDAO extends DBConnect {
     }
 
     public User getUserById(String id) {
-        String sql = "SELECT * FROM `user_account` WHERE `user_id` = ?";
+        String sql = "SELECT * FROM `user_accounts` WHERE `user_id` = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, id);
