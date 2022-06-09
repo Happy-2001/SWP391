@@ -2,7 +2,6 @@ package controller;
 
 import dal.UserDAO;
 import java.io.IOException;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +32,7 @@ public class LoginController extends HttpServlet {
         }else{
              u = userDAO.getUserbyUserName(username, password);
         }
+        
         if (u != null) { // login successfully!
             String remember = request.getParameter("remember");
             if (remember != null) {
@@ -42,8 +42,6 @@ public class LoginController extends HttpServlet {
                 c_pass.setMaxAge(3600 * 24 * 30);
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
-                userDAO.insertTimeLogin(java.time.LocalDate.now().toString());
-                
             }
             
             HttpSession session = request.getSession();

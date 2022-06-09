@@ -16,7 +16,7 @@ import model.User;
 
 /**
  *
- * @author dungk
+ * @author nguye
  */
 public class ProfileUserController extends HttpServlet {
 
@@ -58,10 +58,12 @@ public class ProfileUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String userid = request.getParameter("userid");    
+        String userid = request.getParameter("userid");  
+        
         UserDAO udb = new UserDAO();
         User user = udb.getUserById(userid);  
          request.setAttribute("user", user);
+//         response.getWriter().print(user.getEmail());
         request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
     }
 
