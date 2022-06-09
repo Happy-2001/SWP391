@@ -2,28 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/model/User.java</file>
-<<<<<<< Updated upstream
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/web/UserProfile.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/controller/ProfileUserController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/UserDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/web/header.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/PostDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/web/HomePage.jsp</file>
-=======
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/model/Category.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/model/CartContact.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/UserDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/BlogDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
->>>>>>> Stashed changes
-=======
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/shop.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/ProductController.java</file>
->>>>>>> 95cedf001f1dcf7481da6525e5145be2e2896472
-        </group>
+        <group/>
     </open-files>
 </project-private>

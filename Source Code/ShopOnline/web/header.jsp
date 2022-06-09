@@ -48,10 +48,10 @@
                                     <a href="login" title="Login"><i class="fa fa-user"></i></a>
                                 </c:when>
                                 <c:when test="${sessionScope.userlogged ne null}">
-                                    <a href="profileUser?userid=${sessionScope.userlogged.userid}" style="border-left: 2px solid #d33b33;">
+                                    <a href="profileUser?userid=1${user.userid}" style="border-left: 2px solid #d33b33;">
                                         <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
                                     </a>
-                                <a href="logout" style="border-left: 2px solid #d33b33;" title="Logout"><i class="fa-solid fa-power-off"></i></a>
+                                    <a href="logout" style="border-left: 2px solid #d33b33;"><i class="fa-solid fa-power-off"></i></a>
                                     <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a>
                                 </c:when>
                             </c:choose>
