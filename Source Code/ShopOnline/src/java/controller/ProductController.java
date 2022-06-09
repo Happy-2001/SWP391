@@ -5,20 +5,21 @@
  */
 package controller;
 
-import dal.UserDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
+import model.Product;
 
 /**
  *
- * @author dungk
+ * @author thund
  */
-public class ProfileUserController extends HttpServlet {
+public class ProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +38,10 @@ public class ProfileUserController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProfileUserController</title>");            
+            out.println("<title>Servlet ProductController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProfileUserController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProductController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,11 +59,29 @@ public class ProfileUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String userid = request.getParameter("userid");    
-        UserDAO udb = new UserDAO();
-        User user = udb.getUserById(userid);  
-         request.setAttribute("user", user);
-        request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
+        ProductDAO pdb = new ProductDAO();
+        String page = request.getParameter("page");
+
+        //Set page for root course page
+        if (page == null || page.equals("")) {
+            page = "" + 1;
+        }
+        //for style active
+        request.setAttribute("PAGE", page);
+        int pageNumber = Integer.parseInt(page);
+
+        int countPage = pdb.countPage();
+        request.setAttribute("countPage", countPage);
+
+        //get list courses for each pageNumber
+        List<Product> productsForEachPage = pdb.getCourseByPageNumber(pageNumber);
+        request.setAttribute("productsForEachPage", productsForEachPage);
+
+         List<Product> products = pdb.listAll();
+         request.setAttribute("list", products);
+
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
     /**
