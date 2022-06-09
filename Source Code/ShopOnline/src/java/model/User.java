@@ -21,12 +21,13 @@ public class User {
     private String phone;
     private String email;
     private int status;
-
+    private String code;
+    private String role;
 
     public User() {
     }
 
-    public User(int userid, String username, String password, String firstname, String middlename, String lastname, int gender, String phone, String email, int status) {
+    public User(int userid, String username, String password, String firstname, String middlename, String lastname, int gender, String phone, String email, int status, String code, String role) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -37,7 +38,8 @@ public class User {
         this.phone = phone;
         this.email = email;
         this.status = status;
-     
+        this.code = code;
+        this.role = role;
     }
 
     public int getUserid() {
@@ -118,6 +120,22 @@ public class User {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     

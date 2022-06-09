@@ -12,11 +12,7 @@ public class UserDAO extends DBConnect {
     DBConnect mysqlConnect = new DBConnect();
 
     public User getUser(String email, String password) {  // cần update data cho table electoronicaddress, sau đó có thể sử dụng hàm này(sql hàm chưa làm lại)
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID\n"
-                + "WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM `user_accounts` WHERE `email` = ? AND `password` = ?";   
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, email);
@@ -32,8 +28,10 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
+                u.setCode(rs.getString("code"));
+                u.setRole(rs.getString(4));
                 return u;
             }
         } catch (SQLException e) {
@@ -43,13 +41,9 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
-
+    
     public User getUserbyUserName(String username, String password) {  // cần update
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID\n"
-                + "WHERE user_name = ? AND password = ?";
+        String sql = "SELECT * FROM `user_accounts` WHERE `user_name` = ? AND `password` = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, username);
@@ -57,7 +51,6 @@ public class UserDAO extends DBConnect {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 User u = new User();
-
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
                 u.setPassword(rs.getString("password"));
@@ -65,9 +58,11 @@ public class UserDAO extends DBConnect {
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
-                u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setPhone("");
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 return u;
             }
         } catch (SQLException e) {
@@ -79,15 +74,7 @@ public class UserDAO extends DBConnect {
     }
 
     public User getUserById(String id) {
-<<<<<<< HEAD
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID\n"
-                + "WHERE user_id = ?";
-=======
-        String sql = "SELECT * FROM `user_accounts` WHERE `user_id` = ?";
->>>>>>> 95cedf001f1dcf7481da6525e5145be2e2896472
+        String sql = "SELECT * FROM `user_account` WHERE `user_id` = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, id);
@@ -102,8 +89,10 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 return u;
             }
         } catch (SQLException e) {
@@ -113,13 +102,9 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
-
+    
     public User getUserByEmail(String email) {
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID\n"
-                + "WHERE email = ?";
+        String sql = "SELECT * FROM `user_account` WHERE `email` = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, email);
@@ -134,8 +119,10 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 return u;
             }
         } catch (SQLException e) {
@@ -148,13 +135,7 @@ public class UserDAO extends DBConnect {
 
     public List<User> listUser() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
-                + "(SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
-                + "INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id \n"
-                + "WHERE ur.roleID = 2";
+        String sql = "SELECT * FROM `user_account` WHERE authority_id = 2;";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -168,8 +149,10 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 users.add(u);
             }
             return users;
@@ -183,13 +166,7 @@ public class UserDAO extends DBConnect {
 
     public List<User> listUserCustomer() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
-                + "(SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
-                + "INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id \n"
-                + "WHERE ur.roleID = 3";
+        String sql = "SELECT * FROM `user_account` WHERE authority_id = 3;";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -203,8 +180,10 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("last_name"));
                 u.setGender(rs.getInt("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
+                u.setEmail("");
                 u.setStatus(rs.getInt("status_id"));
+                u.setCode("");
+                u.setRole("");
                 users.add(u);
             }
             return users;
@@ -243,6 +222,7 @@ public class UserDAO extends DBConnect {
             s.setString(7, u.getPhone());
             s.setString(8, u.getEmail());
             s.setInt(9, u.getStatus());
+            s.setString(10, u.getCode());
             s.setInt(11, 3);
             s.executeUpdate();
         } catch (SQLException e) {
@@ -275,6 +255,7 @@ public class UserDAO extends DBConnect {
                     + " `gender` = ?,"
                     + " `phone` = ?,"
                     + " `status_id` = ?,"
+                    + " `authority_id` = ?,"
                     + " `password` = ?"
                     + " WHERE `user_account`.`user_id` = ?";
             PreparedStatement s = mysqlConnect.connect().prepareStatement(sql);
@@ -284,6 +265,7 @@ public class UserDAO extends DBConnect {
             s.setInt(4, u.getGender());
             s.setString(5, u.getPhone());
             s.setInt(6, u.getStatus());
+            s.setInt(7, u.getAuthorityid());
             s.setString(8, u.getPassword());
             s.setInt(9, u.getUserid());
 
@@ -300,17 +282,17 @@ public class UserDAO extends DBConnect {
         String firstName = wordName[0];
         String middleName = "";
         for (int i = 1; i < wordName.length - 1; i++) {
-            middleName = wordName[i] + " ";
+            middleName = wordName[i]+" ";
 
         }
         middleName = middleName.trim();
         String lastName = wordName[wordName.length - 1];
 
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID\n"
-                + "WHERE  `first_name` LIKE ? AND `middle_name` LIKE ? AND `last_name` LIKE ?";
+        String s = "";
+        if (authority_id.length() > 0) {
+            s = "AND authority_id = " + authority_id;
+        }
+        String sql = "SELECT * FROM `user_account` WHERE `first_name` LIKE ? AND `middle_name` LIKE ? AND `last_name` LIKE ?" + s;
         try {
             List<User> users = new ArrayList<>();
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -323,7 +305,6 @@ public class UserDAO extends DBConnect {
                 User u = new User();
                 u.setUserid(rs.getInt("user_id"));
                 u.setUsername(rs.getString("user_name"));
-                u.setPassword(rs.getString("password"));
                 u.setFirstname(rs.getString("first_name"));
                 u.setMiddlename(rs.getString("middle_name"));
                 u.setLastname(rs.getString("last_name"));
@@ -331,6 +312,7 @@ public class UserDAO extends DBConnect {
                 u.setPhone(rs.getString("phone"));
                 u.setEmail(rs.getString("email"));
                 u.setStatus(rs.getInt("status_id"));
+                u.setAuthorityid(rs.getInt("authority_id"));
                 users.add(u);
             }
             return users;
@@ -344,8 +326,8 @@ public class UserDAO extends DBConnect {
 
     //Column count doesn't match value count at row 1
     public static void main(String[] args) {
-        UserDAO udb = new UserDAO();
-        User u = udb.getUserById(1); 
+        UserDAO ud = new UserDAO();
+        User u = ud.getUserbyUserName("hoangadma", "123456");
         System.out.println(u.getFullname());
 
     }
