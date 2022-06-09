@@ -74,7 +74,7 @@ public class UserDAO extends DBConnect {
     }
 
     public User getUserById(String id) {
-        String sql = "SELECT * FROM `user_account` WHERE `user_id` = ?";
+        String sql = "SELECT * FROM `user_accounts` WHERE `user_id` = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, id);
@@ -231,6 +231,19 @@ public class UserDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
     }
+    public void insertTimeLogin(String date) {
+        try {
+            String sql = "UPDATE `user_account` SET `lastLogin` = ? WHERE `user_account`.`user_id` = ?";
+            PreparedStatement s = mysqlConnect.connect().prepareStatement(sql);
+            s.setString(1, date);
+            s.setInt(2, u.getUserid());
+            s.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
 
     public void updateCf(User u, String status) {
         try {
@@ -326,8 +339,8 @@ public class UserDAO extends DBConnect {
 
     //Column count doesn't match value count at row 1
     public static void main(String[] args) {
-        UserDAO ud = new UserDAO();
-        User u = ud.getUserbyUserName("hoangadma", "123456");
+        UserDAO udb = new UserDAO();
+        User u = udb.getUserById(1); 
         System.out.println(u.getFullname());
 
     }
