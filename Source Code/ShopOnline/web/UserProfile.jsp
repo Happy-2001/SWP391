@@ -1,5 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -51,7 +50,7 @@
                         <div class="card shadow-sm">
                             <div class="card-header bg-transparent text-center">
                                 <img class="profile_img" src="https://source.unsplash.com/600x300/?student" alt="student dp">
-<!--                                <h3>${users.phone}</h3>-->
+                                <h3>${user.fullname}</h3>
                             </div>
 
                         </div>
@@ -65,9 +64,10 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th width="30%">ID</th>
-                                        <td><h7>${users.firstname}</h7></td>
+                                        <td width="2%">:</td>
+                                        <td><h7>${user.userid}</h7></td>
                                     </tr>
-<!--                                    <tr>
+                                    <tr>
                                         <th width="30%">Name</th>
                                         <td width="2%">:</td>
                                         <td><h7>${user.fullname}</h7></td>
@@ -91,7 +91,7 @@
                                         <c:if test="${user.gender == 0}">
                                             Female
                                         </c:if></h7></td>
-                                    </tr>-->
+                                    </tr>
                                 </table>
                             </div>
                         </div>

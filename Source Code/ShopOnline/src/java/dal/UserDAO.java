@@ -326,8 +326,8 @@ public class UserDAO extends DBConnect {
 
     //Column count doesn't match value count at row 1
     public static void main(String[] args) {
-        UserDAO ud = new UserDAO();
-        User u = ud.getUserbyUserName("hoangadma", "123456");
+        UserDAO udb = new UserDAO();
+        User u = udb.getUserById(1); 
         System.out.println(u.getFullname());
 
     }

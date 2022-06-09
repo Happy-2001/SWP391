@@ -60,6 +60,10 @@
         <servlet-name>DeleteCartController</servlet-name>
         <servlet-class>controller.DeleteCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileUserController</servlet-name>
+        <servlet-class>controller.ProfileUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>DeleteCartController</servlet-name>
         <url-pattern>/DeleteCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileUserController</servlet-name>
+        <url-pattern>/ProfileUserController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
