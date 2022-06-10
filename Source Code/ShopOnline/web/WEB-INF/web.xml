@@ -64,6 +64,10 @@
         <servlet-name>ProductController</servlet-name>
         <servlet-class>controller.ProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCartController</servlet-name>
+        <servlet-class>controller.DeleteCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/ProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartController</servlet-name>
+        <url-pattern>/DeleteCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

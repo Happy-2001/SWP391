@@ -158,6 +158,24 @@ p{
     flex-direction: row;
     justify-content: space-between;
 }
+.navbar-header, .account-header ul li{
+    position: relative;
+}
+.badge-num{
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 18px;
+    position: absolute;
+    right: 8px;
+    text-align: center;
+    top: -4px;
+    width: 19px;
+    box-shadow: 2px 3px 8px rgb(0 0 0 / 15%);
+    background: #f00
+}
 .search a{
     color: #d33b33;
 }
