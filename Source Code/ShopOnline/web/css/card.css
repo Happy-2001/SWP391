@@ -1,0 +1,66 @@
+:focus{
+    border-color: #000 !important;
+    box-shadow: none !important;
+}
+
+/* ======================================= Card Contact ======================================= */
+.title-top{
+    border-bottom: 2px solid #000;
+    margin-bottom: 20px;
+}
+.order-ls .image{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+.order-ls img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.order-ls input{
+    padding: 0 8px;
+    width: 80%;
+    text-align: center;
+}
+.order-ls table thead td{
+    font-size: 18px;
+    font-weight: 600;
+}
+.order-ls table tr td:nth-child(2){
+    width: 80px;
+}
+.order-ls table tr td:last-child{
+    width: 30px;
+}
+
+.remove-icon:hover{
+    cursor: pointer;
+    color: #f00;
+}
+.payment-ls .image{
+    width: 50px;
+}
+.payment-ls .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.payment-ls ul{
+    padding: 0;
+}
+.payment-ls ul li{
+    position: relative;
+    cursor: pointer;
+    margin: 5px;
+}
+.payment-ls .mark-icon{
+    color: #04aa6d;
+    position: absolute;
+    left: 40px;
+    bottom: 20px;
+    display: none;
+}
+.payment-ls .mark-icon.check{
+    display: block;
+}
