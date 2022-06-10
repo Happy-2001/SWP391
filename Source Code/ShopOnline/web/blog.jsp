@@ -27,7 +27,7 @@
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
 
-        <div class="container my-5">
+        <div class="container my-5" style="margin-top:60px;">
 
             <form class="form-control mb-4" action="blogsearch" method="GET">
                 <input type="text" name="search" value="${requestScope.search}"> <input type="submit" value="Search" />
