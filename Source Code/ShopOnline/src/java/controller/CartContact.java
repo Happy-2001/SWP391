@@ -13,7 +13,7 @@ import model.Cart;
  *
  * @author anhvo
  */
-public class CardContact extends HttpServlet {
+public class CartContact extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class CardContact extends HttpServlet {
         int total = pdb.getAmount();
         request.setAttribute("total", total);
         request.setAttribute("carts", carts);
-        request.getRequestDispatcher("cardContact.jsp").forward(request, response);
+        request.getRequestDispatcher("cartContact.jsp").forward(request, response);
     }
 
     @Override
