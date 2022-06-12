@@ -41,6 +41,7 @@
                             <a href="CartController" title="Cart">
                                 <i class="fa fa-shopping-bag"></i>
                             </a>
+                            <span class="badge-num">1</span>
                         </li>
                         <li class="account">
                             <c:choose>
