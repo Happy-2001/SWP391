@@ -53,24 +53,19 @@
                                         <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
                                     </a>
                                 <a href="logout" style="border-left: 2px solid #d33b33;" title="Logout"><i class="fa-solid fa-power-off"></i></a>
-                                <div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-    <i class="fa-solid fa-clipboard-list fa-lg"></i>
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Link 1</a></li>
-    <li><a class="dropdown-item" href="#">Link 2</a></li>
-    <li><a class="dropdown-item" href="#">Link 3</a></li>
-  </ul>
-</div>
-    </ul>
-  </div>    
-                                <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a>
+                                 
+                                <a href="#"><i class="fa-solid fa-clipboard-list fa-lg viewList" > </i>dsadasd</a>
+
+                                
+                                
                                 </c:when>
+                               
+                               
                             </c:choose>
                         </li>
                     </ul>
                 </div>
+                
             </nav>
         </div>
         <!-- End Navigation -->
