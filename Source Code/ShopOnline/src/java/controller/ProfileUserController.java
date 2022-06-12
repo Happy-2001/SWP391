@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
@@ -20,15 +21,6 @@ import model.User;
  */
 public class ProfileUserController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -62,7 +54,9 @@ public class ProfileUserController extends HttpServlet {
         
         UserDAO udb = new UserDAO();
         User user = udb.getUserById(userid);  
-         request.setAttribute("user", user);
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
 //         response.getWriter().print(user.getEmail());
         request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
     }
