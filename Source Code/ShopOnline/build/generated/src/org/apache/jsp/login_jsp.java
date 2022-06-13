@@ -124,17 +124,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                show.classList.replace(\"fa-eye\",\"fa-eye-slash\");\r\n");
       out.write("            }\r\n");
       out.write("        };\r\n");
-      out.write("        document.addEventListener('DOMContentLoaded', function () {\r\n");
-      out.write("            Validator({\r\n");
-      out.write("                form: '#form-2',\r\n");
-      out.write("                formGroupSelector: '.form-group',\r\n");
-      out.write("                errorSelector: '.form-message',\r\n");
-      out.write("                rules: [\r\n");
-      out.write("                    Validator.isEmail('#email'),\r\n");
-      out.write("                    Validator.minLength('#password', 6)\r\n");
-      out.write("                ]\r\n");
-      out.write("            });\r\n");
-      out.write("        });\r\n");
       out.write("    </script>\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
