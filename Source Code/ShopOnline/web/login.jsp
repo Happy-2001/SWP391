@@ -70,17 +70,6 @@
                 show.classList.replace("fa-eye","fa-eye-slash");
             }
         };
-        document.addEventListener('DOMContentLoaded', function () {
-            Validator({
-                form: '#form-2',
-                formGroupSelector: '.form-group',
-                errorSelector: '.form-message',
-                rules: [
-                    Validator.isEmail('#email'),
-                    Validator.minLength('#password', 6)
-                ]
-            });
-        });
     </script>
 </body>
 </html>
