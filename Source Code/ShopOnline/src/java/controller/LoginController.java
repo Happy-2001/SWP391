@@ -1,13 +1,16 @@
 package controller;
 
+import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Role;
 import model.User;
 
 public class LoginController extends HttpServlet {
@@ -24,15 +27,15 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         UserDAO userDAO = new UserDAO();
         User u = null;
-        if(username.contains("@")){
-             u = userDAO.getUser(username, password);
-        }else{
-             u = userDAO.getUserbyUserName(username, password);
+        if (username.contains("@")) {
+            u = userDAO.getUser(username, password);
+        } else {
+            u = userDAO.getUserbyUserName(username, password);
         }
-        
+
         if (u != null) { // login successfully!
             String remember = request.getParameter("remember");
             if (remember != null) {
@@ -43,12 +46,22 @@ public class LoginController extends HttpServlet {
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
             }
-            
+
             HttpSession session = request.getSession();
             session.setAttribute("userlogged", u);
+
+            RoleDAO roledb = new RoleDAO();
+            ArrayList<Role> listRole = roledb.getRoleUser(String.valueOf(u.getUserid()));
+            for (Role role : listRole) {
+                session.setAttribute("role", role.getNameRole());
+                if (!role.getId().equals("3")) {                   //get hightest role user
+                    break;
+                }
+
+            }
+//            response.getWriter().print(session.getAttribute("role"));
             response.sendRedirect("home");
-            
-                  
+
         } else { //login fail
             request.setAttribute("ms1", "Check your account!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
