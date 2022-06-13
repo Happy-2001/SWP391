@@ -32,7 +32,7 @@
         <div class="main-content">
             <h3 class="divider"></h3>
             <h3 class="cont">
-                <div class="date-left"><span class="date">06.06.2021 |</span> admin</div>
+                <div class="date-left"><span class="date">06.06.2022 |</span> admin</div>
                 <div class="date-right">
                     <a href="#"><i class="fa-solid fa-heart"></i> Like</a>
                 </div>
@@ -49,7 +49,7 @@
 
             <h3 class="divider-1"></h3>
             <h3 class="cont">
-                <div class="date-left"><span class="date">06.06.2021 |</span> admin</div>
+                <div class="date-left"><span class="date">06.06.2022 |</span> admin</div>
                 <div class="date-right">
                     <a href="#"><i class="fa-solid fa-heart"></i> Like</a>
                 </div>
