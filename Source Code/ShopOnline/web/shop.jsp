@@ -33,7 +33,7 @@
                 <div aria-label="breadcrumb">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="home">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                        <li class="breadcrumb-item active" aria-current="page">Product</li>
                     </ul>
                 </div>
             </div>

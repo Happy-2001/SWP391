@@ -41,6 +41,7 @@
                             <a href="CartController" title="Cart">
                                 <i class="fa fa-shopping-bag"></i>
                             </a>
+                            <span class="badge-num">1</span>
                         </li>
                         <li class="account">
                             <c:choose>
@@ -52,12 +53,19 @@
                                         <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
                                     </a>
                                 <a href="logout" style="border-left: 2px solid #d33b33;" title="Logout"><i class="fa-solid fa-power-off"></i></a>
-                                    <a href="#"><i class="fa-solid fa-clipboard-list fa-lg"></i></a>
+                                 
+                                <a href="#"><i class="fa-solid fa-clipboard-list fa-lg viewList" > </i>dsadasd</a>
+
+                                
+                                
                                 </c:when>
+                               
+                               
                             </c:choose>
                         </li>
                     </ul>
                 </div>
+                
             </nav>
         </div>
         <!-- End Navigation -->
