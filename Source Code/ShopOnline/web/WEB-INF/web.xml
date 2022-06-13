@@ -72,6 +72,10 @@
         <servlet-name>UpdateCartController</servlet-name>
         <servlet-class>controller.UpdateCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveCartController</servlet-name>
+        <servlet-class>controller.RemoveCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>UpdateCartController</servlet-name>
         <url-pattern>/UpdateCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveCartController</servlet-name>
+        <url-pattern>/RemoveCartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
