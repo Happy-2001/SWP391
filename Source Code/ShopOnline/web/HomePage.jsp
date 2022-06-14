@@ -16,18 +16,22 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/HomePage.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/messenger.css">
+
         <script src="js/fontAwesome.js"></script>
+        <script src="js/messenger.js"></script>
+
 
         <!-- Bootstrap 5 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        
+
     </head>
     <body>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
-        
+        <%@include file="Messenger.jsp" %>
         <!-- Start Slider -->
         <div id="slides-shop" class="carousel slide" data-bs-ride="carousel" style="margin-top: 60px;">
             <div class="carousel-inner">
@@ -100,8 +104,8 @@
             </div>
         </div>
         <!-- End Products  -->
-        
-        
+
+
         <!-- Start Products  -->
         <div class="products-box">
             <div class="container">
@@ -142,7 +146,7 @@
             </div>
         </div>
         <!-- End Products  -->
-        
+
 
         <!-- Start Blog  -->
         <div class="latest-blog">
@@ -157,26 +161,26 @@
                 </div>
                 <div class="row">
                     <c:forEach begin="0" end="2" items="${blogs}" var="b">
-                    <div class="col-md-6 col-lg-4 col-xl-4">
-                        <div class="blog-box">
-                            <div class="blog-img">
-                                <img class="img-fluid" src="${b.image}" alt="" />
-                            </div>
-                            <div class="blog-content">
-                                <div class="title-blog">
-                                    <a href="blogdetail?id=${b.id}" class="h3">${b.content}</a>
-                                    <p>${b.description}</p>
+                        <div class="col-md-6 col-lg-4 col-xl-4">
+                            <div class="blog-box">
+                                <div class="blog-img">
+                                    <img class="img-fluid" src="${b.image}" alt="" />
+                                </div>
+                                <div class="blog-content">
+                                    <div class="title-blog">
+                                        <a href="blogdetail?id=${b.id}" class="h3">${b.content}</a>
+                                        <p>${b.description}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </c:forEach>
                 </div>
             </div>
         </div>
         <!-- End Blog  -->
 
-        
+
         <%@include file="footer.jsp" %>
     </body>
 </html>

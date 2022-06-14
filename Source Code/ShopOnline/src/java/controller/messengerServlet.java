@@ -5,7 +5,6 @@
  */
 package controller;
 
-import DAL.CarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -75,13 +74,7 @@ public class messengerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CarDAO db = new CarDAO();
-        ArrayList<Message> list = db.getAllMessageofUser("1", "45");
-        if(list == null){
-            response.getWriter().print("list messenger null!!!");
-        }else{
-            request.get
-        }
+        
     }
 
     /**

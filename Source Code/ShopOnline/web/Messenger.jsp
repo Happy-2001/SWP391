@@ -3,6 +3,7 @@
     Created on : May 30, 2022, 4:39:20 PM
     Author     : Administrator
 --%>
+<script src="js/fontAwesome.js"></script>
 
 <%@page import="model.Message"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,29 +14,31 @@
 
 
 <div id="mess2" class="message2">
-    <span onclick="showMessage()" class="glyphicon glyphicon-chevron-up"></span>           
+    <i onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
 </div>
 <div id="mess" class="message" style="display: ${admin};display: block">
     <div class="header_message row">
         <div class="col-md-10">
 
-            <%if (MYR != null && MYR.get(0).getTo().equals("45")) {%>
+            <%if (MYR != null && MYR.get(0).getToID().equals("1")) {%>
 
-
+           
             <a href="home"><h4><b>${usersend}</b></h4></a>
                         <%} else {%>
-            <img src="images/logoBossCarCare2.png" width="30%">
+            <img src="images/logo.png" class="logo" alt="" width="30%">
             <h4><b>Hỗ trợ trực tuyến</b></h4>  <!-- default and user -->
             <%}%>
         </div>
         <div class="col-md-2" >
-            <span onclick="hideMessage()" class="glyphicon glyphicon-chevron-down"></span>
+
+            <i onclick="hideMessage()" class="fa-solid fa-minus"></i>
         </div>
     </div>
     <div class="content_message" style="display: block;display: ${messageadmin}">
+        <br/>
+        <img src="images/logo.png" class="logo" alt="" width="70%">
 
-        <img src="images/logoBossCarCare2.png" width="70%">
-        <h6>Trao cơ hội tạo - Tạo niềm tin</h6>
+        <h6>Wear your Best - A Moments of Your Style</h6>
 
         <%if (MYR != null && MYS != null) {%><!--1-->
 
@@ -47,13 +50,13 @@
         <%if (MYRidOLD == MYRid && MYSidOLD == MYSid && MYSidx == MYS.size() - 1) {%>
         <%for (int j = 0; j <= MYR.size(); j++) {%>
         <%if (MYRidx == MYR.size()) {
-                        break;
-                    }%>
+                break;
+            }%>
         <div class="MYR"><p><%=MYR.get(MYRidx++).getContent()%></p></div>
                 <%}%>
 
         <%break;
-                } else {%>
+        } else {%>
 
         <div class="divMYS">
             <div class="MYS_EMP"></div>
@@ -64,8 +67,8 @@
         %>
 
         <%if (MYSidx + 1 != MYS.size()) {
-                        MYSidx++;
-                    }%>
+                MYSidx++;
+            }%>
         <%}%>
 
         <%}%><!--3-->
@@ -75,23 +78,23 @@
         <%if (MYRidOLD == MYRid && MYSidOLD == MYSid && MYRidx == MYR.size() - 1) {%>  
         <%for (int j = 0; j <= MYS.size(); j++) {%>
         <%if (MYSidx == MYS.size()) {
-                        break;
-                    }%>
+                break;
+            }%>
         <div class="divMYS">
 
             <div class="MYS"><p><%=MYS.get(MYSidx++).getContent()%></p></div> </div>  
                     <% }%>
 
         <%break;
-                } else {%>
+        } else {%>
 
         <div class="MYR"><p><%=MYR.get(MYRidx).getContent()%></p></div>
 
         <%MYRidOLD = MYRid;
-                    MYSidOLD = MYSid;%>
+            MYSidOLD = MYSid;%>
         <%if (MYRidx + 1 != MYR.size()) {
-                        MYRidx++;
-                    }%>
+                MYRidx++;
+            }%>
         <%}%>
 
         <%}%><!--4-->
