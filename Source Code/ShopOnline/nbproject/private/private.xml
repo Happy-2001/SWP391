@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/RemoveCartController.java</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/HomePage.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/header.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/PostDetail.java</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/blogdetail.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/UpdateCartController.java</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/postDetail.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/CartController.java</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/CheckOutController.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/RoleDAO.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/UserDAO.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/model/User_Role.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/model/Role.java</file>
+            <file>file:/D:/FPTU/Ky5/SWP391/Week%204/SWP391/Source%20Code/ShopOnline/src/java/dal/MessengerDAO.java</file>
         </group>
     </open-files>
 </project-private>
