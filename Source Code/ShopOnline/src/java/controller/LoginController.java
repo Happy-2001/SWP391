@@ -4,7 +4,6 @@ import dal.MessengerDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +15,17 @@ import model.Role;
 import model.User;
 
 public class LoginController extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //get jsp
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     @Override
@@ -48,28 +52,23 @@ public class LoginController extends HttpServlet {
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
             }
-                                        response.getWriter().println(u.getUserid());
-
-            HttpSession session = request.getSession();
-            session.setAttribute("userlogged", u);
             
             RoleDAO roledb = new RoleDAO();
-            ArrayList<Role> listRole = roledb.getRoleUser(String.valueOf(u.getUserid()));
-            for (Role role : listRole) {
-                session.setAttribute("role", role.getId());
-                if (!role.getId().equals("3")) {                   //get hightest role user
-                    break;
-                }
-
-            }
-//                 response.getWriter().print(session.getAttribute("role"));
+            User ur = roledb.getUserRole(username);
             
-            response.sendRedirect("home");
-            
-                  
+            HttpSession session = request.getSession();
+            session.setAttribute("userlogged", u);
+            session.setAttribute("role", ur);
+            request.getRequestDispatcher("home").forward(request, response);
+             
         } else { //login fail
             request.setAttribute("ms1", "Check your account!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
+    
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 }

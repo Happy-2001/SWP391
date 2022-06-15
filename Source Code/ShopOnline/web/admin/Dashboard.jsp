@@ -24,7 +24,7 @@
                 <div class="col-lg-3">
                     <nav class="navbar">
                         <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
-                        <a href="index.html" class="navbar-brand ms-4"><img src="images/logo.png" class="logo"></a>
+                        <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="images/logo.png" class="logo"></a>
                     </nav>
                 </div>
                 <div class="col-lg-7">

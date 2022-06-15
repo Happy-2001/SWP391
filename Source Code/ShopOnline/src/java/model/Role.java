@@ -10,21 +10,22 @@ package model;
  * @author Administrator
  */
 public class Role {
-    private String id,nameRole;
+    int id;
+    String nameRole;
 
     public Role() {
     }
 
-    public Role(String id, String nameRole) {
+    public Role(int id, String nameRole) {
         this.id = id;
         this.nameRole = nameRole;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

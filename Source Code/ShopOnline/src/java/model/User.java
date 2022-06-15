@@ -21,12 +21,13 @@ public class User {
     private String phone;
     private String email;
     private int status;
-
+    
+    Role authority;
 
     public User() {
     }
 
-    public User(int userid, String username, String password, String firstname, String middlename, String lastname, int gender, String phone, String email, int status) {
+    public User(int userid, String username, String password, String firstname, String middlename, String lastname, int gender, String phone, String email, int status, Role authority) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -37,8 +38,9 @@ public class User {
         this.phone = phone;
         this.email = email;
         this.status = status;
-     
+        this.authority = authority;
     }
+
 
     public int getUserid() {
         return userid;
@@ -120,6 +122,13 @@ public class User {
         this.status = status;
     }
 
+    public Role getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Role authority) {
+        this.authority = authority;
+    }
     
     public String getFullname(){
         return (firstname+" "+middlename+" "+lastname).trim();
