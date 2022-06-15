@@ -6,18 +6,23 @@
 package controller;
 
 import dal.BlogDAO;
+import dal.MessengerDAO;
 import dal.ProductDAO;
 import dal.SlideDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Blog;
+import model.Message;
 import model.Product;
 import model.Slide;
+import model.User;
 
 /**
  *
@@ -66,8 +71,36 @@ public class Homecontroller extends HttpServlet {
         request.setAttribute("slides", slides);
         request.setAttribute("products", products);
         request.setAttribute("newproducts", newproducts);
+
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("userlogged");
+        if (user != null) {
+            User u = (User) user;
+            MessengerDAO mdao = new MessengerDAO();
+            ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser( "1",String.valueOf(u.getUserid()));     /// list message
+            ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser( String.valueOf(u.getUserid()),"1");
+
+            if (!MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
+                request.setAttribute("MYR", MessageYouReceive);
+                request.setAttribute("MYS", null);
+            }
+            if (MessageYouReceive.isEmpty() && !MessageYouSend.isEmpty()) {
+                request.setAttribute("MYR", null);
+                request.setAttribute("MYS", MessageYouSend);
+            }
+            if (!MessageYouReceive.isEmpty() && !MessageYouSend.isEmpty()) {
+                request.setAttribute("MYR", MessageYouReceive);
+                request.setAttribute("MYS", MessageYouSend);
+                request.setAttribute("messageAdmin", "none");
+            }
+            if (MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
+                request.setAttribute("MYR", null);
+                request.setAttribute("MYS", null);
+            }
+        }
+
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-        
+
     }
 
     /**
