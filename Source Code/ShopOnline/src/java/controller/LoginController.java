@@ -53,7 +53,7 @@ public class LoginController extends HttpServlet {
             RoleDAO roledb = new RoleDAO();
             ArrayList<Role> listRole = roledb.getRoleUser(String.valueOf(u.getUserid()));
             for (Role role : listRole) {
-                session.setAttribute("role", role.getNameRole());
+                session.setAttribute("role", role.getId());
                 if (!role.getId().equals("3")) {                   //get hightest role user
                     break;
                 }
