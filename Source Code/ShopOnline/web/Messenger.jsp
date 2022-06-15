@@ -14,7 +14,7 @@
 
 
 <div id="mess2" class="message2">
-    <i onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
+    <i id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
 </div>
 <div id="mess" class="message" style="display: ${admin};display: block">
     <div class="header_message row">
@@ -22,7 +22,7 @@
 
             <%if (MYR != null && MYR.get(0).getToID().equals("1")) {%>
 
-           
+
             <a href="home"><h4><b>${usersend}</b></h4></a>
                         <%} else {%>
             <img src="images/logo.png" class="logo" alt="" width="30%">
@@ -117,12 +117,20 @@
 
     </div>
     <div id="menumess" class="menu_message">
+        <div class="menu_messenger_conponent ">
         <form action="message" method="post">
-            <input name="contentsend" type="text" placeholder="Viết gì đó...">
-
-
-            <button name="to" type="submit" value="${to}">Send</button>
+            <div class="row">
+                <div class="send col-md-8">
+                <input name="contentsend" type="text" placeholder="Viết gì đó...">
+                
+            </div>
+                <div class="col-md-2"></div>
+            <div class="send_button col-md-2">
+                <a><i class="fa-solid fa-paper-plane"></i></a>
+            </div>
+            </div>
         </form>
+        </div>
     </div>
 </div>
 <!--chat end-->
