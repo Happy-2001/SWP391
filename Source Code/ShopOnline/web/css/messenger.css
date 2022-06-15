@@ -9,20 +9,25 @@
     box-shadow: 0 0 5px #c4cacc;
     border-top-left-radius : 15px;
    border-top-right-radius : 15px;
-    z-index: 1;
+    z-index: 0100;
     position: fixed;
     bottom: 0;
     right: 5%;
     transition: ease-in 0.3s;
     
 }
+
 .message2, .message3{ 
     width: 50px;
     height: 0;  
     text-align: center;
     color: #0c7857;
     font-size: 20px;
-    
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0100;
 }
 .messageAdmin{
     overflow: auto;

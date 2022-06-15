@@ -1,5 +1,6 @@
 package controller;
 
+import dal.MessengerDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Message;
 import model.Role;
 import model.User;
 
@@ -49,7 +51,12 @@ public class LoginController extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("userlogged", u);
-            
+            MessengerDAO mdao = new MessengerDAO();
+            ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser(String.valueOf(u.getUserid()), "1");     /// list message
+            ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser("45", String.valueOf(u.getUserid()));
+            request.setAttribute("MYR", MessageYouReceive);
+            request.setAttribute("MYS", MessageYouSend);
+
             RoleDAO roledb = new RoleDAO();
             ArrayList<Role> listRole = roledb.getRoleUser(String.valueOf(u.getUserid()));
             for (Role role : listRole) {
@@ -60,7 +67,7 @@ public class LoginController extends HttpServlet {
 
             }
 //                 response.getWriter().print(session.getAttribute("role"));
-
+            
             response.sendRedirect("home");
             
                   
