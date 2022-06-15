@@ -68,6 +68,8 @@ public class MessengerDAO {
             return list;
         } catch (SQLException ex) {
             Logger.getLogger(MessengerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            mysqlConnect.disconnect();
         }
         return null;
     }
@@ -84,7 +86,7 @@ public class MessengerDAO {
                 Message s = new Message();
                 s.setId(rs.getString("messengerID"));
                 s.setFromID(rs.getString("fromID"));
-                s.setToID(rs.getString("toid"));
+                s.setToID(rs.getString("toID"));
                 s.setContent(rs.getString("content"));
                 s.setSendTime(rs.getString("sendTime"));
                 s.setReceivedTime(rs.getString("receivedTime"));
@@ -93,6 +95,8 @@ public class MessengerDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(MessengerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            mysqlConnect.disconnect();
         }
         return list;
     }

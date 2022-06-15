@@ -1,5 +1,6 @@
 package controller;
 
+import dal.MessengerDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Message;
 import model.Role;
 import model.User;
 
@@ -46,7 +48,8 @@ public class LoginController extends HttpServlet {
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
             }
-            
+                                        response.getWriter().println(u.getUserid());
+
             HttpSession session = request.getSession();
             session.setAttribute("userlogged", u);
             
@@ -60,7 +63,7 @@ public class LoginController extends HttpServlet {
 
             }
 //                 response.getWriter().print(session.getAttribute("role"));
-
+            
             response.sendRedirect("home");
             
                   

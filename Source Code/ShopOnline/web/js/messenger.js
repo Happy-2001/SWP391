@@ -9,11 +9,15 @@ function hideMessage(){
     document.getElementById('mess').style.height = 0;
     document.getElementById('menumess').style.display = 'none';
     document.getElementById('mess2').style.height = '35px';
+    
+
 }
 function showMessage(){
     document.getElementById('menumess').style.display = 'block';
     document.getElementById('mess').style.height = '500px';
     document.getElementById('mess2').style.height = 0;
+//    document.getElementById('mess2').style.display = 'none';
+document.getElementById('iofmess2').style.fontSize = '0';
 }
 
 
