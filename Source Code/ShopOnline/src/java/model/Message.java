@@ -10,35 +10,18 @@ package model;
  * @author Administrator
  */
 public class Message {
-    private String id,from,to,content,time,isread;
+    private String id,fromID,toID,content,sendTime,receivedTime,isread;
 
     public Message() {
     }
 
-    public Message(String id, String from, String to, String content, String time,String isread) {
+    public Message(String id, String fromID, String toID, String content, String sendTime, String receivedTime, String isread) {
         this.id = id;
-        this.from = from;
-        this.to = to;
+        this.fromID = fromID;
+        this.toID = toID;
         this.content = content;
-        this.time = time;
-        this.isread = isread;
-    }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public String getIsread() {
-        return isread;
-    }
-
-    public void setIsread(String isread) {
+        this.sendTime = sendTime;
+        this.receivedTime = receivedTime;
         this.isread = isread;
     }
 
@@ -50,20 +33,20 @@ public class Message {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public String getFromID() {
+        return fromID;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromID(String fromID) {
+        this.fromID = fromID;
     }
 
-    public String getTo() {
-        return to;
+    public String getToID() {
+        return toID;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setToID(String toID) {
+        this.toID = toID;
     }
 
     public String getContent() {
@@ -74,13 +57,31 @@ public class Message {
         this.content = content;
     }
 
-    public String getTime() {
-        return time;
+    public String getSendTime() {
+        return sendTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setSendTime(String sendTime) {
+        this.sendTime = sendTime;
     }
+
+    public String getReceivedTime() {
+        return receivedTime;
+    }
+
+    public void setReceivedTime(String receivedTime) {
+        this.receivedTime = receivedTime;
+    }
+
+    public String getIsread() {
+        return isread;
+    }
+
+    public void setIsread(String isread) {
+        this.isread = isread;
+    }
+
+    
     
     
 }

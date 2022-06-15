@@ -10,8 +10,9 @@
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <script src="js/fontAwesome.js"></script>
 
     <!-- Bootstrap 5 -->

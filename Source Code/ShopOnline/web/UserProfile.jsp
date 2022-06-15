@@ -166,9 +166,9 @@
                                 <h5>Info</h5>
                                 <div class="options">
                                     <div class="auth-actions">
-                                        <input type="text" name="" placeholder="Fist Name" disabled>
-                                        <input type="text" name="" placeholder="Middle Name" disabled>
-                                        <input type="text" name="" placeholder="Last Name" disabled>
+                                        <input type="text" name="" placeholder="Fist Name">
+                                        <input type="text" name="" placeholder="Middle Name">
+                                        <input type="text" name="" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="options">

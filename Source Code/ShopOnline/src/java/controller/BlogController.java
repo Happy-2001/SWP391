@@ -20,7 +20,6 @@ public class BlogController extends HttpServlet {
         if (page == null || page.equals("")) {
             page = "" + 1;
         }
-        //for style active
         request.setAttribute("PAGE", page);
         int pageNumber = Integer.parseInt(page);
         int countPage = bdb.countPage();
