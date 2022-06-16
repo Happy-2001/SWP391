@@ -51,7 +51,7 @@
                                     <c:when test="${sessionScope.userlogged ne null}">
                                         <c:set var="linkToRedirect">
                                             <c:choose>
-                                                <c:when test="${sessionScope.role.authority.id == 1}">
+                                                <c:when test="${sessionScope.role eq sessionScope.roloadmin}"> <!--dòng này lỗi làm web k chay duoc VOANH (Hoang fix tam)-->
                                                 admin/Dashboard.jsp
                                             </c:when>
                                             <c:otherwise>

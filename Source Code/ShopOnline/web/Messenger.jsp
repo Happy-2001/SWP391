@@ -3,6 +3,7 @@
     Created on : May 30, 2022, 4:39:20 PM
     Author     : Administrator
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="js/fontAwesome.js"></script>
 
 <%@page import="model.Message"%>
@@ -12,15 +13,15 @@
 <%ArrayList<Message> MYR = (ArrayList<Message>) request.getAttribute("MYR");%>
 <%ArrayList<Message> MYS = (ArrayList<Message>) request.getAttribute("MYS");%>
 
-
+<c:if test="${sessionScope.role ne sessionScope.roleadmin}">
 <div id="mess2" class="message2">
-    <i id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
+    <i style="font-size: 0"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
 </div>
 <div id="mess" class="message" style="display: ${admin};display: block">
     <div class="header_message row">
         <div class="col-md-10">
 
-            <%if (MYR != null && MYR.get(0).getToID().equals("1")) {%>
+            <%if (MYR != null && MYR.get(0).getToID().equals("1")) {%>  <!--admin rieng SKIP-->
 
 
             <a href="home"><h4><b>${usersend}</b></h4></a>
@@ -38,7 +39,8 @@
         <br/>
         <img src="images/logo.png" class="logo" alt="" width="70%">
 
-        <h6>Wear your Best - A Moments of Your Style</h6>
+        <h6>Wear your Best - A Moments of Your Style
+        </h6>
 
         <%if (MYR != null && MYS != null) {%><!--1-->
 
@@ -87,7 +89,7 @@
 
         <%break;
         } else {%>
-
+        
         <div class="MYR"><p><%=MYR.get(MYRidx).getContent()%></p></div>
 
         <%MYRidOLD = MYRid;
@@ -104,7 +106,9 @@
         <%if (MYS != null && MYR == null) {%>         <!--trường hợp có mỗi table người dùng gửi tồn tại -->
 
         <%for (Message mess : MYS) {%>
-        <div class="MYS"><p><%=mess.getContent()%></p></div>     
+        <div class="divMYS">
+        <div class="MYS"><p><%=mess.getContent()%></p></div> 
+        </div>
                 <%}%>
                 <%}%>    
 
@@ -133,4 +137,5 @@
         </div>
     </div>
 </div>
+  </c:if> 
 <!--chat end-->
