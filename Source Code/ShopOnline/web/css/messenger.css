@@ -3,8 +3,8 @@
     cursor: pointer;
 }
 
-.message2 i{
-    font-size: 40px;
+.message2 .fa-facebook-messenger{
+    font-size:  0!important;
 }
 .message, .messageAdmin {
     width: 380px;
@@ -22,7 +22,7 @@
 }
 .message2{
     width: 380px;
-    height: 500px;
+    height: 0 !important;
     box-shadow: 0 0 5px #c4cacc;
     border-top-left-radius : 15px;
    border-top-right-radius : 15px;
@@ -103,7 +103,7 @@
     margin-left: 2%;
     padding: 7px 5px 1px 5px;
     border-radius: 30px;
-    background-color: #d5dce6;
+    background-color: #e4e6eb;
     color: black;
     margin-bottom: 15px; 
     max-width: 77%; 
@@ -168,7 +168,7 @@
 .send input{
     padding: 6px;
     border-radius: 30px;
-    background-color: #d5dce6;
+    background-color: #e4e6eb;
     
     
 }

@@ -64,9 +64,9 @@ public class LoginController extends HttpServlet {
                     break;
                 }
             }
-            for (Role role : listRole) {
+            for (Role role : listRole) {                                    //get hightest role user(Admin,Customer,User)desc
                 session.setAttribute("role", role.getId());
-                if (!role.getNameRole().equals("User")) {                   //get hightest role user(Admin,Customer,User)desc
+                if (!role.getNameRole().equals("User")) {                   
                     break;
                 }
 
