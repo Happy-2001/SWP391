@@ -46,19 +46,19 @@
                         <li class="account">
                             <c:choose>
                                 <c:when test="${sessionScope.userlogged eq null}">
-                                    <a href="login.jsp" title="Login"><i class="fa fa-user"></i></a>
+                                    <a href="login" title="Login"><i class="fa fa-user"></i></a>
                                     </c:when>
                                     <c:when test="${sessionScope.userlogged ne null}">
                                         <c:set var="linkToRedirect">
                                             <c:choose>
-                                                <c:when test="${sessionScope.role eq sessionScope.roloadmin}"> <!--dòng này lỗi làm web k chay duoc VOANH (Hoang fix tam)-->
-                                                admin/Dashboard.jsp
-                                            </c:when>
-                                            <c:otherwise>
-                                                profileUser?userid=${sessionScope.userlogged.userid}
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:set>
+                                                <c:when test="${sessionScope.Arole.authority.id == 1}">
+                                                    admin/Dashboard.jsp
+                                                </c:when>
+                                                <c:otherwise>
+                                                    profileUser?userid=${sessionScope.userlogged.userid}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:set>
                                     <a href="${linkToRedirect}" style="border-left: 2px solid #d33b33;">
                                         <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
                                     </a>

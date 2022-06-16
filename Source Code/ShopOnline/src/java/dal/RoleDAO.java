@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
-import com.mysql.cj.xdevapi.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,16 +7,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Role;
+import model.User;
 
-/**
- *
- * @author Administrator
- */
+
 public class RoleDAO {
 
     DBConnect mysqlConnect = new DBConnect();
     
-public ArrayList<Role> getRoleList() {
+    public ArrayList<Role> getRoleList() {
         String sql = "SELECT * FROM roles";
         ArrayList<Role> list = new ArrayList<>();
         try {
@@ -65,11 +57,29 @@ public ArrayList<Role> getRoleList() {
         }
         return null;
     }
-    public static void main(String[] args) {
-        RoleDAO db = new RoleDAO();
-        ArrayList<Role> list = db.getRoleList();
-        for (Role role : list) {
-            System.out.println(role.getNameRole());
+    
+    public User getUserRole(String username){ //phan nay can dung, dung ai xoa
+        try {
+            String sql = "SELECT ua.user_id, ua.user_name, roleID, name FROM `user_accounts` as ua JOIN\n" +
+                     "(SELECT ur.roleID, name, ur.userID FROM `user_role` as ur \n" +
+                     "JOIN `roles` as r ON ur.roleID = r.roleID) as rs\n" +
+                     "ON ua.user_id = rs.userID WHERE ua.user_name = ?";
+
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setUserid(rs.getInt("ua.user_id"));
+                u.setUsername(rs.getString("ua.user_name"));
+                u.setAuthority(new Role(rs.getInt("roleID"),rs.getString("name")));
+                return u;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoleDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            mysqlConnect.disconnect();
         }
+         return null;
     }
 }

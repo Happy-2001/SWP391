@@ -75,7 +75,7 @@ public class Homecontroller extends HttpServlet {
         HttpSession session = request.getSession();
         Object user = session.getAttribute("userlogged");
         if (user != null) {
-            User u = (User) user;
+            User u = new User();
             MessengerDAO mdao = new MessengerDAO();
             ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser( "1",String.valueOf(u.getUserid()));     /// list message
             ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser( String.valueOf(u.getUserid()),"1");

@@ -5,7 +5,11 @@
         <group>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/header.jsp</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/Messenger.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/User.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/MessengerDAO.java</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/Dashboard.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/RoleDAO.java</file>
         </group>
     </open-files>
 </project-private>
