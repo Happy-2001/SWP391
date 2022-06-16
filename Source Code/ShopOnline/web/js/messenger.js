@@ -9,7 +9,7 @@ function hideMessage(){
     document.getElementById('mess').style.height = 0;
     document.getElementById('menumess').style.display = 'none';
     document.getElementById('mess2').style.height = '35px';
-    
+    document.getElementById('iofmess2').style.fontSize = '45px';
 
 }
 function showMessage(){

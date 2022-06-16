@@ -4,6 +4,7 @@ import dal.MessengerDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -15,17 +16,12 @@ import model.Role;
 import model.User;
 
 public class LoginController extends HttpServlet {
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //get jsp
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
@@ -52,23 +48,37 @@ public class LoginController extends HttpServlet {
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
             }
-            
-            RoleDAO roledb = new RoleDAO();
-            User ur = roledb.getUserRole(username);
-            
+                                        
+
             HttpSession session = request.getSession();
             session.setAttribute("userlogged", u);
-            session.setAttribute("role", ur);
-            request.getRequestDispatcher("home").forward(request, response);
-             
+            
+            RoleDAO roledb = new RoleDAO();
+            ArrayList<Role> getRoleList = roledb.getRoleList();
+            ArrayList<Role> listRole = roledb.getRoleUser(String.valueOf(u.getUserid()));
+            
+            for (Role role : getRoleList) {                                   // xác nhận Admin có roleid là bao nhiêu 
+                if(role.getNameRole().equalsIgnoreCase("Admin")){
+                    session.setAttribute("roleadmin", role.getId());
+                    response.getWriter().print(role.getId());
+                    break;
+                }
+            }
+            for (Role role : listRole) {                                    //get hightest role user(Admin,Customer,User)desc
+                session.setAttribute("role", role.getId());
+                if (!role.getNameRole().equals("User")) {                   
+                    break;
+                }
+
+            }
+//                 response.getWriter().print(session.getAttribute("role"));
+            
+            response.sendRedirect("home");
+            
+                  
         } else { //login fail
             request.setAttribute("ms1", "Check your account!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 }
