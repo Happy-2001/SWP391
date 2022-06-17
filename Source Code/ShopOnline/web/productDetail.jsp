@@ -99,9 +99,19 @@
                                 <li>
                                     <div class="form-group size-st">
                                         <label class="size-label">Size</label>
-                                        <div class="form-group quantity-box">
-                                            <input class="form-control" value="0" min="0" max="50" type="number">
-                                        </div>
+                                        
+                                            <select>
+                                                <option>36</option>
+                                                <option>37</option>
+                                                <option>38</option>
+                                                <option>39</option>
+                                                <option>40</option>
+                                                <option>41</option>
+                                                <option>42</option>
+                                                <option>43</option>
+                                            </select>
+                                            
+                                        
                                     </div>
                                 </li>
                                 <li>
@@ -168,9 +178,9 @@
             <div class="carousel-inner">
                 <div class="cover-slides carousel-item">
                     <img src="images/instagram-img-01.jpg" alt="" />
-                            <div class="hov-in">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
+                    <div class="hov-in">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="slides-navigation">
@@ -183,8 +193,8 @@
             </div>
             <script src="js/slide-show.js"></script>
         </div>
-        
-        
+
+
         <!-- End Slider -->
         <!-- End Cart -->
 
