@@ -75,7 +75,7 @@ public class Homecontroller extends HttpServlet {
         HttpSession session = request.getSession();
         Object user = session.getAttribute("userlogged");
         if (user != null) {
-            User u = new User();
+            User u = (User) user;
             MessengerDAO mdao = new MessengerDAO();
             ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser( "1",String.valueOf(u.getUserid()));     /// list message
             ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser( String.valueOf(u.getUserid()),"1");
@@ -97,8 +97,11 @@ public class Homecontroller extends HttpServlet {
                 request.setAttribute("MYR", null);
                 request.setAttribute("MYS", null);
             }
+//            for (Message message : MessageYouReceive) {
+//                response.getWriter().println(message.getContent());
+//            }
         }
-
+      
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
 
     }

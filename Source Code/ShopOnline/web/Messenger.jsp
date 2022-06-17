@@ -13,7 +13,7 @@
 <%ArrayList<Message> MYR = (ArrayList<Message>) request.getAttribute("MYR");%>
 <%ArrayList<Message> MYS = (ArrayList<Message>) request.getAttribute("MYS");%>
 
-<c:if test="${sessionScope.role ne sessionScope.roleadmin}">
+<c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null}">
 <div id="mess2" class="message2">
     <i style="font-size: 0;"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
 </div>

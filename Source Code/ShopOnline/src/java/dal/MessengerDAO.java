@@ -100,4 +100,11 @@ public class MessengerDAO {
         }
         return list;
     }
+    public static void main(String[] args) {
+        MessengerDAO m = new MessengerDAO();
+        ArrayList<Message> list =  m.getAllMessageofUser("1", "3");
+        for (Message message : list) {
+            System.out.println(message.getContent());
+        }
+    }
 }
