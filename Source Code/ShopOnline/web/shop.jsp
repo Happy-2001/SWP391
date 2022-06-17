@@ -373,51 +373,35 @@
                             <div class="products-box active" id="grid-view">
                                 <div class="container">
                                     <div class="row">
-                        <c:forEach items="${productsForEachPage}" var="product">
-                        <div class="col-lg-3 col-md-6 special-grid best-seller">
-                            <div class="products-single">
-                                <div class="box-img-hover">
-                                    <div class="type-lb">
-                                        <p class="sale">Sale</p>
+                                        <c:forEach items="${productsForEachPage}" var="product">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Sale</p>
+                                                    </div>
+                                                    <div class="box-img-hover">
+                                                        <img src="${product.img}" class="img-fluid" alt="Image">
+                                                    </div>
+                                                    <div class="why-text">
+                                                        <a href="productDetail?product_id=${product.id}">${product.name}</a>
+                                                        <p class="text-muted">Chuck Taylor 1970s Low</p>
+                                                        <span>${product.price} VND</span>
+                                                        <a href="#" class="btn">Add to Card</a>
+                                                        <a href="#" class="btn"><i class="fa-regular fa-heart"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                        <c:if test="${countPage != null}">
+                                            <ul class="pagination justify-content-end">
+                                                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
+                                                    <c:forEach begin="1" end="${countPage}" var="p">
+                                                        <li class="page-item ${p == PAGE ? "active":""}"><a class="page-link" href="?page=${p}">${p}</a></li>
+                                                    </c:forEach>
+                                                <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
+                                            </ul>
+                                        </c:if>
                                     </div>
-                                    <img src="${product.img}" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="productDetail?product_id=${product.id}" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                            <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                            <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                        </ul>
-                                        <a class="cart" href="#">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>${product.name}</h4>
-                                    <h5>${product.price} VND</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                         <c:if test="${countPage != null}">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination">
-                                                        <c:forEach begin="1" end="${countPage}" var="p">
-                                                            <li class="page-item ${p == PAGE ? "active":""}"><a class="page-link" href="?page=${p}">${p}</a></li>
-                                                            </c:forEach>
-                                                    </ul>
-                                                </nav>
-                                                <!--END PAGING-->
-                                            </c:if>
-<!--                                    <ul class="pagination justify-content-end">
-                                        <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
-                                    </ul>-->
-                                </div>
-                            </div>
-                            
-                            
                                 </div>
                             </div>    
                         </div>

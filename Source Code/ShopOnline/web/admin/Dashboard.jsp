@@ -7,10 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -24,7 +23,7 @@
                 <div class="col-lg-3">
                     <nav class="navbar">
                         <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
-                        <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="images/logo.png" class="logo"></a>
+                        <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
                     </nav>
                 </div>
                 <div class="col-lg-7">
@@ -52,7 +51,7 @@
                         </div>
                         <div class="admin">
                             <div class="admin-avatar" data-bs-toggle="offcanvas" data-bs-target="#setting">
-                                <img src="images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
+                                <img src="../images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
                             </div>
                         </div>
                         <div class="offcanvas offcanvas-end" id="setting">
