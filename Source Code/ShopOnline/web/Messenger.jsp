@@ -130,7 +130,7 @@
             </div>
                 <div class="col-md-2"></div>
             <div class="send_button col-md-2">
-                <button value="${sessionScope.userlogged.userid}to${MY}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                <button name="valueSendButton" value="${sessionScope.userlogged.userid}to${MYS.toID()}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
             </div>
         </form>

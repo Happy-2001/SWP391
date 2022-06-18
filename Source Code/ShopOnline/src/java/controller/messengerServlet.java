@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.MessengerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -75,6 +76,14 @@ public class messengerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        String content = new
+        String valueSendButton = request.getParameter("valueSendButton");
+        String content = request.getParameter("contentsend");
+        String[] valueSendButtonSplit = valueSendButton.split("to");
+        String toid = valueSendButtonSplit[1];
+        String fromid = valueSendButton.split("to")[0];
+
+        MessengerDAO mdao = new MessengerDAO();
+        mdao.addMessage(content, fromid, toid, content);
     }
 
     /**
