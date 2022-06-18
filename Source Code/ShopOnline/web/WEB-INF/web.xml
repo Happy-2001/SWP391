@@ -84,6 +84,14 @@
         <servlet-name>SearchController</servlet-name>
         <servlet-class>controller.SearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>controller.UploadImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RetrieveImg</servlet-name>
+        <servlet-class>controller.RetrieveImg</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -110,7 +118,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileUserController</servlet-name>
-        <url-pattern>/profileUser</url-pattern>
+        <url-pattern>/ProfileUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
@@ -167,6 +175,14 @@
     <servlet-mapping>
         <servlet-name>SearchController</servlet-name>
         <url-pattern>/SearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetrieveImg</servlet-name>
+        <url-pattern>/RetrieveImg</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

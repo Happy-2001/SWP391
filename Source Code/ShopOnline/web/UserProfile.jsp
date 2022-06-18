@@ -33,7 +33,7 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="image">
-                                <img src="https://source.unsplash.com/600x300/?student" alt="avatar">
+                                <img src="RetrieveImg?eaID=${sessionScope.user.userid}" alt="avatar">
                                 <span class="edit-box">
                                     <i id="myBtn" class="fa-regular fa-pen-to-square edit-icon"></i>
                                 </span>
@@ -43,7 +43,7 @@
                                         <div class="Popup-body">
                                             <div class="Set-pop">
                                                 <label for="up-img">Choose file:</label>
-                                                <input type="file" name="photo" id="up-img">
+                                                <input type="file" name="photo" id="up-img" size="50">
                                                 <div class="options">
                                                     <input type="hidden" name="eaID" value="${sessionScope.user.userid}">
                                                     <input type="submit" value="Save">
