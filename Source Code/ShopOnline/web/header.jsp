@@ -55,7 +55,7 @@
                                                     admin/Dashboard.jsp
                                                 </c:when>
                                                 <c:otherwise>
-                                                    profileUser?userid=${sessionScope.userlogged.userid}
+                                                    ProfileUser?userid=${sessionScope.userlogged.userid}
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:set>

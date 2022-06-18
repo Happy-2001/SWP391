@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/Homecontroller.java</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/SearchController.java</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/ProductDetail.java</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/changePassword.java</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/RegisterController.java</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/UpdateCartController.java</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/web/HomePage.jsp</file>
-            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/web/productDetail.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/header.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/ImageDAO.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/UploadImage.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/RetrieveImg.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/User.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/UserProfile.jsp</file>
         </group>
     </open-files>
 </project-private>
