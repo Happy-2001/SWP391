@@ -6,6 +6,8 @@
 package controller;
 
 import dal.MessengerDAO;
+import dal.RoleDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Message;
+import model.User;
 
 /**
  *
@@ -84,6 +87,13 @@ public class messengerServlet extends HttpServlet {
 
         MessengerDAO mdao = new MessengerDAO();
         mdao.addMessage(content, fromid, toid, content);
+        
+        // gửi tin nhắn hỗ trợ ngẫu nhiên cho 1 admin nào đó trường hợp trên là đã có addmin
+        //th k có admin . Random id admin
+        UserDAO udao = new UserDAO();
+        RoleDAO rdao = new RoleDAO();
+        // tạo get listuser by roleID!!!
+        
     }
 
     /**
