@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
 import model.CartContact;
+import model.Product;
 
 /**
  *
@@ -178,6 +179,41 @@ public class CartDAO {
         }
         return null;
     }
+
+    public Product add(String pid) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `products` where product_id = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, pid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getFloat("unit_price"));
+                p.setDescription(rs.getString("description"));
+                p.setImg(rs.getString("url"));
+                products.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return  products.get(0);
+    }
+    
+    public int checkId(int id, List<Product> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == id) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
 }
 /*public class CartDAO {
     DBConnect mysqlConnect = new DBConnect();

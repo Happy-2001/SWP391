@@ -64,17 +64,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${carts}" var="carts">
+                                <c:forEach items="${sessionScope.listCart}" var="l">
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="item" value="${carts.item_id}">
+                                            <input type="checkbox" name="item" value="${l.id}">
                                         </td>
                                         <td class="d-flex flex-row me-3">
                                             <div class="image">
-                                                <img src="${carts.url}" class="img-fluid">
+                                                <img src="${l.img}" class="img-fluid">
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <span><strong>${carts.product_name}</strong></span>
+                                                <span><strong>${l.name}</strong></span>
                                                 <span>Color:</span>
                                                 <div>
                                                     <span>Size:</span>
@@ -94,17 +94,17 @@
                                         </td>
                                         <td>
                                             <div class="d-flex flex-column">
-                                                <span><strong>${carts.unit_price}</strong><i class="fa-solid fa-dong-sign"></i></span>
+                                                <span><strong>${l.price}</strong><i class="fa-solid fa-dong-sign"></i></span>
                                                 <div class="d-flex flex-row">
                                                     <a href="#" style="color: #212529;" class="pe-3"><i class="fa-regular fa-heart remove-icon"></i></a>
-                                                    <a href="DeleteCart?id=${carts.item_id}" style="color: #212529;"><i class="fa-regular fa-trash-can remove-icon"></i></a>
+                                                    <a href="DeleteCart?id=${l.id}" style="color: #212529;"><i class="fa-regular fa-trash-can remove-icon"></i></a>
                                                 </div>
                                             </div>
                                         </td>
                                 <form action="UpdateCartController" method="POST">
                                     <td>
                                         <div class="input-group">
-                                            <input type="hidden" name="id" value="${carts.item_id}">
+                                            <input type="hidden" name="id" value="${l.id}">
                                             <button id="subs" type="submit" formmethod="GET" class="input-group-text"><i class="fa-solid fa-minus"></i></button>
                                             <input id="qtyV" type="text" name="qty" value="1" class="form-control">
                                             <button type="submit" class="input-group-text close-search"><i class="fa-solid fa-plus"></i></button>
