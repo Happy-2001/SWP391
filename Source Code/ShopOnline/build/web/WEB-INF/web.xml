@@ -69,10 +69,6 @@
         <servlet-class>controller.DeleteCartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateCartController</servlet-name>
-        <servlet-class>controller.UpdateCartController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RemoveCartController</servlet-name>
         <servlet-class>controller.RemoveCartController</servlet-class>
     </servlet>
@@ -91,6 +87,10 @@
     <servlet>
         <servlet-name>RetrieveImg</servlet-name>
         <servlet-class>controller.RetrieveImg</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCartController</servlet-name>
+        <servlet-class>controller.UpdateCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
@@ -161,10 +161,6 @@
         <url-pattern>/DeleteCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateCartController</servlet-name>
-        <url-pattern>/UpdateCartController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RemoveCartController</servlet-name>
         <url-pattern>/RemoveCartController</url-pattern>
     </servlet-mapping>
@@ -183,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>RetrieveImg</servlet-name>
         <url-pattern>/RetrieveImg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCartController</servlet-name>
+        <url-pattern>/UpdateCartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,12 +5,18 @@
  */
 package controller;
 
+import dal.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Product;
 
 /**
  *
@@ -30,19 +36,21 @@ public class UpdateCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateCartController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateCartController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+                CartDAO pdb = new CartDAO();
+                HttpSession session = request.getSession();
+        List<Product> list = (List<Product>) session.getAttribute("listCart");
+      
+        String pid = request.getParameter("pid");
+        String up = request.getParameter("updateQuantity");
+        int  index = pdb.checkId(Integer.parseInt(pid), list);
+        list.get(index).setStock(Integer.parseInt(up));
+        request.setAttribute("listCart", list);
+        RequestDispatcher dispth
+                        = request.getRequestDispatcher("cartDetail.jsp");
+                dispth.forward(request, response);
+
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
