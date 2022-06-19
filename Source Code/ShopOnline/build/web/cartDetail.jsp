@@ -90,7 +90,7 @@
                                                     </td>
                                                     <td class="text-right"> 
                                                         <button type="submit"  class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save"><i class="fa fa-refresh" aria-hidden="true"></i></button> 
-                                                        <a href="removeCart?pid=${l.id}" class="btn btn-outline-success">Delete</a>
+                                                        <a href="DeleteCart?pid=${l.id}" class="btn btn-outline-success">Delete</a>
                                                     </td>
                                                 </tr>
                                             </form>
