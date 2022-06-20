@@ -10,12 +10,15 @@ import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Message;
 import model.User;
 
@@ -43,7 +46,7 @@ public class messengerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet messengerServlet</title>");            
+            out.println("<title>Servlet messengerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet messengerServlet at " + request.getContextPath() + "</h1>");
@@ -79,14 +82,20 @@ public class messengerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        String content = new
-        String valueSendButton = request.getParameter("valueSendButton");
+        HttpSession session = request.getSession();
+        String toid = request.getParameter("toid");
         String content = request.getParameter("contentsend");
-        String[] valueSendButtonSplit = valueSendButton.split("to");
-        String toid = valueSendButtonSplit[1];
-        String fromid = valueSendButton.split("to")[0];
-
+        Object objfromid = session.getAttribute("userid");
+        String fromid = "";
+        
+        
+        String getTime = "";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        getTime = dtf.format(now);
+response.getWriter().print(getTime);
         MessengerDAO mdao = new MessengerDAO();
-        mdao.addMessage(content, fromid, toid, content);
+        mdao.addMessage(content, "3", "1", getTime);
         
         // gửi tin nhắn hỗ trợ ngẫu nhiên cho 1 admin nào đó trường hợp trên là đã có addmin
         //th k có admin . Random id admin
@@ -94,6 +103,8 @@ public class messengerServlet extends HttpServlet {
         RoleDAO rdao = new RoleDAO();
         // tạo get listuser by roleID!!!
         
+        response.sendRedirect("home");
+
     }
 
     /**

@@ -79,7 +79,7 @@ public class Homecontroller extends HttpServlet {
             MessengerDAO mdao = new MessengerDAO();
             ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser( "1",String.valueOf(u.getUserid()));     /// list message
             ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser( String.valueOf(u.getUserid()),"1");
-
+            
             if (!MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
                 request.setAttribute("MYR", MessageYouReceive);
                 request.setAttribute("MYS", null);
@@ -87,11 +87,13 @@ public class Homecontroller extends HttpServlet {
             if (MessageYouReceive.isEmpty() && !MessageYouSend.isEmpty()) {
                 request.setAttribute("MYR", null);
                 request.setAttribute("MYS", MessageYouSend);
+                request.setAttribute("toid", MessageYouSend.get(0).getToID());
             }
             if (!MessageYouReceive.isEmpty() && !MessageYouSend.isEmpty()) {
                 request.setAttribute("MYR", MessageYouReceive);
                 request.setAttribute("MYS", MessageYouSend);
                 request.setAttribute("messageAdmin", "none");
+                request.setAttribute("toid", MessageYouSend.get(0).getToID());
             }
             if (MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
                 request.setAttribute("MYR", null);
