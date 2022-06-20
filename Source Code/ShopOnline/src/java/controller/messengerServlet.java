@@ -83,25 +83,19 @@ public class messengerServlet extends HttpServlet {
             throws ServletException, IOException {
 //        String content = new
         HttpSession session = request.getSession();
-        String toid = request.getParameter("toid");
+        
+        String getFROMandTO = request.getParameter("getFROMandTO");
         String content = request.getParameter("contentsend");
-        Object objfromid = session.getAttribute("userid");
-        String fromid = "";
-        
-        
+        String[] getFROMandTOsplit = getFROMandTO.split(";"); //to;from get from value BUTTON
+        String toid = getFROMandTOsplit[0];
+        String fromid = getFROMandTOsplit[1];
         String getTime = "";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         getTime = dtf.format(now);
-response.getWriter().print(getTime);
+        response.getWriter().print(getTime);
         MessengerDAO mdao = new MessengerDAO();
-        mdao.addMessage(content, "3", "1", getTime);
-        
-        // gửi tin nhắn hỗ trợ ngẫu nhiên cho 1 admin nào đó trường hợp trên là đã có addmin
-        //th k có admin . Random id admin
-        UserDAO udao = new UserDAO();
-        RoleDAO rdao = new RoleDAO();
-        // tạo get listuser by roleID!!!
+        mdao.addMessage(content, fromid, toid, getTime);
         
         response.sendRedirect("home");
 

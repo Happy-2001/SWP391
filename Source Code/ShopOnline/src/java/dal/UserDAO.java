@@ -13,7 +13,7 @@ public class UserDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
 
-    public User getUser(String email, String password) {  // cần update data cho table electoronicaddress, sau đó có thể sử dụng hàm này(sql hàm chưa làm lại)
+    public User getUser(String email, String password) {  // cần update data cho table electoronicaddress, sau đó có thể sử dụng hàm này(sql hàm chưa làm lại) done
         String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
                 + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
                 + "ON ua.userID = ac.user_id) AS rs1\n"
@@ -46,7 +46,7 @@ public class UserDAO extends DBConnect {
         return null;
     }
 
-    public User getUserbyUserName(String username, String password) {  // cần update
+    public User getUserbyUserName(String username, String password) {  // cần update   Ok updated
         String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
                 + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
                 + "ON ua.userID = ac.user_id) AS rs1\n"
@@ -181,13 +181,15 @@ public class UserDAO extends DBConnect {
 
     public List<User> listUserCustomer() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
-                + "(SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
-                + "INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id \n"
-                + "WHERE ur.roleID = 3";
+        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n" +
+"(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n" +
+"                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n" +
+"                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n" +
+"                ON ua.userID = ac.user_id) AS rs1\n" +
+"                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n" +
+"                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n" +
+"                INNER JOIN roles ON roles.roleID = rs3.roleID\n" +
+"                WHERE roles.name LIKE \"%customer%\"";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -214,6 +216,43 @@ public class UserDAO extends DBConnect {
         return null;
     }
 
+    
+    public List<User> listUserAdmin() {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n" +
+"(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n" +
+"                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n" +
+"                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n" +
+"                ON ua.userID = ac.user_id) AS rs1\n" +
+"                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n" +
+"                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n" +
+"                INNER JOIN roles ON roles.roleID = rs3.roleID\n" +
+"                WHERE roles.name LIKE \"%admin%\"";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setUserid(rs.getInt("user_id"));
+                u.setUsername(rs.getString("user_name"));
+                u.setPassword(rs.getString("password"));
+                u.setFirstname(rs.getString("first_name"));
+                u.setMiddlename(rs.getString("middle_name"));
+                u.setLastname(rs.getString("last_name"));
+                u.setGender(rs.getInt("gender"));
+                u.setPhone(rs.getString("phone"));
+                u.setEmail(rs.getString("email"));
+                u.setStatus(rs.getInt("status_id"));
+                users.add(u);
+            }
+            return users;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
     //false ton tai email hoac username
     public boolean existedMember(User user, List<User> listUser) {
         for (User u : listUser) {

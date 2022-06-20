@@ -40,6 +40,8 @@
         <img src="images/logo.png" class="logo" alt="" width="70%">
 
         <h6>Wear your Best - A Moments of Your Style
+            
+            
         </h6>
 
         <%if (MYR != null && MYS != null) {%><!--1-->
@@ -130,7 +132,11 @@
             </div>
                 <div class="col-md-2"></div>
             <div class="send_button col-md-2">
-                <button name="toid" value="1" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                
+                <%if(MYS.get(0).getToID()!= null && MYS.get(0).getFromID() != null){%>
+                    <button name="getFROMandTO" value="<%=MYS.get(0).getToID()%>;<%=MYS.get(0).getFromID()%>" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                <%}%>  
+                
             </div>
             </div>
         </form>

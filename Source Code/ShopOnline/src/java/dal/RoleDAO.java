@@ -58,7 +58,7 @@ public class RoleDAO {
         return null;
     }
     
-    public User getUserRole(String username){ //phan nay can dung, dung ai xoa
+    public User getUserRole(String username){ //phan nay can dung, dung ai xoa      Ok toi se khong xoa dau!!!
         try {
             String sql = "SELECT ua.user_id, ua.user_name, roleID, name FROM `user_accounts` as ua JOIN\n" +
                      "(SELECT ur.roleID, name, ur.userID FROM `user_role` as ur \n" +

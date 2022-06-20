@@ -9,6 +9,7 @@ import dal.BlogDAO;
 import dal.MessengerDAO;
 import dal.ProductDAO;
 import dal.SlideDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -62,21 +63,31 @@ public class Homecontroller extends HttpServlet {
         ProductDAO pdb = new ProductDAO();
         BlogDAO bdb = new BlogDAO();
         SlideDAO slideDAO = new SlideDAO();
+        MessengerDAO mdao = new MessengerDAO();
+        HttpSession session = request.getSession();
+        UserDAO udao = new UserDAO();
 
         List<Blog> blogs = bdb.getBlogForHomePage();
         List<Slide> slides = slideDAO.listSlide();
         List<Product> products = pdb.listTop(4);
         List<Product> newproducts = pdb.listTopNew(4);
+        List<User> listAdmin = udao.listUserAdmin();
+        
         request.setAttribute("blogs", blogs);
         request.setAttribute("slides", slides);
         request.setAttribute("products", products);
         request.setAttribute("newproducts", newproducts);
 
-        HttpSession session = request.getSession();
-        Object user = session.getAttribute("userlogged");
+        
+        Object user = session.getAttribute("userlogged");    
+        
+        // get radom admin
+        int idRandAdmin = (int)(Math.random() * listAdmin.size());
+        
+        
         if (user != null) {
             User u = (User) user;
-            MessengerDAO mdao = new MessengerDAO();
+            
             ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser( "1",String.valueOf(u.getUserid()));     /// list message
             ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser( String.valueOf(u.getUserid()),"1");
             
@@ -99,9 +110,10 @@ public class Homecontroller extends HttpServlet {
                 request.setAttribute("MYR", null);
                 request.setAttribute("MYS", null);
             }
-//            for (Message message : MessageYouReceive) {
-//                response.getWriter().println(message.getContent());
+//            for (Message message : MessageYouSend) {
+//                response.getWriter().println(message.getToID());
 //            }
+//            response.getWriter().println(MessageYouSend.get(0).getToID());
         }
       
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
