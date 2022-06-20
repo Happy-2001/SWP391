@@ -79,6 +79,7 @@ public class LoginController extends HttpServlet {
 
             }
             
+            session.setAttribute("userid",u.getUserid());
             session.setAttribute("userlogged", u);
             session.setAttribute("Arole", ur);
             

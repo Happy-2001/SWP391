@@ -5,29 +5,25 @@
  */
 package controller;
 
-import dal.MessengerDAO;
-import dal.RoleDAO;
-import dal.UserDAO;
+import dal.CartDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Message;
-import model.User;
+import model.Cart;
+import model.Orderlist;
 
 /**
  *
- * @author Administrator
+ * @author Admin
  */
-@WebServlet(name = "messengerServlet", urlPatterns = {"/messengerServlet"})
-public class messengerServlet extends HttpServlet {
+//@WebServlet(name = "OrderDetailController", urlPatterns = {"/OrderDetailController"})
+public class OrderInformationController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,18 +37,16 @@ public class messengerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet messengerServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet messengerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String id = request.getParameter("id");
+        OrderDAO dao = new OrderDAO();
+        CartDAO cartDao = new CartDAO();
+        List<Cart> carts = cartDao.listById(Integer.parseInt(id));
+        Orderlist o = dao.listOrderById(Integer.parseInt(id));
+        int total = cartDao.getAmountByID(Integer.parseInt(id));
+        request.setAttribute("total", total);
+        request.setAttribute("order", o);
+        request.setAttribute("carts", carts);
+        request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,30 +75,7 @@ public class messengerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String content = new
-        HttpSession session = request.getSession();
-        String toid = request.getParameter("toid");
-        String content = request.getParameter("contentsend");
-        Object objfromid = session.getAttribute("userid");
-        String fromid = "";
-        
-        
-        String getTime = "";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        getTime = dtf.format(now);
-response.getWriter().print(getTime);
-        MessengerDAO mdao = new MessengerDAO();
-        mdao.addMessage(content, "3", "1", getTime);
-        
-        // gửi tin nhắn hỗ trợ ngẫu nhiên cho 1 admin nào đó trường hợp trên là đã có addmin
-        //th k có admin . Random id admin
-        UserDAO udao = new UserDAO();
-        RoleDAO rdao = new RoleDAO();
-        // tạo get listuser by roleID!!!
-        
-        response.sendRedirect("home");
-
+        processRequest(request, response);
     }
 
     /**

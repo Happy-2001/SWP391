@@ -25,7 +25,7 @@ public class MessengerDAO {
     public void addMessage(String content, String fromid, String toid, String sendTime) {
         try {
             String sql = "INSERT INTO `messengers` (`content`, `fromID`, `toID`, `sendTime`) VALUES\n"
-                    + "(?,?,?)";
+                    + "(?,?,?,?)";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, content);
             statement.setString(2, fromid);

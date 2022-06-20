@@ -15,7 +15,7 @@ public class Product {
     private int categoryid;
     private float price;
     private float salePrice;
-    private int stock;
+    private int stock = 1;
     private String brief_information;
     private String description;
     private String img;

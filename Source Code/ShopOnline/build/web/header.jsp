@@ -38,7 +38,7 @@
                             <a href="#"><i class="fa fa-search"></i></a>
                         </li>
                         <li class="side-menu">
-                            <a href="CartController" title="Cart">
+                            <a href="cartDetail.jsp" title="Cart">
                                 <i class="fa fa-shopping-bag"></i>
                             </a>
                             <span class="badge-num">1</span>

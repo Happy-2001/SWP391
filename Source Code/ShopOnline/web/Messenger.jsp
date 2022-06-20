@@ -13,7 +13,7 @@
 <%ArrayList<Message> MYR = (ArrayList<Message>) request.getAttribute("MYR");%>
 <%ArrayList<Message> MYS = (ArrayList<Message>) request.getAttribute("MYS");%>
 
-<c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null}">
+<c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
 <div id="mess2" class="message2">
     <i style="font-size: 0;"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
 </div>
@@ -130,7 +130,7 @@
             </div>
                 <div class="col-md-2"></div>
             <div class="send_button col-md-2">
-                <button name="valueSendButton" value="${sessionScope.userlogged.userid}to${MYS.toID()}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                <button name="toid" value="1" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
             </div>
         </form>
