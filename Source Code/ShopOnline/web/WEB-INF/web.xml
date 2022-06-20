@@ -92,6 +92,10 @@
         <servlet-name>UpdateCartController</servlet-name>
         <servlet-class>controller.UpdateCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>orderInformation</servlet-name>
+        <servlet-class>controller.orderInformationController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Homecontroller</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>UpdateCartController</servlet-name>
         <url-pattern>/UpdateCartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>orderInformation</servlet-name>
+        <url-pattern>/orderInformationController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
