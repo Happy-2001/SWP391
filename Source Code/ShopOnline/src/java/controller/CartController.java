@@ -3,53 +3,28 @@ package controller;
 import dal.CartDAO;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Cart;
-import model.Product;
 
 /**
  *
- * @author Admin
+ * @author anhvo
  */
-@WebServlet(name = "CartController", urlPatterns = {"/CartController"})
 public class CartController extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CartDAO pdb = new CartDAO();
-       HttpSession session = request.getSession();
-       if (session.getAttribute("listCart") == null) {
-                    String pid = request.getParameter("pid");
-                    List<Product> list = new ArrayList<>();
-                    Product p = pdb.add(pid);
-                    list.add(p);
-                    session.setAttribute("listCart", list);
-                } else {
-                    String pid = request.getParameter("pid");
-                    List<Product> list = (List<Product>) session.getAttribute("listCart");
-                    int index = pdb.checkId(Integer.parseInt(pid), list);
-                    
+        
+        String id = request.getParameter("userID");
 
-                    if (index == -1) {
-                        Product p = pdb.add(pid);
-                        list.add(p);
-                    } else {
-                        int quantity = list.get(index).getStock()+ 1;
-                        list.get(index).setStock(quantity);
-                    }
-                    session.setAttribute("listCart", list);
-                }
-                
-                RequestDispatcher dispth
-                        = request.getRequestDispatcher("home");
-                dispth.forward(request, response);
+        CartDAO pdb = new CartDAO();
+        ArrayList<Cart> carts = pdb.listById(Integer.parseInt(id));
+        request.setAttribute("carts", carts);
+        
+        request.getRequestDispatcher("cartDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

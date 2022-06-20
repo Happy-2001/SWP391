@@ -1,74 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
+
+import java.sql.Date;
 
 /**
  *
  * @author Admin
  */
 public class Cart {
-    private int item_id;
-    private int product_id;
-    private String product_name;
-    private String url;
-    private int unit_price;
-    private int quantity;
-    private int Cart_user_id;
+    int itemId;
+    Product product;
+    int quantity;
+    String status;
+    Date createDate;
+    Date updateDate;
+    int userId;
 
     public Cart() {
     }
 
-    public Cart(int item_id, int product_id, String product_name, String url, int unit_price, int quantity, int Cart_user_id) {
-        this.item_id = item_id;
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.url = url;
-        this.unit_price = unit_price;
+    public Cart(int itemId, Product product, int quantity, String status, Date createDate, Date updateDate, int userId) {
+        this.itemId = itemId;
+        this.product = product;
         this.quantity = quantity;
-        this.Cart_user_id = Cart_user_id;
+        this.status = status;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.userId = userId;
     }
 
-    public int getItem_id() {
-        return item_id;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
-
-    public String getProduct_name() {
-        return product_name;
-    }
-
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getUnit_price() {
-        return unit_price;
-    }
-
-    public void setUnit_price(int unit_price) {
-        this.unit_price = unit_price;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -79,14 +52,36 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public int getCart_user_id() {
-        return Cart_user_id;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCart_user_id(int Cart_user_id) {
-        this.Cart_user_id = Cart_user_id;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    
-    
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 }

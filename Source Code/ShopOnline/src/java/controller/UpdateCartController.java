@@ -1,84 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import dal.CartDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Product;
 
-/**
- *
- * @author thund
- */
 public class UpdateCartController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-                CartDAO pdb = new CartDAO();
-                HttpSession session = request.getSession();
-        List<Product> list = (List<Product>) session.getAttribute("listCart");
-      
-        String pid = request.getParameter("pid");
-        String up = request.getParameter("updateQuantity");
-        int  index = pdb.checkId(Integer.parseInt(pid), list);
-        list.get(index).setStock(Integer.parseInt(up));
-        request.setAttribute("listCart", list);
-        RequestDispatcher dispth
-                        = request.getRequestDispatcher("cartDetail.jsp");
-                dispth.forward(request, response);
 
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String uid = request.getParameter("uid");
+        String iid = request.getParameter("id");
+        String qty = request.getParameter("qty");
+
+        int newQty = Integer.parseInt(qty) - 1;
+        
+        CartDAO pdb = new CartDAO();
+        pdb.updateCart(newQty, Integer.parseInt(iid));
+        
+        response.sendRedirect("CartController?userID="+uid);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String uid = request.getParameter("uid");
+        String iid = request.getParameter("id");
+        String qty = request.getParameter("qty");
+
+        int newQty = Integer.parseInt(qty) + 1;
+        
+        CartDAO pdb = new CartDAO();
+        pdb.updateCart(newQty, Integer.parseInt(iid));
+        
+        response.sendRedirect("CartController?userID="+uid);
     }
 
     /**

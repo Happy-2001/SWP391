@@ -18,11 +18,11 @@ public class CartContact extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartDAO pdb = new CartDAO();
-        List<Cart> carts = pdb.listAll();
-        int total = pdb.getAmount();
-        request.setAttribute("total", total);
-        request.setAttribute("carts", carts);
-        request.getRequestDispatcher("cartContact.jsp").forward(request, response);
+//        List<Cart> carts = pdb.listAll();
+//        int total = pdb.getAmount();
+//        request.setAttribute("total", total);
+//        request.setAttribute("carts", carts);
+//        request.getRequestDispatcher("cartContact.jsp").forward(request, response);
     }
 
     @Override
