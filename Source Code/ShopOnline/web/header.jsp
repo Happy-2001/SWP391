@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <div id="header" class="bg-light">
     <header>
         <!-- Start Navigation -->
@@ -37,11 +38,23 @@
                         <li class="search">
                             <a href="#"><i class="fa fa-search"></i></a>
                         </li>
+                            
                         <li class="side-menu">
-                            <a href="cartDetail.jsp" title="Cart">
+                            <a href="CartController?userID=${sessionScope.userlogged.userid}" title="Cart">
                                 <i class="fa fa-shopping-bag"></i>
                             </a>
-                            <span class="badge-num">1</span>
+                            
+                            <c:if test="${sessionScope.userlogged ne null}">
+                                <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
+                                    url="jdbc:mysql://localhost:3306/shop2"
+                                    user="root"  password=""/>
+ 
+                                <sql:query dataSource="${db}" var="rs">
+                                    SELECT * FROM `cart_items` 
+                                    WHERE cart_items.cartID = ${sessionScope.userlogged.userid};
+                                </sql:query>
+                                <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
+                            </c:if>
                         </li>
                         <li class="account">
                             <c:choose>
