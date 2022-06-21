@@ -5,10 +5,13 @@
         <group>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/header.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/Messenger.jsp</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Cart.java</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/CartController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/HomePage.jsp</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/CartDAO.java</file>
             <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/cartDetail.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/css/messenger.css</file>
         </group>
     </open-files>
 </project-private>
