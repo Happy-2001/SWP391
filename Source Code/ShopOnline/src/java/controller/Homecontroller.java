@@ -71,26 +71,26 @@ public class Homecontroller extends HttpServlet {
         List<Slide> slides = slideDAO.listSlide();
         List<Product> products = pdb.listTop(4);
         List<Product> newproducts = pdb.listTopNew(4);
-        List<User> listAdmin = udao.listUserAdmin();
-        
+
         request.setAttribute("blogs", blogs);
         request.setAttribute("slides", slides);
         request.setAttribute("products", products);
         request.setAttribute("newproducts", newproducts);
 
-        
-        Object user = session.getAttribute("userlogged");    
-        
-        // get radom admin
-        int idRandAdmin = (int)(Math.random() * listAdmin.size());
-        
-        
+        Object user = session.getAttribute("userlogged");
+
         if (user != null) {
             User u = (User) user;
+
+            List<User> listAdmin = udao.listUserAdmin();
+            // get radom admin
+            int idRandAdmin = (int) (Math.random() * listAdmin.size());
+            User randAdminUser = udao.getUserById(String.valueOf(idRandAdmin));
+
             
-            ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser( "1",String.valueOf(u.getUserid()));     /// list message
-            ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser( String.valueOf(u.getUserid()),"1");
-            
+            ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser("1", String.valueOf(u.getUserid()));     /// list message
+            ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser(String.valueOf(u.getUserid()), "1");
+
             if (!MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
                 request.setAttribute("MYR", MessageYouReceive);
                 request.setAttribute("MYS", null);
@@ -115,7 +115,7 @@ public class Homecontroller extends HttpServlet {
 //            }
 //            response.getWriter().println(MessageYouSend.get(0).getToID());
         }
-      
+
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
 
     }
