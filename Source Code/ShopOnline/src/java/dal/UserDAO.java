@@ -3,10 +3,10 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
 
 public class UserDAO extends DBConnect {
@@ -104,8 +104,8 @@ public class UserDAO extends DBConnect {
                 u.setStatus(rs.getInt("status_id"));
                 return u;
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -296,39 +296,33 @@ public class UserDAO extends DBConnect {
             s.setString(1, status);
             s.setInt(2, u.getUserid());
             s.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
     }
 
-    public void update(User u) {
+    public void updateProfile(int id, String pass, String fname, String dname, String lname, int gender) {
         try {
-            String sql = "UPDATE `user_account` SET"
-                    + " `first_name` = ?,"
-                    + " `middle_name` = ?,"
-                    + " `last_name` = ?,"
-                    + " `gender` = ?,"
-                    + " `phone` = ?,"
-                    + " `status_id` = ?,"
-                    + " `password` = ?"
-                    + " WHERE `user_account`.`user_id` = ?";
+            String sql = "UPDATE `user_accounts` SET \n" +
+                            "`password` = ?,         \n" +
+                            "`first_name` = ?,       \n" +
+                            "`middle_name` = ?,      \n" +
+                            "`last_name` = ?,        \n" +
+                            "`gender` = ?            \n" +
+                        "WHERE user_id = ?;";
             PreparedStatement s = mysqlConnect.connect().prepareStatement(sql);
-            s.setString(1, u.getFirstname());
-            s.setString(2, u.getMiddlename());
-            s.setString(3, u.getLastname());
-            s.setInt(4, u.getGender());
-            s.setString(5, u.getPhone());
-            s.setInt(6, u.getStatus());
-            s.setString(8, u.getPassword());
-            s.setInt(9, u.getUserid());
+            s.setString(1, pass);
+            s.setString(2, fname);
+            s.setString(3, dname);
+            s.setString(4, lname);
+            s.setInt(5, gender);
+            s.setInt(6, id);
 
             s.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-        } finally {
-            mysqlConnect.disconnect();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -377,13 +371,5 @@ public class UserDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
         return null;
-    }
-
-    //Column count doesn't match value count at row 1
-    public static void main(String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println(dtf.format(now));
-
     }
 }

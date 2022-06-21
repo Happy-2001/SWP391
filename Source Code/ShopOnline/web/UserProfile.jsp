@@ -137,27 +137,28 @@
     <!-- end profile -->
 
     <!-- Edit Profile -->
-    <div class="Popup" id="myModal">
-        <span class="close">&times;</span>
-        <div class="container Popup-body">
-            <div class="Pop-title">
-                <h3>Edit Profile</h3>
-            </div>
-            <div class="options-divider"></div>
-            <form action="">
+    <form action="UpdateProfile" method="POST">
+        <div class="Popup" id="myModal">
+            <span class="close">&times;</span>
+            <div class="container Popup-body">
+                <div class="Pop-title">
+                    <h3>Edit Profile</h3>
+                </div>
+                <div class="options-divider"></div>
+                <input type="hidden" name="id" value="${sessionScope.user.userid}">
                 <div class="Set-pop">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div style="border-right: 1px solid #231f20;">
                                 <h5>Account</h5>
                                 <div class="options">
-                                    <input id="user-name" type="text" name="uname" placeholder="User Name" disabled>
+                                    <input id="user-name" type="text" value="${sessionScope.user.username}" disabled>
                                 </div>
                                 <div class="options">
-                                    <input id="password" type="password" name="password" placeholder="Password" required>
+                                    <input id="password" type="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="options">
-                                    <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Enter password again" required>
+                                    <input id="password_confirmation" type="password" placeholder="Enter password again">
                                 </div>
                             </div>
                         </div>
@@ -166,16 +167,16 @@
                                 <h5>Info</h5>
                                 <div class="options">
                                     <div class="auth-actions">
-                                        <input type="text" name="" placeholder="Fist Name">
-                                        <input type="text" name="" placeholder="Middle Name">
-                                        <input type="text" name="" placeholder="Last Name">
+                                        <input type="text" name="fname" placeholder="Fist Name">
+                                        <input type="text" name="mdname" placeholder="Middle Name">
+                                        <input type="text" name="lname" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="options">
-                                    <input id="phone" type="tel" name="phone" placeholder="Phone" required>
+                                    <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
                                 </div>
                                 <div class="options">
-                                    <input id="email" type="text" value="Email" disabled>
+                                    <input id="email" type="text" value="${sessionScope.user.email}" disabled>
                                 </div>
                                 <div class="save-pass">
                                     <div class="auth-actions">
@@ -193,13 +194,13 @@
                         </div>
                         <div class="options-divider"></div>
                         <div class="options">
-                            <button class="opt-btn" type="submit" name="created">Save</button>
+                            <button class="opt-btn" type="submit">Save</button>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
     <script src="js/Popup.js"></script>
     
     <%@include file="footer.jsp" %>

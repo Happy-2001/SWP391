@@ -12,13 +12,13 @@ package model;
 public class User {
     private int userid;
     private String username;
-    private String password;
-    private String firstname;
-    private String middlename;
-    private String lastname;
+    String password;
+    String firstname;
+    String middlename;
+    String lastname;
 
     private String photo;
-    private int gender;
+    int gender;
     private String phone;
     private String email;
     private int status;
