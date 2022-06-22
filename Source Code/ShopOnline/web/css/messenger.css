@@ -12,20 +12,20 @@
     background-color: white;
     box-shadow: 0 0 5px #c4cacc;
     border-top-left-radius : 15px;
-   border-top-right-radius : 15px;
+    border-top-right-radius : 15px;
     z-index: 0100;
     position: fixed;
     bottom: 0;
     right: 5%;
     transition: ease-in 0.3s;
-    
+
 }
 .message2{
     width: 380px;
     height: 0 !important;
     box-shadow: 0 0 5px #c4cacc;
     border-top-left-radius : 15px;
-   border-top-right-radius : 15px;
+    border-top-right-radius : 15px;
     z-index: 0100;
     position: fixed;
     bottom: 0;
@@ -48,7 +48,7 @@
 .messageAdmin{
     overflow: auto;
     padding: 5px;
-   
+
 }
 .messageAdmin .messcustomer{
     margin-bottom: 25px;
@@ -62,22 +62,22 @@
     border-bottom: 1px solid #c4cacc;
     margin: 0;
     padding: 10px 0;
-   
+
 }
 .message .row img{
     float: left;
     margin-right: 5px;
 }
 .message .row div:nth-child(2){
-   font-size: 20px;
-   color: #50b5ba;
+    font-size: 20px;
+    color: #50b5ba;
 }
 .message .content_message{
     text-align: center;
     width: 380px;
     height: 380px;
     overflow: auto;
-    
+
 }
 
 .divMYS{
@@ -88,25 +88,30 @@
     width: 2%;
 }
 .MYS,.MYR{
-    padding: 7px 20px 0px 20px;
-    border-radius: 30px;
+    padding: 8px 12px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+
+
     margin-bottom: 15px; 
-     max-width: 77%; 
-     text-align: left;
-     width: fit-content;
+    max-width: 77%; 
+    text-align: left;
+    width: fit-content;
 }
 .message .content_message .MYS{
     background-color: #50b5ba;
     color: white;
     max-width: 77%; 
-    
+
 }
 
 .message .content_message .MYR{
     margin-left: 2%;
     background-color: #e4e6eb;
     color: black;
-    
+
 
 
 }
@@ -130,11 +135,11 @@
     width: 130%;
 }
 .messageAdmin .row .col-md-10{
-   color: #0c7857;
+    color: #0c7857;
 }
 .messageAdmin .row .col-md-2{
-   font-size: 20px;
-   margin-top: 10px;
+    font-size: 20px;
+    margin-top: 10px;
 }
 .menu_message{
     height: 50px;
@@ -144,18 +149,18 @@
 }
 .menu_messenger_conponent{
     position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-   width: 100%;
-   
-  
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+
 }
 .menu_messenger_conponent .send_button{
     margin-top: 10px;
 
-   
-  
+
+
 }
 
 .menu_messenger_conponent .send_button i{
@@ -166,6 +171,6 @@
     padding: 6px;
     border-radius: 30px;
     background-color: #e4e6eb;
-    
-    
+
+
 }

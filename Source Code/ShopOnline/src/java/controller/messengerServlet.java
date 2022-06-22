@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.GroupDAO;
 import dal.MessengerDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Group;
 import model.Message;
 import model.User;
 
@@ -83,19 +85,17 @@ public class messengerServlet extends HttpServlet {
             throws ServletException, IOException {
 //        String content = new
         HttpSession session = request.getSession();
+        MessengerDAO mdao = new MessengerDAO();
+        GroupDAO gdao = new GroupDAO();
         
         String getFROMandTO = request.getParameter("getFROMandTO");
         String content = request.getParameter("contentsend");
         String[] getFROMandTOsplit = getFROMandTO.split(";"); //to;from get from value BUTTON
         String toid = getFROMandTOsplit[0];
         String fromid = getFROMandTOsplit[1];
-        String getTime = "";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        getTime = dtf.format(now);
-        response.getWriter().print(getTime);
-        MessengerDAO mdao = new MessengerDAO();
-        mdao.addMessage(content, fromid, toid, getTime);
+        
+        
+        
         
         response.sendRedirect("home");
 

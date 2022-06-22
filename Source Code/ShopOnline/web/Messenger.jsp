@@ -66,8 +66,8 @@
                         <div class="send_button col-md-2">
 
                             
-                            <button name="getFROMandTO" value="" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
-                                
+                            <button name="getFROMandTO" value="${mess.fromID};${mess.toID}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                                <!--nhắn tin tự động. Tự sinh ra group,user group , message creator, sau đó add customerid vào user group vừa tạo-->
 
                         </div>
                     </div>
