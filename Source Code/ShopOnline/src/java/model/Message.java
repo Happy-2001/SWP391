@@ -15,6 +15,14 @@ public class Message {
     public Message() {
     }
 
+    public Message(String id, String fromID, String toID, String content, String createDate, String isread) {
+        this.id = id;
+        this.fromID = fromID;
+        this.toID = toID;
+        this.content = content;
+        this.createDate = createDate;
+        this.isread = isread;
+    }
     public Message(String id, String fromID, String toID, String content, String createDate, String parentMessageID, String isread) {
         this.id = id;
         this.fromID = fromID;

@@ -10,30 +10,35 @@ package model;
  * @author Administrator
  */
 public class Group {
-    private String id,name;
+    private String groupID,groupName;
 
     public Group() {
     }
 
-    public Group(String id, String name) {
-        this.id = id;
-        this.name = name;
+    public Group(String groupID, String groupName, String lastMessage) {
+        this.groupID = groupID;
+        this.groupName = groupName;
+      
     }
 
-    public String getId() {
-        return id;
+    public String getGroupID() {
+        return groupID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
     }
 
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
+
+   
+
+    
     
 }
