@@ -59,7 +59,7 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0, 0, 0) ;
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    display: none;
+    /* display: none; */
     transition: 0.3s;
 }
 /* The Close Button */
@@ -109,6 +109,16 @@
 }
 .options{
     padding: 10px;
+}
+.check__pass{
+    position: relative;
+}
+.check__pass #check-err{
+    color: #f00;
+    clear: none;
+    position: absolute;
+    right: 25px;
+    bottom: 20px;
 }
 .options input{
     font-weight: 400;

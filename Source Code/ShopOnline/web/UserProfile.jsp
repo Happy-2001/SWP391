@@ -157,8 +157,9 @@
                                 <div class="options">
                                     <input id="password" type="password" name="password" placeholder="Password">
                                 </div>
-                                <div class="options">
+                                <div class="options check__pass">
                                     <input id="password_confirmation" type="password" placeholder="Enter password again">
+                                    <span id="check-err"></span>
                                 </div>
                             </div>
                         </div>
@@ -201,6 +202,23 @@
             </div>
         </div>
     </form>
+    <script>
+        var checkArea = document.getElementById('check-err');
+        var passIn = document.getElementById('password');
+        var passCf = document.getElementById('password_confirmation');
+
+        passCf.onkeyup = () => {
+            var inP = passCf.value;
+
+            if (inP !== passIn.value) {
+                checkArea.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+                return false;
+            }
+            
+            checkArea.innerHTML = '<i style="color: #2e8b57;" class="fa-solid fa-circle-check"></i>';
+            return true;
+        };
+    </script>
     <script src="js/Popup.js"></script>
     
     <%@include file="footer.jsp" %>
