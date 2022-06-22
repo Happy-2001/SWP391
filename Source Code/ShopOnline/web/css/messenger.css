@@ -87,28 +87,25 @@
 .MYS_EMP{
     width: 2%;
 }
-.message .content_message .MYS{
-   
-    padding: 7px 5px 0px 5px;
+.MYS,.MYR{
+    padding: 7px 20px 0px 20px;
     border-radius: 30px;
-    background-color: #50b5ba;
     margin-bottom: 15px; 
+     max-width: 77%; 
+     text-align: left;
+     width: fit-content;
+}
+.message .content_message .MYS{
+    background-color: #50b5ba;
     color: white;
-    width: fit-content;
     max-width: 77%; 
-    text-align: left;
+    
 }
 
 .message .content_message .MYR{
     margin-left: 2%;
-    padding: 7px 5px 1px 5px;
-    border-radius: 30px;
     background-color: #e4e6eb;
     color: black;
-    margin-bottom: 15px; 
-    max-width: 77%; 
-    text-align: left;
-    width: fit-content;
     
 
 

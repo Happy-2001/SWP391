@@ -6,6 +6,7 @@
 package controller;
 
 import dal.BlogDAO;
+import dal.GroupDAO;
 import dal.MessengerDAO;
 import dal.ProductDAO;
 import dal.SlideDAO;
@@ -66,6 +67,7 @@ public class Homecontroller extends HttpServlet {
         MessengerDAO mdao = new MessengerDAO();
         HttpSession session = request.getSession();
         UserDAO udao = new UserDAO();
+        GroupDAO gdao = new GroupDAO();
 
         List<Blog> blogs = bdb.getBlogForHomePage();
         List<Slide> slides = slideDAO.listSlide();
@@ -81,35 +83,15 @@ public class Homecontroller extends HttpServlet {
 
         if (user != null) {
             User u = (User) user;
-
-            List<User> listAdmin = udao.listUserAdmin();
-            // get radom admin
-            int idRandAdmin = (int) (Math.random() * listAdmin.size());
-            User randAdminUser = udao.getUserById(String.valueOf(idRandAdmin));
-
+            String userID = String.valueOf(u.getUserid());
+            String groupCusID = gdao.getGroupIDbyUserID(userID);
+            ArrayList<Message> listMessages = mdao.getAllMessageofUser(groupCusID, userID);
+            List<String> listUserAdminID = udao.listUserAdminID();
             
-            ArrayList<Message> MessageYouSend = mdao.getAllMessageofUser("1", String.valueOf(u.getUserid()));     /// list message
-            ArrayList<Message> MessageYouReceive = mdao.getAllMessageofUser(String.valueOf(u.getUserid()), "1");
-
-            if (!MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
-                request.setAttribute("MYR", MessageYouReceive);
-                request.setAttribute("MYS", null);
-            }
-            if (MessageYouReceive.isEmpty() && !MessageYouSend.isEmpty()) {
-                request.setAttribute("MYR", null);
-                request.setAttribute("MYS", MessageYouSend);
-                request.setAttribute("toid", MessageYouSend.get(0).getToID());
-            }
-            if (!MessageYouReceive.isEmpty() && !MessageYouSend.isEmpty()) {
-                request.setAttribute("MYR", MessageYouReceive);
-                request.setAttribute("MYS", MessageYouSend);
-                request.setAttribute("messageAdmin", "none");
-                request.setAttribute("toid", MessageYouSend.get(0).getToID());
-            }
-            if (MessageYouReceive.isEmpty() && MessageYouSend.isEmpty()) {
-                request.setAttribute("MYR", null);
-                request.setAttribute("MYS", null);
-            }
+            request.setAttribute("listMess", listMessages);
+            request.setAttribute("listUserAdminID", listUserAdminID);
+            
+            
 //            for (Message message : MessageYouSend) {
 //                response.getWriter().println(message.getToID());
 //            }

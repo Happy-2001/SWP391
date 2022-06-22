@@ -1,5 +1,6 @@
 package dal;
 //test merge
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -183,15 +184,15 @@ public class UserDAO extends DBConnect {
 
     public List<User> listUserCustomer() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n" +
-"(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n" +
-"                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n" +
-"                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n" +
-"                ON ua.userID = ac.user_id) AS rs1\n" +
-"                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n" +
-"                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n" +
-"                INNER JOIN roles ON roles.roleID = rs3.roleID\n" +
-"                WHERE roles.name LIKE \"%customer%\"";
+        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n"
+                + "(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
+                + "                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
+                + "                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
+                + "                ON ua.userID = ac.user_id) AS rs1\n"
+                + "                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
+                + "                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n"
+                + "                INNER JOIN roles ON roles.roleID = rs3.roleID\n"
+                + "                WHERE roles.name LIKE \"%customer%\"";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -218,18 +219,17 @@ public class UserDAO extends DBConnect {
         return null;
     }
 
-    
     public List<User> listUserAdmin() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n" +
-"(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n" +
-"                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n" +
-"                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n" +
-"                ON ua.userID = ac.user_id) AS rs1\n" +
-"                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n" +
-"                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n" +
-"                INNER JOIN roles ON roles.roleID = rs3.roleID\n" +
-"                WHERE roles.name LIKE \"%admin%\"";
+        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n"
+                + "(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
+                + "                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
+                + "                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
+                + "                ON ua.userID = ac.user_id) AS rs1\n"
+                + "                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
+                + "                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n"
+                + "                INNER JOIN roles ON roles.roleID = rs3.roleID\n"
+                + "                WHERE roles.name LIKE \"%admin%\"";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -255,6 +255,34 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
+    //get list Admin id
+    public List<String> listUserAdminID() {
+        List<String> listUserAdminID = new ArrayList<>();
+        String sql = "SELECT user_id FROM\n"
+                + "(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
+                + "                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
+                + "                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
+                + "                ON ua.userID = ac.user_id) AS rs1\n"
+                + "                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
+                + "                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n"
+                + "                INNER JOIN roles ON roles.roleID = rs3.roleID\n"
+                + "                WHERE roles.name LIKE \"%admin%\"";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                
+                listUserAdminID.add(rs.getString(1));
+            }
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return listUserAdminID;
+    }
+
     //false ton tai email hoac username
     public boolean existedMember(User user, List<User> listUser) {
         for (User u : listUser) {
@@ -307,13 +335,13 @@ public class UserDAO extends DBConnect {
 
     public void updateProfile(int id, String pass, String fname, String dname, String lname, int gender) {
         try {
-            String sql = "UPDATE `user_accounts` SET \n" +
-                            "`password` = ?,         \n" +
-                            "`first_name` = ?,       \n" +
-                            "`middle_name` = ?,      \n" +
-                            "`last_name` = ?,        \n" +
-                            "`gender` = ?            \n" +
-                        "WHERE user_id = ?;";
+            String sql = "UPDATE `user_accounts` SET \n"
+                    + "`password` = ?,         \n"
+                    + "`first_name` = ?,       \n"
+                    + "`middle_name` = ?,      \n"
+                    + "`last_name` = ?,        \n"
+                    + "`gender` = ?            \n"
+                    + "WHERE user_id = ?;";
             PreparedStatement s = mysqlConnect.connect().prepareStatement(sql);
             s.setString(1, pass);
             s.setString(2, fname);
@@ -374,9 +402,12 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
+
     public static void main(String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-   LocalDateTime now = LocalDateTime.now();  
-   System.out.println(dtf.format(now));  
+        UserDAO udao = new UserDAO();
+        List<String> list = udao.listUserAdminID();
+        for (String string : list) {
+            System.out.println(string);
+        }
     }
 }

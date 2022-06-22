@@ -8,6 +8,8 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,20 +24,9 @@ public class MessengerDAO {
 
     DBConnect mysqlConnect = new DBConnect();
 
-    public void addMessage(String content, String fromid, String toid, String sendTime) {
-        try {
-            String sql = "INSERT INTO `messengers` (`content`, `fromID`, `toID`, `sendTime`) VALUES\n"
-                    + "(?,?,?,?)";
-            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setString(1, content);
-            statement.setString(2, fromid);
-            statement.setString(3, toid);
-            statement.setString(4, sendTime);
-            statement.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(MessengerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    String getTime = (dtf.format(now));
 
     public ArrayList<User> getMesstoAdmin(String adminID) {
         ArrayList<User> list = new ArrayList<>();
@@ -147,8 +138,44 @@ public class MessengerDAO {
     }
 
     // add message
-    //sửa addRecipientMessage!!!
-    public void addRecipientMessage( String recipientGroupID,String messageID) {
+    public void addMessage(String creatorID, String messageBody) {
+        String sql = "INSERT INTO messages(creatorID,messageBody,createDate) VALUES\n"
+                + "(?,?,?)";
+
+        try {
+            PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
+            ps.setString(1, creatorID);
+            ps.setString(2, messageBody);
+            ps.setString(3, getTime);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+
+    // add message with parent
+    public void addMessageWithParent(String creatorID, String messageBody,String parentID) {
+        String sql = "INSERT INTO messages(creatorID,messageBody,createDate,parentMessageID) VALUES\n"
+                + "(?,?,?,?)";
+
+        try {
+            PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
+            ps.setString(1, creatorID);
+            ps.setString(2, messageBody);
+            ps.setString(3, getTime);
+            ps.setString(4, parentID);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(GroupDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+
+    // addRecipientMessage!!!
+    public void addRecipientMessage(String recipientGroupID, String messageID) {
         String sql = "INSERT INTO message_recipient(recipientGroupID,messageID) VALUES\n"
                 + "(?,?)";
 
@@ -156,7 +183,7 @@ public class MessengerDAO {
             PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
             ps.setString(1, recipientGroupID);
             ps.setString(2, messageID);
-            
+            ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(GroupDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

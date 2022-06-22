@@ -14,134 +14,66 @@
 <%ArrayList<Message> MYS = (ArrayList<Message>) request.getAttribute("MYS");%>
 
 <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
-<div id="mess2" class="message2">
-    <i style="font-size: 0;"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
-</div>
-<div id="mess" class="message" style="display: ${admin};display: block">
-    <div class="header_message row">
-        <div class="col-md-10">
-
-            <%if (MYR != null && MYR.get(0).getToID().equals("1")) {%>  <!--admin rieng SKIP-->
-
-
-            <a href="home"><h4><b>${usersend}</b></h4></a>
-                        <%} else {%>
-            <img src="images/logo.png" class="logo" alt="" width="50%">
-            <h4><b></b></h4>  <!-- default and user -->
-            <%}%>
+    <div id="mess2" class="message2">
+        <i style="font-size: 0;"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
+    </div>
+    <div id="mess" class="message">
+        <div class="header_message row">
+            <div class="col-md-10">
+                <img src="images/logo.png" class="logo" alt="" width="50%">               
+            </div>
+            <div class="col-md-2" >
+                <i onclick="hideMessage()" class="fa-solid fa-minus"></i>
+            </div>
         </div>
-        <div class="col-md-2" >
+        <div class="content_message" >
+            <br/>
+            <img src="images/logo.png" class="logo" alt="" width="70%">
 
-            <i onclick="hideMessage()" class="fa-solid fa-minus"></i>
+            <h6>Wear your Best - A Moments of Your Style</h6>
+            <c:forEach items="${listMess}" var="mess">
+                <c:choose>
+                    <c:when test="${listUserAdminID.contains(mess.fromID)}">
+                        <div class="divMYR">
+                            <div class="MYR">
+                                <p>${mess.content} ${listUserAdminID[0]}</p>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="divMYS">
+                            <div class="MYS">
+                                <p>${mess.content}</p>
+                            </div>
+                        </div>
+                    </c:otherwise>
+
+                </c:choose>
+            </c:forEach>
+
+
+
+        </div>
+        <div id="menumess" class="menu_message">
+            <div class="menu_messenger_conponent ">
+                <form action="messengerServlet" method="post">
+                    <div class="row">
+                        <div class="send col-md-8">
+                            <input name="contentsend" type="text" placeholder="Viết gì đó...">
+
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="send_button col-md-2">
+
+                            
+                            <button name="getFROMandTO" value="" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                                
+
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="content_message" style="display: block;display: ${messageadmin}">
-        <br/>
-        <img src="images/logo.png" class="logo" alt="" width="70%">
-
-        <h6>Wear your Best - A Moments of Your Style
-            
-            
-        </h6>
-
-        <%if (MYR != null && MYS != null) {%><!--1-->
-
-        <%int MYRidx = 0, MYSidx = 0, MYRid = 0, MYSid = 0, MYRidOLD = 0, MYSidOLD = 0;%>
-        <%for (int idx = 0; idx < MYS.size() + MYR.size(); idx++) {%><!--2-->
-        <% MYRid = Integer.parseInt(MYR.get(MYRidx).getId());%>
-        <% MYSid = Integer.parseInt(MYS.get(MYSidx).getId());%>
-        <%if (MYRid > MYSid) {%><!--3-->
-        <%if (MYRidOLD == MYRid && MYSidOLD == MYSid && MYSidx == MYS.size() - 1) {%>
-        <%for (int j = 0; j <= MYR.size(); j++) {%>
-        <%if (MYRidx == MYR.size()) {
-                break;
-            }%>
-        <div class="MYR"><p><%=MYR.get(MYRidx++).getContent()%></p></div>
-                <%}%>
-
-        <%break;
-        } else {%>
-
-        <div class="divMYS">
-            <div class="MYS_EMP"></div>
-            <div class="MYS"><p><%=MYS.get(MYSidx).getContent()%></p></div></div>
-
-        <%  MYRidOLD = MYRid;
-            MYSidOLD = MYSid;
-        %>
-
-        <%if (MYSidx + 1 != MYS.size()) {
-                MYSidx++;
-            }%>
-        <%}%>
-
-        <%}%><!--3-->
-
-        <%if (MYRid < MYSid) {%><!--4-->
-
-        <%if (MYRidOLD == MYRid && MYSidOLD == MYSid && MYRidx == MYR.size() - 1) {%>  
-        <%for (int j = 0; j <= MYS.size(); j++) {%>
-        <%if (MYSidx == MYS.size()) {
-                break;
-            }%>
-        <div class="divMYS">
-
-            <div class="MYS"><p><%=MYS.get(MYSidx++).getContent()%></p></div> </div>  
-                    <% }%>
-
-        <%break;
-        } else {%>
-        
-        <div class="MYR"><p><%=MYR.get(MYRidx).getContent()%></p></div>
-
-        <%MYRidOLD = MYRid;
-            MYSidOLD = MYSid;%>
-        <%if (MYRidx + 1 != MYR.size()) {
-                MYRidx++;
-            }%>
-        <%}%>
-
-        <%}%><!--4-->
-
-        <%}%><!--2-->
-        <%}%><!--1-->
-        <%if (MYS != null && MYR == null) {%>         <!--trường hợp có mỗi table người dùng gửi tồn tại -->
-
-        <%for (Message mess : MYS) {%>
-        <div class="divMYS">
-        <div class="MYS"><p><%=mess.getContent()%></p></div> 
-        </div>
-                <%}%>
-                <%}%>    
-
-
-        <%if (MYS == null && MYR != null) {%>         <!--trường hợp có mỗi table Admin gửi tồn tại -->
-        <%for (Message mess : MYR) {%>
-        <div class="MYR"><p><%=mess.getContent()%></p></div>     
-                <%}%>
-                <%}%>
-
-    </div>
-    <div id="menumess" class="menu_message">
-        <div class="menu_messenger_conponent ">
-        <form action="messengerServlet" method="post">
-            <div class="row">
-                <div class="send col-md-8">
-                <input name="contentsend" type="text" placeholder="Viết gì đó...">
-                
-            </div>
-                <div class="col-md-2"></div>
-            <div class="send_button col-md-2">
-                
-                <%if(MYS.get(0).getToID()!= null && MYS.get(0).getFromID() != null){%>
-                    <button name="getFROMandTO" value="<%=MYS.get(0).getToID()%>;<%=MYS.get(0).getFromID()%>" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
-                <%}%>  
-                
-            </div>
-            </div>
-        </form>
-        </div>
-    </div>
-</div>
-  </c:if> 
+</c:if> 
 <!--chat end-->
