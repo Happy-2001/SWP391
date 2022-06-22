@@ -10,18 +10,18 @@ package model;
  * @author Administrator
  */
 public class Message {
-    private String id,fromID,toID,content,sendTime,receivedTime,isread;
+    private String id,fromID,toID,content,createDate,parentMessageID,isread;
 
     public Message() {
     }
 
-    public Message(String id, String fromID, String toID, String content, String sendTime, String receivedTime, String isread) {
+    public Message(String id, String fromID, String toID, String content, String createDate, String parentMessageID, String isread) {
         this.id = id;
         this.fromID = fromID;
         this.toID = toID;
         this.content = content;
-        this.sendTime = sendTime;
-        this.receivedTime = receivedTime;
+        this.createDate = createDate;
+        this.parentMessageID = parentMessageID;
         this.isread = isread;
     }
 
@@ -57,20 +57,20 @@ public class Message {
         this.content = content;
     }
 
-    public String getSendTime() {
-        return sendTime;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setSendTime(String sendTime) {
-        this.sendTime = sendTime;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
-    public String getReceivedTime() {
-        return receivedTime;
+    public String getParentMessageID() {
+        return parentMessageID;
     }
 
-    public void setReceivedTime(String receivedTime) {
-        this.receivedTime = receivedTime;
+    public void setParentMessageID(String parentMessageID) {
+        this.parentMessageID = parentMessageID;
     }
 
     public String getIsread() {
@@ -80,6 +80,8 @@ public class Message {
     public void setIsread(String isread) {
         this.isread = isread;
     }
+
+    
 
     
     

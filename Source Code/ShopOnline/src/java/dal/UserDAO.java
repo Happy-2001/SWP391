@@ -3,6 +3,8 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -371,5 +373,10 @@ public class UserDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
         return null;
+    }
+    public static void main(String[] args) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+   LocalDateTime now = LocalDateTime.now();  
+   System.out.println(dtf.format(now));  
     }
 }
