@@ -148,15 +148,15 @@ public class MessengerDAO {
 
     // add message
     //sửa addRecipientMessage!!!
-    public void addRecipientMessage(String userID, String groupID) {
-        String sql = "INSERT INTO message_recipient(mrID,recipientGroupID,messageID) VALUES\n"
-                + "(4,2,4)";
+    public void addRecipientMessage( String recipientGroupID,String messageID) {
+        String sql = "INSERT INTO message_recipient(recipientGroupID,messageID) VALUES\n"
+                + "(?,?)";
 
         try {
             PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
-            ps.setString(1, userID);
-            ps.setString(2, groupID);
-            ps.setString(3, getTime);
+            ps.setString(1, recipientGroupID);
+            ps.setString(2, messageID);
+            
         } catch (SQLException ex) {
             Logger.getLogger(GroupDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
