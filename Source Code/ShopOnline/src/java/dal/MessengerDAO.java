@@ -145,7 +145,7 @@ public class MessengerDAO {
         try {
             PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
             ps.setString(1, creatorID);
-            ps.setString(2, messageBody);
+            ps.setNString(2, messageBody);
             ps.setString(3, getTime);
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -157,6 +157,7 @@ public class MessengerDAO {
 
     // add message with parent
     public void addMessageWithParent(String creatorID, String messageBody,String parentID) {
+        
         String sql = "INSERT INTO messages(creatorID,messageBody,createDate,parentMessageID) VALUES\n"
                 + "(?,?,?,?)";
 

@@ -5,32 +5,23 @@
  */
 package controller;
 
-import dal.BlogDAO;
-import dal.GroupDAO;
 import dal.MessengerDAO;
-import dal.ProductDAO;
-import dal.SlideDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Blog;
-import model.Message;
-import model.Product;
-import model.Slide;
-import model.User;
 
 /**
  *
- * @author nguye
+ * @author Administrator
  */
-public class Homecontroller extends HttpServlet {
+@WebServlet(name = "AutoChat", urlPatterns = {"/autochat"})
+public class AutoChat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,7 +36,16 @@ public class Homecontroller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("HomePage.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AutoChat</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AutoChat at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -61,54 +61,27 @@ public class Homecontroller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO pdb = new ProductDAO();
-        BlogDAO bdb = new BlogDAO();
-        SlideDAO slideDAO = new SlideDAO();
         MessengerDAO mdao = new MessengerDAO();
-        HttpSession session = request.getSession();
         UserDAO udao = new UserDAO();
-        GroupDAO gdao = new GroupDAO();
-
-        List<Blog> blogs = bdb.getBlogForHomePage();
-        List<Slide> slides = slideDAO.listSlide();
-        List<Product> products = pdb.listTop(4);
-        List<Product> newproducts = pdb.listTopNew(4);
-
-        request.setAttribute("blogs", blogs);
-        request.setAttribute("slides", slides);
-        request.setAttribute("products", products);
-        request.setAttribute("newproducts", newproducts);
-
-        Object user = session.getAttribute("userlogged");
-
-        if (user != null) {
-            User u = (User) user;
-            String userID = String.valueOf(u.getUserid());
-            String groupCusID = gdao.getGroupIDbyUserID(userID);
-            ArrayList<Message> listMessages = mdao.getAllMessageofUser(groupCusID, userID);
-            List<String> listUserAdminID = udao.listUserAdminID();
-          
-            request.setAttribute("listMess", listMessages);
-            request.setAttribute("listUserAdminID", listUserAdminID);
-            
-            if(gdao.getGroupIDbyUserID(userID).equals("") && !listUserAdminID.contains(String.valueOf(u.getUserid()))){  // only for Customer role
-                String maxGroupID = gdao.getMaxGroupIDb();
-                gdao.addGroup((u.getFullname()) +" CSKH"+u.getUserid());
-                gdao.addUserGroup(userID,maxGroupID);
-                for (String string : listUserAdminID) {
-                    gdao.addUserGroup(string,maxGroupID);
-                }
-            }
-        }
-
-        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-
+        List<String> listUserAdminID = udao.listUserAdminID();
+        
+        
+        String content = "Xin chào";
+        
+        
+        mdao.addMessage(fromid, content);
+        
+        String maxMessID = mdao.getMaxMessIDb();
+        mdao.addRecipientMessage(toid,maxMessID);
+        
+        
+        response.sendRedirect("home");
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @par am request servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
