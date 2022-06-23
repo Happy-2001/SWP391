@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import dal.ProductDAO;
@@ -21,15 +16,7 @@ import model.Product;
  */
 public class ProductController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -48,14 +35,7 @@ public class ProductController extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -63,7 +43,7 @@ public class ProductController extends HttpServlet {
         String page = request.getParameter("page");
 
         //Set page for root course page
-        if (page == null || page.equals("")) {
+        if (page == null || page.isEmpty()) {
             page = "" + 1;
         }
         //for style active
@@ -74,35 +54,23 @@ public class ProductController extends HttpServlet {
         request.setAttribute("countPage", countPage);
 
         //get list courses for each pageNumber
-        List<Product> productsForEachPage = pdb.getCourseByPageNumber(pageNumber);
+        List<Product> productsForEachPage = pdb.getProductByPageNumber(pageNumber);
         request.setAttribute("productsForEachPage", productsForEachPage);
 
-         List<Product> products = pdb.listAll();
-         request.setAttribute("list", products);
+        List<Product> products = pdb.listByPageNum(pageNumber);
+        request.setAttribute("listByPage", products);
 
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";

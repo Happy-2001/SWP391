@@ -182,5 +182,11 @@
 #list-view .why-text{
     padding: 0;
 }
-
+.paging .pagination .page-item a{
+    color: #000;
+}
+.paging .pagination .page-item.active a{
+    background: #d33b33;
+    border-color: #d33b33;
+}
 /* =============================================================== */
