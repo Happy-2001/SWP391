@@ -4,7 +4,8 @@
 }
 
 .message2 .fa-facebook-messenger{
-    font-size:  0!important;
+    transition: ease-in 0.3s;
+        
 }
 .message, .messageAdmin {
     width: 380px;
@@ -20,20 +21,9 @@
     transition: ease-in 0.3s;
 
 }
-.message2{
-    width: 380px;
-    height: 0 !important;
-    box-shadow: 0 0 5px #c4cacc;
-    border-top-left-radius : 15px;
-    border-top-right-radius : 15px;
-    z-index: 0100;
-    position: fixed;
-    bottom: 0;
-    right: 5%;
-    transition: ease-in 0.3s;
-}
 
-.message2, .message3{ 
+
+.message2{ 
     width: 50px;
     height: 0;  
     text-align: center;
@@ -41,9 +31,11 @@
     font-size: 20px;
     position: fixed;
     right: 0;
-    top: 50%;
+    top: 85%;
     transform: translateY(-50%);
     z-index: 0100;
+    transition: ease-in 0.3s;
+    cursor: pointer;
 }
 .messageAdmin{
     overflow: auto;
@@ -114,9 +106,6 @@
 
 
 
-}
-.message .content_message .MYS p,.message .content_message .MYR p{
-    margin-bottom: 10px;
 }
 
 .message .content_message h6{

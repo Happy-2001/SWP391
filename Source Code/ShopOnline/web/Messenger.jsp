@@ -10,12 +10,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--Chat-->
-<%ArrayList<Message> MYR = (ArrayList<Message>) request.getAttribute("MYR");%>
-<%ArrayList<Message> MYS = (ArrayList<Message>) request.getAttribute("MYS");%>
 
 <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
     <div id="mess2" class="message2">
-        <i style="font-size: 0;"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger"></i>
+        <i style="font-size: 0;"  id="iofmess2" onclick="showMessage()" class="fa-brands fa-facebook-messenger" data-bs-toggle="tooltip" title="Message with ShopDep"></i>
     </div>
     <div id="mess" class="message">
         <div class="header_message row">
@@ -66,7 +64,7 @@
                         <div class="send_button col-md-2">
 
                             
-                            <button name="getFROMandTO" value="${mess.fromID};${mess.toID}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+                            <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button>
                                 <!--nhắn tin tự động. Tự sinh ra group,user group , message creator, sau đó add customerid vào user group vừa tạo-->
 
                         </div>

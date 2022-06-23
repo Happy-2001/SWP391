@@ -190,12 +190,27 @@ public class MessengerDAO {
             mysqlConnect.disconnect();
         }
     }
+    
+    //get max groupID 
+    public String getMaxMessIDb () {
+        String messageID = "";
+        String sql = "SELECT MAX(messageID) FROM  `Messages`";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                messageID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return messageID;
+    }
 
     public static void main(String[] args) {
         MessengerDAO m = new MessengerDAO();
-        ArrayList<Message> list = m.getAllMessageofUser("1", "5");
-        for (Message message : list) {
-            System.out.println(message.getContent());
-        }
+        System.out.println(m.getMaxMessIDb());
     }
 }

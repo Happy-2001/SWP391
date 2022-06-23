@@ -78,4 +78,21 @@ public class GroupDAO {
         }
         return groupID;
     }
+    //get max groupID 
+    public String getMaxGroupIDb () {
+        String groupID = "";
+        String sql = "SELECT MAX(groupID) FROM  `Group`";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                groupID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return groupID;
+    }
 }

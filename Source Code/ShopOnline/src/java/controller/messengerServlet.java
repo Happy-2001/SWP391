@@ -91,10 +91,13 @@ public class messengerServlet extends HttpServlet {
         String getFROMandTO = request.getParameter("getFROMandTO");
         String content = request.getParameter("contentsend");
         String[] getFROMandTOsplit = getFROMandTO.split(";"); //to;from get from value BUTTON
-        String toid = getFROMandTOsplit[0];
-        String fromid = getFROMandTOsplit[1];
+        String toid = getFROMandTOsplit[1];
+        String fromid = getFROMandTOsplit[0];
         
+        mdao.addMessage(fromid, content);
         
+        String maxMessID = mdao.getMaxMessIDb();
+        mdao.addRecipientMessage(toid,maxMessID);
         
         
         response.sendRedirect("home");

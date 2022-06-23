@@ -87,15 +87,18 @@ public class Homecontroller extends HttpServlet {
             String groupCusID = gdao.getGroupIDbyUserID(userID);
             ArrayList<Message> listMessages = mdao.getAllMessageofUser(groupCusID, userID);
             List<String> listUserAdminID = udao.listUserAdminID();
-            
+          
             request.setAttribute("listMess", listMessages);
             request.setAttribute("listUserAdminID", listUserAdminID);
             
-            
-//            for (Message message : MessageYouSend) {
-//                response.getWriter().println(message.getToID());
-//            }
-//            response.getWriter().println(MessageYouSend.get(0).getToID());
+            if(gdao.getGroupIDbyUserID(userID).equals("")){
+                String maxGroupID = gdao.getMaxGroupIDb();
+                gdao.addGroup((u.getFullname()) +" CSKH"+u.getUserid());
+                gdao.addUserGroup(userID,maxGroupID);
+                for (String string : listUserAdminID) {
+                    gdao.addUserGroup(string,maxGroupID);
+                }
+            }
         }
 
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
