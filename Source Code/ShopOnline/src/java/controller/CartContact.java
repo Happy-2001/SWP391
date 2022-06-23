@@ -21,7 +21,7 @@ public class CartContact extends HttpServlet {
         StringBuilder sb = new StringBuilder();
         sb.append(itemID[0]);
         for(int i=1; i<itemID.length; i++){
-            sb.append(","+itemID[i]);
+            sb.append(",").append(itemID[i]);
         }
         
         CartDAO pdb = new CartDAO();
