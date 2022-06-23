@@ -35,34 +35,36 @@
             </div>
         </div>
         <!-- End All Title Box -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="bg-light mb-2">
-                        <div class="d-flex justify-content-between align-items-center pe-3">
-                            <div class="save-pass">
-                                <label class="save-pass-container">Select All
-                                    <input type="checkbox" id="toggle" value="select">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="remove-icon">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <span>Delete</span>
+        
+        <form action="CartContact" method="GET">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bg-light mb-2">
+                            <div class="d-flex justify-content-between align-items-center pe-3">
+                                <div class="save-pass">
+                                    <label class="save-pass-container">Select All
+                                        <input type="checkbox" id="toggle" value="select">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="remove-icon">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                    <span>Delete</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="order-items">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <td></td>
-                                    <td>Product</td>
-                                    <td>Price </td>
-                                    <td>Quantity</td>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="order-items">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>Product</td>
+                                        <td>Price </td>
+                                        <td>Quantity</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <c:forEach items="${carts}" var="carts">
                                     <tr>
                                         <td>
@@ -113,16 +115,17 @@
                                         </form>
                                     </tr>
                                 </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="why-text d-flex justify-content-center">
-                        <a href="cartContact.jsp" class="btn">Buy Now</a>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="why-text d-flex justify-content-center">
+                            <button type="submit" class="btn">Buy Now</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="js/cart-select.js"></script>
+            <script src="js/cart-select.js"></script>
+        </form>
     </div>
 
     <%@include file="footer.jsp" %>

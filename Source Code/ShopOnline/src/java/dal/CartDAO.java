@@ -59,6 +59,46 @@ public class CartDAO {
         }
         return cart;
     }
+    
+     public ArrayList<Cart> listByItemId(String id) {
+        ArrayList<Cart> cart = new ArrayList<>();
+        String sql = "SELECT pd.product_id, pd.product_name,\n" +
+                    "pd.category_id, pd.unit_price, pd.sale_price,\n" +
+                    "pd.unitsln_stock, pd.brief_information,\n" +
+                    "pd.description, pd.url, rs1.userID,\n" +
+                    "rs1.item_id, rs1.quantity, rs1.cartID, rs1.status\n" +
+                    "FROM `products` as pd JOIN\n" +
+                    "(SELECT ci.item_id, ci.quantity, ci.productID,\n" +
+                    "c.cartID, c.status, c.createDate, c.updateDate, c.userID\n" +
+                    "FROM `cart_items` as ci JOIN `carts` as c\n" +
+                    "ON ci.cartID = c.cartID) as rs1\n" +
+                    "ON pd.product_id = rs1.productID\n" +
+                    "WHERE item_id in (?)";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Cart c = new Cart();
+                c.setItemId(rs.getInt("rs1.item_id"));
+                c.setProduct(new Product(rs.getInt("pd.product_id"), rs.getString("pd.product_name"), 
+                                        rs.getInt("pd.category_id"), rs.getFloat("pd.unit_price"),
+                                        rs.getFloat("pd.sale_price"), rs.getInt("pd.unitsln_stock"),
+                                        rs.getString("pd.brief_information"), rs.getString("pd.description"),
+                                        rs.getString("pd.url")));
+                c.setQuantity(rs.getInt("rs1.quantity"));
+                c.setStatus(rs.getString("rs1.status"));
+                c.setUserId(rs.getInt("rs1.userID"));
+                cart.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return cart;
+    }
+    
     public void updateCart(int qty, int id) {
         try {
             String sql = "UPDATE `cart_items` SET `quantity`= ? WHERE item_id = ?";
