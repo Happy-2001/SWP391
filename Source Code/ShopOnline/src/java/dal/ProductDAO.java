@@ -359,4 +359,8 @@ public class ProductDAO {
         Product Product = product.findById("1");
         System.out.println(Product);
     }
+
+    public List<Product> getCourseByPageNumber(int pageNumber, String sort) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
