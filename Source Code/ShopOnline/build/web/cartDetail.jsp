@@ -35,40 +35,38 @@
             </div>
         </div>
         <!-- End All Title Box -->
-        
-        <form action="CartContact" method="GET">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="bg-light mb-2">
-                            <div class="d-flex justify-content-between align-items-center pe-3">
-                                <div class="save-pass">
-                                    <label class="save-pass-container">Select All
-                                        <input type="checkbox" id="toggle" value="select">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="remove-icon">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                    <span>Delete</span>
-                                </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="bg-light mb-2">
+                        <div class="d-flex justify-content-between align-items-center pe-3">
+                            <div class="save-pass">
+                                <label class="save-pass-container">Select All
+                                    <input type="checkbox" id="toggle" value="select">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="remove-icon">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <span>Delete</span>
                             </div>
                         </div>
-                        <div class="order-items">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <td></td>
-                                        <td>Product</td>
-                                        <td>Price </td>
-                                        <td>Quantity</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                    </div>
+                    <div class="order-items">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>Product</td>
+                                    <td>Price </td>
+                                    <td>Quantity</td>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <c:forEach items="${carts}" var="carts">
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="item" value="${carts.itemId}">
+                                            <input id="buyItem" type="checkbox" name="item" value="${carts.itemId}">
                                         </td>
                                         <td class="d-flex flex-row me-3">
                                             <div class="image">
@@ -102,8 +100,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <form action="UpdateCartController" method="POST">
-                                            <td>
+                                        <td>
+                                            <form action="UpdateCartController" method="POST">
                                                 <div class="input-group">
                                                     <input type="hidden" name="id" value="${carts.itemId}">
                                                     <input type="hidden" name="uid" value="${carts.userId}">
@@ -111,21 +109,38 @@
                                                     <input id="qtyV" type="text" name="qty" value="${carts.quantity}" class="form-control">
                                                     <button type="submit" class="input-group-text close-search"><i class="fa-solid fa-plus"></i></button>
                                                 </div>
-                                            </td>
-                                        </form>
+                                            </form>
+                                        </td>
                                     </tr>
                                 </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="why-text d-flex justify-content-center">
-                            <button type="submit" class="btn">Buy Now</button>
-                        </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="why-text d-flex justify-content-center">
+                        <a href="#" class="btn" onclick="redirect()">Buy Now</a>
                     </div>
                 </div>
             </div>
-            <script src="js/cart-select.js"></script>
-        </form>
+        </div>
+        <script>
+            var getItem = document.querySelectorAll("#buyItem");
+            function redirect(){
+                var itemid = "item=";
+                var sum = 0;
+                for (let i = 0; i < getItem.length; i++){
+                    if (getItem[i].checked == true){
+                        sum = sum+1;
+                        if(sum > 1){
+                            itemid = itemid + "&item=" + getItem[i].value;
+                        }else{
+                            itemid = itemid + getItem[i].value;
+                        }
+                    }
+                }
+                window.location.href = 'CartContact?'+itemid;
+            };
+        </script>
+        <script src="js/cart-select.js"></script>
     </div>
 
     <%@include file="footer.jsp" %>
