@@ -15,11 +15,10 @@ public class BlogSearch extends HttpServlet {
     throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
         String search = request.getParameter("search");
-        
         request.setAttribute("search", search);
         request.setAttribute("blogs", new BlogDAO().getBlogSearch(search));
         request.getRequestDispatcher("blog.jsp").forward(request, response);
+        
     }
 }
