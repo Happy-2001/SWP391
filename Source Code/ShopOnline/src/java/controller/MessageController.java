@@ -28,8 +28,8 @@ import model.User;
  *
  * @author Administrator
  */
-@WebServlet(name = "messengerServlet", urlPatterns = {"/messengerServlet"})
-public class messengerServlet extends HttpServlet {
+@WebServlet(name = "MessageController", urlPatterns = {"/message"})
+public class MessageController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,9 +72,9 @@ public class messengerServlet extends HttpServlet {
         MessageDAO mdao = new MessageDAO();
         ArrayList<Message> listMessage = mdao.getAllMessageofUser("1", "1");
         request.setAttribute("listMess", listMessage);
-//        for (Message message : listMessage) {
-//            response.getWriter().print(message.getContent());
-//        }
+        for (Message message : listMessage) {
+            response.getWriter().print(message.getContent());
+        }
         response.sendRedirect("admin/Dashboard.jsp");
     }
 

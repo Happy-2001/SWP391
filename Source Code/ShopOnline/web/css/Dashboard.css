@@ -175,6 +175,10 @@ ul, li{
 }
 
 /*message*/
+.contentChat{
+    width: 70%;
+    float: right;
+}
 .listCusMess ul{
     display: flex;
     
@@ -196,7 +200,7 @@ ul, li{
     padding: 8px 12px;
     border-radius: 15px;
     border: 1px solid #ff6e40;
-    
+    float: left;
 }
 .Customer_chat_group_left{
     

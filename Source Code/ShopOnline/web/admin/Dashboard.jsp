@@ -156,7 +156,7 @@
                             </li>
 
                             <li class="nav-link">
-                                <a href="#">
+                                <a href="#" onclick="openChat()">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-envelope fa-xl"></i>
                                     </span>
@@ -202,54 +202,65 @@
                     </div>
                 </div>
                 <div class="col-lg-9 main">
-                    <div class="listCusMess">
-                        <ul>
-                            <li><div><h8>All Chats</h8></div></li>
-                            <li><div><h8>Settings</h8></div></li>
+                    <div class="row" id="chat" style="display: none;">
+                        <div class="listCusMess col-lg-4">
+                            <ul>
+                                <li><div><h8>All Chats</h8></div></li>
+                                <li><div><h8>Settings</h8></div></li>
 
-                        </ul>
-                        <div class="t-search " style="margin-bottom: 20px">
-                            <form action="action">
-                                <div class="search-box search_user" style=" width: 400px;">
-                                    <input type="text" placeholder="Search..." >
-                                    <i class="fa-solid fa-magnifying-glass fa-sm icon"></i>
+                            </ul>
+                            <div class="t-search " style="margin-bottom: 20px">
+                                <form action="action">
+                                    <div class="search-box search_user" style=" width: 400px;">
+                                        <input type="text" placeholder="Search..." >
+                                        <i class="fa-solid fa-magnifying-glass fa-sm icon"></i>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="Customer_chat_group">
+                                <div class="Customer_chat_group_left">
+                                    <h6>Nguyễn Việt Hoàng</h6>
+                                    <h8>Hello</h8>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="Customer_chat_group">
-                            <div class="Customer_chat_group_left">
-                                <h6>Nguyễn Việt Hoàng</h6>
-                                <h8>Hello</h8>
-                            </div>
-                            <div class="Customer_chat_group_right">
-                                <h4>...</h4>
-                                <h8>Yesterday</h8>
+                                <div class="Customer_chat_group_right">
+                                    <h4>...</h4>
+                                    <h8>Yesterday</h8>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="contentChat">
-                        <c:forEach items="${listMess}" var="mess">
-                                <c:choose>
-                                    <c:when test="${listUserAdminID.contains(mess.fromID)}">
-                                        <div class="divMYR">
-                                            <div class="MYR">
-                                                <p>${mess.content} ${listUserAdminID[0]}</p>
-                                            </div>
-                                        </div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="divMYS">
-                                            <div class="MYS">
-                                                <p>${mess.content}</p>
-                                            </div>
-                                        </div>
-                                    </c:otherwise>
-
-                                </c:choose>
+                        <div class="contentChat col-lg-8">
+                            <h4>helloconten</h4>
+                            <c:forEach items="${listMess}" var="mess">
+                                <div class="MYR">
+                                    <p>${mess.content} ${listUserAdminID[0]}</p>
+                                </div>
+                                <!--                                <c:choose>
+                                                                    <c:when test="${listUserAdminID.contains(mess.fromID)}">
+                                                                        <div class="divMYR">
+                                                                            <div class="MYR">
+                                                                                <p>${mess.content} ${listUserAdminID[0]}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <div class="divMYS">
+                                                                            <div class="MYS">
+                                                                                <p>${mess.content}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </c:otherwise>
+                                
+                                                                </c:choose>-->
                             </c:forEach>                                                                                            
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </body>
+    <script>
+        function openChat() {
+            document.getElementById('chat').style.display = 'block';
+        }
+    </script>
 </html>
