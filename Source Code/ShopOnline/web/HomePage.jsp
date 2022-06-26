@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/HomePage.css">
         <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/messenger.css">
+        <link rel="stylesheet" href="css/message.css">
 
         <script src="js/fontAwesome.js"></script>
         <script src="js/messenger.js"></script>

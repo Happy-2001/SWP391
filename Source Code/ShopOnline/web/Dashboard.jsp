@@ -8,9 +8,8 @@
         <title>Admin || Shop Online</title>
         <!-- Site Icons -->
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/Dashboard.css">
-        <link rel="stylesheet" href="../css/message.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/Dashboard.css">
         <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
 
         <!-- Bootstrap 5 -->

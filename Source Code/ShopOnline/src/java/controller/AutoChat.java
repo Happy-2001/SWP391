@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dal.MessengerDAO;
+import dal.MessageDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,7 +61,7 @@ public class AutoChat extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        MessengerDAO mdao = new MessengerDAO();
+        MessageDAO mdao = new MessageDAO();
         UserDAO udao = new UserDAO();
         List<String> listUserAdminID = udao.listUserAdminID();
         

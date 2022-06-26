@@ -2,7 +2,7 @@ package controller;
 
 import dal.BlogDAO;
 import dal.GroupDAO;
-import dal.MessengerDAO;
+import dal.MessageDAO;
 import dal.ProductDAO;
 import dal.SlideDAO;
 import dal.UserDAO;
@@ -43,7 +43,7 @@ public class HomeController extends HttpServlet {
         ProductDAO pdb = new ProductDAO();
         BlogDAO bdb = new BlogDAO();
         SlideDAO slideDAO = new SlideDAO();
-        MessengerDAO mdao = new MessengerDAO();
+        MessageDAO mdao = new MessageDAO();
         HttpSession session = request.getSession();
         UserDAO udao = new UserDAO();
         GroupDAO gdao = new GroupDAO();

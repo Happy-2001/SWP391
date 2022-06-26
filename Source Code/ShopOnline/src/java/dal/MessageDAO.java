@@ -20,7 +20,7 @@ import model.User;
  *
  * @author Administrator
  */
-public class MessengerDAO {
+public class MessageDAO {
 
     DBConnect mysqlConnect = new DBConnect();
 
@@ -58,7 +58,7 @@ public class MessengerDAO {
             }
             return list;
         } catch (SQLException ex) {
-            Logger.getLogger(MessengerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MessageDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -89,7 +89,7 @@ public class MessengerDAO {
                 list.add(s);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MessengerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MessageDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -130,7 +130,7 @@ public class MessengerDAO {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MessengerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MessageDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -211,7 +211,10 @@ public class MessengerDAO {
     }
 
     public static void main(String[] args) {
-        MessengerDAO m = new MessengerDAO();
-        System.out.println(m.getMaxMessIDb());
+        MessageDAO m = new MessageDAO();
+        ArrayList<Message> list = m.getAllMessageofUser("1", "1");
+        for (Message message : list) {
+            System.out.println(message.getContent());
+        }
     }
 }
