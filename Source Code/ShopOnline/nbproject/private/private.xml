@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/controller/Homecontroller.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/web/login.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/dal/RoleDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/dal/MessengerDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/web/css/messenger.css</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/web/HomePage.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/controller/messengerServlet.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/dal/GroupDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/controller/RegisterController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/web/Messenger.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%206/SWP391/Source%20Code/ShopOnline/src/java/controller/Feedback.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/UpdateProfile.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/CartController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/ProfileUserController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/CartDAO.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/CartContact.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/cartContact.jsp</file>
         </group>
     </open-files>
 </project-private>

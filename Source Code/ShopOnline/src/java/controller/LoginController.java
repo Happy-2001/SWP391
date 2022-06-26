@@ -1,6 +1,6 @@
 package controller;
 
-import dal.MessengerDAO;
+import dal.MessageDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;

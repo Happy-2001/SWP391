@@ -27,7 +27,7 @@ ul, li{
     font-weight: 500;
     margin-right: 70px;
 }
-.notify-area .search-box {
+.search-box {
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -36,7 +36,7 @@ ul, li{
     background: #fff;
     box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.1);
 }
-.notify-area .search-box input {
+ .search-box input {
     background: initial;
     border: medium none;
     font-size: 16px;
@@ -172,6 +172,39 @@ ul, li{
 }
 .menu-bar ul li a+ul li a {
     padding-left: 67px;
+}
+
+/*message*/
+.listCusMess ul{
+    display: flex;
+    
+}
+.listCusMess ul li div{
+    margin: 15px 8px;
+    padding: 8px 18px;
+    color: #ff470d;
+    background: rgba(255,110,64,.15);
+    border-radius: 8px;
+}
+.search-box .search_user{
+    border-color: gray;
+}
+.Customer_chat_group{
+    width: 450px;
+    background-color: white;
+    position: fixed;
+    padding: 8px 12px;
+    border-radius: 15px;
+    border: 1px solid #ff6e40;
+    
+}
+.Customer_chat_group_left{
+    
+    float: left;
+}
+.Customer_chat_group_right{
+    float: right;
+    text-align: right;
 }
 /* --------------------------- Main -------------------------------------- */
 .main{

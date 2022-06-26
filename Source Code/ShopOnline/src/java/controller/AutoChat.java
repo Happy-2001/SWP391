@@ -5,20 +5,23 @@
  */
 package controller;
 
+import dal.MessageDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
 
 /**
  *
- * @author nguye
+ * @author Administrator
  */
-public class changePassword extends HttpServlet {
+@WebServlet(name = "AutoChat", urlPatterns = {"/autochat"})
+public class AutoChat extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +40,10 @@ public class changePassword extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet changePassword</title>");            
+            out.println("<title>Servlet AutoChat</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet changePassword at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AutoChat at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +61,21 @@ public class changePassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("changepassword.jsp").forward(request, response);
+        MessageDAO mdao = new MessageDAO();
+        UserDAO udao = new UserDAO();
+        List<String> listUserAdminID = udao.listUserAdminID();
+        
+        
+        String content = "Xin chào";
+        
+        
+        mdao.addMessage(fromid, content);
+        
+        String maxMessID = mdao.getMaxMessIDb();
+        mdao.addRecipientMessage(toid,maxMessID);
+        
+        
+        response.sendRedirect("home");
     }
 
     /**
@@ -72,27 +89,7 @@ public class changePassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String oldpass = request.getParameter("oldpassword");
-        String newpass = request.getParameter("newpasswords");
-        String userid = request.getParameter("userid");
-        
-      UserDAO udb = new UserDAO();
-        User u = udb.getUserById(userid);
-
-        if (u.getPassword().equals(oldpass)) {
-            if (!oldpass.equals(newpass)) {
-                u.setPassword(newpass);
-                udb.update(u);
-            } else {
-                request.setAttribute("ms1", "Enter Again PassWord!!!");
-                request.getRequestDispatcher("changepassword.jsp").forward(request, response);
-            }
-        } else {
-            request.setAttribute("ms1", "Enter Again Odd PassWord!!!");
-            request.getRequestDispatcher("changepassword.jsp").forward(request, response);
-        }
-
-        response.sendRedirect("home");
+        processRequest(request, response);
     }
 
     /**

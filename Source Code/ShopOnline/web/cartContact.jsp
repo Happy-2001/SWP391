@@ -92,24 +92,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${carts}" var="carts">
-                                            <tr>
-                                                <td class="d-flex flex-row me-3">
-                                                    <div class="image">
-                                                        <img src="${carts.url}" class="img-fluid">
-                                                    </div>
-                                                    <div class="d-flex flex-column">
-                                                        <span><strong>${carts.product_name}</strong></span>
-                                                        <span>Color</span>
-                                                        <span>Size</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <input type="text" value="${carts.quantity}" disabled>
-                                                </td>
-                                                <td>${carts.unit_price*carts.quantity}<i class="fa-solid fa-dong-sign"></i></td>
-                                                <td><i class="fa-regular fa-trash-can remove-icon"></i></td>
-                                            </tr>     
+                                            <c:forEach items="${cartList}" var="carts">
+                                                <tr>
+                                                    <td class="d-flex flex-row me-3">
+                                                        <div class="image">
+                                                            <img src="${carts.product.img}" class="img-fluid">
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <span><strong>${carts.product.name}</strong></span>
+                                                            <span>Color</span>
+                                                            <span>Size</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" value="${carts.quantity}" disabled>
+                                                    </td>
+                                                    <td>${carts.product.price*carts.quantity}<i class="fa-solid fa-dong-sign"></i></td>
+                                                    <td><i class="fa-regular fa-trash-can remove-icon"></i></td>
+                                                </tr>     
                                             </c:forEach>
                                             <tr>
                                                 <td style="color: #d33b33; font-size: 20px; font-weight: 600;">Total:</td>
@@ -175,7 +175,7 @@
                                         </div>
                                         <div class="add-comp why-text">
                                             <a href="#" class="ms-auto btn">Place Order</a>
-                                            <a href="CartController" class="ml-auto btn">Change</a>
+                                            <a href="CartController?userID=${sessionScope.userlogged.userid}" class="ml-auto btn">Change</a>
                                         </div>
                                     </div>
                                 </div>

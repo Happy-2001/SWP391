@@ -2,7 +2,9 @@ package controller;
 
 import dal.CartDAO;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +19,17 @@ public class CartContact extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String[] itemID = request.getParameterValues("item");
+        StringBuilder sb = new StringBuilder(itemID[0]);
+        for(int i=1; i<itemID.length; i++){
+            sb.append(",").append(itemID[i]);
+        }
+        
         CartDAO pdb = new CartDAO();
-//        List<Cart> carts = pdb.listAll();
-//        int total = pdb.getAmount();
-//        request.setAttribute("total", total);
-//        request.setAttribute("carts", carts);
-//        request.getRequestDispatcher("cartContact.jsp").forward(request, response);
+        ArrayList<Cart> cart = pdb.listByItemId(sb.toString());
+        
+        request.setAttribute("cartList", cart);
+        request.getRequestDispatcher("cartContact.jsp").forward(request, response);
     }
 
     @Override

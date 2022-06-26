@@ -66,7 +66,7 @@
                                 <c:forEach items="${carts}" var="carts">
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="item" value="${carts.itemId}">
+                                            <input id="buyItem" type="checkbox" name="item" value="${carts.itemId}">
                                         </td>
                                         <td class="d-flex flex-row me-3">
                                             <div class="image">
@@ -100,8 +100,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <form action="UpdateCartController" method="POST">
-                                            <td>
+                                        <td>
+                                            <form action="UpdateCartController" method="POST">
                                                 <div class="input-group">
                                                     <input type="hidden" name="id" value="${carts.itemId}">
                                                     <input type="hidden" name="uid" value="${carts.userId}">
@@ -109,19 +109,37 @@
                                                     <input id="qtyV" type="text" name="qty" value="${carts.quantity}" class="form-control">
                                                     <button type="submit" class="input-group-text close-search"><i class="fa-solid fa-plus"></i></button>
                                                 </div>
-                                            </td>
-                                        </form>
+                                            </form>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
                     </div>
                     <div class="why-text d-flex justify-content-center">
-                        <a href="cartContact.jsp" class="btn">Buy Now</a>
+                        <a href="#" class="btn" onclick="redirect()">Buy Now</a>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var getItem = document.querySelectorAll("#buyItem");
+            function redirect(){
+                var itemid = "item=";
+                var sum = 0;
+                for (let i = 0; i < getItem.length; i++){
+                    if (getItem[i].checked == true){
+                        sum = sum+1;
+                        if(sum > 1){
+                            itemid = itemid + "&item=" + getItem[i].value;
+                        }else{
+                            itemid = itemid + getItem[i].value;
+                        }
+                    }
+                }
+                window.location.href = 'CartContact?'+itemid;
+            };
+        </script>
         <script src="js/cart-select.js"></script>
     </div>
 

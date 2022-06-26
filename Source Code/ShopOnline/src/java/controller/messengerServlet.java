@@ -6,7 +6,7 @@
 package controller;
 
 import dal.GroupDAO;
-import dal.MessengerDAO;
+import dal.MessageDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
@@ -69,7 +69,13 @@ public class messengerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        MessageDAO mdao = new MessageDAO();
+        ArrayList<Message> listMessage = mdao.getAllMessageofUser("1", "1");
+        request.setAttribute("listMess", listMessage);
+//        for (Message message : listMessage) {
+//            response.getWriter().print(message.getContent());
+//        }
+        response.sendRedirect("admin/Dashboard.jsp");
     }
 
     /**
@@ -83,9 +89,10 @@ public class messengerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 //        String content = new
         HttpSession session = request.getSession();
-        MessengerDAO mdao = new MessengerDAO();
+        MessageDAO mdao = new MessageDAO();
         GroupDAO gdao = new GroupDAO();
         
         String getFROMandTO = request.getParameter("getFROMandTO");

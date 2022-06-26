@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import dal.BlogDAO;
 import dal.GroupDAO;
-import dal.MessengerDAO;
+import dal.MessageDAO;
 import dal.ProductDAO;
 import dal.SlideDAO;
 import dal.UserDAO;
@@ -28,19 +23,10 @@ import model.User;
 
 /**
  *
- * @author nguye
+ * @author anhvo
  */
-public class Homecontroller extends HttpServlet {
+public class HomeController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,21 +36,14 @@ public class Homecontroller extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO pdb = new ProductDAO();
         BlogDAO bdb = new BlogDAO();
         SlideDAO slideDAO = new SlideDAO();
-        MessengerDAO mdao = new MessengerDAO();
+        MessageDAO mdao = new MessageDAO();
         HttpSession session = request.getSession();
         UserDAO udao = new UserDAO();
         GroupDAO gdao = new GroupDAO();
@@ -91,7 +70,7 @@ public class Homecontroller extends HttpServlet {
             request.setAttribute("listMess", listMessages);
             request.setAttribute("listUserAdminID", listUserAdminID);
             
-            if(gdao.getGroupIDbyUserID(userID).equals("")){
+            if(gdao.getGroupIDbyUserID(userID).equals("") && !listUserAdminID.contains(String.valueOf(u.getUserid()))){  // only for Customer role
                 String maxGroupID = gdao.getMaxGroupIDb();
                 gdao.addGroup((u.getFullname()) +" CSKH"+u.getUserid());
                 gdao.addUserGroup(userID,maxGroupID);
@@ -105,28 +84,15 @@ public class Homecontroller extends HttpServlet {
 
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @par am request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }
