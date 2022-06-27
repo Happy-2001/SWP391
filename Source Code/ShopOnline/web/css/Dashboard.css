@@ -111,6 +111,11 @@ ul, li{
     top: 0;
     left: 0;
     z-index: 99 !important;
+        
+
+}
+.menu{
+    padding-right: 50px !important;
 }
 .menu-bar::-webkit-scrollbar{
     display: none;
@@ -213,4 +218,8 @@ ul, li{
 /* --------------------------- Main -------------------------------------- */
 .main{
     background-color: #f5f4fe;
+    
+}
+.contentChat{
+    padding-left: 10px;
 }

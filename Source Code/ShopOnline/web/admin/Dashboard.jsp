@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.Message"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,9 +11,9 @@
         <title>Admin || Shop Online</title>
         <!-- Site Icons -->
         <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/Dashboard.css">
-        <link rel="stylesheet" href="../css/message.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/Dashboard.css">
+        <link rel="stylesheet" href="css/message.css">
         <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
 
         <!-- Bootstrap 5 -->
@@ -24,7 +27,7 @@
                     <div class="col-lg-3">
                         <nav class="navbar">
                             <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
-                            <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
+                            <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="images/logo.png" class="logo"></a>
                         </nav>
                     </div>
                     <div class="col-lg-7">
@@ -52,7 +55,7 @@
                             </div>
                             <div class="admin">
                                 <div class="admin-avatar" data-bs-toggle="offcanvas" data-bs-target="#setting">
-                                    <img src="../images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
+                                    <img src="images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
                                 </div>
                             </div>
                             <div class="offcanvas offcanvas-end" id="setting">
@@ -201,9 +204,9 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-9 main">
+                <div class="col-lg-8 main">
                     <div class="row" id="chat" style="display: none;">
-                        <div class="listCusMess col-lg-4">
+                        <div class="listCusMess col-lg-6">
                             <ul>
                                 <li><div><h8>All Chats</h8></div></li>
                                 <li><div><h8>Settings</h8></div></li>
@@ -228,30 +231,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="contentChat col-lg-8">
-                            <h4>helloconten</h4>
+
+                        <div class="contentChat col-lg-5">
+
+                            
+                           
                             <c:forEach items="${listMess}" var="mess">
-                                <div class="MYR">
-                                    <p>${mess.content} ${listUserAdminID[0]}</p>
-                                </div>
-                                <!--                                <c:choose>
-                                                                    <c:when test="${listUserAdminID.contains(mess.fromID)}">
-                                                                        <div class="divMYR">
-                                                                            <div class="MYR">
-                                                                                <p>${mess.content} ${listUserAdminID[0]}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <div class="divMYS">
-                                                                            <div class="MYS">
-                                                                                <p>${mess.content}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </c:otherwise>
-                                
-                                                                </c:choose>-->
-                            </c:forEach>                                                                                            
+                                <c:choose>
+                                    <c:when test="${listUserAdminID.contains(mess.fromID)}">
+                                        <div class="divMYS">
+                                            <div class="MYS">
+                                                <p>${mess.content}</p>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="divMYR">
+                                            <div class="MYR">
+                                                <p>${mess.content}</p>
+                                            </div>
+                                        </div>
+                                    </c:otherwise>
+
+                                </c:choose>
+                            </c:forEach>
+
+
                         </div>
                     </div>
                 </div>
