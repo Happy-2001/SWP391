@@ -151,6 +151,28 @@ public class CartDAO {
         return null;
     }
     
+    public Cart getProductByID(int id) {
+        String sql = "SELECT * FROM `products` WHERE product_id = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Cart c = new Cart();
+                c.setProduct(new Product(rs.getInt("product_id"), rs.getString("product_name"),
+                        rs.getInt("category_id"), rs.getFloat("unit_price"),
+                        rs.getFloat("sale_price"), rs.getInt("unitsln_stock"), rs.getString("brief_information"),
+                        rs.getString("description"), rs.getString("url")));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+    
     public CartContact getCartContactById(int id) {
         String sql = "SELECT `user_id`, `status`, `full_name`, `phone`, `email`, `address` FROM `cart` WHERE user_id = ?";
         try {
@@ -190,6 +212,19 @@ public class CartDAO {
         return num;
     }
     
+    public void addItemByCID(int cid, int pid){
+        String sql = "INSERT INTO `cart_items`(`quantity`, `cartID`, `productID`) VALUES (1,?,?)";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, cid);
+            statement.setInt(2, pid);
+            
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public int checkId(int id, ArrayList<Product> list) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == id) {
@@ -203,5 +238,4 @@ public class CartDAO {
     public int getAmountByID(int parseInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
