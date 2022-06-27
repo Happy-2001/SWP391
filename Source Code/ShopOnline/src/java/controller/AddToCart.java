@@ -2,54 +2,43 @@ package controller;
 
 import dal.CartDAO;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cart;
 
 /**
  *
  * @author anhvo
  */
-public class CartController extends HttpServlet {
+public class AddToCart extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String pid = request.getParameter("pid");
+        String id = "";
         
         Cookie[] cookies = request.getCookies();
-        List<Cart> list = new ArrayList<>();
-        CartDAO dao = new CartDAO();
-        for (Cookie o : cookies) {
-            if (o.getName().equals("productid")) {
-                String s[] = o.getValue().split(",");
-                for (String ss : s) {
-                    list.add(dao.getProductByID(Integer.parseInt(ss)));
-                }
+        for (Cookie cooky : cookies) {
+            if (cooky.getName().equals("productid")) {
+                id = id + cooky.getValue();
+                cooky.setMaxAge(0);
+                response.addCookie(cooky);
             }
         }
-        for (int i = 0; i < list.size(); i++) {
-            int count = 1;
-            for (int j = i+1; j < list.size(); j++) {
-                if(list.get(i).getProduct().getId() == list.get(j).getProduct().getId()){
-                    count++;
-                    list.remove(j);
-                    list.get(i).setQuantity(count);
-                }
-            }
+        
+        if (id.isEmpty()) {
+            id = pid;
+        } else {
+            id = id + "," + pid;
         }
-        double total = 0;
-        for (Cart o : list) {
-            total = total + o.getQuantity() * o.getProduct().getPrice();
-        }
-        request.setAttribute("carts", list);
-        request.setAttribute("total", total);
-        request.setAttribute("vat", 0.1 * total);
-        request.setAttribute("sum", 1.1 * total);
-        request.getRequestDispatcher("cartDetail.jsp").forward(request, response);
+        Cookie c = new Cookie("productid", id);
+        c.setMaxAge(3600*24*7);
+        response.addCookie(c);
+        response.sendRedirect("home");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

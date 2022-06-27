@@ -124,12 +124,13 @@ public class ProductDAO {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                return new Product(rs.getInt("product_id"), rs.getString("product_name"), rs.getFloat("unit_price"),
+                return new Product(rs.getInt("product_id"), rs.getString("product_name"),
+                        rs.getInt("category_id"), rs.getFloat("unit_price"),
                         rs.getFloat("sale_price"), rs.getInt("unitsln_stock"), rs.getString("brief_information"),
                         rs.getString("description"), rs.getString("url"));
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }

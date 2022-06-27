@@ -107,18 +107,30 @@
                                                     <td>
                                                         <input type="text" value="${carts.quantity}" disabled>
                                                     </td>
-                                                    <td>${carts.product.price*carts.quantity}<i class="fa-solid fa-dong-sign"></i></td>
+                                                    <td id="price">${carts.product.price*carts.quantity}<i class="fa-solid fa-dong-sign"></i></td>
                                                     <td><i class="fa-regular fa-trash-can remove-icon"></i></td>
                                                 </tr>     
                                             </c:forEach>
                                             <tr>
                                                 <td style="color: #d33b33; font-size: 20px; font-weight: 600;">Total:</td>
                                                 <td></td>
-                                                <td>${total}<i class="fa-solid fa-dong-sign"></i></td>
+                                                <td id="total-price" onload="TotalP()><i class="fa-solid fa-dong-sign"></i></td>
                                                 <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <script>
+                                        var p = document.querySelectorAll("#price");
+                                        var tp = document.getElementById("total-price");
+                                        var temp = 0;
+                                        TotalP();
+                                        function TotalP(){
+                                            for (let i=0; i<p.length; i++){
+                                                temp = temp + parseFloat(p[i].textContent);
+                                            }
+                                            return tp.innerHTML = temp + `<i class="fa-solid fa-dong-sign"></i>`;
+                                        };
+                                    </script>
                                 </div>
                             </div>
                             <div class="payment-box mt-4">

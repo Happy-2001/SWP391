@@ -90,7 +90,7 @@
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                         </ul>
-                                        <a class="cart" href="CartController?pid=${product.id}">Add to Cart</a>
+                                        <a class="cart" href="AddToCart?pid=${product.id}">Add to Cart</a>
                                     </div>
                                 </div>
                                 <div class="why-text">
@@ -132,7 +132,7 @@
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                         </ul>
-                                        <a class="cart" href="CartController?pid=${product.id}">Add to Cart</a>
+                                        <a class="cart" href="AddToCart?pid=${product.id}">Add to Cart</a>
                                     </div>
                                 </div>
                                 <div class="why-text">

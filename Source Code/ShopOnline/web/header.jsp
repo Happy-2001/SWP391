@@ -40,11 +40,10 @@
                         </li>
                             
                         <li class="side-menu">
-                            <a href="CartController?userID=${sessionScope.userlogged.userid}" title="Cart">
-                                <i class="fa fa-shopping-bag"></i>
-                            </a>
-                            
                             <c:if test="${sessionScope.userlogged ne null}">
+                                <a href="CartController?userID=${sessionScope.userlogged.userid}" title="Cart">
+                                    <i class="fa fa-shopping-bag"></i>
+                                </a>
                                 <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
                                     url="jdbc:mysql://localhost:3306/shop2"
                                     user="root"  password=""/>
@@ -55,6 +54,9 @@
                                 </sql:query>
                                 <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
                             </c:if>
+                            <a href="CartController" title="Cart">
+                                <i class="fa fa-shopping-bag"></i>
+                            </a>
                         </li>
                         <li class="account">
                             <c:choose>
