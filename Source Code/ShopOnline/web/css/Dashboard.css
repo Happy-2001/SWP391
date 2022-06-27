@@ -111,6 +111,11 @@ ul, li{
     top: 0;
     left: 0;
     z-index: 99 !important;
+        
+
+}
+.menu{
+    padding-right: 50px !important;
 }
 .menu-bar::-webkit-scrollbar{
     display: none;
@@ -175,6 +180,10 @@ ul, li{
 }
 
 /*message*/
+.contentChat{
+    width: 70%;
+    float: right;
+}
 .listCusMess ul{
     display: flex;
     
@@ -196,7 +205,7 @@ ul, li{
     padding: 8px 12px;
     border-radius: 15px;
     border: 1px solid #ff6e40;
-    
+    float: left;
 }
 .Customer_chat_group_left{
     
@@ -209,4 +218,8 @@ ul, li{
 /* --------------------------- Main -------------------------------------- */
 .main{
     background-color: #f5f4fe;
+    
+}
+.contentChat{
+    padding-left: 10px;
 }

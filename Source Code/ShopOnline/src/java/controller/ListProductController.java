@@ -65,7 +65,8 @@ public class ListProductController extends HttpServlet {
                 int countPage = productDAO.countPage();
                 request.setAttribute("countPage", countPage);
                 //get list courses for each pageNumber
-                List<Product> productsForEachPage = productDAO.getCourseByPageNumber(pageNumber);
+                List<Product> productsForEachPage = productDAO.getCourseByPag
+                        eNumber(pageNumber);
                 request.setAttribute("sort", sort);
                 request.setAttribute("products", productsForEachPage);
             }

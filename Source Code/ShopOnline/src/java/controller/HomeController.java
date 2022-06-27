@@ -78,6 +78,9 @@ public class HomeController extends HttpServlet {
                     gdao.addUserGroup(string,maxGroupID);
                 }
             }
+//            for (String string : listUserAdminID) {
+//                response.getWriter().print(string);
+//            }
         }
 
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);

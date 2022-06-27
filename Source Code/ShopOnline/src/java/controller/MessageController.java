@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +29,8 @@ import model.User;
  *
  * @author Administrator
  */
-@WebServlet(name = "messengerServlet", urlPatterns = {"/messengerServlet"})
-public class messengerServlet extends HttpServlet {
+@WebServlet(name = "MessageController", urlPatterns = {"/message"})
+public class MessageController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,13 +70,20 @@ public class messengerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         MessageDAO mdao = new MessageDAO();
+        HttpSession session = request.getSession();
+        UserDAO udao = new UserDAO();
+        List<String> listUserAdminID = udao.listUserAdminID();
+          
+            request.setAttribute("listUserAdminID", listUserAdminID);
+        
         ArrayList<Message> listMessage = mdao.getAllMessageofUser("1", "1");
         request.setAttribute("listMess", listMessage);
-//        for (Message message : listMessage) {
-//            response.getWriter().print(message.getContent());
-//        }
-        response.sendRedirect("admin/Dashboard.jsp");
+        for (Message message : listMessage) {
+            response.getWriter().print(message.getContent());
+        }
+                request.getRequestDispatcher("admin/Dashboard.jsp").forward(request, response);
     }
 
     /**
