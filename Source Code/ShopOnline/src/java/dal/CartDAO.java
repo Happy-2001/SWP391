@@ -200,4 +200,8 @@ public class CartDAO {
         return -1;
     }
 
+    public int getAmountByID(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
