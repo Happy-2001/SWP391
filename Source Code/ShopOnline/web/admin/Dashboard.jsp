@@ -62,7 +62,7 @@
                                 <div class="offcanvas-body">
                                     <ul class="menu-links">
                                         <li class="nav-link">
-                                            <a href="#">
+                                            <a href="ProfileUser?userid=${sessionScope.userlogged.userid}">
                                                 <span class="nav-link-icon">
                                                     <i class="fa fa-eyedropper"></i>
                                                 </span>
@@ -231,7 +231,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class=" col-lg-1"></div>
                         <div class="contentChat col-lg-5">
 
                             

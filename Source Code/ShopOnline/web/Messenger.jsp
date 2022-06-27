@@ -33,7 +33,7 @@
                         <c:when test="${listMess eq null}">
                             <div class="autochat">
                                 <div>
-                                    
+                                    <input type="text" name="checkMess" hidden="" value="nullMessage" />
                                         <span class="title">Let us help you</span>
                                         <div class="basicBox">
                                             <a href="autochat">Start
@@ -77,7 +77,7 @@
             </div>
             <div id="menumess" class="menu_message">
                 <div class="menu_messenger_conponent ">
-                    <form action="messengerServlet" method="post">
+                    <form action="message" method="post">
                         <div class="row">
                             <div class="send col-md-8">
                                 <input name="contentsend" type="text" placeholder="Viết gì đó...">
