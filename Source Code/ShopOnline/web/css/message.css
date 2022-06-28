@@ -1,77 +1,93 @@
-
-.fa-solid{
-    cursor: pointer;
+span.title {
+    color: #BBB;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    display: block;
 }
 
-.message2 .fa-facebook-messenger{
-    transition: ease-in 0.3s;
-        
+.basicBox {
+  width: 120px;
+  height: 40px;
+  margin: 15px auto;
+  color: #50b5ba;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
 }
-.message, .messageAdmin {
-    width: 380px;
-    height: 500px;
+.basicBox a{
+    color: #50b5ba;
+    font-size: 14px;
+}
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+svg rect{
+  fill: none;
+  stroke: #50b5ba;
+  stroke-width: 2;
+}
+
+.basicBox:hover svg rect{
+  stroke: #50b5ba;
+}
+
+/* Basic Box */
+svg rect {
+  stroke-dasharray: 400, 0;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+}
+.basicBox:hover svg rect {
+  stroke-width: 3;
+  stroke-dasharray: 35, 245;
+  stroke-dashoffset: 78;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+}
+/* ===================================================================== */
+.message{
+    width: 300px;
+    height: 420px !important;
     background-color: white;
-    box-shadow: 0 0 5px #c4cacc;
-    border-top-left-radius : 15px;
-    border-top-right-radius : 15px;
     z-index: 0100;
-    position: fixed;
-    bottom: 0;
+    position: fixed !important;
+    bottom: 40px;
     right: 5%;
-    transition: ease-in 0.3s;
-
 }
-
-
-.message2{ 
-    width: 50px;
-    height: 0;  
-    text-align: center;
-    color: #50b5ba;
-    font-size: 20px;
-    position: fixed;
-    right: 0;
-    top: 85%;
-    transform: translateY(-50%);
-    z-index: 0100;
-    transition: ease-in 0.3s;
-    cursor: pointer;
-}
-.messageAdmin{
+.card-body{
     overflow: auto;
-    padding: 5px;
+}
+/* width */
+.card-body::-webkit-scrollbar {
+    width: 5px;
+}
+   
+/* Handle */
+.card-body::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+/* Handle on hover */
+.card-body::-webkit-scrollbar-thumb:hover {
+    background: #50b5ba; 
+}
 
-}
-.messageAdmin .messcustomer{
-    margin-bottom: 25px;
-    cursor: pointer;
-}
-.messageAdmin .messcustomer:hover{
-    background-color: #f1f1f1;
-    border-radius: 10px;
-}
-.message .row{
-    border-bottom: 1px solid #c4cacc;
-    margin: 0;
-    padding: 10px 0;
-
-}
-.message .row img{
-    float: left;
-    margin-right: 5px;
-}
-.message .row div:nth-child(2){
-    font-size: 20px;
-    color: #50b5ba;
-}
-.message .content_message{
+/* --------------------------------------------------- */
+.message .slogans{
+    color: #808080;
+    font-size: 16px;
     text-align: center;
-    width: 380px;
-    height: 380px;
-    overflow: auto;
-
 }
-
 .divMYS{
     display: flex;
     flex-direction: row-reverse;
@@ -80,13 +96,8 @@
     width: 2%;
 }
 .MYS,.MYR{
-    padding: 8px 12px;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-
-
+    padding: 5px 10px;
+    border-radius: 20px;
     margin-bottom: 15px; 
     max-width: 77%; 
     text-align: left;
@@ -95,71 +106,27 @@
 .message .content_message .MYS{
     background-color: #50b5ba;
     color: white;
-    max-width: 77%; 
-
 }
 
 .message .content_message .MYR{
     margin-left: 2%;
     background-color: #e4e6eb;
     color: black;
-
-
-
 }
-
-.message .content_message h6{
-    margin-bottom: 50px;
-    margin-top: 10px;
-    color: gray;
-}
-.message .menu_message{
-    z-index: 2;
-    position: fixed;
-    bottom: 0;
-    transition: ease-in 0.3s;
+/* --------------------------------------------------- */
+.message .menu_message .send{
+    padding-right: 0;
 }
 .message .menu_message input{
-    border: none;
-    width: 130%;
-}
-.messageAdmin .row .col-md-10{
-    color: #0c7857;
-}
-.messageAdmin .row .col-md-2{
-    font-size: 20px;
-    margin-top: 10px;
-}
-.menu_message{
-    height: 50px;
-    width: inherit;
-    position: relative;
-    box-sizing:  border-box !important;
-}
-.menu_messenger_conponent{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
-
-
+    border: 1px solid #50b5ba;
+    outline: 0;
+    padding: 5px 10px;
+    border-radius: 20px;
 }
-.menu_messenger_conponent .send_button{
-    margin-top: 10px;
-
-
-
-}
-
-.menu_messenger_conponent .send_button i{
+.message .menu_message .send_button button{
+    border: 0;
+    outline: 0;
+    background-color: inherit;
     color: #50b5ba;
-    font-size: 20px;
-}
-.send input{
-    padding: 6px;
-    border-radius: 30px;
-    background-color: #e4e6eb;
-
-
 }
