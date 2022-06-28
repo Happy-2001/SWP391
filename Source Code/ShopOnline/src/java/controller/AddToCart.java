@@ -2,11 +2,14 @@ package controller;
 
 import dal.CartDAO;
 import java.io.IOException;
+import java.util.List;
+import java.text.SimpleDateFormat;  
+import java.util.Date;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cart;
 
 /**
  *
@@ -17,28 +20,22 @@ public class AddToCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String cid = request.getParameter("cid");
         String pid = request.getParameter("pid");
-        String id = "";
         
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cooky : cookies) {
-            if (cooky.getName().equals("productid")) {
-                id = id + cooky.getValue();
-                cooky.setMaxAge(0);
-                response.addCookie(cooky);
+        CartDAO db = new CartDAO();
+        List<Cart> list = db.listAllCart();
+        
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");  
+        Date date = new Date();  
+        for (Cart c : list) {
+            if(Integer.parseInt(cid) != c.getUserId()){
+                db.addCart(Integer.parseInt(cid), fm.format(date), fm.format(date));
             }
         }
-        
-        if (id.isEmpty()) {
-            id = pid;
-        } else {
-            id = id + "," + pid;
-        }
-        Cookie c = new Cookie("productid", id);
-        c.setMaxAge(3600*24*7);
-        response.addCookie(c);
+        db.addItemByCID(Integer.parseInt(cid), Integer.parseInt(pid));
         response.sendRedirect("home");
-        
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -53,7 +53,7 @@ public class MessageController extends HttpServlet {
         for (Message message : listMessage) {
             response.getWriter().print(message.getContent());
         }
-        request.getRequestDispatcher("admin/Dashboard.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/message.jsp").forward(request, response);
     }
 
     @Override

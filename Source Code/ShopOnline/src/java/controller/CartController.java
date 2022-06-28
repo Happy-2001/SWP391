@@ -3,9 +3,7 @@ package controller;
 import dal.CartDAO;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,36 +17,21 @@ public class CartController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String id = request.getParameter("userID");
+
+        CartDAO pdb = new CartDAO();
+        ArrayList<Cart> carts = pdb.listById(Integer.parseInt(id));
         
-        Cookie[] cookies = request.getCookies();
-        List<Cart> list = new ArrayList<>();
-        CartDAO dao = new CartDAO();
-        for (Cookie o : cookies) {
-            if (o.getName().equals("productid")) {
-                String s[] = o.getValue().split(",");
-                for (String ss : s) {
-                    list.add(dao.getProductByID(Integer.parseInt(ss)));
-                }
-            }
-        }
-        for (int i = 0; i < list.size(); i++) {
-            int count = 1;
-            for (int j = i+1; j < list.size(); j++) {
-                if(list.get(i).getProduct().getId() == list.get(j).getProduct().getId()){
-                    count++;
-                    list.remove(j);
-                    list.get(i).setQuantity(count);
-                }
-            }
-        }
         double total = 0;
-        for (Cart o : list) {
-            total = total + o.getQuantity() * o.getProduct().getPrice();
+        for (Cart o : carts) {
+            total = total + o.getQuantity()*o.getProduct().getPrice();
         }
-        request.setAttribute("carts", list);
+        double vat = 0.1 * total;
         request.setAttribute("total", total);
-        request.setAttribute("vat", 0.1 * total);
-        request.setAttribute("sum", 1.1 * total);
+        request.setAttribute("vat", vat);
+        request.setAttribute("sum", total + vat);
+        request.setAttribute("carts", carts);
+        
         request.getRequestDispatcher("cartDetail.jsp").forward(request, response);
     }
 

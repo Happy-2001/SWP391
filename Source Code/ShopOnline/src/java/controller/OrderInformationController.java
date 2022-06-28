@@ -86,6 +86,6 @@ public class OrderInformationController extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

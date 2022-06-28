@@ -5,10 +5,12 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cart;
@@ -60,8 +62,8 @@ public class CartDAO {
         return cart;
     }
     
-     public ArrayList<Cart> listByItemId(String id) {
-        ArrayList<Cart> cart = new ArrayList<>();
+     public List<Cart> listByItemId(String id) {
+        List<Cart> cart = new ArrayList<>();
         String sql = "SELECT pd.product_id, pd.product_name,\n" +
                     "pd.category_id, pd.unit_price, pd.sale_price,\n" +
                     "pd.unitsln_stock, pd.brief_information,\n" +
@@ -89,6 +91,26 @@ public class CartDAO {
                 c.setQuantity(rs.getInt("rs1.quantity"));
                 c.setStatus(rs.getString("rs1.status"));
                 c.setUserId(rs.getInt("rs1.userID"));
+                cart.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return cart;
+    }
+     
+     public List<Cart> listAllCart() {
+        List<Cart> cart = new ArrayList<>();
+        String sql = "SELECT * FROM `carts`";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Cart c = new Cart();
+                c.setUserId(rs.getInt(1));
+                c.setStatus(rs.getString(2));
                 cart.add(c);
             }
         } catch (SQLException ex) {
@@ -151,28 +173,6 @@ public class CartDAO {
         return null;
     }
     
-    public Cart getProductByID(int id) {
-        String sql = "SELECT * FROM `products` WHERE product_id = ?";
-        try {
-            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                Cart c = new Cart();
-                c.setProduct(new Product(rs.getInt("product_id"), rs.getString("product_name"),
-                        rs.getInt("category_id"), rs.getFloat("unit_price"),
-                        rs.getFloat("sale_price"), rs.getInt("unitsln_stock"), rs.getString("brief_information"),
-                        rs.getString("description"), rs.getString("url")));
-                return c;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            mysqlConnect.disconnect();
-        }
-        return null;
-    }
-    
     public CartContact getCartContactById(int id) {
         String sql = "SELECT `user_id`, `status`, `full_name`, `phone`, `email`, `address` FROM `cart` WHERE user_id = ?";
         try {
@@ -196,20 +196,21 @@ public class CartDAO {
         }
         return null;
     }
-
-    public int numOfItems(int cid){
-        int num = 0;
-        String sql = "SELECT COUNT(item_id) as num FROM `cart_items` WHERE cart_items.cartID = ?";
+    
+    public void addCart(int cid, String cdate, String udate){
+        String sql = "INSERT INTO `carts`(`cartID`, `status`, `createDate`, `updateDate`, `userID`) \n" +
+                    "VALUES (?,NULL,?,?,?)";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, cid);
-            ResultSet rs = statement.executeQuery();
-            num = rs.getInt("num");
- 
+            statement.setString(2, cdate);
+            statement.setString(3, udate);
+            statement.setInt(4, cid);
+            
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return num;
     }
     
     public void addItemByCID(int cid, int pid){

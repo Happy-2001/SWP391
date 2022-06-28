@@ -1,6 +1,6 @@
-<%@page import="model.Cart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,11 +92,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${cartList}" var="carts">
+                                            <c:forEach items="${carts}" var="carts">
                                                 <tr>
                                                     <td class="d-flex flex-row me-3">
                                                         <div class="image">
-                                                            <img src="${carts.product.img}" class="img-fluid">
+                                                            <img src="${carts.product.img}" alt="" class="img-fluid">
                                                         </div>
                                                         <div class="d-flex flex-column">
                                                             <span><strong>${carts.product.name}</strong></span>
@@ -107,30 +107,14 @@
                                                     <td>
                                                         <input type="text" value="${carts.quantity}" disabled>
                                                     </td>
-                                                    <td id="price">${carts.product.price*carts.quantity}<i class="fa-solid fa-dong-sign"></i></td>
-                                                    <td><i class="fa-regular fa-trash-can remove-icon"></i></td>
+                                                    <td>
+                                                        <fmt:formatNumber value="${carts.product.price*carts.quantity}" type="currency"/>
+                                                    </td>
+                                                    <td><input type="hidden" name="item" value="${carts.itemId}"></td>
                                                 </tr>     
                                             </c:forEach>
-                                            <tr>
-                                                <td style="color: #d33b33; font-size: 20px; font-weight: 600;">Total:</td>
-                                                <td></td>
-                                                <td id="total-price" onload="TotalP()><i class="fa-solid fa-dong-sign"></i></td>
-                                                <td></td>
-                                            </tr>
                                         </tbody>
                                     </table>
-                                    <script>
-                                        var p = document.querySelectorAll("#price");
-                                        var tp = document.getElementById("total-price");
-                                        var temp = 0;
-                                        TotalP();
-                                        function TotalP(){
-                                            for (let i=0; i<p.length; i++){
-                                                temp = temp + parseFloat(p[i].textContent);
-                                            }
-                                            return tp.innerHTML = temp + `<i class="fa-solid fa-dong-sign"></i>`;
-                                        };
-                                    </script>
                                 </div>
                             </div>
                             <div class="payment-box mt-4">
@@ -138,7 +122,7 @@
                                     <h5>Payment</h5>
                                 </div>
                                 <div class="row payment">
-                                    <div class="col-lg-6 payment-ls">
+                                    <div class="col-lg-5 payment-ls">
                                         <p><small>Select a payment method</small></p>
                                         <ul class="d-flex flex-wrap">
                                             <li id="pm-sl">
@@ -180,11 +164,17 @@
                                             })
                                         </script>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-7">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Enter discount code">
                                             <button class="btn btn-danger" type="button">Apply</button>
                                         </div>
+                                        <ul class="d-flex align-items-center justify-content-between mt-3 mb-0 p-0">
+                                            <li style="color: #d33b33; font-size: 20px; font-weight: 600;">Total:</li>
+                                            <li id="total-price" style="font-weight: 700; font-size: 18px;">
+                                                <fmt:formatNumber value="${total}" type="currency"/>
+                                            </li>
+                                        </ul>
                                         <div class="add-comp why-text">
                                             <a href="#" class="ms-auto btn">Place Order</a>
                                             <a href="CartController?userID=${sessionScope.userlogged.userid}" class="ml-auto btn">Change</a>
