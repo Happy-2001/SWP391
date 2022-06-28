@@ -40,21 +40,25 @@
                         </li>
                             
                         <li class="side-menu">
-                            <a href="CartController?userID=${sessionScope.userlogged.userid}" title="Cart">
-                                <i class="fa fa-shopping-bag"></i>
-                            </a>
-                            
-                            <c:if test="${sessionScope.userlogged ne null}">
-                                <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
-                                    url="jdbc:mysql://localhost:3306/shop2"
-                                    user="root"  password=""/>
+                            <c:choose>
+                                <c:when test="${sessionScope.userlogged eq null}">
+                                    <a href="login" title="Login"><i class="fa fa-shopping-bag"></i></a>
+                                </c:when>
+                                <c:when test="${sessionScope.userlogged ne null}">
+                                    <a href="CartController?userID=${sessionScope.userlogged.userid}" title="Cart">
+                                        <i class="fa fa-shopping-bag"></i>
+                                    </a>
+                                    <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
+                                        url="jdbc:mysql://localhost:3306/shop2"
+                                        user="root"  password=""/>
  
-                                <sql:query dataSource="${db}" var="rs">
-                                    SELECT * FROM `cart_items` 
-                                    WHERE cart_items.cartID = ${sessionScope.userlogged.userid};
-                                </sql:query>
-                                <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
-                            </c:if>
+                                    <sql:query dataSource="${db}" var="rs">
+                                        SELECT * FROM `cart_items` 
+                                        WHERE cart_items.cartID = ${sessionScope.userlogged.userid};
+                                    </sql:query>
+                                    <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
+                                </c:when>
+                            </c:choose>
                         </li>
                         <li class="account">
                             <c:choose>
@@ -65,7 +69,7 @@
                                         <c:set var="linkToRedirect">
                                             <c:choose>
                                                 <c:when test="${sessionScope.Arole.authority.id == 1}">
-                                                    message
+                                                    admin/Dashboard.jsp
                                                 </c:when>
                                                 <c:otherwise>
                                                     ProfileUser?userid=${sessionScope.userlogged.userid}

@@ -1,10 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import dal.FeedbackDAO;
 import dal.ProductDAO;
-import dal.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +18,12 @@ import javax.servlet.http.HttpSession;
 import model.Product;
 import model.User;
 
-public class Feedback extends HttpServlet {
+/**
+ *
+ * @author Administrator
+ */
+@WebServlet(name = "FeedbackController", urlPatterns = {"/Feedback"})
+public class FeedbackController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,4 +53,5 @@ public class Feedback extends HttpServlet {
             response.sendRedirect("login");
         }
     }
+
 }

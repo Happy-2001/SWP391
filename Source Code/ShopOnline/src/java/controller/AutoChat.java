@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -65,17 +67,20 @@ public class AutoChat extends HttpServlet {
         UserDAO udao = new UserDAO();
         List<String> listUserAdminID = udao.listUserAdminID();
         
+         HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("userlogged");
+        if (u != null) {
+            String checkMess = request.getParameter("checkMess");
+            if(checkMess.equals("nullMessage")){
+                
+            }
+            
+            response.sendRedirect("home");
         
-        String content = "Xin chào";
-        
-        
-        mdao.addMessage(fromid, content);
-        
-        String maxMessID = mdao.getMaxMessIDb();
-        mdao.addRecipientMessage(toid,maxMessID);
-        
-        
-        response.sendRedirect("home");
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+
+        }
     }
 
     /**

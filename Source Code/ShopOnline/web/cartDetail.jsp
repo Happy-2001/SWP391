@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
         <!-- End All Title Box -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="bg-light mb-2">
                         <div class="d-flex justify-content-between align-items-center pe-3">
                             <div class="save-pass">
@@ -115,6 +116,31 @@
                                 </c:forEach>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bg-light px-3 text-uppercase font-weight-bold" style="padding: 6px; font-weight: 600;">Price</div>
+                    <div class="pt-3 px-4">
+                        <ul class="list-unstyled mb-0">
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">Sub Total</strong>
+                                <strong><fmt:formatNumber value="${total}" type="currency"/></strong>
+                            </li>
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">Shipping</strong>
+                                <img src="images/payment-icon/free-shipping.png" style="width: 10%;">
+                            </li>
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">VAT</strong>
+                                <strong><fmt:formatNumber value="${vat}" type="currency"/></strong>
+                            </li>
+                            <li class="d-flex justify-content-between py-3 border-bottom">
+                                <strong class="text-muted">Total</strong>
+                                <h5 class="font-weight-bold">
+                                    <fmt:formatNumber value="${sum}" type="currency"/>
+                                </h5>
+                            </li>
+                        </ul>
                     </div>
                     <div class="why-text d-flex justify-content-center">
                         <a href="#" class="btn" onclick="redirect()">Buy Now</a>

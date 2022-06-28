@@ -16,11 +16,8 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/HomePage.css">
         <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/message.css">
 
         <script src="js/fontAwesome.js"></script>
-        <script src="js/messenger.js"></script>
-
 
         <!-- Bootstrap 5 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -31,7 +28,6 @@
     <body>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
-        <%@include file="Messenger.jsp" %>   
         <!-- Start Slider -->
         <div id="slides-shop" class="carousel slide" data-bs-ride="carousel" style="margin-top: 60px;">
             <div class="carousel-inner">
@@ -90,7 +86,14 @@
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                         </ul>
-                                        <a class="cart" href="CartController?pid=${product.id}">Add to Cart</a>
+                                        <c:choose>
+                                            <c:when test="${sessionScope.userlogged eq null}">
+                                                <a class="cart" href="login" title="Login">Add to Cart</a>
+                                            </c:when>
+                                            <c:when test="${sessionScope.userlogged ne null}">
+                                                <a class="cart" href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${product.id}">Add to Cart</a>
+                                            </c:when>
+                                        </c:choose>
                                     </div>
                                 </div>
                                 <div class="why-text">
@@ -132,7 +135,7 @@
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                             <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                         </ul>
-                                        <a class="cart" href="CartController?pid=${product.id}">Add to Cart</a>
+                                        <a class="cart" href="AddToCart?pid=${product.id}">Add to Cart</a>
                                     </div>
                                 </div>
                                 <div class="why-text">
@@ -160,7 +163,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <c:forEach begin="0" end="2" items="${blogs}" var="b">
+                    <c:forEach items="${blogs}" var="b">
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="blog-box">
                                 <div class="blog-img">
@@ -180,7 +183,7 @@
         </div>
         <!-- End Blog  -->
 
-
+        <%@include file="Messenger.jsp" %>
         <%@include file="footer.jsp" %>
     </body>
 </html>

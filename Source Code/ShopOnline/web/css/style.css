@@ -96,10 +96,8 @@ p{
     margin: 0px;
 }
 /*----------------------------- LOADER -------------------------------------------------*/
-#back-to-top {
+#back-to-top, #messenger-btn{
     position: fixed;
-    bottom: 40px;
-    right: 40px;
     z-index: 1000;
     width: 32px;
     height: 32px;
@@ -110,6 +108,14 @@ p{
     border: 0;
     border-radius: 2px;
     transition: opacity 0.2s ease-out;
+}
+#back-to-top {
+    bottom: 40px;
+    right: 40px;
+}
+#messenger-btn{
+    bottom: 70px;
+    right: 40px;
 }
 /*------------------------------------ HEADER ----------------------------------------------*/
 #header{

@@ -2,7 +2,9 @@ package controller;
 
 import dal.CartDAO;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
+import java.text.SimpleDateFormat;  
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,26 +15,27 @@ import model.Cart;
  *
  * @author anhvo
  */
-public class CartController extends HttpServlet {
+public class AddToCart extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("userID");
-
-        CartDAO pdb = new CartDAO();
-        ArrayList<Cart> carts = pdb.listById(Integer.parseInt(id));
+        response.setContentType("text/html;charset=UTF-8");
+        String cid = request.getParameter("cid");
+        String pid = request.getParameter("pid");
         
-        double total = 0;
-        for (Cart o : carts) {
-            total = total + o.getQuantity()*o.getProduct().getPrice();
+        CartDAO db = new CartDAO();
+        List<Cart> list = db.listAllCart();
+        
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");  
+        Date date = new Date();  
+        for (Cart c : list) {
+            if(Integer.parseInt(cid) != c.getUserId()){
+                db.addCart(Integer.parseInt(cid), fm.format(date), fm.format(date));
+            }
         }
-        double vat = 0.1 * total;
-        request.setAttribute("total", total);
-        request.setAttribute("vat", vat);
-        request.setAttribute("sum", total + vat);
-        request.setAttribute("carts", carts);
-        
-        request.getRequestDispatcher("cartDetail.jsp").forward(request, response);
+        db.addItemByCID(Integer.parseInt(cid), Integer.parseInt(pid));
+        response.sendRedirect("home");
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
