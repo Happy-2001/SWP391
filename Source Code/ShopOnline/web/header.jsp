@@ -69,7 +69,7 @@
                                         <c:set var="linkToRedirect">
                                             <c:choose>
                                                 <c:when test="${sessionScope.Arole.authority.id == 1}">
-                                                    message
+                                                    admin/Dashboard.jsp
                                                 </c:when>
                                                 <c:otherwise>
                                                     ProfileUser?userid=${sessionScope.userlogged.userid}
