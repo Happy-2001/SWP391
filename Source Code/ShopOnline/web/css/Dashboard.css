@@ -3,9 +3,9 @@ ul, li{
     padding: 0 !important;
 }
 .topbar{
-    position: fixed;
+    
     width: 100%;
-    z-index: 1000;
+    z-index: 2;
     padding: 10px 0;
     background-color: #f5f4fe;
     /* background: rgba(0, 0, 0, 0) linear-gradient(to right, #ffcc66 0%, #ff6e40 100%) repeat scroll 0 0; */
@@ -97,7 +97,7 @@ ul, li{
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 /* ----------------------------------------------------------------- */
-.menu-bar, .main{
+.menu-bar{
     background-color: #f5f4fe;
     padding: 100px 30px 30px;
     overflow: hidden;
@@ -180,9 +180,52 @@ ul, li{
 }
 
 /*message*/
+
+/*message*/
+#chat{
+    display: inline-block;
+}
+.divMYS{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.MYS_EMP{
+    width: 2%;
+}
+.MYS,.MYR{
+    padding: 8px 12px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+
+
+    margin-bottom: 15px; 
+    max-width: 77%; 
+    text-align: left;
+    width: fit-content;
+}
+ .MYS{
+    background-color: #50b5ba;
+    color: white;
+    max-width: 77%; 
+
+}
+
+.MYR{
+    margin-left: 2%;
+    background-color: #e4e6eb;
+    color: black;
+
+
+
+}
+
 .contentChat{
-    width: 70%;
-    float: right;
+    height: 400px;
+    
+    overflow: auto;
+    
 }
 .listCusMess ul{
     display: flex;
@@ -201,7 +244,7 @@ ul, li{
 .Customer_chat_group{
     width: 450px;
     background-color: white;
-    position: fixed;
+    
     padding: 8px 12px;
     border-radius: 15px;
     border: 1px solid #ff6e40;
@@ -222,4 +265,7 @@ ul, li{
 }
 .contentChat{
     padding-left: 10px;
+}
+.col-md-5,.col-md-1,.col-md-7{
+    margin-right: 0 !important;
 }

@@ -119,7 +119,8 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 menu-bar">
+                
+                <div class="col-md-3 menu-bar">
                     <div class="menu">
                         <ul class="menu-links">
                             <li class="nav-link">
@@ -204,38 +205,46 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-8 main">
-                    <div class="row" id="chat" style="display: none;">
-                        <div class="listCusMess col-lg-6">
-                            <ul>
-                                <li><div><h8>All Chats</h8></div></li>
-                                <li><div><h8>Settings</h8></div></li>
-
-                            </ul>
-                            <div class="t-search " style="margin-bottom: 20px">
-                                <form action="action">
-                                    <div class="search-box search_user" style=" width: 400px;">
-                                        <input type="text" placeholder="Search..." >
-                                        <i class="fa-solid fa-magnifying-glass fa-sm icon"></i>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="Customer_chat_group">
-                                <div class="Customer_chat_group_left">
-                                    <h6>Nguyễn Việt Hoàng</h6>
-                                    <h8>Hello</h8>
-                                </div>
-                                <div class="Customer_chat_group_right">
-                                    <h4>...</h4>
-                                    <h8>Yesterday</h8>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-lg-1"></div>
-                        <div class="contentChat col-lg-5">
-
+                <div class="col-md-9 main">
+                    <div class="row" id="chat"  style="display: none;">
+                        <div class="col-md-5" >
                             
-                           
+                            <div class="listCusMess">
+                                <ul>
+                                    <li><div><h8>All Chats</h8></div></li>
+                                    <li><div><h8>Settings</h8></div></li>
+
+                                </ul>
+                                <div class="t-search " style="margin-bottom: 20px">
+                                    <form action="action">
+                                        <div class="search-box search_user" style=" width: 400px;">
+                                            <input type="text" placeholder="Search..." >
+                                            <i class="fa-solid fa-magnifying-glass fa-sm icon"></i>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div>
+                                <c:forEach items="${listGroupChat}" var="lgc">
+                                    <div class="Customer_chat_group">
+
+                                        <div class="Customer_chat_group_left">
+                                            <h6>${lgc.name}</h6>
+                                            <h8>${lgc.content}</h8>
+                                        </div>
+                                        <div class="Customer_chat_group_right">
+                                            <h4>...</h4>
+                                            <h8>${lgc.time}</h8>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+
+                                    </div>
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-md-1"> </div>
+                        <div class="contentChat col-md-6">
                             <c:forEach items="${listMess}" var="mess">
                                 <c:choose>
                                     <c:when test="${listUserAdminID.contains(mess.fromID)}">
@@ -255,8 +264,6 @@
 
                                 </c:choose>
                             </c:forEach>
-
-
                         </div>
                     </div>
                 </div>

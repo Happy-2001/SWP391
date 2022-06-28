@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Group;
+import model.GroupChat;
 import model.Message;
 import model.User;
 
@@ -40,8 +41,11 @@ public class MessageController extends HttpServlet {
         MessageDAO mdao = new MessageDAO();
         HttpSession session = request.getSession();
         UserDAO udao = new UserDAO();
+        GroupDAO gdao = new GroupDAO();
         List<String> listUserAdminID = udao.listUserAdminID();
-
+        ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
+        
+        request.setAttribute("listGroupChat", listGroupChat);
         request.setAttribute("listUserAdminID", listUserAdminID);
 
         ArrayList<Message> listMessage = mdao.getAllMessageofUser("1", "1");
