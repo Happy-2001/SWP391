@@ -26,9 +26,10 @@ public class CartController extends HttpServlet {
         for (Cart o : carts) {
             total = total + o.getQuantity()*o.getProduct().getPrice();
         }
+        double vat = 0.1 * total;
         request.setAttribute("total", total);
-        request.setAttribute("vat", 0.1 * total);
-        request.setAttribute("sum", (float) Math.round(1.1 * total * 10) / 10);
+        request.setAttribute("vat", vat);
+        request.setAttribute("sum", total + vat);
         request.setAttribute("carts", carts);
         
         request.getRequestDispatcher("cartDetail.jsp").forward(request, response);

@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -116,9 +117,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="why-text d-flex justify-content-center">
-                        <a href="#" class="btn" onclick="redirect()">Buy Now</a>
-                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="bg-light px-3 text-uppercase font-weight-bold" style="padding: 6px; font-weight: 600;">Price</div>
@@ -126,7 +124,7 @@
                         <ul class="list-unstyled mb-0">
                             <li class="d-flex justify-content-between py-3 border-bottom">
                                 <strong class="text-muted">Sub Total</strong>
-                                <strong>${total} ₫</strong>
+                                <strong><fmt:formatNumber value="${total}" type="currency"/></strong>
                             </li>
                             <li class="d-flex justify-content-between py-3 border-bottom">
                                 <strong class="text-muted">Shipping</strong>
@@ -134,11 +132,13 @@
                             </li>
                             <li class="d-flex justify-content-between py-3 border-bottom">
                                 <strong class="text-muted">VAT</strong>
-                                <strong>${vat} ₫</strong>
+                                <strong><fmt:formatNumber value="${vat}" type="currency"/></strong>
                             </li>
                             <li class="d-flex justify-content-between py-3 border-bottom">
                                 <strong class="text-muted">Total</strong>
-                                <h5 class="font-weight-bold">${sum} ₫</h5>
+                                <h5 class="font-weight-bold">
+                                    <fmt:formatNumber value="${sum}" type="currency"/>
+                                </h5>
                             </li>
                         </ul>
                     </div>
