@@ -7,9 +7,9 @@
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/Customers.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Customers.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -25,7 +25,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="admin/Dashboard.jsp">
+                            <a href="Dashboard.jsp">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>

@@ -22,7 +22,6 @@
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <nav class="navbar">
-                        <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
                         <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
                     </nav>
                 </div>
@@ -50,63 +49,62 @@
                             <span class="badge-num">1</span>
                         </div>
                         <div class="admin">
-                            <div class="admin-avatar" data-bs-toggle="offcanvas" data-bs-target="#setting">
+                            <div class="admin-avatar" data-bs-toggle="collapse" data-bs-target="#setting">
                                 <img src="../images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
                             </div>
                         </div>
-                        <div class="offcanvas offcanvas-end" id="setting">
-                            <div class="offcanvas-body">
-                                <ul class="menu-links">
-                                    <li class="nav-link">
-                                        <a href="ProfileUser?userid=${sessionScope.userlogged.userid}">
-                                            <span class="nav-link-icon">
-                                                <i class="fa fa-eyedropper"></i>
-                                            </span>
-                                            <span class="text nav-text">Edit Profile</span>
-                                        </a> 
-                                    </li>
-                                    <li class="nav-link">
-                                        <a href="#">
-                                            <span class="nav-link-icon">
-                                                <i class="fa fa-envelope-o"></i>
-                                            </span>
-                                            <span class="text nav-text">My Inbox</span>
-                                        </a> 
-                                    </li>
-                                    <li class="nav-link">
-                                        <a href="#">
-                                            <span class="nav-link-icon">
-                                                <i class="fa fa-adjust"></i>
-                                            </span>
-                                            <span class="text nav-text">Task</span>
-                                        </a> 
-                                    </li>
-                                    <li class="nav-link">
-                                        <a href="#">
-                                            <span class="nav-link-icon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <span class="text nav-text">Calender</span>
-                                        </a> 
-                                    </li>
-                                    <li class="nav-link">
-                                        <a href="#">
-                                            <span class="nav-link-icon">
-                                                <i class="fa fa-align-right"></i>
-                                            </span>
-                                            <span class="text nav-text">Balance Report</span>
-                                        </a> 
-                                    </li>
-                                    <li class="nav-link">
-                                        <a href="logout">
-                                            <span class="nav-link-icon">
-                                                <i class="fa fa-sign-out"></i>
-                                            </span>
-                                            <span class="text nav-text">Log Out</span>
-                                        </a> 
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="dropdown-ls collapse" id="setting">
+                            <ul class="menu-links">
+                                <li class="nav-link">
+                                    <a href="ProfileUser?userid=${sessionScope.userlogged.userid}">
+                                        <span class="nav-link-icon">
+                                            <i class="fa fa-eyedropper"></i>
+                                        </span>
+                                        <span class="text nav-text">Edit Profile</span>
+                                    </a> 
+                                </li>
+                                <li class="nav-link">
+                                    <a href="#">
+                                        <span class="nav-link-icon">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </span>
+                                        <span class="text nav-text">My Inbox</span>
+                                    </a> 
+                                </li>
+                                <li class="nav-link">
+                                    <a href="#">
+                                        <span class="nav-link-icon">
+                                            <i class="fa fa-adjust"></i>
+                                        </span>
+                                        <span class="text nav-text">Task</span>
+                                    </a> 
+                                </li>
+                                <li class="nav-link">
+                                    <a href="#">
+                                        <span class="nav-link-icon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                        <span class="text nav-text">Calender</span>
+                                    </a> 
+                                </li>
+                                <li class="nav-link">
+                                    <a href="#">
+                                        <span class="nav-link-icon">
+                                            <i class="fa fa-align-right"></i>
+                                        </span>
+                                        <span class="text nav-text">Balance Report</span>
+                                    </a>
+                                    <hr style="margin: 0;"></hr>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="logout">
+                                        <span class="nav-link-icon">
+                                            <i class="fa fa-sign-out"></i>
+                                        </span>
+                                        <span class="text nav-text">Log Out</span>
+                                    </a> 
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -146,7 +144,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="admin/Customers.jsp">
+                            <a href="Customers.jsp">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group fa-xl"></i>
                                 </span>
