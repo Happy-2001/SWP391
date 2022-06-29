@@ -64,7 +64,6 @@
                                             </div>
                                         </div>
                                     </c:otherwise>
-
                                 </c:choose>
                             </c:forEach>
                         </c:otherwise>
@@ -73,13 +72,13 @@
             </div>
             <div class="card-footer">
                 <div class="menu_message">
-                    <form action="messengerServlet" method="post">
+                    <form action="message" method="post">
                         <div class="row align-items-center">
                             <div class="send col-md-10">
                                 <input name="contentsend" type="text" placeholder="Viết gì đó...">
                             </div>
                             <div class="send_button col-md-2">
-                                <button name="getFROMandTO" value="1;3" type="submit"><i class="fa-solid fa-paper-plane fa-lg"></i></button>
+                                <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button
                             </div>
                         </div>
                     </form>

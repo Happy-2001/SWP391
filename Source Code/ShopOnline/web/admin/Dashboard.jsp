@@ -1,17 +1,15 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -25,7 +23,7 @@
                 <div class="col-lg-3">
                     <nav class="navbar">
                         <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
-                        <a href="index.html" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
+                        <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
                     </nav>
                 </div>
                 <div class="col-lg-7">
@@ -52,62 +50,63 @@
                             <span class="badge-num">1</span>
                         </div>
                         <div class="admin">
-                            <div class="admin-avatar" data-bs-toggle="collapse" data-bs-target="#setting">
-                                <img src="/images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
+                            <div class="admin-avatar" data-bs-toggle="offcanvas" data-bs-target="#setting">
+                                <img src="../images/img-1.jpg" alt="admin-avatar"> <span class="online"></span> 
                             </div>
                         </div>
-                        <div class="dropdown-ls collapse" id="setting">
-                            <ul class="menu-links">
-                                <li class="nav-link">
-                                    <a href="#">
-                                        <span class="nav-link-icon">
-                                            <i class="fa fa-eyedropper"></i>
-                                        </span>
-                                        <span class="text nav-text">Edit Profile</span>
-                                    </a> 
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#">
-                                        <span class="nav-link-icon">
-                                            <i class="fa fa-envelope-o"></i>
-                                        </span>
-                                        <span class="text nav-text">My Inbox</span>
-                                    </a> 
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#">
-                                        <span class="nav-link-icon">
-                                            <i class="fa fa-adjust"></i>
-                                        </span>
-                                        <span class="text nav-text">Task</span>
-                                    </a> 
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#">
-                                        <span class="nav-link-icon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                        <span class="text nav-text">Calender</span>
-                                    </a> 
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#">
-                                        <span class="nav-link-icon">
-                                            <i class="fa fa-align-right"></i>
-                                        </span>
-                                        <span class="text nav-text">Balance Report</span>
-                                    </a>
-                                    <hr style="margin: 0;"></hr>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#">
-                                        <span class="nav-link-icon">
-                                            <i class="fa fa-sign-out"></i>
-                                        </span>
-                                        <span class="text nav-text">Log Out</span>
-                                    </a> 
-                                </li>
-                            </ul>
+                        <div class="offcanvas offcanvas-end" id="setting">
+                            <div class="offcanvas-body">
+                                <ul class="menu-links">
+                                    <li class="nav-link">
+                                        <a href="ProfileUser?userid=${sessionScope.userlogged.userid}">
+                                            <span class="nav-link-icon">
+                                                <i class="fa fa-eyedropper"></i>
+                                            </span>
+                                            <span class="text nav-text">Edit Profile</span>
+                                        </a> 
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="#">
+                                            <span class="nav-link-icon">
+                                                <i class="fa fa-envelope-o"></i>
+                                            </span>
+                                            <span class="text nav-text">My Inbox</span>
+                                        </a> 
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="#">
+                                            <span class="nav-link-icon">
+                                                <i class="fa fa-adjust"></i>
+                                            </span>
+                                            <span class="text nav-text">Task</span>
+                                        </a> 
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="#">
+                                            <span class="nav-link-icon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <span class="text nav-text">Calender</span>
+                                        </a> 
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="#">
+                                            <span class="nav-link-icon">
+                                                <i class="fa fa-align-right"></i>
+                                            </span>
+                                            <span class="text nav-text">Balance Report</span>
+                                        </a> 
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="logout">
+                                            <span class="nav-link-icon">
+                                                <i class="fa fa-sign-out"></i>
+                                            </span>
+                                            <span class="text nav-text">Log Out</span>
+                                        </a> 
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -202,7 +201,6 @@
                 </div>
             </div>
             <div class="col-lg-9 main">
-
             </div>
         </div>
     </div>
