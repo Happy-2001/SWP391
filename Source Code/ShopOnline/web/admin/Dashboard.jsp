@@ -142,6 +142,15 @@
                                 <span class="text nav-text">Products</span>
                             </a>
                         </li>
+                        
+                        <li class="nav-link">
+                            <a href="userList.jsp">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-user-group fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">User List</span>
+                            </a>
+                        </li>
 
                         <li class="nav-link">
                             <a href="Customers.jsp">
