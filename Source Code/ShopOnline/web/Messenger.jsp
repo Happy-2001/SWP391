@@ -11,7 +11,7 @@
 
 <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
     <!-- mess -->
-    <div style="" class="collapse show" id="mess">
+    <div class="collapse show" id="mess">
         <div class="card message">
             <div class="card-header">
                 <div class="row">
@@ -64,7 +64,6 @@
                                             </div>
                                         </div>
                                     </c:otherwise>
-
                                 </c:choose>
                             </c:forEach>
                         </c:otherwise>
@@ -79,7 +78,7 @@
                                 <input name="contentsend" type="text" placeholder="Viết gì đó...">
                             </div>
                             <div class="send_button col-md-2">
-                                <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit"><i class="fa-solid fa-paper-plane fa-lg"></i></button>
+                                <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button
                             </div>
                         </div>
                     </form>

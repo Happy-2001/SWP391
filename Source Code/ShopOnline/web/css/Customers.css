@@ -1,0 +1,95 @@
+.cus-box{
+    font-family: Poppins,sans-serif;
+    width: 100%;
+}
+.cus-box a {
+    text-decoration: none;
+    color: #ff470d;
+}
+.cus-box a:hover{
+    color: #000;
+}
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0,0,0,0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0,0,0,0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0,0,0,0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    width: 100%;
+    border-spacing: 0 15px;
+    border-collapse: separate;
+}
+.table thead th {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+.table td {
+    padding: 1.3rem 0.75rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.table tbody tr {
+    background: #fff;
+    cursor: pointer;
+}
+.table tbody tr td {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+.table tbody tr td:first-child {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    padding-left: 15px;
+    border-left: 1px solid transparent;
+}
+.table tbody tr td:last-child {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding-right: 15px;
+    border-right: 1px solid transparent;
+}
+.table tbody tr.tr-selected td {
+    border-color: #ff6e40!important;
+}
+/* ----------------------------------------------------------------- */
+.avatar {
+    display: inline-block;
+    margin-bottom: 0;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+.avatar .avatar-text {
+    background: #d7d7d7;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    user-select: none;
+    padding: 10px;
+}
+.avatar.avatar-info .avatar-text {
+    background: #25c2e3!important;
+    color: #fff!important;
+}
+.avatar.avatar-secondary .avatar-text {
+    background: #9932e7!important;
+    color: #fff!important;
+}
+.avatar.avatar-warning .avatar-text {
+    background: #faae42!important;
+    color: #000!important;
+}

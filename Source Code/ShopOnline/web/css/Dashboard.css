@@ -1,21 +1,24 @@
 body{
-    width: 100%;
-    height: 100%
+    background-color: #f5f4fe !important;
 }
 ul, li{
     margin: 0 !important;
     padding: 0 !important;
 }
 .topbar{
-    
+    position: fixed;
     width: 100%;
-    z-index: 2;
+    z-index: 1000;
     padding: 10px 0;
     background-color: #f5f4fe;
     /* background: rgba(0, 0, 0, 0) linear-gradient(to right, #ffcc66 0%, #ff6e40 100%) repeat scroll 0 0; */
 }
 .icon{
     color: #000;
+}
+.breadcrumb .breadcrumb-item, .breadcrumb-item a{
+    color: #ff6e40;
+    padding: 0 5px;
 }
 /* ----------------------------------------------------------------- */
 .notify-area {
@@ -31,7 +34,7 @@ ul, li{
     font-weight: 500;
     margin-right: 70px;
 }
-.search-box {
+.notify-area .search-box {
     display: flex;
     align-items: center;
     border-radius: 5px;
@@ -40,7 +43,7 @@ ul, li{
     background: #fff;
     box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.1);
 }
- .search-box input {
+.notify-area .search-box input {
     background: initial;
     border: medium none;
     font-size: 16px;
@@ -81,7 +84,7 @@ ul, li{
     cursor: pointer;
 }
 .online {
-    background: #a1d72c none repeat scroll 0 0;
+    background: #0f0 none repeat scroll 0 0;
     border: 2px solid #fff;
     border-radius: 100%;
     top: 13px;
@@ -101,7 +104,7 @@ ul, li{
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 /* ----------------------------------------------------------------- */
-.menu-bar{
+.menu-bar, .main{
     background-color: #f5f4fe;
     padding: 100px 30px 30px;
     overflow: hidden;
@@ -115,11 +118,6 @@ ul, li{
     top: 0;
     left: 0;
     z-index: 99 !important;
-        
-
-}
-.menu{
-    padding-right: 50px !important;
 }
 .menu-bar::-webkit-scrollbar{
     display: none;
@@ -182,143 +180,7 @@ ul, li{
 .menu-bar ul li a+ul li a {
     padding-left: 67px;
 }
-
-/*message*/
-
-/*message*/
-#chat{
-    display: inline-block;
-}
-.divMYS{
-    display: flex;
-    flex-direction: row-reverse;
-}
-.MYS_EMP{
-    width: 2%;
-}
-.MYS,.MYR{
-    padding: 8px 12px 2px 12px;
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
-    margin-bottom: 15px; 
-    max-width: 77%; 
-    text-align: left;
-    width: fit-content;
-}
- .MYS{
-    background-color: #ffe2d9;
-    color: black;
-    max-width: 77%; 
-
-}
-
-.MYR{
-    margin-left: 2%;
-    background-color: white;
-    color: black;
-
-
-
-}
-
-
-.listCusMess ul{
-    display: flex;
-    
-}
-.listCusMess ul li div{
-    margin: 15px 8px;
-    padding: 8px 18px;
-    color: #ff470d;
-    background: rgba(255,110,64,.15);
-    border-radius: 8px;
-}
-.search-box .search_user{
-    border-color: gray;
-}
-.Customer_chat_group{
-    width: 100%;
-    background-color: white;
-    padding: 8px 12px;
-    border-radius: 15px;
-    border: 1px solid #ff6e40;
-    float: left;
-    margin-bottom: 20px;
-}
-.Customer_chat_group_left{
-    float: left;
-}
-.Customer_chat_group_right{
-    float: right;
-    text-align: right;
-}
 /* --------------------------- Main -------------------------------------- */
 .main{
     background-color: #f5f4fe;
-    
-}
-.buttonChat{
-  margin-top: 10px;
-  margin-left: 15px;
-}
-.contentChat-buttonChat{
-    width: 60%;
-     float:right;
-}
-.buttonChat .row .send input{
-    width: 100%;
-    border: 0.5px solid #ced4da;
-    outline: 0;
-    padding: 10px 10px;
-    border-radius: 10px;
-}
-.buttonChat .row .send input:focus{
-    border: 2px solid #ff6e40;
-}
-
-.buttonChat .align-items-center .send_button button{
-    border: 0;
-    outline: 0;
-    background-color: inherit;
-    color: #ff6e40;
-}
-div.group-chat-detail{
-    height: 470px;
-}
-.group-chat-detail .contentChat{
-        overflow: auto;
-        
-}
-.contentChat{
-    padding-left: 10px;
-    width: 100%;
-    height: 530px;
-   
-}
-.col-md-5,.col-md-1,.col-md-7{
-    margin-right: 0 !important;
-}
-
-
-.grouplist{
-    float: left;
-    width: 40%;
-}
-.contentChat::-webkit-scrollbar, .group-chat-detail::-webkit-scrollbar{
-    width: 5px;
-}
-   
-/* Handle */
-.contentChat::-webkit-scrollbar-thumb, .group-chat-detail::-webkit-scrollbar-thumb{
-    background: #50b5ba; 
-    display: none;
-}
-  
-/* Handle on hover */
-.contentChat::-webkit-scrollbar-thumb:visited, .group-chat-detail::-webkit-scrollbar-thumb:visited{
-    background: #50b5ba; 
-    display: block;
-
 }
