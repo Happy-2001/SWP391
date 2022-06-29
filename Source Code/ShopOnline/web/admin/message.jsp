@@ -56,7 +56,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="admin/Customers.jsp">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group fa-xl"></i>
                                 </span>
