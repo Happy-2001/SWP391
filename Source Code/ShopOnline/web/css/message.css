@@ -1,3 +1,7 @@
+.show{
+        transition: ease-in 0.5s;
+
+}
 span.title {
     color: #BBB;
     font-family: 'Open Sans', sans-serif;
@@ -63,6 +67,8 @@ svg rect {
     position: fixed !important;
     bottom: 40px;
     right: 5%;
+     box-shadow: 0 0 5px #c4cacc;
+    
 }
 .card-body{
     overflow: auto;
@@ -74,7 +80,7 @@ svg rect {
    
 /* Handle */
 .card-body::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #50b5ba; 
 }
   
 /* Handle on hover */
