@@ -28,7 +28,12 @@
     <body>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
-        
+        <div class="blog-content">
+                                    <div class="title-blog">
+                                        <a href="blogdetail?id=${b.id}" class="h3">${b.content}</a>
+                                        <p>${b.description}</p>
+                                    </div>
+                                </div>
 
         <%@include file="Messenger.jsp" %>
         <%@include file="footer.jsp" %>
