@@ -104,7 +104,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
                             <i class="fa-solid fa-globe fa-sm"></i>
-                            <a href="Dashboard.jsp">Dashboard</a>
+                            <a href="#">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Customers</li>
                     </ul>
@@ -124,13 +124,13 @@
                                 <th>Country</th>
                                 <th>Date</th>
                                 <th>Status</th>
-                                <th class="text-center">Actions</th>
+                                <th class="text-end">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr class="customers">
                                 <td>
-                                    <input class="form-check-input" type="checkbox" value="1">
+                                    <input class="form-check-input" type="checkbox" value="CustomerDetail.jsp">
                                 </td>
                                 <td>
                                     <a href="#">#1</a>
@@ -148,8 +148,7 @@
                                     <span class="badge bg-success">Active</span>
                                 </td>
                                 <td class="text-end">
-                                    <div class="d-flex justify-content-between px-3">
-                                        <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <div class="px-3">
                                         <a href="#link"><i class="fa-solid fa-trash-can"></i></a>
                                     </div>
                                 </td>
@@ -475,7 +474,7 @@
                           </ul>
                     </div>
                 </div>
-                <script src="/js/select.js"></script>
+                <script src="../js/list-select.js"></script>
             </div>
         </div>
     </div>

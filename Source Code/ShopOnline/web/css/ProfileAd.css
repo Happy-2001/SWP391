@@ -1,0 +1,128 @@
+.del-btn .btn{
+    background-color: #ff470d;
+    color: #fff;
+}
+.del-btn .btn:hover{
+    background: rgba(255, 71, 13, 0.8);
+    border-color: rgba(255, 71, 13, 0.8);
+}
+.profile-cover {
+    height: 300px;
+    position: relative;
+}
+
+/* ----------------------------------------------------------- */
+
+.ava-popup{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all ease-in-out 0.4;
+}
+.ava-popup .edit-img{
+    display: flex;
+    gap: 30px;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.submit-file-box{
+    width: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #FAFAFA;
+    border: 2px dashed #666;
+}
+.submit-file-box .trigger {
+    cursor: pointer;
+    color: #0078d4;
+    font-weight: 600;
+    margin-bottom: 0 !important;
+}
+.attachment-box{
+    display: none;
+}
+.file-name-attachment {
+    width: 500px;
+    padding: 8px 16px;
+    background: #F7F7F7;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.cus-file-input{
+    display: none !important;
+}
+
+/* ----------------------------------------------------------- */
+.bg-image {
+    background-size: cover!important;
+    background-position: 50%!important;
+    position: relative;
+    overflow: hidden;
+}
+.profile-cover {
+    padding: 30px 50px;
+    border-radius: 0.5rem;
+}
+.avatar-profile{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.ava {
+    position: relative;
+}
+.ava .edit{
+    position: absolute;
+    bottom: 2px;
+    right: 8px;
+    background: #999;
+    padding: 0 4px 2px 6px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.ava img{
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+.card{
+    border: 0 !important;
+    border-radius: 1rem !important;
+}
+.card .card-title {
+    display: flex;
+    justify-content: space-between;
+}
+/* ----------------------------------------------------------- */
+.od-items{
+    border: 1px solid rgba(0,0,0,0.125);
+    padding: 10px;
+    border-radius: 0.5rem;
+    margin-bottom: 15px;
+}
+.od-items .items{
+    display: flex;
+    gap: 30px;
+}
+.pd-img {
+    width: 100px;
+    height: 100px;
+}
+.pd-img img{
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.qty input{
+    width: 40px;
+    text-align: center;
+}
