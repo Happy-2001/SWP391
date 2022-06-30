@@ -67,21 +67,7 @@ public class DashboardController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        MessageDAO mdao = new MessageDAO();
-        HttpSession session = request.getSession();
-        UserDAO udao = new UserDAO();
-        GroupDAO gdao = new GroupDAO();
-        List<String> listUserAdminID = udao.listUserAdminID();
-        ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
-        
-        request.setAttribute("listGroupChat", listGroupChat);
-        request.setAttribute("listUserAdminID", listUserAdminID);
-
-        ArrayList<Message> listMessage = mdao.getAllMessageofUser("1", "1");
-        request.setAttribute("listMess", listMessage);
-        for (Message message : listMessage) {
-            response.getWriter().print(message.getContent());
-        }
+      
         request.getRequestDispatcher("admin/Dashboard.jsp").forward(request, response);
     }
 

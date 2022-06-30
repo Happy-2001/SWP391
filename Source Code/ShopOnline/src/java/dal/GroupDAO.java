@@ -126,7 +126,36 @@ public class GroupDAO {
                 u.setId(rs.getString(1));
                 u.setName(rs.getString(2));
                 u.setContent(rs.getString(3));
-                u.setTime(rs.getString(4));
+                LocalDateTime sendTime = LocalDateTime.parse(rs.getString(4), dtf);
+                String displayTime = "";
+                int numYear = now.getYear() - sendTime.getYear();
+                if (numYear == 0) {
+                    int numMonth = now.getMonthValue() - sendTime.getMonthValue();
+                    if (numMonth == 0) {
+                        int numDay = now.getDayOfMonth() - sendTime.getDayOfMonth();
+                        if (numDay == 0) {
+                            int numHour = now.getHour() - sendTime.getHour();
+                            if (numHour == 0) {
+                                int numMinute = now.getMinute() - sendTime.getMinute();
+                                if (numMinute == 0) {
+                                    int numSecond = now.getSecond() - sendTime.getSecond();
+                                    displayTime = numSecond + " Seconds";
+                                } else {
+                                    displayTime = numMinute + " Minutes";
+                                }
+                            } else {
+                                displayTime = numHour + " Hours";
+                            }
+                        } else {
+                            displayTime = numDay + " Days";
+                        }
+                    } else {
+                        displayTime = numMonth + " Months";
+                    }
+                } else {
+                    displayTime = numYear + " Years";
+                }
+                u.setTime(displayTime);
 
                 list.add(u);
             }
@@ -137,5 +166,45 @@ public class GroupDAO {
             mysqlConnect.disconnect();
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime sendTime = LocalDateTime.parse("2022-06-29 00:12:12", dtf);
+        String displayTime = "";
+        int numYear = now.getYear() - sendTime.getYear();
+        if (numYear == 0) {
+            int numMonth = now.getMonthValue() - sendTime.getMonthValue();
+            if (numMonth == 0) {
+                int numDay = now.getDayOfMonth() - sendTime.getDayOfMonth();
+                if (numDay == 0) {
+                    int numHour = now.getHour() - sendTime.getHour();
+                    if (numHour == 0) {
+                        int numMinute = now.getMinute() - sendTime.getMinute();
+                        if (numMinute == 0) {
+                            int numSecond = now.getSecond() - sendTime.getSecond();
+                            displayTime = numSecond + " Seconds";
+                        } else {
+                            displayTime = numMinute + " Minutes";
+                        }
+                    } else {
+                        displayTime = numHour + " Hours";
+                    }
+                }else {
+                    displayTime = numDay + " Days";
+                }
+            } else {
+                displayTime = numMonth + " Months";
+            }
+        } else {
+            displayTime = numYear + " Years";
+        }
+        if(dtf.format(now.plusDays(-1)).equals(dtf.format(sendTime))){
+            displayTime = "Yesterday";
+        }
+        System.out.println(displayTime);
+                System.out.println(now.compareTo(sendTime));
+
     }
 }

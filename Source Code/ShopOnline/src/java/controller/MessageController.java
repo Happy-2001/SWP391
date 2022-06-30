@@ -33,12 +33,33 @@ import model.User;
 @WebServlet(name = "MessageController", urlPatterns = {"/message"})
 public class MessageController extends HttpServlet {
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        MessageDAO mdao = new MessageDAO();
+        HttpSession session = request.getSession();
+        Object objUser = session.getAttribute("userlogged");
+        String userID = "";
+        if(objUser == null){
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }else{
+            User user = (User) objUser;
         
+        UserDAO udao = new UserDAO();
+        GroupDAO gdao = new GroupDAO();
+        List<String> listUserAdminID = udao.listUserAdminID();
+        ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
+
+        request.setAttribute("listGroupChat", listGroupChat);
+        request.setAttribute("listUserAdminID", listUserAdminID);
+        request.setAttribute("groupid", listGroupChat.get(0).getId());
+
+        ArrayList<Message> listMessage = mdao.getAllMessageofUser(listGroupChat.get(0).getId(), String.valueOf(user.getUserid()));
+        request.setAttribute("listMess", listMessage);
+
+        request.getRequestDispatcher("admin/message.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -64,15 +85,13 @@ public class MessageController extends HttpServlet {
             mdao.addRecipientMessage(toid, maxMessID);
 
 //            response.sendRedirect("HomeController");
-        response.sendRedirect("home");
-        
+            response.sendRedirect("home");
+
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
         }
 
     }
-
-   
 
 }

@@ -72,6 +72,7 @@ svg rect {
 }
 .card-body{
     overflow: auto;
+    height: 500px;
 }
 /* width */
 .card-body::-webkit-scrollbar {
@@ -80,12 +81,12 @@ svg rect {
    
 /* Handle */
 .card-body::-webkit-scrollbar-thumb {
-    background: #50b5ba; 
+    background: #ffe2d9; 
 }
   
 /* Handle on hover */
 .card-body::-webkit-scrollbar-thumb:hover {
-    background: #50b5ba; 
+    background: #ffe2d9; 
 }
 
 /* --------------------------------------------------- */
@@ -121,13 +122,13 @@ svg rect {
     width: fit-content;
 }
 .content_message .MYS{
-    background-color: #50b5ba;
-    color: white;
+    background-color: #ffe2d9;
+    color: black;
 }
 
 .content_message .MYR{
     margin-left: 2%;
-    background-color: #e4e6eb;
+    background-color: white;
     color: black;
 }
 /* --------------------------------------------------- */
