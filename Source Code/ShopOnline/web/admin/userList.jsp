@@ -117,12 +117,106 @@
             </div>
         </div>
     </div>
-        <div class="blog-content">
-                                    <div class="title-blog">
-                                        <a href="blogdetail?id=${b.id}" class="h3">${b.content}</a>
-                                        <p>${b.description}</p>
-                                    </div>
-                                </div>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 menu-bar">
+                <div class="menu">
+                    <ul class="menu-links">
+                        <li class="nav-link">
+                            <a class="active" href="#">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-chart-simple"></i>
+                                </span>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-receipt fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Orders</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-link">
+                            <a href="/ShopOnline/postDetail.jsp">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-box fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Products</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                            <a href="userList.jsp">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-user-group fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">User List</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-link">
+                            <a href="admin/Customers.jsp">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-user-group fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Customers</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-link">
+                            <a href="/ShopOnline/message">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-envelope fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Chats</span>
+                                <span class="badge bg-success rounded-circle ms-auto">1</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="#">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-bell fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Notifications</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a data-bs-toggle="collapse" href="#sub-list3">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-comment-dots fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Feedback</span>
+                                <span class="sub-menu-arrow">
+                                    <i class="fa-solid fa-arrow-right-long"></i>
+                                </span>
+                            </a>
+                            <ul class="collapse" id="sub-list3">
+                                <li><a href="#">Feedback List</a></li>
+                                <li><a href="#">Feedback Details</a></li>
+                            </ul>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="account.html">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-circle-user fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Accounts</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 main">
+            </div>
+        </div>
+    </div>
 
         
     </body>

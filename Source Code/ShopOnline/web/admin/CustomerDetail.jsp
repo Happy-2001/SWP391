@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/Dashboard.css">
-    <link rel="stylesheet" href="../css/ProfileAd.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="stylesheet" href="css/ProfileAd.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -28,7 +28,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="dashboard">
+                            <a href="Dashboard.jsp">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>
@@ -55,7 +55,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a class="active" href="Customers.jsp">
+                            <a class="active" href="#">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group"></i>
                                 </span>
@@ -64,7 +64,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="/ShopOnline/message">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -110,16 +110,16 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="Customers.jsp">Customers</a>
+                            <a href="/ShopOnline/CusController">Customers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
                 </div>
                 <div class="content">
-                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
+                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="../images/big-img-02.jpg" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${sessionScope.cusID}" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
@@ -133,10 +133,12 @@
                                 </a>
                             </div>
                         </div>
-                        <form action="">
+                        <form action ="UploadImage" method="POST" enctype="multipart/form-data">
                             <div class="ava-popup collapse" id="e-ava">
                                 <div class="edit-img">
+                                    <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
+                                        <input type="hidden" name="cusID" value="${sessionScope.cusID}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -153,7 +155,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <script>
+                                    <div class="del-btn">
+                                        <input class="btn btn-icon" type="submit" value="Save">
+                                        <input class="btn btn-icon" value="Cancel" data-bs-toggle="collapse" data-bs-target="#e-ava">
+                                    </div>
+                                </div>
+                                <script>
                                         document.querySelector("html").classList.add('js');
 
                                         var fileInput = document.getElementById("submit-file"),  
@@ -178,12 +185,7 @@
                                         deleBtn.onclick = function(){
                                             popupDis.style.display = "none";
                                         }
-                                    </script>
-                                    <div class="del-btn">
-                                        <input class="btn btn-icon" type="submit" value="Save">
-                                        <input class="btn btn-icon" value="Cancel" data-bs-toggle="collapse" data-bs-target="#e-ava">
-                                    </div>
-                                </div>
+                                </script>
                             </div>
                         </form>
                     </div>

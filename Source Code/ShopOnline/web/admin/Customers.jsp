@@ -10,9 +10,9 @@
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/Dashboard.css">
-    <link rel="stylesheet" href="../css/Customers.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="stylesheet" href="css/Customers.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -107,7 +107,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
                             <i class="fa-solid fa-globe fa-sm"></i>
-                            <a href="#">Dashboard</a>
+                            <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Customers</li>
                     </ul>
@@ -131,23 +131,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="cuslist" var="cus">
+                                <c:forEach items="${cuslist}" var="cus">
                                     <tr class="customers">
                                         <td>
-                                            <input class="form-check-input" type="checkbox" value="cus.us.userid">
+                                            <input class="form-check-input" type="checkbox" value="${cus.us.userid}">
                                         </td>
                                         <td>
                                             <a href="#">#1</a>
                                         </td>
                                         <td>
                                             <div class="avatar avatar-info">
-                                                <span class="avatar-text rounded-circle">A</span>
+                                                <span class="avatar-text rounded-circle">${cus.us.lastname.charAt(0)}</span>
                                             </div>
                                         </td>
                                         <td>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</td>
                                         <td>${cus.us.email}</td>
                                         <td>${cus.uad.province.name}</td>
-                                        <td>${cus.us.dob}</td>
+                                        <td></td>
                                         <td>
                                             <span class="badge bg-success">Active</span>
                                         </td>
@@ -170,10 +170,10 @@
                             <li class="page-item">
                                 <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
                             </li>
-                          </ul>
+                        </ul>
                     </div>
                 </div>
-                <script src="../js/list-select.js"></script>
+                <script src="js/list-select.js"></script>
             </div>
         </div>
     </div>
