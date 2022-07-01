@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.Customers"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -145,10 +144,10 @@
                                                 <span class="avatar-text rounded-circle">A</span>
                                             </div>
                                         </td>
-                                        <td>${cus.user.firstname} ${cus.user.middlename} ${cus.user.lastname}</td>
-                                        <td>${cus.user.email}</td>
+                                        <td>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</td>
+                                        <td>${cus.us.email}</td>
                                         <td>${cus.uad.province.name}</td>
-                                        <td>${cus.user.dob}</td>
+                                        <td>${cus.us.dob}</td>
                                         <td>
                                             <span class="badge bg-success">Active</span>
                                         </td>
@@ -158,7 +157,6 @@
                                             </div>
                                         </td>
                                     </tr>
-
                                 </c:forEach>
                             </tbody>
                         </table>

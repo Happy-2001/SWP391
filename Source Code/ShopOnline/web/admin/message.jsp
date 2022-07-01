@@ -29,7 +29,7 @@
                     <div class="menu">
                         <ul class="menu-links">
                             <li class="nav-link">
-                                <a href="admin/Dashboard.jsp">
+                                <a href="/ShopOnline/dashboard">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-chart-simple fa-xl"></i>
                                     </span>

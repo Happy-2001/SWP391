@@ -5,23 +5,23 @@ package model;
  * @author anhvo
  */
 public class Customers {
-    User user;
+    User us;
     Address uad;
 
     public Customers() {
     }
 
     public Customers(User user, Address uad) {
-        this.user = user;
+        this.us = user;
         this.uad = uad;
     }
 
     public User getUs() {
-        return user;
+        return us;
     }
 
     public void setUs(User user) {
-        this.user = user;
+        this.us = user;
     }
 
     public Address getUad() {

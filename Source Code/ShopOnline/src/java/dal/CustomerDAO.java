@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Cart;
 import model.Customers;
-import model.Product;
 import model.Role;
 import model.User;
 import model.Address;
@@ -32,7 +30,8 @@ public class CustomerDAO {
                     "(SELECT * FROM `province` JOIN `user_address` \n" +
                     "ON `province`.`id` = `user_address`.`provinceID`) AS uad \n" +
                     "ON ua.`user_id` = uad.`userID`)\n" +
-                    "INNER JOIN `electronicaddress` AS eca ON ua.`user_id` = eca.`eaID`)";
+                    "INNER JOIN `electronicaddress` AS eca ON ua.`user_id` = eca.`eaID`) \n"+
+                    "WHERE ur.roleID = 3";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
