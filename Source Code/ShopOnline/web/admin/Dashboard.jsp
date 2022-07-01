@@ -153,7 +153,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="Customers.jsp">
+                            <a href="/ShopOnline/CusController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group fa-xl"></i>
                                 </span>
