@@ -104,18 +104,18 @@ public class GroupDAO {
         ArrayList<GroupChat> list = new ArrayList<>();
         try {
             String sql = " SELECT tb2.* FROM\n"
-                    + " (SELECT groupName, MAX(createDate)as createDate FROM \n"
-                    + "(SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
-                    + "(SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
-                    + "ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
-                    + "ON m.messageID = rs1.messageID) as rs2\n"
-                    + "group BY (groupName) ) as tb1\n"
-                    + "LEFT join\n"
-                    + "(SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
-                    + "(SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
-                    + "ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
-                    + "ON m.messageID = rs1.messageID) as tb2\n"
-                    + "ON tb2.createDate = tb1.createDate ";
+                    + "                  (SELECT groupName, MAX(createDate)as createDate FROM \n"
+                    + "                  (SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
+                    + "                  (SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
+                    + "                  ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
+                    + "                  ON m.messageID = rs1.messageID) as rs2\n"
+                    + "                  group BY (groupName) ) as tb1\n"
+                    + "                  LEFT join\n"
+                    + "                  (SELECT  mrID,groupName,m.messageBody,m.createDate,groupID FROM\n"
+                    + "                  (SELECT mr.messageID,mr.mrID,`group`.`groupName`,groupID FROM message_recipient mr INNER JOIN `Group` \n"
+                    + "                  ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
+                    + "                  ON m.messageID = rs1.messageID) as tb2\n"
+                    + "                 ON tb2.createDate = tb1.createDate ";
 
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
@@ -126,6 +126,8 @@ public class GroupDAO {
                 u.setId(rs.getString(1));
                 u.setName(rs.getString(2));
                 u.setContent(rs.getString(3));
+                
+                // get time
                 LocalDateTime sendTime = LocalDateTime.parse(rs.getString(4), dtf);
                 String displayTime = "";
                 int numYear = now.getYear() - sendTime.getYear();
@@ -157,6 +159,7 @@ public class GroupDAO {
                 }
                 u.setTime(displayTime);
 
+                u.setGroupID(rs.getString(5));
                 list.add(u);
             }
 
@@ -191,7 +194,7 @@ public class GroupDAO {
                     } else {
                         displayTime = numHour + " Hours";
                     }
-                }else {
+                } else {
                     displayTime = numDay + " Days";
                 }
             } else {
@@ -200,11 +203,11 @@ public class GroupDAO {
         } else {
             displayTime = numYear + " Years";
         }
-        if(dtf.format(now.plusDays(-1)).equals(dtf.format(sendTime))){
+        if (dtf.format(now.plusDays(-1)).equals(dtf.format(sendTime))) {
             displayTime = "Yesterday";
         }
         System.out.println(displayTime);
-                System.out.println(now.compareTo(sendTime));
+        System.out.println(now.compareTo(sendTime));
 
     }
 }

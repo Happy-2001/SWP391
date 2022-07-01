@@ -70,6 +70,8 @@ svg rect {
      box-shadow: 0 0 5px #c4cacc;
     
 }
+
+
 .card-body{
     overflow: auto;
     height: 500px;
@@ -77,16 +79,19 @@ svg rect {
 /* width */
 .card-body::-webkit-scrollbar {
     width: 5px;
+    display: none;
 }
    
 /* Handle */
 .card-body::-webkit-scrollbar-thumb {
-    background: #ffe2d9; 
+    background: #ffe2d9;
+    position: absolute;
 }
   
 /* Handle on hover */
-.card-body::-webkit-scrollbar-thumb:hover {
-    background: #ffe2d9; 
+.card-body:hover::-webkit-scrollbar {
+   width: 5px;
+    display: block;
 }
 
 /* --------------------------------------------------- */

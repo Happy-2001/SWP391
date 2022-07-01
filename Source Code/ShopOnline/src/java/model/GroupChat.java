@@ -10,16 +10,25 @@ package model;
  * @author Administrator
  */
 public class GroupChat {
-    private String id,name,content,time;
+    private String id,groupID,name,content,time;
 
     public GroupChat() {
     }
 
-    public GroupChat(String id, String name, String content, String time) {
+    public GroupChat(String id,String groupID, String name, String content, String time) {
         this.id = id;
+        this.groupID = groupID;
         this.name = name;
         this.content = content;
         this.time = time;
+    }
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
     }
 
     public String getId() {

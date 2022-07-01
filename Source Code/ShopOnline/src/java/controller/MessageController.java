@@ -50,12 +50,21 @@ public class MessageController extends HttpServlet {
         GroupDAO gdao = new GroupDAO();
         List<String> listUserAdminID = udao.listUserAdminID();
         ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
+        String groupID = "";
+        String mrID = request.getParameter("mrID");
+        if(mrID == null){
+            mrID = listGroupChat.get(0).getId();
+        }
+            for (GroupChat groupChat : listGroupChat) {
+                if(groupChat.getId().equals(mrID)){
+                    groupID = groupChat.getGroupID();
+                }
+            }
 
         request.setAttribute("listGroupChat", listGroupChat);
         request.setAttribute("listUserAdminID", listUserAdminID);
-        request.setAttribute("groupid", listGroupChat.get(0).getId());
-
-        ArrayList<Message> listMessage = mdao.getAllMessageofUser(listGroupChat.get(0).getId(), String.valueOf(user.getUserid()));
+        request.setAttribute("mrID", mrID);
+        ArrayList<Message> listMessage = mdao.getAllMessageofUser(groupID,String.valueOf( user.getUserid()));
         request.setAttribute("listMess", listMessage);
 
         request.getRequestDispatcher("admin/message.jsp").forward(request, response);

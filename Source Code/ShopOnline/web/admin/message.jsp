@@ -132,7 +132,7 @@
                                                 <div class="list-group list-group-flush">
                                                     <c:forEach items="${listGroupChat}" var="listGroupChat">
                                                         <c:choose>
-                                                            <c:when test="${listGroupChat.id eq groupid}">
+                                                            <c:when test="${listGroupChat.id eq mrID}">
                                                                 <div class="list-group-item active">
                                                                     <div class="pe-3">
                                                                         <span class="avatar">
@@ -162,7 +162,7 @@
                                                                 </div>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <div class="list-group-item ">
+                                                                <div class="list-group-item " onclick="changeGroupchat(${listGroupChat.id})">
                                                                     <div class="pe-3">
                                                                         <span class="avatar">
                                                                             <img src="images/default-avatar.jpg" class="rounded-circle" alt="image">
@@ -193,7 +193,7 @@
                                                         </c:choose>
 
                                                     </c:forEach>
-
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -255,5 +255,11 @@
                 </div>
             </div>
         </div>
+                                        <script>
+        function changeGroupchat(id) {
+            window.location.href = 'message?mrID=' + id;
+        }
+    </script>
     </body>
+    
 </html>
