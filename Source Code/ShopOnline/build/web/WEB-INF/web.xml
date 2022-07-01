@@ -104,6 +104,10 @@
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>controller.AddToCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CusController</servlet-name>
+        <servlet-class>controller.CusController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>AddToCart</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusController</servlet-name>
+        <url-pattern>/CusController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

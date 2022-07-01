@@ -1,3 +1,7 @@
+.show{
+        transition: ease-in 0.5s;
+
+}
 span.title {
     color: #BBB;
     font-family: 'Open Sans', sans-serif;
@@ -63,23 +67,31 @@ svg rect {
     position: fixed !important;
     bottom: 40px;
     right: 5%;
+     box-shadow: 0 0 5px #c4cacc;
+    
 }
+
+
 .card-body{
     overflow: auto;
+    height: 500px;
 }
 /* width */
 .card-body::-webkit-scrollbar {
     width: 5px;
+    display: none;
 }
    
 /* Handle */
 .card-body::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #ffe2d9;
+    position: absolute;
 }
   
 /* Handle on hover */
-.card-body::-webkit-scrollbar-thumb:hover {
-    background: #50b5ba; 
+.card-body:hover::-webkit-scrollbar {
+   width: 5px;
+    display: block;
 }
 
 /* --------------------------------------------------- */
@@ -115,13 +127,13 @@ svg rect {
     width: fit-content;
 }
 .content_message .MYS{
-    background-color: #50b5ba;
-    color: white;
+    background-color: #ffe2d9;
+    color: black;
 }
 
 .content_message .MYR{
     margin-left: 2%;
-    background-color: #e4e6eb;
+    background-color: white;
     color: black;
 }
 /* --------------------------------------------------- */
