@@ -26,7 +26,7 @@
 }
 .ava-popup .edit-img{
     display: flex;
-    gap: 30px;
+    gap: 20px;
     height: 100%;
     align-items: center;
     flex-direction: column;
