@@ -10,17 +10,35 @@ package model;
  * @author Administrator
  */
 public class GroupChat {
-    private String id,groupID,name,content,time;
+    private String id,groupID,messageID,name,content,time,creatorMessage;
 
     public GroupChat() {
     }
 
-    public GroupChat(String id,String groupID, String name, String content, String time) {
+    public GroupChat(String id,String groupID,String messageID, String name, String content, String time,String creatorMessage) {
         this.id = id;
         this.groupID = groupID;
+        this.messageID = messageID;
         this.name = name;
         this.content = content;
         this.time = time;
+        this.creatorMessage = creatorMessage;
+    }
+
+    public String getCreatorMessage() {
+        return creatorMessage;
+    }
+
+    public void setCreatorMessage(String creatorMessage) {
+        this.creatorMessage = creatorMessage;
+    }
+
+    public String getMessageID() {
+        return messageID;
+    }
+
+    public void setMessageID(String messageID) {
+        this.messageID = messageID;
     }
 
     public String getGroupID() {

@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="model.Message"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -107,7 +109,7 @@
                     <div class="content ">    
                         <div class="row chat-block">
                             <!-- begin::chat sidebar -->
-                            <div class="col-lg-4 chat-sidebar">
+                            <div class="col-lg-5 chat-sidebar">
                                 <!-- begin::chat sidebar search -->
                                 <div class="chat-sidebar-header">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -143,7 +145,7 @@
                                                                     <div class="flex-grow- 1">
                                                                         <p class="mb-1">${listGroupChat.name}</p>
                                                                         <span class="text-muted">
-                                                                            ${listGroupChat.content}
+                                                                            ${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                         </span>
                                                                     </div>
                                                                     <div class="text-end ms-auto d-flex flex-column">
@@ -172,7 +174,7 @@
                                                                     <div class="flex-grow- 1">
                                                                         <p class="mb-1">${listGroupChat.name}</p>
                                                                         <span class="text-muted">
-                                                                            ${listGroupChat.content}
+                                                                            ${listGroupChat.creatorMessage} ${listGroupChat.content}
                                                                         </span>
                                                                     </div>
                                                                     <div class="text-end ms-auto d-flex flex-column">
@@ -193,7 +195,7 @@
                                                         </c:choose>
 
                                                     </c:forEach>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -203,28 +205,48 @@
                             </div>
 
                             <!-- begin::chat content -->
-                            <div class="col-lg-8 chat-content">
+                            <div class="col-lg-7 chat-content">
                                 <!-- begin::messages -->
                                 <div class="messages card">
                                     <div class="card-body">
+                                        <c:set var = "now" value = "<%= new java.util.Date()%>"  />
+                                        <fmt:formatDate var="timeMess"  pattern="yyyy-MM-dd" value="${now}"/>
+
                                         <c:forEach items="${listMess}" var="mess">
                                             <div class="content_message">
+                                                <c:set var = "timeMessOld2" value = "${mess.createDate}"/>
+                                                <c:set var = "timeMess2" value = "${fn:substring(timeMessOld2, 0, 10)}" />
+                                                <c:set var = "hourMessOld2" value = "${mess.createDate}"/>
+                                                <c:set var = "hourMess2" value = "${fn:substring(timeMessOld2, 11, 16)}" />
+
                                                 <c:choose>
                                                     <c:when test="${listUserAdminID.contains(mess.fromID)}">
-                                                        <div class="message-item message-divider">
-                                                            <span>Today</span>
+
+                                                        <div  class="message-item message-divider">
+                                                            <c:if test="${timeMess ne timeMess2}">
+                                                                <c:set var = "timeMess" value = "${timeMess2}"  />
+                                                                <span>${timeMess}</span>
+                                                            </c:if>
+
                                                         </div>
 
                                                         <div class="divMYS">
                                                             <div class="MYS">
                                                                 <p>${mess.content}</p>
                                                             </div>
-                                                            <span class="text-time">02:30 PM</span>
+                                                            <span class="text-time">${hourMess2}</span>
                                                         </div>
                                                     </c:when>
                                                     <c:otherwise>
+                                                        <div  class="message-item message-divider">
+                                                            <c:if test="${timeMess ne timeMess2}">
+                                                                <c:set var = "timeMess" value = "${timeMess2}"  />
+                                                                <span>${timeMess}</span>
+                                                            </c:if>
+
+                                                        </div>
                                                         <div class="divMYR">
-                                                            <span class="text-time">02:3PM</span>
+                                                            <span class="text-time">${hourMess2}</span>
                                                             <div class="MYR">
                                                                 <p>${mess.content}</p>
                                                             </div>
@@ -243,8 +265,9 @@
                                                     <i class="fa-solid fa-paperclip"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Write message...">
-                                            <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
+                                            <input name="contentsend" type="text" class="form-control" placeholder="Write message...">
+
+                                            <button name="getFROMandTO" value="${sessionScope.userlogged.userid};${listMess.get(0).toID};${mrID};messageAdmin" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
                                         </form>
                                     </div>
                                 </div>
@@ -255,11 +278,11 @@
                 </div>
             </div>
         </div>
-                                        <script>
-        function changeGroupchat(id) {
-            window.location.href = 'message?mrID=' + id;
-        }
-    </script>
+        <script>
+            function changeGroupchat(id) {
+                window.location.href = 'message?mrID=' + id;
+            }
+        </script>
     </body>
-    
+
 </html>

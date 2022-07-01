@@ -100,22 +100,22 @@ public class GroupDAO {
         return groupID;
     }
 
-    public ArrayList<GroupChat> getGroupChat() {
+    public ArrayList<GroupChat> getGroupChat() {          //lấy tin nhắn cuối cùng được gửi trong 1 group chat để hiển thị
         ArrayList<GroupChat> list = new ArrayList<>();
         try {
             String sql = " SELECT tb2.* FROM\n"
-                    + "                  (SELECT groupName, MAX(createDate)as createDate FROM \n"
-                    + "                  (SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
-                    + "                  (SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
+                    + "                       (SELECT groupName, MAX(createDate)as createDate FROM \n"
+                    + "                             (SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
+                    + "                      (SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
                     + "                  ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
-                    + "                  ON m.messageID = rs1.messageID) as rs2\n"
-                    + "                  group BY (groupName) ) as tb1\n"
-                    + "                  LEFT join\n"
-                    + "                  (SELECT  mrID,groupName,m.messageBody,m.createDate,groupID FROM\n"
-                    + "                  (SELECT mr.messageID,mr.mrID,`group`.`groupName`,groupID FROM message_recipient mr INNER JOIN `Group` \n"
-                    + "                  ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
-                    + "                  ON m.messageID = rs1.messageID) as tb2\n"
-                    + "                 ON tb2.createDate = tb1.createDate ";
+                    + "           ON m.messageID = rs1.messageID) as rs2\n"
+                    + "                      group BY (groupName) ) as tb1\n"
+                    + "                    LEFT join\n"
+                    + "                       (SELECT  mrID,groupName,m.messageBody,m.createDate,groupID,m.messageID FROM\n"
+                    + "(SELECT mr.messageID,mr.mrID,`group`.`groupName`,groupID FROM message_recipient mr INNER JOIN `Group` \n"
+                    + "ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
+                    + "                                   ON m.messageID = rs1.messageID) as tb2\n"
+                    + "                                 ON tb2.createDate = tb1.createDate ORDER BY createDate DESC";
 
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
@@ -126,7 +126,7 @@ public class GroupDAO {
                 u.setId(rs.getString(1));
                 u.setName(rs.getString(2));
                 u.setContent(rs.getString(3));
-                
+
                 // get time
                 LocalDateTime sendTime = LocalDateTime.parse(rs.getString(4), dtf);
                 String displayTime = "";
@@ -141,25 +141,27 @@ public class GroupDAO {
                                 int numMinute = now.getMinute() - sendTime.getMinute();
                                 if (numMinute == 0) {
                                     int numSecond = now.getSecond() - sendTime.getSecond();
-                                    displayTime = numSecond + " Seconds";
+                                    displayTime = numSecond + " second ago";
                                 } else {
-                                    displayTime = numMinute + " Minutes";
+                                    displayTime = numMinute + " minute ago";
                                 }
                             } else {
-                                displayTime = numHour + " Hours";
+                                displayTime = numHour + " hour ago";
                             }
                         } else {
-                            displayTime = numDay + " Days";
+                            displayTime = numDay + " day ago";
                         }
                     } else {
-                        displayTime = numMonth + " Months";
+                        displayTime = numMonth + " month ago";
                     }
                 } else {
-                    displayTime = numYear + " Years";
+                    displayTime = numYear + " year ago";
                 }
                 u.setTime(displayTime);
 
                 u.setGroupID(rs.getString(5));
+                   u.setMessageID(rs.getString(6)); // tin nhắn được gửi cuối cùng trong nhóm
+
                 list.add(u);
             }
 
@@ -176,38 +178,8 @@ public class GroupDAO {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime sendTime = LocalDateTime.parse("2022-06-29 00:12:12", dtf);
         String displayTime = "";
-        int numYear = now.getYear() - sendTime.getYear();
-        if (numYear == 0) {
-            int numMonth = now.getMonthValue() - sendTime.getMonthValue();
-            if (numMonth == 0) {
-                int numDay = now.getDayOfMonth() - sendTime.getDayOfMonth();
-                if (numDay == 0) {
-                    int numHour = now.getHour() - sendTime.getHour();
-                    if (numHour == 0) {
-                        int numMinute = now.getMinute() - sendTime.getMinute();
-                        if (numMinute == 0) {
-                            int numSecond = now.getSecond() - sendTime.getSecond();
-                            displayTime = numSecond + " Seconds";
-                        } else {
-                            displayTime = numMinute + " Minutes";
-                        }
-                    } else {
-                        displayTime = numHour + " Hours";
-                    }
-                } else {
-                    displayTime = numDay + " Days";
-                }
-            } else {
-                displayTime = numMonth + " Months";
-            }
-        } else {
-            displayTime = numYear + " Years";
-        }
-        if (dtf.format(now.plusDays(-1)).equals(dtf.format(sendTime))) {
-            displayTime = "Yesterday";
-        }
-        System.out.println(displayTime);
-        System.out.println(now.compareTo(sendTime));
+        
+        
 
     }
 }

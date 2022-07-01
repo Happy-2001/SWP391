@@ -10,12 +10,66 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Role;
 import model.User;
 
 public class UserDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
 
+    public User getUserRole(String username) { //phan nay can dung, dung ai xoa      Ok toi se khong xoa dau!!!
+        try {
+            String sql = "SELECT ua.user_id, ua.user_name, roleID, name FROM `user_accounts` as ua JOIN\n"
+                    + "(SELECT ur.roleID, name, ur.userID FROM `user_role` as ur \n"
+                    + "JOIN `roles` as r ON ur.roleID = r.roleID) as rs\n"
+                    + "ON ua.user_id = rs.userID WHERE ua.user_name = ?";
+
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                User u = new User();
+                u.setUserid(rs.getInt("ua.user_id"));
+                u.setUsername(rs.getString("ua.user_name"));
+                u.setAuthority(new Role(rs.getInt("roleID"), rs.getString("name")));
+                return u;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoleDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+
+    public User getUserByMessageID(String messageID) {
+        User u = new User();
+        try {
+            String sql = "SELECT ua.* FROM messages m INNER JOIN user_accounts ua \n"
+                    + "ON ua.user_id = m.creatorID \n"
+                    + "INNER JOIN user_role ur \n"
+                    + "ON ur.userID = ua.user_id\n"
+                    + "INNER JOIN roles r\n"
+                    + "ON r.roleID = ur.roleID\n"
+                    + "WHERE r.name LIKE 'Admin' and messageID = ?";
+
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, messageID);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+
+                u.setUserid(rs.getInt(1));
+                u.setLastname(rs.getString(6));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoleDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return u;
+    }
+    
     public User getUser(String email, String password) {  // cần update data cho table electoronicaddress, sau đó có thể sử dụng hàm này(sql hàm chưa làm lại) done
         String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
                 + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"

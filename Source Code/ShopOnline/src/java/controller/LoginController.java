@@ -57,7 +57,8 @@ public class LoginController extends HttpServlet {
             
             //phan nay da chay k can fix lai
             RoleDAO roledb = new RoleDAO();
-            User ur = roledb.getUserRole(username);
+            UserDAO udao = new UserDAO();
+            User ur = udao.getUserRole(username);
             
             HttpSession session = request.getSession();
 

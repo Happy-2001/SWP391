@@ -41,33 +41,53 @@ public class MessageController extends HttpServlet {
         HttpSession session = request.getSession();
         Object objUser = session.getAttribute("userlogged");
         String userID = "";
-        if(objUser == null){
+        if (objUser == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        }else{
+        } else {
             User user = (User) objUser;
-        
-        UserDAO udao = new UserDAO();
-        GroupDAO gdao = new GroupDAO();
-        List<String> listUserAdminID = udao.listUserAdminID();
-        ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
-        String groupID = "";
-        String mrID = request.getParameter("mrID");
-        if(mrID == null){
-            mrID = listGroupChat.get(0).getId();
-        }
+
+            UserDAO udao = new UserDAO();
+            GroupDAO gdao = new GroupDAO();
+            RoleDAO rdao = new RoleDAO();
+
+            List<String> listAdminID = udao.listUserAdminID();
+            List<String> listUserAdminID = udao.listUserAdminID();
+            ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
+            String groupID = "";
+            String mrID = request.getParameter("mrID");
+            if (mrID == null) {
+                mrID = listGroupChat.get(0).getId();
+            }
             for (GroupChat groupChat : listGroupChat) {
-                if(groupChat.getId().equals(mrID)){
+                if (groupChat.getId().equals(mrID)) {
                     groupID = groupChat.getGroupID();
                 }
+                User creator = udao.getUserByMessageID(groupChat.getMessageID());
+                if (listAdminID.contains(String.valueOf(creator.getUserid())) && creator.getUserid() != user.getUserid()) {
+                    groupChat.setCreatorMessage(creator.getLastname() + ": ");
+                }
+                if (!listAdminID.contains(String.valueOf(creator.getUserid()))) {
+                    groupChat.setCreatorMessage("");
+                }
+                if (creator.getUserid() == user.getUserid()) {
+                    groupChat.setCreatorMessage("You: ");
+                }
+                if(groupChat.getContent().length() > 20){
+                    String newContent = groupChat.getContent().substring(0, 20)+"...";
+                    groupChat.setContent(newContent);
+                }
+
             }
 
-        request.setAttribute("listGroupChat", listGroupChat);
-        request.setAttribute("listUserAdminID", listUserAdminID);
-        request.setAttribute("mrID", mrID);
-        ArrayList<Message> listMessage = mdao.getAllMessageofUser(groupID,String.valueOf( user.getUserid()));
-        request.setAttribute("listMess", listMessage);
-
-        request.getRequestDispatcher("admin/message.jsp").forward(request, response);
+            request.setAttribute("listGroupChat", listGroupChat);
+            request.setAttribute("listUserAdminID", listUserAdminID);
+            request.setAttribute("mrID", mrID);
+            ArrayList<Message> listMessage = mdao.getAllMessageofUser(groupID, String.valueOf(user.getUserid()));
+            request.setAttribute("listMess", listMessage);
+            for (GroupChat m : listGroupChat) {
+                response.getWriter().println(m.getCreatorMessage() + " 9");
+            }
+            request.getRequestDispatcher("admin/message.jsp").forward(request, response);
         }
     }
 
@@ -92,10 +112,13 @@ public class MessageController extends HttpServlet {
 
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
+            String type = getFROMandTOsplit[3]; // check chuyển hướng sang message.jsp
+            if (type == null) {
+                response.sendRedirect("message?mrID=" + getFROMandTOsplit[2]);
+            } else {
+                response.sendRedirect("home");
 
-//            response.sendRedirect("HomeController");
-            response.sendRedirect("home");
-
+            }
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
