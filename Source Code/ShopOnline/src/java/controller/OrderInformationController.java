@@ -90,18 +90,18 @@ public class OrderInformationController extends HttpServlet {
 
 }
 /*
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        OrderDAO dao = new OrderDAO();
-        CartDAO cartDao = new CartDAO();
-        List<Cart> carts = cartDao.listById(Integer.parseInt(id));
-        Orderlist o = dao.listOrderById(Integer.parseInt(id));
-        int total = cartDao.getAmountByID(Integer.parseInt(id));
-        request.setAttribute("total", total);
-        request.setAttribute("order", o);
-        request.setAttribute("carts", carts);
-        request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
+        processRequest(request, response);
     }
-*/
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
+
