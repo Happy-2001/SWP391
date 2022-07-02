@@ -64,7 +64,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="/ShopOnline/message">
+                            <a href="message">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -83,7 +83,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="#sub-list3">
+                            <a href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
                                 </span>
@@ -119,13 +119,13 @@
                     <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${sessionScope.cusID}" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${cus.us.userid}" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5>Ngo Vu Anh Vo</h5>
+                                <h5>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -209,15 +209,15 @@
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="Adek Kembar" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" value="${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="adek-kembar" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" value="${cus.us.username}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="wtaffe3@addthis.com" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" value="${cus.us.email}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
@@ -339,14 +339,14 @@
                                                                 <option value="">All</option>
                                                                 <option value="">Admin</option>
                                                                 <option value="">User</option>
-                                                                <option value="" selected="">Staff</option>
+                                                                <option value="" selected>Customer</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
                                                             <select class="form-select">
                                                                 <option value="">All</option>
-                                                                <option value="" selected="">Active</option>
+                                                                <option value="" selected>Active</option>
                                                                 <option value="">Blocked</option>
                                                             </select>
                                                         </div>
@@ -371,7 +371,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" value="+65195892151" spellcheck="false" data-ms-editor="true">
+                                                        <input type="text" class="form-control" value="${cus.us.phone}">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Website</label>
@@ -381,14 +381,6 @@
                                                         <label class="form-label">Languages</label>
                                                         <input type="text" class="form-control" value="http://laborasyon.com/" spellcheck="false" data-ms-editor="true">
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Address Line 1</label>
-                                                        <input type="text" class="form-control" value="A-65, Belvedere Streets" spellcheck="false" data-ms-editor="true">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Address Line 2</label>
-                                                        <input type="text" class="form-control" value="" spellcheck="false" data-ms-editor="true">
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
@@ -396,17 +388,17 @@
                                                         <input type="text" class="form-control" value="1868" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">City</label>
-                                                        <input type="text" class="form-control" value="New York" spellcheck="false" data-ms-editor="true">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">State</label>
-                                                        <input type="text" class="form-control" value="New York" spellcheck="false" data-ms-editor="true">
+                                                        <label class="form-label">Province</label>
+                                                        <input type="text" class="form-control" value="${cus.uad.province.name}">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="United States" spellcheck="false" data-ms-editor="true">
+                                                        <input type="text" class="form-control" value="Viet Nam">
                                                     </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" value="A-65, Belvedere Streets" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
                                         </div>

@@ -5,11 +5,9 @@ package model;
  * @author Administrator
  */
 public class Address {
-    private int userID;
     private int countryID;
     Provinces province;
-    private int districtID;
-    private int subDistrictID;
+    District district;
     private int eaID;
     private String addressDetail;
 
@@ -19,23 +17,13 @@ public class Address {
     public Address(Provinces province) {
         this.province = province;
     }
-    
-    public Address(int userID, int countryID, Provinces province, int districtID, int subDistrictID, int eaID, String addressDetail) {
-        this.userID = userID;
+
+    public Address(int countryID, Provinces province, District district, int eaID, String addressDetail) {
         this.countryID = countryID;
         this.province = province;
-        this.districtID = districtID;
-        this.subDistrictID = subDistrictID;
+        this.district = district;
         this.eaID = eaID;
         this.addressDetail = addressDetail;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public int getCountryID() {
@@ -54,20 +42,12 @@ public class Address {
         this.province = province;
     }
 
-    public int getDistrictID() {
-        return districtID;
+    public District getDistrict() {
+        return district;
     }
 
-    public void setDistrictID(int districtID) {
-        this.districtID = districtID;
-    }
-
-    public int getSubDistrictID() {
-        return subDistrictID;
-    }
-
-    public void setSubDistrictID(int subDistrictID) {
-        this.subDistrictID = subDistrictID;
+    public void setDistrict(District district) {
+        this.district = district;
     }
 
     public int getEaID() {
@@ -85,5 +65,5 @@ public class Address {
     public void setAddressDetail(String addressDetail) {
         this.addressDetail = addressDetail;
     }
-
+    
 }
