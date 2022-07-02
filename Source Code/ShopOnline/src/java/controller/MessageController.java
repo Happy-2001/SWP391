@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.AddressDAO;
 import dal.GroupDAO;
 import dal.MessageDAO;
 import dal.RoleDAO;
@@ -49,7 +50,8 @@ public class MessageController extends HttpServlet {
             UserDAO udao = new UserDAO();
             GroupDAO gdao = new GroupDAO();
             RoleDAO rdao = new RoleDAO();
-
+            AddressDAO adao = new AddressDAO();
+            
             List<String> listAdminID = udao.listUserAdminID();
             List<String> listUserAdminID = udao.listUserAdminID();
             ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
@@ -72,11 +74,17 @@ public class MessageController extends HttpServlet {
                 if (creator.getUserid() == user.getUserid()) {
                     groupChat.setCreatorMessage("You: ");
                 }
-                if(groupChat.getContent().length() > 20){
-                    String newContent = groupChat.getContent().substring(0, 20)+"...";
+                if(groupChat.getContent().length() > 15){
+                    String newContent = groupChat.getContent().substring(0, 15)+"...";
                     groupChat.setContent(newContent);
                 }
-
+                
+               
+                groupChat.setCustomerID(gdao.getCustomerIDbyGroupID(groupChat.getGroupID()));  /// truyền id khách hàng trong group chat
+//                response.getWriter().println(groupChat.getGroupID() + " || "+ groupChat.getCustomerID());
+                 groupChat.setEaID(adao.getEaIDbyUserID(groupChat.getCustomerID()));
+//                                 response.getWriter().println(groupChat.getEaID() + " || "+ groupChat.getCustomerID());
+                groupChat.setCreatorIDMessage(groupChat.getMessageID());
             }
 
             request.setAttribute("listGroupChat", listGroupChat);

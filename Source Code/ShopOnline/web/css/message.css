@@ -136,6 +136,9 @@ svg rect {
     background-color: white;
     color: black;
 }
+p{
+    margin-bottom: 0 !important;
+}
 /* --------------------------------------------------- */
 .message .menu_message .send{
     padding-right: 0;
@@ -238,6 +241,17 @@ svg rect {
     bottom: 0;
     right: 10px;
 }
+img .avatar .avatarSeen  {
+   
+    width: 10%;
+    height: 50%;
+  
+}
+.fa-solid .fa-circle{
+    width: 10%;
+    height: 10%;
+    border-radius: 90%;
+}
 
 /* ------------------------------------------------- */
 /* .chat-content .empty-chat {
@@ -268,4 +282,7 @@ svg rect {
     font-size: 12px;
     color: #666;
     margin: 0 10px;
+}
+.checkIsread{
+    right: 0;
 }

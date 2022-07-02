@@ -6,6 +6,7 @@
 package dal;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +48,25 @@ public class AddressDAO {
         } finally {
             mysqlConnect.disconnect();
         }
+    }
+
+    public String getEaIDbyUserID(String UserID) {
+        String eaID = "";
+        String sql = "SELECT ea.eaID FROM `electronicaddress` ea INNER JOIN user_address ua \n"
+                + "ON ua.eaID = ea.eaID WHERE ua.userID = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1,UserID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                eaID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return eaID;
     }
 
 }

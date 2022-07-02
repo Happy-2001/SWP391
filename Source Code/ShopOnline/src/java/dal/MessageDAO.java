@@ -85,7 +85,7 @@ public class MessageDAO {
                 s.setToID(rs.getString("recipientGroupID"));
                 s.setContent(rs.getString("messageBody"));
                 s.setCreateDate(rs.getString("createDate"));
-                s.setIsread(rs.getString("isRead"));
+                s.setIsread(rs.getString("isRead") == null ? "0" : "1");
                 list.add(s);
             }
         } catch (SQLException ex) {
@@ -209,12 +209,29 @@ public class MessageDAO {
         }
         return messageID;
     }
+    public String getCreatorbyMessageID (String messageID) {
+        String creatorID = "";
+        String sql = "SELECT creatorID FROM messages WHERE messageID = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, messageID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                creatorID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return creatorID;
+    }
 
     public static void main(String[] args) {
         MessageDAO m = new MessageDAO();
         ArrayList<Message> list = m.getAllMessageofUser("1", "1");
         for (Message message : list) {
-            System.out.println(message.getContent());
+            System.out.println(message.getIsread());
         }
     }
 }

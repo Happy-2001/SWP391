@@ -132,21 +132,41 @@
                                         <div class="tab-pane fade active show" id="pills-home">
                                             <div class="chat-lists p-2">
                                                 <div class="list-group list-group-flush">
+                                                    <c:set var="isNull" value=" " />
                                                     <c:forEach items="${listGroupChat}" var="listGroupChat">
                                                         <c:choose>
                                                             <c:when test="${listGroupChat.id eq mrID}">
                                                                 <div class="list-group-item active">
                                                                     <div class="pe-3">
                                                                         <span class="avatar">
-                                                                            <img src="images/default-avatar.jpg" class="rounded-circle" alt="image">
+                                                                            <img class="avatar " src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
                                                                             <span class="online"></span>
                                                                         </span>
                                                                     </div>
                                                                     <div class="flex-grow- 1">
                                                                         <p class="mb-1">${listGroupChat.name}</p>
-                                                                        <span class="text-muted">
-                                                                            ${listGroupChat.creatorMessage}${listGroupChat.content}
-                                                                        </span>
+                                                                        <c:if test="${listGroupChat.creatorIDMessage eq listGroupChat.customerID}">
+                                                                            <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                </span>  <span class="text-muted">${listGroupChat.time}</span>
+                                                                            </c:if>
+                                                                            <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <span class="text-muted">${listGroupChat.creatorMessage}${listGroupChat.content}  ${listGroupChat.time}
+                                                                                </span>
+                                                                            </c:if>
+                                                                        </c:if>
+
+                                                                        <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
+                                                                            <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                </span>  <span class="text-muted">${listGroupChat.time}</span>
+                                                                            </c:if>
+                                                                            <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <span class="text-muted">${listGroupChat.creatorMessage}${listGroupChat.content}</span>  <span class="text-muted">${listGroupChat.time}
+                                                                                </span>
+                                                                            </c:if>
+                                                                        </c:if>
+
                                                                     </div>
                                                                     <div class="text-end ms-auto d-flex flex-column">
                                                                         <div class="dropdown ms-auto">
@@ -154,12 +174,29 @@
                                                                                 <i class="fa-solid fa-ellipsis"></i>
                                                                             </a>
                                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                                <a href="#" class="dropdown-item">Profile</a>
+                                                                                <a href="ProfileUser?userid=${listGroupChat.customerID}" class="dropdown-item">Profile</a>
                                                                                 <a href="#" class="dropdown-item">Mark as read</a>
                                                                                 <a href="#" class="dropdown-item">Delete</a>
                                                                             </div>
                                                                         </div>
-                                                                        <span class="small text-muted">${listGroupChat.time}</span>
+                                                                        <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
+
+                                                                            <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <span class="small text-muted "><i class="fa-solid fa-circle-check" style="color: #BBB"></i></span>
+                                                                                </c:if>
+
+                                                                            <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <span class="small text-muted ">
+                                                                                    <img class="avatar avatarSeen" src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
+                                                                                </span>
+                                                                            </c:if>
+
+                                                                        </c:if>
+
+                                                                        <c:if test="${listGroupChat.creatorIDMessage eq listGroupChat.customerID}">
+
+                                                                        </c:if>
+
                                                                     </div>
                                                                 </div>
                                                             </c:when>
@@ -167,15 +204,34 @@
                                                                 <div class="list-group-item " onclick="changeGroupchat(${listGroupChat.id})">
                                                                     <div class="pe-3">
                                                                         <span class="avatar">
-                                                                            <img src="images/default-avatar.jpg" class="rounded-circle" alt="image">
+                                                                            <img class="avatar " src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
                                                                             <span class="online"></span>
                                                                         </span>
                                                                     </div>
                                                                     <div class="flex-grow- 1">
                                                                         <p class="mb-1">${listGroupChat.name}</p>
-                                                                        <span class="text-muted">
-                                                                            ${listGroupChat.creatorMessage} ${listGroupChat.content}
-                                                                        </span>
+                                                                        <c:if test="${listGroupChat.creatorIDMessage eq listGroupChat.customerID}">
+                                                                            <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                </span>  <span class="text-muted">${listGroupChat.time}</span>
+                                                                            </c:if>
+                                                                            <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <span class="text-muted">${listGroupChat.creatorMessage}${listGroupChat.content}</span>  <span class="text-muted">${listGroupChat.time}
+                                                                                </span>
+                                                                            </c:if>
+                                                                        </c:if>
+
+                                                                        <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
+                                                                            <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                </span>  <span class="text-muted">${listGroupChat.time}</span>
+                                                                            </c:if>
+                                                                            <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <span class="text-muted">${listGroupChat.creatorMessage}${listGroupChat.content}</span>  <span class="text-muted">${listGroupChat.time}
+                                                                                </span>
+                                                                            </c:if>
+                                                                        </c:if>
+
                                                                     </div>
                                                                     <div class="text-end ms-auto d-flex flex-column">
                                                                         <div class="dropdown ms-auto">
@@ -183,12 +239,29 @@
                                                                                 <i class="fa-solid fa-ellipsis"></i>
                                                                             </a>
                                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                                <a href="#" class="dropdown-item">Profile</a>
+                                                                                <a href="ProfileUser?userid=${listGroupChat.customerID}" class="dropdown-item">Profile</a>
                                                                                 <a href="#" class="dropdown-item">Mark as read</a>
                                                                                 <a href="#" class="dropdown-item">Delete</a>
                                                                             </div>
                                                                         </div>
-                                                                        <span class="small text-muted">${listGroupChat.time}</span>
+
+                                                                        <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
+
+                                                                            <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <span class="small text-muted "><i class="fa-solid fa-circle-check" style="color: #BBB"></i></span>
+                                                                                </c:if>
+
+                                                                            <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <span class="small text-muted ">
+                                                                                    <img class="avatar avatarSeen" src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
+                                                                                </span>
+                                                                            </c:if>
+
+                                                                        </c:if>
+
+                                                                        <c:if test="${listGroupChat.creatorIDMessage eq listGroupChat.customerID}">
+
+                                                                        </c:if>
                                                                     </div>
                                                                 </div>
                                                             </c:otherwise>
@@ -221,7 +294,6 @@
 
                                                 <c:choose>
                                                     <c:when test="${listUserAdminID.contains(mess.fromID)}">
-
                                                         <div  class="message-item message-divider">
                                                             <c:if test="${timeMess ne timeMess2}">
                                                                 <c:set var = "timeMess" value = "${timeMess2}"  />
@@ -229,15 +301,26 @@
                                                             </c:if>
 
                                                         </div>
-
+                                                        
                                                         <div class="divMYS">
+                                                            <c:if test="${mess.isread eq 0}">
+                                                                <span class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color:#BBB "></i></span>
+                                                                </c:if>
+
+                                                            <c:if test="${mess.isread eq 1}">
+                                                                 <span class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color: #50b5ba"></i></span>
+                                                            </c:if>
                                                             <div class="MYS">
                                                                 <p>${mess.content}</p>
                                                             </div>
+                                                            
                                                             <span class="text-time">${hourMess2}</span>
+                                                            
                                                         </div>
+                                                        
                                                     </c:when>
                                                     <c:otherwise>
+                                                        
                                                         <div  class="message-item message-divider">
                                                             <c:if test="${timeMess ne timeMess2}">
                                                                 <c:set var = "timeMess" value = "${timeMess2}"  />
@@ -245,11 +328,14 @@
                                                             </c:if>
 
                                                         </div>
+                                                        
                                                         <div class="divMYR">
+                                                                                                                    
                                                             <span class="text-time">${hourMess2}</span>
                                                             <div class="MYR">
                                                                 <p>${mess.content}</p>
                                                             </div>
+                                                            
                                                         </div>
 
                                                     </c:otherwise>

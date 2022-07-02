@@ -36,7 +36,7 @@
                     </div>
                     <div class="admin">
                         <div class="admin-avatar" data-bs-toggle="collapse" data-bs-target="#setting">
-                            <img src="RetrieveImg?eaID=${sessionScope.user.userid}" alt="avatar"> <span class="online"></span> 
+                            <img src="RetrieveImg?eaID=${sessionScope.userlogged.userid}" alt="avatar"> <span class="online"></span> 
                         </div>
                     </div>
                     <div class="dropdown-ls collapse" id="setting">

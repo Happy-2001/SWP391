@@ -63,6 +63,30 @@ public class GroupDAO {
         }
     }
 
+    //get Customer ID by GroupID (Not admin) 
+    public String getCustomerIDbyGroupID(String groupID) {
+        String customerID = "";
+        String sql = "SELECT user_id FROM\n"
+                + "(SELECT * FROM\n"
+                + "(SELECT ua.user_id,groupID FROM user_group ug INNER JOIN user_accounts ua \n"
+                + "ON ua.user_id = ug.userID )as tb1 INNER JOIN user_role ur \n"
+                + "ON ur.userID = tb1.user_id ) AS tb2 INNER JOIN roles r\n"
+                + "ON r.roleID = tb2.roleID WHERE groupID = ? AND  r.name LIKE '%User%'";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, groupID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                customerID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return customerID;
+    }
+
     //get groupID by userID 
     public String getGroupIDbyUserID(String userID) {
         String groupID = "";
@@ -103,19 +127,19 @@ public class GroupDAO {
     public ArrayList<GroupChat> getGroupChat() {          //lấy tin nhắn cuối cùng được gửi trong 1 group chat để hiển thị
         ArrayList<GroupChat> list = new ArrayList<>();
         try {
-            String sql = " SELECT tb2.* FROM\n"
-                    + "                       (SELECT groupName, MAX(createDate)as createDate FROM \n"
-                    + "                             (SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
-                    + "                      (SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
-                    + "                  ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
-                    + "           ON m.messageID = rs1.messageID) as rs2\n"
-                    + "                      group BY (groupName) ) as tb1\n"
-                    + "                    LEFT join\n"
-                    + "                       (SELECT  mrID,groupName,m.messageBody,m.createDate,groupID,m.messageID FROM\n"
-                    + "(SELECT mr.messageID,mr.mrID,`group`.`groupName`,groupID FROM message_recipient mr INNER JOIN `Group` \n"
+            String sql = "SELECT tb2.* FROM\n"
+                    + "(SELECT groupName, MAX(createDate)as createDate FROM \n"
+                    + "(SELECT  mrID,groupName,m.messageBody,m.createDate FROM\n"
+                    + "(SELECT mr.messageID,mr.mrID,`group`.`groupName` FROM message_recipient mr INNER JOIN `Group` \n"
+                    + " ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
+                    + "ON m.messageID = rs1.messageID) as rs2\n"
+                    + " group BY (groupName) ) as tb1\n"
+                    + "LEFT join\n"
+                    + "(SELECT  mrID,groupName,m.messageBody,m.createDate,groupID,m.messageID,isRead FROM\n"
+                    + "(SELECT mr.messageID,mr.mrID,`group`.`groupName`,groupID,mr.isRead FROM message_recipient mr INNER JOIN `Group` \n"
                     + "ON `Group`.`groupID` = mr.recipientGroupID) as rs1 INNER JOIN messages m\n"
-                    + "                                   ON m.messageID = rs1.messageID) as tb2\n"
-                    + "                                 ON tb2.createDate = tb1.createDate ORDER BY createDate DESC";
+                    + " ON m.messageID = rs1.messageID) as tb2\n"
+                    + "ON tb2.createDate = tb1.createDate ORDER BY createDate DESC";
 
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
@@ -160,8 +184,8 @@ public class GroupDAO {
                 u.setTime(displayTime);
 
                 u.setGroupID(rs.getString(5));
-                   u.setMessageID(rs.getString(6)); // tin nhắn được gửi cuối cùng trong nhóm
-
+                u.setMessageID(rs.getString(6)); // tin nhắn được gửi cuối cùng trong nhóm
+                u.setIsRead(rs.getString(7) == null ? "0" : "1");
                 list.add(u);
             }
 
@@ -178,8 +202,8 @@ public class GroupDAO {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime sendTime = LocalDateTime.parse("2022-06-29 00:12:12", dtf);
         String displayTime = "";
-        
-        
+        GroupDAO gdao = new GroupDAO();
+        System.out.println(gdao.getCustomerIDbyGroupID("3"));
 
     }
 }
