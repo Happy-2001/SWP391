@@ -64,7 +64,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="/ShopOnline/message">
+                            <a href="message">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -83,7 +83,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="#sub-list3">
+                            <a href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
                                 </span>

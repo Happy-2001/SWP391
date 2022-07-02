@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Dashboard.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="/ShopOnline/CusController">
+                            <a href="CusController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group fa-xl"></i>
                                 </span>
@@ -61,7 +61,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="/ShopOnline/message">
+                            <a href="message">
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -80,19 +80,12 @@
                         </li>
         
                         <li class="nav-link">
-                            <a data-bs-toggle="collapse" href="#sub-list3">
+                            <a href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Feedback</span>
-                                <span class="sub-menu-arrow">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
                             </a>
-                            <ul class="collapse" id="sub-list3">
-                                <li><a href="#">Feedback List</a></li>
-                                <li><a href="#">Feedback Details</a></li>
-                            </ul>
                         </li>
         
                         <li class="nav-link">
