@@ -117,17 +117,17 @@ public class MessageController extends HttpServlet {
             String fromid = getFROMandTOsplit[0];
             String parentMessageID = request.getParameter("parentMessageID");
             response.getWriter().print(parentMessageID);
-            if(parentMessageID == null){
+            if(parentMessageID.equals("")){
                 mdao.addMessage(fromid, content);
             }else{
                 mdao.addMessageWithParent(fromid, content, parentMessageID);
             }
-            
+//            response.getWriter().print(fromid+"||"+toid+"||"+content+"|"+parentMessageID.equals(""));
 
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
             
-            if (getFROMandTO.length() == 4) {                 // check chuyển hướng sang message.jsp
+            if (getFROMandTOsplit.length == 4) {                 // check chuyển hướng sang message.jsp
                 response.sendRedirect("message?mrID=" + getFROMandTOsplit[2]);
             } else {
                 response.sendRedirect("home");

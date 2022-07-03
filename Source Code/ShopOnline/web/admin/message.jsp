@@ -22,6 +22,42 @@
         <!-- Bootstrap 5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <style>
+            .checkIsread{
+                transition: ease-in 0.3s;
+                display: none;
+            }
+            .divMYS:hover .checkIsread,.divMYS:hover .fa-reply{
+                display: block;
+            }
+            .divMYR:hover .checkIsread,.divMYR:hover .fa-reply{
+                display: block;
+            }
+            .fa-reply{
+                color: #ced4da;
+                margin-left: 5px;
+                margin-right: 5px;
+                display: none;
+                transition: ease-in 0.3s;
+            }
+            .replyMess{
+                height: 0;
+                width: 0;
+
+                display: inline;
+                overflow-x: hidden;
+                
+            }
+            .replyMess-left{
+                width: 90%;
+                float: left;
+            }
+            .replyMess-right{
+                width: 10%;
+                float: right;
+            }
+           
+        </style>
     </head>
     <body>
         <%@include file="Topbar.jsp" %>
@@ -159,7 +195,7 @@
 
                                                                         <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
                                                                             <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                                 </span>  <span class="text-muted">${listGroupChat.time}</span>
                                                                             </c:if>
                                                                             <c:if test="${listGroupChat.isRead eq 1}">
@@ -302,26 +338,61 @@
                                                             </c:if>
 
                                                         </div>
-                                                        
+
+                                                        <c:if test="${mess.parentMessageID ne null}">                        <!--Xác nhận parent message-->
+
+
+
+                                                            <c:forEach items="${listMess}" var="messParent">
+                                                                <c:if test="${messParent.id eq mess.parentMessageID}">
+                                                                    <c:set var="parentContent" value="${messParent.content}"/>
+                                                                    <c:set var="creatorParentContent" value="${messParent.fromID}"/>
+                                                                </c:if>
+                                                            </c:forEach>
+
+                                                            <c:choose>
+                                                                <c:when test="${listUserAdminID.contains(creatorParentContent)}">   <!--nếu creatorParentContent do admin tạo -->
+                                                                    <div class="divMYS parent-message-title" >
+                                                                        <div class="MYS" style="background-color: inherit;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
+                                                                            <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> Relying to myself</span></i> 
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div class="divMYS parent-message-title" >
+                                                                        <div class="MYS" style="background-color: inherit;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
+                                                                            <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> You replying</span></i> 
+                                                                        </div>
+                                                                    </div>
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                            <div class="divMYS parent-message" >
+                                                                <div class="MYS" style="background-color: #f6f9fa;color: #CCCCCC;margin-bottom: -25px">
+                                                                    ${parentContent}
+                                                                </div>
+                                                            </div>
+                                                        </c:if>
+
                                                         <div class="divMYS">
                                                             <c:if test="${mess.isread eq 0}">
                                                                 <span class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color:#BBB "></i></span>
                                                                 </c:if>
 
                                                             <c:if test="${mess.isread eq 1}">
-                                                                 <span class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color: #50b5ba"></i></span>
-                                                            </c:if>
-                                                            <div class="MYS">
+                                                                <span class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color: #50b5ba"></i></span>
+                                                                </c:if>
+                                                            <div class="MYS" title="${mess.createDate}">
                                                                 <p>${mess.content}</p>
                                                             </div>
-                                                            
                                                             <span class="text-time">${hourMess2}</span>
-                                                            
+                                                            <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+
                                                         </div>
-                                                        
+
                                                     </c:when>
                                                     <c:otherwise>
-                                                        
+
                                                         <div  class="message-item message-divider">
                                                             <c:if test="${timeMess ne timeMess2}">
                                                                 <c:set var = "timeMess" value = "${timeMess2}"  />
@@ -329,14 +400,46 @@
                                                             </c:if>
 
                                                         </div>
-                                                        
+
+                                                        <c:if test="${mess.parentMessageID ne null}">                           <!--Xác nhận parent message-->
+                                                            <c:forEach items="${listMess}" var="messParent">
+                                                                <c:if test="${messParent.id eq mess.parentMessageID}">
+                                                                    <c:set var="parentContent" value="${messParent.content}"/>
+                                                                    <c:set var="creatorParentContent" value="${messParent.fromID}"/>
+                                                                </c:if>
+                                                            </c:forEach>
+
+                                                            <c:choose>
+                                                                <c:when test="${listUserAdminID.contains(creatorParentContent)}">   <!--nếu creatorParentContent do admin tạo -->
+                                                                    <div class="divMYR parent-message-title" >
+                                                                        <div class="MYR" style="background-color: inherit;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
+                                                                            <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> Relying to you</span></i> 
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div class="divMYR parent-message-title" >
+                                                                        <div class="MYR" style="background-color: inherit;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
+                                                                            <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> Relying to theirself</span></i> 
+                                                                        </div>
+                                                                    </div>
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                            <div class="divMYR parent-message" >
+                                                                <div class="MYR" style="background-color: #f6f9fa;color: #CCCCCC;margin-bottom: -25px">
+                                                                    ${parentContent}
+                                                                </div>
+                                                            </div>
+                                                        </c:if>
+
                                                         <div class="divMYR">
-                                                                                                                    
+                                                            <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
                                                             <span class="text-time">${hourMess2}</span>
-                                                            <div class="MYR">
+                                                            <div class="MYR" title="${mess.createDate}">
                                                                 <p>${mess.content}</p>
                                                             </div>
-                                                            
+
                                                         </div>
 
                                                     </c:otherwise>
@@ -347,13 +450,36 @@
                                     </div>
                                     <div class="card-footer">
                                         <form class="d-flex" action="message" method="post">
+
+                                            <div id="replyMessS" class="replyMess" >
+                                                <div class="replyMess-left ">
+                                                    Answering yourself<br>
+                                                    <h8 id="contentParentS" style="font-size: 13px;color: gray" ></h8>
+                                                </div>
+
+                                                <div class="replyMess-right">
+                                                    <i onclick="removeReplyS()" class="fa-solid fa-xmark"></i>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div id="replyMessR" class="replyMess" >
+                                                <div class="replyMess-left">
+                                                    Replying<br>
+                                                    <h8 id="contentParentR" style="font-size: 13px;color: gray" ></h8>
+                                                </div>
+
+                                                <div class="replyMess-right">
+                                                    <i onclick="removeReplyR()" class="fa-solid fa-xmark"></i>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="dropdown flex-shrink-0 me-3">
                                                 <button class="btn btn-rounded" type="button">
                                                     <i class="fa-solid fa-paperclip"></i>
                                                 </button>
                                             </div>
                                             <input name="contentsend" type="text" class="form-control" placeholder="Write message...">
-
+                                            <input id="parentMessageID" name="parentMessageID" type="hidden"/>
                                             <button name="getFROMandTO" value="${sessionScope.userlogged.userid};${listMess.get(0).toID};${mrID+1};messageAdmin" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
                                         </form>
                                     </div>
@@ -370,7 +496,7 @@
                 window.location.href = 'message?mrID=' + id;
             }
             let scroll_to_bottom = document.getElementById('scroll-to-bottom');
-		scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
+            scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
         </script>
     </body>
 

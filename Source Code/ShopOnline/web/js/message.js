@@ -29,4 +29,16 @@ function removeReplyR() {
     document.getElementById('replyMessR').style.width = '0';
 }
 
+function hindMessage(){
+    document.getElementsByClassName('message2').style.fontsize = '30px';
+    document.getElementsByClassName('message').style.height = '0';
+    document.getElementsByClassName('message').style.width = '0';
+}
+function showMessage(){
+    alert('helllo');
+    document.getElementsByClassName('message2').style.fontsize = '0';
+    
+    document.getElementsByClassName('message').style.height = '460px !important';
+    document.getElementsByClassName('message').style.width = '340px';
+}
 
