@@ -281,7 +281,7 @@
                             <div class="col-lg-7 chat-content">
                                 <!-- begin::messages -->
                                 <div class="messages card">
-                                    <div class="card-body">
+                                    <div id="scroll-to-bottom" class="card-body">
                                         <c:set var = "now" value = "<%= new java.util.Date()%>"  />
                                         <fmt:formatDate var="timeMess"  pattern="yyyy-MM-dd" value="${now}"/>
 
@@ -368,6 +368,8 @@
             function changeGroupchat(id) {
                 window.location.href = 'message?mrID=' + id;
             }
+            let scroll_to_bottom = document.getElementById('scroll-to-bottom');
+		scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
         </script>
     </body>
 
