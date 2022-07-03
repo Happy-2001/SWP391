@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/Dashboard.css">
         <link rel="stylesheet" href="css/message.css">
         <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
+        <script src="js/message.js" ></script>
 
         <!-- Bootstrap 5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -158,7 +159,7 @@
 
                                                                         <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
                                                                             <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                                 </span>  <span class="text-muted">${listGroupChat.time}</span>
                                                                             </c:if>
                                                                             <c:if test="${listGroupChat.isRead eq 1}">
@@ -182,7 +183,7 @@
                                                                         <c:if test="${listGroupChat.creatorIDMessage ne listGroupChat.customerID}">
 
                                                                             <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                <span class="small text-muted "><i class="fa-solid fa-circle-check" style="color: #BBB"></i></span>
+                                                                                <span class="small text-muted " ><i class="fa-solid fa-circle-check" style="color: #BBB"></i></span>
                                                                                 </c:if>
 
                                                                             <c:if test="${listGroupChat.isRead eq 1}">
@@ -353,7 +354,7 @@
                                             </div>
                                             <input name="contentsend" type="text" class="form-control" placeholder="Write message...">
 
-                                            <button name="getFROMandTO" value="${sessionScope.userlogged.userid};${listMess.get(0).toID};${mrID};messageAdmin" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
+                                            <button name="getFROMandTO" value="${sessionScope.userlogged.userid};${listMess.get(0).toID};${mrID+1};messageAdmin" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
                                         </form>
                                     </div>
                                 </div>

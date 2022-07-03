@@ -115,13 +115,19 @@ public class MessageController extends HttpServlet {
             String[] getFROMandTOsplit = getFROMandTO.split(";"); //to;from get from value BUTTON
             String toid = getFROMandTOsplit[1];
             String fromid = getFROMandTOsplit[0];
-
-            mdao.addMessage(fromid, content);
+            String parentMessageID = request.getParameter("parentMessageID");
+            response.getWriter().print(parentMessageID);
+            if(parentMessageID == null){
+                mdao.addMessage(fromid, content);
+            }else{
+                mdao.addMessageWithParent(fromid, content, parentMessageID);
+            }
+            
 
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
-            String type = getFROMandTOsplit[3]; // check chuyển hướng sang message.jsp
-            if (type == null) {
+            
+            if (getFROMandTO.length() == 4) {                 // check chuyển hướng sang message.jsp
                 response.sendRedirect("message?mrID=" + getFROMandTOsplit[2]);
             } else {
                 response.sendRedirect("home");

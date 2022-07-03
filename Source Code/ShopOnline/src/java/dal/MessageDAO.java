@@ -69,7 +69,7 @@ public class MessageDAO {
         ArrayList<Message> list = new ArrayList<>();
         try {
             String sql = "SELECT rs1.* FROM\n"
-                    + "(SELECT mess.messageID,creatorID,recipientGroupID,messageBody,createDate,isRead FROM messages AS mess INNER JOIN message_recipient AS mr \n"
+                    + "(SELECT mess.messageID,creatorID,recipientGroupID,messageBody,mess.parentMessageID,createDate,isRead FROM messages AS mess INNER JOIN message_recipient AS mr \n"
                     + "ON mess.messageID = mr.messageID) as rs1 INNER JOIN \n"
                     + "(SELECT ug.groupID,ug.userID FROM `group` INNER JOIN user_group AS ug ON ug.groupID = `group`.groupID\n"
                     + "WHERE ug.groupID = ? AND userID = ?)as rs2\n"
@@ -84,6 +84,7 @@ public class MessageDAO {
                 s.setFromID(rs.getString("creatorID"));
                 s.setToID(rs.getString("recipientGroupID"));
                 s.setContent(rs.getString("messageBody"));
+                s.setParentMessageID(rs.getString("parentMessageID"));
                 s.setCreateDate(rs.getString("createDate"));
                 s.setIsread(rs.getString("isRead") == null ? "0" : "1");
                 list.add(s);
