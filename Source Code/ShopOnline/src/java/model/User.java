@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author nguye
@@ -16,6 +18,7 @@ public class User {
     String firstname;
     String middlename;
     String lastname;
+    Date dob;
 
     private String photo;
     int gender;
@@ -28,6 +31,21 @@ public class User {
     public User() {
     }
 
+    public User(int userid, String username, String firstname, String middlename, String lastname,  int gender, Date dob, int status, String email, String phone, String photo, Role authority) {
+        this.userid = userid;
+        this.username = username;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.dob = dob;
+        this.photo = photo;
+        this.gender = gender;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+        this.authority = authority;
+    }
+    
     public User(int userid, String username, String password, String firstname, String middlename, String lastname, String photo, int gender, String phone, String email, int status, Role authority) {
         this.userid = userid;
         this.username = username;

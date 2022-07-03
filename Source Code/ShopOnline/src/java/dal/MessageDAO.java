@@ -69,7 +69,7 @@ public class MessageDAO {
         ArrayList<Message> list = new ArrayList<>();
         try {
             String sql = "SELECT rs1.* FROM\n"
-                    + "(SELECT mess.messageID,creatorID,recipientGroupID,messageBody,createDate,isRead FROM messages AS mess INNER JOIN message_recipient AS mr \n"
+                    + "(SELECT mess.messageID,creatorID,recipientGroupID,messageBody,mess.parentMessageID,createDate,isRead FROM messages AS mess INNER JOIN message_recipient AS mr \n"
                     + "ON mess.messageID = mr.messageID) as rs1 INNER JOIN \n"
                     + "(SELECT ug.groupID,ug.userID FROM `group` INNER JOIN user_group AS ug ON ug.groupID = `group`.groupID\n"
                     + "WHERE ug.groupID = ? AND userID = ?)as rs2\n"
@@ -84,8 +84,9 @@ public class MessageDAO {
                 s.setFromID(rs.getString("creatorID"));
                 s.setToID(rs.getString("recipientGroupID"));
                 s.setContent(rs.getString("messageBody"));
+                s.setParentMessageID(rs.getString("parentMessageID"));
                 s.setCreateDate(rs.getString("createDate"));
-                s.setIsread(rs.getString("isRead"));
+                s.setIsread(rs.getString("isRead") == null ? "0" : "1");
                 list.add(s);
             }
         } catch (SQLException ex) {
@@ -209,12 +210,29 @@ public class MessageDAO {
         }
         return messageID;
     }
+    public String getCreatorbyMessageID (String messageID) {
+        String creatorID = "";
+        String sql = "SELECT creatorID FROM messages WHERE messageID = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, messageID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                creatorID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return creatorID;
+    }
 
     public static void main(String[] args) {
         MessageDAO m = new MessageDAO();
         ArrayList<Message> list = m.getAllMessageofUser("1", "1");
         for (Message message : list) {
-            System.out.println(message.getContent());
+            System.out.println(message.getIsread());
         }
     }
 }

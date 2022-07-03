@@ -82,14 +82,6 @@
     padding: 10px;
 }
 .avatar.avatar-info .avatar-text {
-    background: #25c2e3!important;
+    background: #25c2e3;
     color: #fff!important;
-}
-.avatar.avatar-secondary .avatar-text {
-    background: #9932e7!important;
-    color: #fff!important;
-}
-.avatar.avatar-warning .avatar-text {
-    background: #faae42!important;
-    color: #000!important;
 }

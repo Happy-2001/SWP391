@@ -24,7 +24,8 @@ public class UploadImage extends HttpServlet {
             throws ServletException, IOException {
          
         InputStream inputStream = null; // input stream of the upload file
-        String userid = request.getParameter("eaID");  
+        String userid = request.getParameter("eaID");
+        String cusid = request.getParameter("cusID"); 
          
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("photo");
@@ -34,8 +35,13 @@ public class UploadImage extends HttpServlet {
         }
         
         ImageDAO upli = new ImageDAO();
-        upli.loadImg(inputStream, Integer.parseInt(userid));
+        if (userid == null || userid.isEmpty()){
+            upli.loadImg(inputStream, Integer.parseInt(cusid));
+            response.sendRedirect("CusDetail?cusID="+cusid);
+        }else{
+            upli.loadImg(inputStream, Integer.parseInt(userid));
+            response.sendRedirect("ProfileUser?userid="+userid);
+        }
         
-        response.sendRedirect("ProfileUser?userid="+userid);
    }        
 }

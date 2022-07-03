@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.AddressDAO;
 import dal.GroupDAO;
 import dal.MessageDAO;
 import dal.RoleDAO;
@@ -33,12 +34,69 @@ import model.User;
 @WebServlet(name = "MessageController", urlPatterns = {"/message"})
 public class MessageController extends HttpServlet {
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        MessageDAO mdao = new MessageDAO();
+        HttpSession session = request.getSession();
+        Object objUser = session.getAttribute("userlogged");
+        String userID = "";
+        if (objUser == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            User user = (User) objUser;
+
+            UserDAO udao = new UserDAO();
+            GroupDAO gdao = new GroupDAO();
+            RoleDAO rdao = new RoleDAO();
+            AddressDAO adao = new AddressDAO();
+            
+            List<String> listAdminID = udao.listUserAdminID();
+            List<String> listUserAdminID = udao.listUserAdminID();
+            ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
+            String groupID = "";
+            String mrID = request.getParameter("mrID");
+            if (mrID == null) {
+                mrID = listGroupChat.get(0).getId();
+            }
+            for (GroupChat groupChat : listGroupChat) {
+                if (groupChat.getId().equals(mrID)) {
+                    groupID = groupChat.getGroupID();
+                }
+                User creator = udao.getUserByMessageID(groupChat.getMessageID());
+                if (listAdminID.contains(String.valueOf(creator.getUserid())) && creator.getUserid() != user.getUserid()) {
+                    groupChat.setCreatorMessage(creator.getLastname() + ": ");
+                }
+                if (!listAdminID.contains(String.valueOf(creator.getUserid()))) {
+                    groupChat.setCreatorMessage("");
+                }
+                if (creator.getUserid() == user.getUserid()) {
+                    groupChat.setCreatorMessage("You: ");
+                }
+                if(groupChat.getContent().length() > 15){
+                    String newContent = groupChat.getContent().substring(0, 15)+"...";
+                    groupChat.setContent(newContent);
+                }
+                
+               
+                groupChat.setCustomerID(gdao.getCustomerIDbyGroupID(groupChat.getGroupID()));  /// truyền id khách hàng trong group chat
+//                response.getWriter().println(groupChat.getGroupID() + " || "+ groupChat.getCustomerID());
+                 groupChat.setEaID(adao.getEaIDbyUserID(groupChat.getCustomerID()));
+//                                 response.getWriter().println(groupChat.getEaID() + " || "+ groupChat.getCustomerID());
+                groupChat.setCreatorIDMessage(groupChat.getMessageID());
+            }
+
+            request.setAttribute("listGroupChat", listGroupChat);
+            request.setAttribute("listUserAdminID", listUserAdminID);
+            request.setAttribute("mrID", mrID);
+            ArrayList<Message> listMessage = mdao.getAllMessageofUser(groupID, String.valueOf(user.getUserid()));
+            request.setAttribute("listMess", listMessage);
+            for (GroupChat m : listGroupChat) {
+                response.getWriter().println(m.getCreatorMessage() + " 9");
+            }
+            request.getRequestDispatcher("admin/message.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -57,22 +115,29 @@ public class MessageController extends HttpServlet {
             String[] getFROMandTOsplit = getFROMandTO.split(";"); //to;from get from value BUTTON
             String toid = getFROMandTOsplit[1];
             String fromid = getFROMandTOsplit[0];
-
-            mdao.addMessage(fromid, content);
+            String parentMessageID = request.getParameter("parentMessageID");
+            response.getWriter().print(parentMessageID);
+            if(parentMessageID == null){
+                mdao.addMessage(fromid, content);
+            }else{
+                mdao.addMessageWithParent(fromid, content, parentMessageID);
+            }
+            
 
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
+            
+            if (getFROMandTO.length() == 4) {                 // check chuyển hướng sang message.jsp
+                response.sendRedirect("message?mrID=" + getFROMandTOsplit[2]);
+            } else {
+                response.sendRedirect("home");
 
-//            response.sendRedirect("HomeController");
-        response.sendRedirect("home");
-        
+            }
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
         }
 
     }
-
-   
 
 }

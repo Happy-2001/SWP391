@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/Dashboard.css">
-    <link rel="stylesheet" href="../css/ProfileAd.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="stylesheet" href="css/ProfileAd.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -28,7 +28,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="dashboard">
+                            <a href="Dashboard.jsp">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>
@@ -55,7 +55,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a class="active" href="Customers.jsp">
+                            <a class="active" href="#">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group"></i>
                                 </span>
@@ -64,7 +64,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="message">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -83,7 +83,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="#sub-list3">
+                            <a href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
                                 </span>
@@ -110,22 +110,22 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="Customers.jsp">Customers</a>
+                            <a href="/ShopOnline/CusController">Customers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
                 </div>
                 <div class="content">
-                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
+                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="../images/big-img-02.jpg" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${cus.us.userid}" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5>Ngo Vu Anh Vo</h5>
+                                <h5>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -133,10 +133,12 @@
                                 </a>
                             </div>
                         </div>
-                        <form action="">
+                        <form action ="UploadImage" method="POST" enctype="multipart/form-data">
                             <div class="ava-popup collapse" id="e-ava">
                                 <div class="edit-img">
+                                    <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
+                                        <input type="hidden" name="cusID" value="${sessionScope.cusID}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -153,7 +155,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <script>
+                                    <div class="del-btn">
+                                        <input class="btn btn-icon" type="submit" value="Save">
+                                        <input class="btn btn-icon" value="Cancel" data-bs-toggle="collapse" data-bs-target="#e-ava">
+                                    </div>
+                                </div>
+                                <script>
                                         document.querySelector("html").classList.add('js');
 
                                         var fileInput = document.getElementById("submit-file"),  
@@ -178,12 +185,7 @@
                                         deleBtn.onclick = function(){
                                             popupDis.style.display = "none";
                                         }
-                                    </script>
-                                    <div class="del-btn">
-                                        <input class="btn btn-icon" type="submit" value="Save">
-                                        <input class="btn btn-icon" value="Cancel" data-bs-toggle="collapse" data-bs-target="#e-ava">
-                                    </div>
-                                </div>
+                                </script>
                             </div>
                         </form>
                     </div>
@@ -207,15 +209,15 @@
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="Adek Kembar" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" value="${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="adek-kembar" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" value="${cus.us.username}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="wtaffe3@addthis.com" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" value="${cus.us.email}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
@@ -337,14 +339,14 @@
                                                                 <option value="">All</option>
                                                                 <option value="">Admin</option>
                                                                 <option value="">User</option>
-                                                                <option value="" selected="">Staff</option>
+                                                                <option value="" selected>Customer</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
                                                             <select class="form-select">
                                                                 <option value="">All</option>
-                                                                <option value="" selected="">Active</option>
+                                                                <option value="" selected>Active</option>
                                                                 <option value="">Blocked</option>
                                                             </select>
                                                         </div>
@@ -369,7 +371,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" value="+65195892151" spellcheck="false" data-ms-editor="true">
+                                                        <input type="text" class="form-control" value="${cus.us.phone}">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Website</label>
@@ -379,14 +381,6 @@
                                                         <label class="form-label">Languages</label>
                                                         <input type="text" class="form-control" value="http://laborasyon.com/" spellcheck="false" data-ms-editor="true">
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Address Line 1</label>
-                                                        <input type="text" class="form-control" value="A-65, Belvedere Streets" spellcheck="false" data-ms-editor="true">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Address Line 2</label>
-                                                        <input type="text" class="form-control" value="" spellcheck="false" data-ms-editor="true">
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
@@ -394,17 +388,17 @@
                                                         <input type="text" class="form-control" value="1868" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">City</label>
-                                                        <input type="text" class="form-control" value="New York" spellcheck="false" data-ms-editor="true">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">State</label>
-                                                        <input type="text" class="form-control" value="New York" spellcheck="false" data-ms-editor="true">
+                                                        <label class="form-label">Province</label>
+                                                        <input type="text" class="form-control" value="${cus.uad.province.name}">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="United States" spellcheck="false" data-ms-editor="true">
+                                                        <input type="text" class="form-control" value="Viet Nam">
                                                     </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" value="A-65, Belvedere Streets" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
                                         </div>
