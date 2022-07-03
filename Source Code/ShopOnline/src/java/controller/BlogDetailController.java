@@ -19,7 +19,5 @@ public class BlogDetailController extends HttpServlet {
         request.setAttribute("post", bdb.getBlogById(id));
         request.getRequestDispatcher("blogdetail.jsp").forward(request, response);
         
-    }
- 
-                                                                                                                   
+    }                                                                                                        
 }
