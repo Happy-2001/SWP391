@@ -30,14 +30,3 @@ public class BlogController extends HttpServlet {
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 }
-/*
-protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        BlogDAO bdb = new BlogDAO();
-        String page = request.getParameter("page");
-        //Set page for root course page
-        if (page == null || page.equals("")) {
-            page = "" + 1;
-        }
-        
-*/
