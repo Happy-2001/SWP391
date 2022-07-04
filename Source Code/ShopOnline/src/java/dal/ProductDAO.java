@@ -62,8 +62,8 @@ public class ProductDAO {
                 p.setImg(rs.getString("url"));
                 products.add(p);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -85,8 +85,8 @@ public class ProductDAO {
                 p.setImg(rs.getString("url"));
                 products.add(p);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -109,8 +109,8 @@ public class ProductDAO {
                 p.setImg(rs.getString("url"));
                 products.add(p);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }

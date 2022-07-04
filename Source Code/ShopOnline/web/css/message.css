@@ -60,17 +60,32 @@ svg rect {
 }
 /* ===================================================================== */
 .message{
-    width: 340px;
-    height: 460px !important;
+/*    height: 460px !important;
+    width: 340px;*/
+    height: 0;
+    width: 0;
+    overflow-x: hidden;
+    
     background-color: white;
     z-index: 0100;
     position: fixed !important;
     bottom: 40px;
     right: 5%;
     box-shadow: 0 0 5px #c4cacc;
-
+    transition: ease-in 0.2s;
 }
 
+.message2{
+    font-size: 30px;
+    color: red;
+    z-index: 1000;
+    position: fixed !important;
+    right: 3.1%;
+    top: 85%;
+    transition: ease-in-out 1s;
+    cursor: pointer;
+    
+}
 
 .card-body{
     overflow: auto;
@@ -116,6 +131,7 @@ svg rect {
     align-items: center;
     flex-direction: row-reverse;
     margin-bottom: 20px;
+    transition: ease-in 0.3s;
 }
 .divMYR{
     justify-content: flex-end;
@@ -129,6 +145,7 @@ svg rect {
     max-width: 75%; 
     text-align: left;
     width: fit-content;
+    
 }
 .content_message .MYS{
     background-color: #ffe2d9;

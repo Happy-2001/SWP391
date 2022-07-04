@@ -12,16 +12,16 @@
     <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
         <!-- mess -->
         <div class="collapse show" id="mess">
-            <div class="card message">
+            <div class="card message" id="mess1">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-lg-10 col-md-10">            
                             <img src="images/logo.png" class="logo" width="50%">
                         </div>
-                        <div class="col-lg-2 col-md-2 text-center">
-                            <a href="#mess" data-bs-toggle="collapse">
-                                <i class="fa-solid fa-minus"></i>
-                            </a>
+                        <div class="col-lg-2 col-md-2 text-center" onclick="hindMessage()">
+                            
+                            <i  class="fa-solid fa-minus"></i>
+                            
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                             <c:if test="${mess.parentMessageID ne null}">                           <!--Xác nhận parent message-->
                                                 <c:forEach items="${listMess}" var="messParent">
                                                     <c:if test="${messParent.id eq mess.parentMessageID}">
-                                                        <c:set var="parentContent" value="${messParent.content}"/>
+                                                        <c:set var="creatorParentContent" value="${messParent.content}"/>
                                                     </c:if>
                                                 </c:forEach>
                                                 
@@ -63,14 +63,14 @@
                                                     <c:when test="${listUserAdminID.contains(creatorParentContent)}">   <!--nếu creatorParentContent do admin tạo -->
                                                         <div class="divMYR parent-message-title" >
                                                             <div class="MYR" style="background-color: white;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
-                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace">You replying</span></i> 
+                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> Relying to theirself</span></i> 
                                                             </div>
                                                         </div>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <div class="divMYR parent-message-title" >
                                                             <div class="MYR" style="background-color: white;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
-                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace">Relying to myself</span></i> 
+                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> Their replying</span></i> 
                                                             </div>
                                                         </div>
                                                     </c:otherwise>
@@ -108,14 +108,14 @@
                                                     <c:when test="${listUserAdminID.contains(creatorParentContent)}">   <!--nếu creatorParentContent do admin tạo -->
                                                         <div class="divMYS parent-message-title" >
                                                             <div class="MYS" style="background-color: white;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
-                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace">You replying</span></i> 
+                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> You replying</span></i> 
                                                             </div>
                                                         </div>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <div class="divMYS parent-message-title" >
                                                             <div class="MYS" style="background-color: white;font-size: 10px;color: #CCCCCC;margin-bottom: -20px;">
-                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace">Relying to myself</span></i> 
+                                                                <i class="fa-solid fa-reply" style="display: block;"><span style="font-family: monospace"> Relying to yourself</span></i> 
                                                             </div>
                                                         </div>
                                                     </c:otherwise>
@@ -128,10 +128,10 @@
                                                 </div>
                                             </c:if>
 
-                                            <div class="divMYS">
+                                            <div class="divMYS">         <!--div noi dung-->
                                                 <c:if test="${mess.isread eq 1}">
                                                     <span style="margin-left: 5px" class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color:#BBB "></i></span>
-                                                    </c:if>
+                                                </c:if>
 
                                                 <div class="MYS" title="${mess.createDate}">
                                                     ${mess.content}
@@ -152,7 +152,7 @@
                         <form action="message" method="post">
                             <div id="replyMessS" class="replyMess row" >
                                 <div class="replyMess-left col-md-11">
-                                    Answering myself<br>
+                                    Answering yourself<br>
                                         <h8 id="contentParentS" style="font-size: 13px;color: gray" ></h8>
                                 </div>
 
@@ -185,8 +185,7 @@
             </div>
         </div>
         <!-- end mess -->
+        <i id="message2" onclick="showMessage()" class="fa-brands fa-facebook-messenger message2" ></i>
     </c:if>
-    <script>
+   
         
-    </script>
-    <button id="messenger-btn" data-bs-toggle="collapse" data-bs-target="#mess"><i class="fa-brands fa-facebook-messenger"></i></button>

@@ -11,81 +11,57 @@ package model;
  */
 public class MyFeedback {
 
-    private int feedback_id;
-    private int userid;
-    private String full_name;
-    private String url;
-    private String product_name;
-    private int star_rating;
+    private int fbID;
+    private String photo1;
+    private String photo2;
     private String description;
     private String note;
-    private String usemail;
-    private int phone;
     private int status;
+    User user;
+    Product product;
+    private String createDate;
+    private String updateDate;
+    private int rating;
 
     public MyFeedback() {
     }
 
-    public MyFeedback(int feedback_id, int userid, String full_name, String url, String product_name, int star_rating, String description, String note, String usemail, int phone, int status) {
-        this.feedback_id = feedback_id;
-        this.userid = userid;
-        this.full_name = full_name;
-        this.url = url;
-        this.product_name = product_name;
-        this.star_rating = star_rating;
+    public MyFeedback(int fbID, String photo1, String photo2, String description, String note, int status, User user, Product product, String createDate, String updateDate, int rating) {
+        this.fbID = fbID;
+        this.photo1 = photo1;
+        this.photo2 = photo2;
         this.description = description;
         this.note = note;
-        this.usemail = usemail;
-        this.phone = phone;
         this.status = status;
+        this.user = user;
+        this.product = product;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.rating = rating;
     }
 
-    public int getFeedback_id() {
-        return feedback_id;
+    public int getFbID() {
+        return fbID;
     }
 
-    public void setFeedback_id(int feedback_id) {
-        this.feedback_id = feedback_id;
+    public void setFbID(int fbID) {
+        this.fbID = fbID;
     }
 
-    public int getUserid() {
-        return userid;
+    public String getPhoto1() {
+        return photo1;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setPhoto1(String photo1) {
+        this.photo1 = photo1;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getPhoto2() {
+        return photo2;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getProduct_name() {
-        return product_name;
-    }
-
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
-    }
-
-    public int getStar_rating() {
-        return star_rating;
-    }
-
-    public void setStar_rating(int star_rating) {
-        this.star_rating = star_rating;
+    public void setPhoto2(String photo2) {
+        this.photo2 = photo2;
     }
 
     public String getDescription() {
@@ -104,22 +80,6 @@ public class MyFeedback {
         this.note = note;
     }
 
-    public String getUsemail() {
-        return usemail;
-    }
-
-    public void setUsemail(String usemail) {
-        this.usemail = usemail;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -128,12 +88,44 @@ public class MyFeedback {
         this.status = status;
     }
 
-    
-
-    @Override
-    public String toString() {
-        return "MyFeedback{" + "feedback_id=" + feedback_id + ", userid=" + userid + ", full_name=" + full_name + ", url=" + url + ", product_name=" + product_name + ", star_rating=" + star_rating + ", description=" + description + ", note=" + note + ", usemail=" + usemail + ", phone=" + phone + ", status=" + status + '}';
+    public User getUser() {
+        return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
 }

@@ -1,10 +1,13 @@
 package controller;
 
+import dal.FeedbackDAO;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.MyFeedback;
 
 /**
  *
@@ -14,9 +17,28 @@ public class FeedbackAdController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        String page = request.getParameter("page");
+        FeedbackDAO db = new FeedbackDAO();
         
-        response.sendRedirect("admin/FeedbackList.jsp");
+        if (page == null || page.isEmpty()) {
+            page = "" + 1;
+        }
+        request.setAttribute("PAGE", page);
+        int pageNumber = Integer.parseInt(page);
+
+        int countPage = db.countPage();
+        request.setAttribute("countPage", countPage);
+        
+        int task = db.CountTask();
+        request.setAttribute("AllTask", task);
+        
+        int work = db.TaskWork(1);
+        request.setAttribute("Done", work);
+        
+        List<MyFeedback> list = db.ListAllFeedback(pageNumber);   
+        request.setAttribute("fblist", list);
+        
+        request.getRequestDispatcher("admin/FeedbackList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
