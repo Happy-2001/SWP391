@@ -224,12 +224,13 @@
                                             <a class="nav-link active d-flex align-items-center" href="#">
                                                 <i class="fa-solid fa-list-ul fa-xs me-3"></i>
                                                 All
-                                                <span class="badge bg-primary ms-auto">20</span>
+                                                <span class="badge bg-primary ms-auto">${AllTask}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">
+                                            <a class="nav-link d-flex align-items-center" href="#">
                                                 <i class="fa-solid fa-list-check fa-sm me-3"></i>My Task
+                                                <span class="badge bg-primary ms-auto">${AllTask - Done}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -241,7 +242,7 @@
                                             <a class="nav-link d-flex align-items-center" href="#">
                                                 <i class="fa-regular fa-circle-check fa-sm me-3"></i>
                                                 Done
-                                                <span class="badge bg-primary ms-auto">5</span>
+                                                <span class="badge bg-primary ms-auto">${Done}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">

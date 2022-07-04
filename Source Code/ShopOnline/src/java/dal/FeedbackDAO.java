@@ -128,6 +128,43 @@ public class FeedbackDAO extends DBConnect {
         return listAll;
     }
     
+    public int CountTask() {
+        try {
+            String sql = "SELECT COUNT(*) AS TOTAL FROM `feedbacks`";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                int countPage;
+                countPage = rs.getInt("TOTAL");
+                return countPage;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return 0;
+    }
+    
+    public int TaskWork(int num) {
+        int countPage = 0;
+        String sql = "SELECT COUNT(*) AS TOTAL FROM `feedbacks` WHERE `feedbacks`.`status` = ?";
+
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, num);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                countPage = rs.getInt("TOTAL");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return countPage;
+    }
+    
     //SELECT * FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY star_rating DESC) AS seq FROM `feedback`) as x WHERE seq BETWEEN 1 AND 2
     public List<MyFeedback> getFbBySortRatePaging(int pageNumber, String order, String sort) {
         List<MyFeedback> statuses = new ArrayList<>();
