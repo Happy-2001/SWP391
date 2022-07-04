@@ -185,6 +185,16 @@
                                     </c:forEach>
                                 </ul>
                             </div>
+                            
+                            <script>
+                                var checkB = document.querySelectorAll(".form-check-input");
+                                var box = document.querySelectorAll(".list-group-item");
+                                for (let j=0; j<checkB.length; j++){
+                                    box[j].onclick = function() {
+                                        window.location.href = "#link"+checkB[j].value;
+                                    };
+                                }
+                            </script>
                 
                             <nav aria-label="Page navigation">
                                 <c:if test="${countPage != null}">
