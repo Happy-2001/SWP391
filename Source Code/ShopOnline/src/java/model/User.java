@@ -60,6 +60,13 @@ public class User {
         this.status = status;
         this.authority = authority;
     }
+    
+    public User(int userid, String firstname, String middlename, String lastname) {
+        this.userid = userid;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+    }
 
     public String getPhoto() {
         return photo;

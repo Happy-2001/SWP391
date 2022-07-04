@@ -1,5 +1,5 @@
 .show{
-        transition: ease-in 0.5s;
+    transition: ease-in 0.5s;
 
 }
 span.title {
@@ -11,66 +11,81 @@ span.title {
 }
 
 .basicBox {
-  width: 120px;
-  height: 40px;
-  margin: 15px auto;
-  color: #50b5ba;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 40px;
-  text-transform: uppercase;
-  text-align: center;
-  position: relative;
-  cursor: pointer;
+    width: 120px;
+    height: 40px;
+    margin: 15px auto;
+    color: #50b5ba;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
 }
 .basicBox a{
     color: #50b5ba;
     font-size: 14px;
 }
 svg {
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 svg rect{
-  fill: none;
-  stroke: #50b5ba;
-  stroke-width: 2;
+    fill: none;
+    stroke: #50b5ba;
+    stroke-width: 2;
 }
 
 .basicBox:hover svg rect{
-  stroke: #50b5ba;
+    stroke: #50b5ba;
 }
 
 /* Basic Box */
 svg rect {
-  stroke-dasharray: 400, 0;
-  -webkit-transition: all 0.8s ease-in-out;
-  -moz-transition: all 0.8s ease-in-out;
-  -ms-transition: all 0.8s ease-in-out;
-  -o-transition: all 0.8s ease-in-out;
+    stroke-dasharray: 400, 0;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
 }
 .basicBox:hover svg rect {
-  stroke-width: 3;
-  stroke-dasharray: 35, 245;
-  stroke-dashoffset: 78;
-  -webkit-transition: all 0.8s ease-in-out;
-  -moz-transition: all 0.8s ease-in-out;
-  -ms-transition: all 0.8s ease-in-out;
-  -o-transition: all 0.8s ease-in-out;
+    stroke-width: 3;
+    stroke-dasharray: 35, 245;
+    stroke-dashoffset: 78;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
 }
 /* ===================================================================== */
 .message{
-    width: 300px;
-    height: 420px !important;
+/*    height: 460px !important;
+    width: 340px;*/
+    height: 0;
+    width: 0;
+    overflow-x: hidden;
+    
     background-color: white;
     z-index: 0100;
     position: fixed !important;
     bottom: 40px;
     right: 5%;
-     box-shadow: 0 0 5px #c4cacc;
-    
+    box-shadow: 0 0 5px #c4cacc;
+    transition: ease-in 0.2s;
 }
 
+.message2{
+    font-size: 30px;
+    color: red;
+    z-index: 1000;
+    position: fixed !important;
+    right: 3.1%;
+    top: 85%;
+    transition: ease-in-out 1s;
+    cursor: pointer;
+    
+}
 
 .card-body{
     overflow: auto;
@@ -81,19 +96,23 @@ svg rect {
     width: 5px;
     display: none;
 }
-   
+
 /* Handle */
-.card-body::-webkit-scrollbar-thumb {
+/*.card-body::-webkit-scrollbar-thumb {
     background: #ffe2d9;
     position: absolute;
 }
-  
-/* Handle on hover */
-.card-body:hover::-webkit-scrollbar {
-   width: 5px;
-    display: block;
-}
 
+ Handle on hover 
+.card-body:hover::-webkit-scrollbar {
+    width: 5px;
+    display: block;
+}*/
+.card-body {
+
+    padding: var(--bs-card-spacer-y);
+
+}
 /* --------------------------------------------------- */
 .message .slogans{
     color: #808080;
@@ -112,6 +131,7 @@ svg rect {
     align-items: center;
     flex-direction: row-reverse;
     margin-bottom: 20px;
+    transition: ease-in 0.3s;
 }
 .divMYR{
     justify-content: flex-end;
@@ -125,6 +145,7 @@ svg rect {
     max-width: 75%; 
     text-align: left;
     width: fit-content;
+    
 }
 .content_message .MYS{
     background-color: #ffe2d9;
@@ -139,13 +160,38 @@ svg rect {
 p{
     margin-bottom: 0 !important;
 }
+.checkIsread{
+    transition: ease-in 0.3s;
+    display: none;
+}
+.divMYS:hover .checkIsread,.divMYS:hover .fa-reply{
+    display: block;
+}
+.divMYR:hover .checkIsread,.divMYR:hover .fa-reply{
+    display: block;
+}
+.fa-reply{
+    color: #ced4da;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: none;
+    transition: ease-in 0.3s;
+}
+.replyMess{
+    height: 0;
+    width: 0;
+
+ 
+    overflow-x: hidden;
+    
+}
 /* --------------------------------------------------- */
 .message .menu_message .send{
     padding-right: 0;
 }
 .message .menu_message input{
     width: 100%;
-    border: 1px solid #50b5ba;
+    border: 1px solid #ced4da;
     outline: 0;
     padding: 5px 10px;
     border-radius: 20px;
@@ -154,7 +200,7 @@ p{
     border: 0;
     outline: 0;
     background-color: inherit;
-    color: #50b5ba;
+    color: #d95e36;
 }
 
 /* ================================ Messenger Admin ======================================== */
@@ -242,10 +288,10 @@ p{
     right: 10px;
 }
 img .avatar .avatarSeen  {
-   
+
     width: 10%;
     height: 50%;
-  
+
 }
 .fa-solid .fa-circle{
     width: 10%;

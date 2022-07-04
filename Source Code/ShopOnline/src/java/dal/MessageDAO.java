@@ -69,7 +69,7 @@ public class MessageDAO {
         ArrayList<Message> list = new ArrayList<>();
         try {
             String sql = "SELECT rs1.* FROM\n"
-                    + "(SELECT mess.messageID,creatorID,recipientGroupID,messageBody,createDate,isRead FROM messages AS mess INNER JOIN message_recipient AS mr \n"
+                    + "(SELECT mess.messageID,creatorID,recipientGroupID,messageBody,mess.parentMessageID,createDate,isRead FROM messages AS mess INNER JOIN message_recipient AS mr \n"
                     + "ON mess.messageID = mr.messageID) as rs1 INNER JOIN \n"
                     + "(SELECT ug.groupID,ug.userID FROM `group` INNER JOIN user_group AS ug ON ug.groupID = `group`.groupID\n"
                     + "WHERE ug.groupID = ? AND userID = ?)as rs2\n"
@@ -84,6 +84,7 @@ public class MessageDAO {
                 s.setFromID(rs.getString("creatorID"));
                 s.setToID(rs.getString("recipientGroupID"));
                 s.setContent(rs.getString("messageBody"));
+                s.setParentMessageID(rs.getString("parentMessageID"));
                 s.setCreateDate(rs.getString("createDate"));
                 s.setIsread(rs.getString("isRead") == null ? "0" : "1");
                 list.add(s);
@@ -209,6 +210,25 @@ public class MessageDAO {
         }
         return messageID;
     }
+    
+    //get max mrID 
+    public String getMaxmrID () {
+        String mrID = "";
+        String sql = "SELECT MAX(mrID) FROM `message_recipient` ";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                mrID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return mrID;
+    }
+    
     public String getCreatorbyMessageID (String messageID) {
         String creatorID = "";
         String sql = "SELECT creatorID FROM messages WHERE messageID = ?";
