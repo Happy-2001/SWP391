@@ -126,9 +126,9 @@ public class MessageController extends HttpServlet {
 
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
-            
-            if (getFROMandTOsplit.length == 4) {                 // check chuyển hướng sang message.jsp
-                response.sendRedirect("message?mrID=" + getFROMandTOsplit[2]);
+            String maxmrID = mdao.getMaxmrID();
+            if (getFROMandTOsplit.length == 4) {                 // check chuyển hướng sang message.jsp  tính nhắn gần nhất
+                response.sendRedirect("message?mrID=" + maxmrID);
             } else {
                 response.sendRedirect("home");
 

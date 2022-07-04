@@ -210,6 +210,25 @@ public class MessageDAO {
         }
         return messageID;
     }
+    
+    //get max mrID 
+    public String getMaxmrID () {
+        String mrID = "";
+        String sql = "SELECT MAX(mrID) FROM `message_recipient` ";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                mrID = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return mrID;
+    }
+    
     public String getCreatorbyMessageID (String messageID) {
         String creatorID = "";
         String sql = "SELECT creatorID FROM messages WHERE messageID = ?";

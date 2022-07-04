@@ -46,7 +46,7 @@
 
                 display: inline;
                 overflow-x: hidden;
-                
+
             }
             .replyMess-left{
                 width: 90%;
@@ -56,7 +56,7 @@
                 width: 10%;
                 float: right;
             }
-           
+
         </style>
     </head>
     <body>
@@ -436,7 +436,7 @@
                                                         <div class="divMYR">
                                                             <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
                                                             <span class="text-time">${hourMess2}</span>
-                                                            <div class="MYR" title="${mess.createDate}">
+                                                            <div class="MYR" title="${mess.createDate}" onmouseover="readMess(${mess.id})">
                                                                 <p>${mess.content}</p>
                                                             </div>
 
@@ -472,7 +472,7 @@
                                                     <i onclick="removeReplyR()" class="fa-solid fa-xmark"></i>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="dropdown flex-shrink-0 me-3">
                                                 <button class="btn btn-rounded" type="button">
                                                     <i class="fa-solid fa-paperclip"></i>
@@ -480,7 +480,7 @@
                                             </div>
                                             <input name="contentsend" type="text" class="form-control" placeholder="Write message...">
                                             <input id="parentMessageID" name="parentMessageID" type="hidden"/>
-                                            <button name="getFROMandTO" value="${sessionScope.userlogged.userid};${listMess.get(0).toID};${mrID+1};messageAdmin" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
+                                            <button name="getFROMandTO" value="${sessionScope.userlogged.userid};${listMess.get(0).toID};${mrID};messageAdmin" type="submit" class="btn btn-rounded flex-shrink-0 ms-3">Send</button>
                                         </form>
                                     </div>
                                 </div>
@@ -497,6 +497,9 @@
             }
             let scroll_to_bottom = document.getElementById('scroll-to-bottom');
             scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
+
+
+           
         </script>
     </body>
 
