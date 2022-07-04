@@ -182,6 +182,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- End Blog  -->
 
         <%@include file="Messenger.jsp" %>
@@ -193,16 +194,14 @@
                 
                 
 function hindMessage(){
-    document.getElementsByClassName('message2').style.fontsize = '30px';
-    document.getElementsByClassName('message').style.height = '0';
-    document.getElementsByClassName('message').style.width = '0';
+     document.getElementById('message2').style.display = 'block';
+    document.getElementById('mess1').style.width = '0';
+    document.getElementById('mess1').style.height = '0';
 }
 function showMessage(){
-    alert('helllo');
-    document.getElementsByClassName('message2').style.fontsize = '0';
-    
-    document.getElementsByClassName('message').style.height = '460px !important';
-    document.getElementsByClassName('message').style.width = '340px';
+    document.getElementById('message2').style.display = 'none';
+    document.getElementById('mess1').style.width = '340px';
+    document.getElementById('mess1').style.height = '460px';
 }
 
         </script>

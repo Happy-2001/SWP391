@@ -12,7 +12,7 @@
     <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
         <!-- mess -->
         <div class="collapse show" id="mess">
-            <div class="card message" style="display: none">
+            <div class="card message" id="mess1">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-lg-10 col-md-10">            
@@ -185,6 +185,7 @@
             </div>
         </div>
         <!-- end mess -->
+        <i id="message2" onclick="showMessage()" class="fa-brands fa-facebook-messenger message2" ></i>
     </c:if>
    
-        <i onclick="showMessage()" class="fa-brands fa-facebook-messenger message2" ></i>
+        
