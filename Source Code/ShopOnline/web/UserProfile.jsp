@@ -1,3 +1,6 @@
+<%@page import="model.AddressDetail"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -225,8 +228,8 @@
                                     <h5>Add address</h5>
                                     <div class="options">
                                         <label>Province, District, Sub-district</label>
-                                        <input id="user-name" type="text" value="" placeholder="Address...">
-                                        <div class="select-addess row" >
+                                        <input id="straddress" name="straddress"  type="text" value="" placeholder="Address..." onclick="onClickAddress()" 	onkeydown="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
+                                        <div id="selectaddress" class="select-addess row"  >                <!--select-->
                                             <div class="col-md-4"  onclick="changeProvince()">
                                                 <h6 id="province">Province</h6>
 
@@ -242,25 +245,34 @@
                                             <ul id="provinces" style="display: block" >
                                                 <c:forEach items="${listProvince}" var="province">
                                                     <li>${province.name}</li>
-                                                </c:forEach>
-                                                
+                                                    </c:forEach>
+
                                             </ul>
-                                            
+
                                             <ul id="districts" >
                                                 <c:forEach items="${listDistrict}" var="district">
                                                     <li>${district.prefix} ${district.name}</li>
-                                                </c:forEach>
+                                                    </c:forEach>
                                             </ul>
-                                            
+
                                             <ul id="subdistricts" >
                                                 <c:forEach items="${listSubDistrict}" var="subdistrict">
                                                     <li>${subdistrict.prefix} ${subdistrict.name}</li>
-                                                </c:forEach>
+                                                    </c:forEach>
                                             </ul>
 
                                         </div>
+                                        <div id="selectaddress2" class="select-addess2">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                            <ul>
+                                                <c:forEach items="${adList}" var="adList">
+                                                    <li>${adList.addressDetail}</li>
+                                                  
+                                                    </c:forEach>
+                                            </ul>
+                                        </div>
 
                                     </div>
+
                                     <div class="options">
                                         <input id="password" type="password" name="password" placeholder="Password">
                                     </div>
@@ -356,22 +368,22 @@
             };
 
             function changeProvince() {
-                alert('helloDis1');
+
                 document.getElementById('province').style.borderBottomColor = "#d33b33";
                 document.getElementById('province').style.color = "#d33b33";
                 document.getElementById('provinces').style.display = "block";
 
-                
+
                 document.getElementById('district').style.borderBottomColor = "#ccc";
                 document.getElementById('district').style.color = "black";
                 document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
                 document.getElementById('subdistrict').style.color = "black";
-                
+
                 document.getElementById('districts').style.display = "none";
                 document.getElementById('subdistricts').style.display = "none";
             }
             function changeDistrict() {
-                alert('helloDis2');
+
                 document.getElementById('district').style.borderBottomColor = "#d33b33";
                 document.getElementById('district').style.color = "#d33b33";
                 document.getElementById('districts').style.display = "block";
@@ -380,12 +392,12 @@
                 document.getElementById('province').style.color = "black";
                 document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
                 document.getElementById('subdistrict').style.color = "black";
-                
+
                 document.getElementById('provinces').style.display = "none";
                 document.getElementById('subdistricts').style.display = "none";
             }
             function changeSubdistrict() {
-                alert('helloDis3');
+
                 document.getElementById('subdistrict').style.borderBottomColor = "#d33b33";
                 document.getElementById('subdistrict').style.color = "#d33b33";
                 document.getElementById('subdistricts').style.display = "block";
@@ -394,9 +406,19 @@
                 document.getElementById('province').style.color = "black";
                 document.getElementById('district').style.borderBottomColor = "#ccc";
                 document.getElementById('district').style.color = "black";
-                
+
                 document.getElementById('provinces').style.display = "none";
                 document.getElementById('districts').style.display = "none";
+            }
+            function onClickAddress() {
+                document.getElementById('selectaddress').style.height = '300px';
+                document.getElementById('selectaddress2').style.height ='0';   
+            }
+            function onKeydownAdress() {
+                document.getElementById('selectaddress').style.height = '0';
+                var straddress = document.getElementById('straddress').value;
+                <c:set var="straddress" value="${straddress}"/>
+                document.getElementById('selectaddress2').style.height ='300px';        
             }
         </script>
         <script src="js/Popup.js"></script>
