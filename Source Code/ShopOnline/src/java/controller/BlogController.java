@@ -29,4 +29,14 @@ public class BlogController extends HttpServlet {
         request.setAttribute("blogs", blogsForEachPage);
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
+    /*
+    request.setAttribute("PAGE", page);
+        int pageNumber = Integer.parseInt(page);
+        int countPage = bdb.countPage();
+        request.setAttribute("countPage", countPage);
+        //get list courses for each pageNumber
+        List<Blog> blogsForEachPage = bdb.getBlogByPageNumber(pageNumber);
+        request.setAttribute("blogs", blogsForEachPage);
+        request.getRequestDispatcher("blog.jsp").forward(request, response);
+    */
 }
