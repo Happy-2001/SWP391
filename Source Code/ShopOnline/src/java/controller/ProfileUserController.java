@@ -5,14 +5,19 @@
  */
 package controller;
 
+import dal.AddressDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.District;
+import model.Provinces;
+import model.SubDistrict;
 import model.User;
 
 /**
@@ -53,8 +58,15 @@ public class ProfileUserController extends HttpServlet {
         String userid = request.getParameter("userid");  
         
         UserDAO udb = new UserDAO();
-        User user = udb.getUserById(userid);  
+        AddressDAO adao = new AddressDAO();
+        User user = udb.getUserById(userid);
+        ArrayList<Provinces> listProvince = adao.getProvince();
+        ArrayList<District> listDistrict = adao.getDistrict();
+        ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
         
+        request.setAttribute("listProvince", listProvince);
+        request.setAttribute("listDistrict", listDistrict);
+        request.setAttribute("listSubDistrict", listSubDistrict);
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 //         response.getWriter().print(user.getEmail());
