@@ -63,7 +63,7 @@
     transition: 0.3s;
 }
 /* The Close Button */
-.close {
+.close , .close2 {
     position: absolute;
     color: #aaa;
     right: 10px;
@@ -72,11 +72,14 @@
 }
 
 .close:hover,
-.close:focus {
+.close:focus, 
+.close2:hover, .close2:focus {
     color: #f00;
     text-decoration: none;
     cursor: pointer;
 }
+
+
 /* ------ Setting ------------------------ */
 .Popup-body{
     position: absolute;
@@ -166,3 +169,34 @@
     justify-content: space-between;
     gap: 10px;
 }
+
+/*----*/
+.Set-pop .card-body{
+    overflow: auto;
+    height: 300px;
+}
+/* width */
+.Set-pop .card-body::-webkit-scrollbar {
+    width: 5px;
+    transition: linear all 0.3s;
+    display: none;
+}
+
+ /*Handle*/ 
+.card-body::-webkit-scrollbar-thumb {
+    background: black;
+    position: absolute;
+}
+
+ /*Handle on hover*/ 
+.card-body:hover::-webkit-scrollbar {
+    width: 5px;
+    display: block;
+}
+.card-body {
+
+    padding: var(--bs-card-spacer-y);
+
+}
+
+

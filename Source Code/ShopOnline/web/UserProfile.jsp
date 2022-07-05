@@ -59,6 +59,9 @@
                     <div class="why-text">
                         <button id="myBtn" class="btn"><i class="fa-regular fa-pen-to-square"></i> Edit Profile</button>
                     </div>
+                        <div class="why-text">
+                        <button id="myBtn2" class="btn btn2"><i class="fa-solid fa-location-dot"></i> Addresses User</button>
+                    </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="card shadow-sm">
@@ -192,6 +195,105 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="options-divider"></div>
+                        <div class="options">
+                            <button class="opt-btn" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+                                
+                                
+                                
+    <!-- Edit Address -->
+    <form action="UpdateProfile" method="POST">
+        <div class="Popup" id="myModal2">
+            <span class="close2">&times;</span>
+            <div class="container Popup-body">
+                <div class="Pop-title">
+                    <h3>Address User</h3>
+                </div>
+                <div class="options-divider"></div>
+                <input type="hidden" name="id" value="${sessionScope.user.userid}">
+                <div class="Set-pop">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div style="border-right: 1px solid #231f20;">
+                                <h5>Add address</h5>
+                                <div class="options input-group">
+                                    <input id="user-name" type="text" value="${sessionScope.user.username}" required="">
+                                    <label></label>
+                                </div>
+                                <div class="options">
+                                    <input id="password" type="password" name="password" placeholder="Password">
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 card-body" >
+                            <div>
+                                <h5>Info</h5>
+                                <div class="options">
+                                    <div class="auth-actions">
+                                        <input type="text" name="fname" placeholder="Fist Name">
+                                        <input type="text" name="mdname" placeholder="Middle Name">
+                                        <input type="text" name="lname" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="options">
+                                    <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
+                                </div>
+                                <div class="options">
+                                    <input id="email" type="text" value="${sessionScope.user.email}" disabled>
+                                </div>
+                                <div class="save-pass">
+                                    <div class="auth-actions">
+                                        <label class="save-pass-container">Male
+                                            <input class="checkbox" name="gender" type="radio" value="1">
+                                            <span class="radio-mark"></span>
+                                        </label>
+                                        <label class="save-pass-container">Female
+                                            <input class="checkbox" name="gender" type="radio" value="0">
+                                            <span class="radio-mark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                <div>
+                                <h5>Info</h5>
+                                <div class="options">
+                                    <div class="auth-actions">
+                                        <input type="text" name="fname" placeholder="Fist Name">
+                                        <input type="text" name="mdname" placeholder="Middle Name">
+                                        <input type="text" name="lname" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="options">
+                                    <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
+                                </div>
+                                <div class="options">
+                                    <input id="email" type="text" value="${sessionScope.user.email}" disabled>
+                                </div>
+                                <div class="save-pass">
+                                    <div class="auth-actions">
+                                        <label class="save-pass-container">Male
+                                            <input class="checkbox" name="gender" type="radio" value="1">
+                                            <span class="radio-mark"></span>
+                                        </label>
+                                        <label class="save-pass-container">Female
+                                            <input class="checkbox" name="gender" type="radio" value="0">
+                                            <span class="radio-mark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                
+                                
                         </div>
                         <div class="options-divider"></div>
                         <div class="options">

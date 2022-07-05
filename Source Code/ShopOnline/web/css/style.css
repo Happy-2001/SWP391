@@ -64,7 +64,7 @@ a {
     text-decoration: none;
     outline: none;
 }
-a, .btn {
+a, .btn,.btn2 {
     text-decoration: none !important;
     outline: none !important;
     -webkit-transition: all .3s ease-in-out;
@@ -199,7 +199,7 @@ nav.navbar .navbar-brand img.logo{
 .attr-nav > ul > li > a{
     padding: 28px 15px;
 }
-ul.cart-list > li.total > .btn{
+ul.cart-list > li.total > .btn {
     border-bottom: solid 1px #cfcfcf !important;
     color: #010101 ;
     padding: 10px 15px;
@@ -359,7 +359,7 @@ nav.navbar.bootsnav ul.nav li.megamenu-fw > a:hover{
     font-weight: 700;
     font-size: 20px;
 }
-.why-text .btn{
+.why-text .btn,.why-text .btn2{
     background-color: #d33b33;
     color: #fff;
     margin-top: 1rem;
