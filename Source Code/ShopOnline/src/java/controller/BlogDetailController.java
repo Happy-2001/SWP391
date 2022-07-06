@@ -24,8 +24,6 @@ public class BlogDetailController extends HttpServlet {
     throws ServletException, IOException {
        BlogDAO bdb = new BlogDAO();
         String id = request.getParameter("id");
-        request.setAttribute("postrecommend", bdb.getBlogRecommend(id, 2));
-        request.setAttribute("post", bdb.getBlogById(id));
-        request.getRequestDispatcher("blogdetail.jsp").forward(request, response);      
+      
     */
 }
