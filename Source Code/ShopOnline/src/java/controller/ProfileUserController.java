@@ -35,8 +35,10 @@ public class ProfileUserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userid = request.getParameter("userid");  
-        
+        request.setCharacterEncoding("UTF-8");
+       String userid = request.getParameter("userid");  
+       String straddress = request.getParameter("straddress");
+       
         UserDAO udb = new UserDAO();
         AddressDAO adao = new AddressDAO();
         DetailAddressDAO dadao = new DetailAddressDAO();
@@ -44,16 +46,29 @@ public class ProfileUserController extends HttpServlet {
         ArrayList<Provinces> listProvince = adao.getProvince();
         ArrayList<District> listDistrict = adao.getDistrict();
         ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
-                
+    
+        if(straddress != null){
+             ArrayList<AddressDetail> adList = dadao.getDetailAddress();
+             request.setAttribute("adList", adList);
+             
+        }else{
+             ArrayList<AddressDetail> adList = dadao.getDetailAddress();
+             request.setAttribute("adList", adList);
+//             for (AddressDetail addressDetail : adList) {
+//                response.getWriter().println(addressDetail.getAddressDetail());
+//            }
+        
+        }
+        request.setAttribute("selectaddress2Style", "height: 300px");        
+        request.setAttribute("valueAddress", straddress);
         request.setAttribute("listProvince", listProvince);
         request.setAttribute("listDistrict", listDistrict);
         request.setAttribute("listSubDistrict", listSubDistrict);
-//        for (AddressDetail addressDetail : adList) {
-//            response.getWriter().print(addressDetail.getAddressDetail());
-//        }
+        
+
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-//         response.getWriter().print(user.getEmail());
+        
         request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
     }
 

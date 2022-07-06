@@ -46,8 +46,12 @@ public class DetailAddressDAO {
          DetailAddressDAO d = new DetailAddressDAO();
          ArrayList<AddressDetail> list = d.getDetailAddress();
          for (AddressDetail addressDetail : list) {
-             if(addressDetail.getAddressDetail().contains("Yên Cường")){
-                              System.out.println(addressDetail.getAddressDetail());
+             if(addressDetail.getAddressDetail().contains("Hà Nội, Huyện Thạch Thất, Xã Thạch Hòa")){
+                              System.out.println(addressDetail.getProvinceID());
+                                                            System.out.println(addressDetail.getDistrictID());
+                              System.out.println(addressDetail.getSubDistrictID());
+
+                                                            
              }
          }
     }

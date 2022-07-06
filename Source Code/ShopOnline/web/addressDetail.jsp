@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         <!-- Site Icons -->
+        <!-- Site Icons -->
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
         <link rel="stylesheet" href="css/style.css">
@@ -29,9 +29,9 @@
         <%@include file="header.jsp" %>   
         <!-- Edit Address -->
         <form action="UpdateProfile" method="POST">
-            <div >              <!--sửa ở đây-->
-              
-                <div class="container Popup-body2">
+            <div  >              <!--sửa ở đây-->
+
+                <div class="container Popup-body2" style="margin-top: 280px;">
                     <div class="Pop-title">
                         <h3>Address User</h3>
                     </div>
@@ -44,57 +44,37 @@
                                     <h5>Add address</h5>
                                     <div class="options">
                                         <label>Province, District, Sub-district</label>
-                                        <input id="straddress" name="straddress"  type="text" value="${valueAddress}" placeholder="Address..." onclick="onClickAddress()"  	onblur ="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
-                                        <div id="selectaddress" class="select-addess row"  >                <!--select-->
-                                            <div class="col-md-4"  onclick="changeProvince()">
-                                                <h6 id="province">Province</h6>
-
-
-                                            </div>
-                                            <div class="col-md-4"  >
-                                                <h6 id="district">District</h6>
-                                            </div>
-                                            <div class="col-md-4"  >
-                                                <h6 id="subdistrict">Sub-district</h6>
-                                            </div>  
-
-                                            <ul id="provinces" style="display: block; "  >
-                                                <c:forEach items="${listProvince}" var="province">
-                                                    <li onclick="changeDistrict()">${province.name}</li>
-                                                    </c:forEach>
-
-                                            </ul>
-
-                                            <ul id="districts" >
-                                                <c:forEach items="${listDistrict}" var="district">
-                                                    <li onclick="changeSubdistrict()">${district.prefix} ${district.name}</li>
-                                                    </c:forEach>
-                                            </ul>
-
-                                            <ul id="subdistricts" >
-                                                <c:forEach items="${adList}" var="adList">
-                                                    <li>${adList.addressDetail}</li>
-                                                  
-                                                </c:forEach>
-                                            </ul>
-                                            
-
-                                        </div>
+                                        <input id="straddress" name="straddress"  type="text" value="${valueAddress}" placeholder="Address..." onclick="onClickAddress()"  onblur="outSearchAddress()"	ondblclick ="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
                                         
-                                        <div id="selectaddress2" class="select-addess2" style="${selectaddress2Style};">           <!--xử lý việc khách hàng nhập địa chỉ-->
-                                            <ul style="display: block">
-                                                <c:forEach items="${adList}" var="adList">
-                                                    <li>${adList.addressDetail}</li>
-                                                  
-                                                </c:forEach>
+
+                                        <div id="selectaddress2" class="select-addess2" style="${selectaddress2Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                            <ul id="ulsearch" style="display: none; ${ulBlock}">
+                                                <c:if test="${adList ne null}">
+                                                    <c:forEach items="${adList}" var="adList">
+                                                        <li onclick="getAddress('${adList.addressDetail}','${adList.provinceID}','${adList.districtID}')">${adList.addressDetail}</li>
+
+                                                    </c:forEach>
+                                                </c:if>
                                             </ul>
                                         </div>
                                     </div>
 
                                     <div class="options">
-                                        <input id="password" type="password" name="password" placeholder="Password">
-                                    </div>
+                                        <input value="${adddetail}" id="adddetail" type="text" name="adddetail" placeholder="Address detail..." ondblclick="searchProject()">
+                                        <div id="selectaddress3" class="select-addess3" style="height: 300px; ${selectaddress3Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                            <ul id="ulsearch3" style="display: none; ${ulBlock3}">
+                                                <c:if test="${listProject ne null}">
+                                                    <c:forEach items="${listProject}" var="listProject">
+                                                        
+                                                        <li onclick="getProject('${listProject.name}')" <c:set var="lat" value="${listProject.lat}"/>
+                                                        <c:set var="ing" value="${listProject.ing}"/>>${listProject.name}</li>
 
+                                                    </c:forEach>
+                                                </c:if>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="googleMap" style="width: 100%;height: 400px;"></div>           
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 card-body" >
@@ -168,47 +148,47 @@
                 </div>
             </div>
         </form>
-                                    <script>                      
+        <script>
             function changeProvince() {
-                
+
                 document.getElementById('province').style.borderBottomColor = "#d33b33";
                 document.getElementById('province').style.color = "#d33b33";
                 document.getElementById('provinces').style.display = "block";
-                
-                
+
+
                 document.getElementById('district').style.borderBottomColor = "#ccc";
                 document.getElementById('district').style.color = "black";
                 document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
                 document.getElementById('subdistrict').style.color = "black";
-                
+
                 document.getElementById('districts').style.display = "none";
                 document.getElementById('subdistricts').style.display = "none";
             }
             function changeDistrict() {
-                
+
                 document.getElementById('district').style.borderBottomColor = "#d33b33";
                 document.getElementById('district').style.color = "#d33b33";
                 document.getElementById('districts').style.display = "block";
-                
+
                 document.getElementById('province').style.borderBottomColor = "#ccc";
                 document.getElementById('province').style.color = "black";
                 document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
                 document.getElementById('subdistrict').style.color = "black";
-                
+
                 document.getElementById('provinces').style.display = "none";
                 document.getElementById('subdistricts').style.display = "none";
             }
             function changeSubdistrict() {
-                
+
                 document.getElementById('subdistrict').style.borderBottomColor = "#d33b33";
                 document.getElementById('subdistrict').style.color = "#d33b33";
                 document.getElementById('subdistricts').style.display = "block";
-                
+
                 document.getElementById('province').style.borderBottomColor = "#ccc";
                 document.getElementById('province').style.color = "black";
                 document.getElementById('district').style.borderBottomColor = "#ccc";
                 document.getElementById('district').style.color = "black";
-                
+
                 document.getElementById('provinces').style.display = "none";
                 document.getElementById('districts').style.display = "none";
             }
@@ -218,20 +198,56 @@
                 document.getElementById('hindaddress').style.display = 'none';
             }
             function onKeydownAdress() {
-                 var straddress = document.getElementById('straddress').value;
+                var straddress = document.getElementById('straddress').value;
 //                alert(straddress)
-                                 window.location.href= 'address?straddress='+straddress;
+                window.location.href = 'address?straddress=' + straddress;
                 document.getElementById('selectaddress').style.height = '0';
                 document.getElementById('selectaddress2').style.height = '300px';
                 document.getElementById('hindaddress').style.display = 'block';
-              
 
-               
+
+
             }
-            
+            function getAddress(address,provinceID,districtID) {
+                document.getElementById('straddress').value = address;
+                document.getElementById('selectaddress2').style.height = '0';
+                document.getElementById('ulsearch').style.display = 'none';
+                window.location.href = 'address?straddress=' + address+'&&provinceID='+provinceID+'&&districtID='+districtID;
+            }
+            function searchProject(){
+                var straddress = document.getElementById('straddress').value;
+                var straddressdetail = document.getElementById('adddetail').value;
+//                alert(straddress)
+
+                window.location.href = 'address?straddress=' + straddress+'&&straddressdetail='+straddressdetail;
+                
+            }
+            function getProject(address) {
+                document.getElementById('adddetail').value = address;
+                document.getElementById('selectaddress3').style.height = '0';
+                document.getElementById('ulsearch3').style.display = 'none';
+                    
+            }
+        </script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript">
+            var myCenter = new google.maps.LatLng(${lat}, ${ing});
+            function initialize() {
+                var mapProp = {
+                    center: myCenter,
+                    zoom: 12,
+                    mapTypeId: google.maps.MapTypeId.RoadMAP
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var marker = new google.maps.Marker({
+                    position: myCenter
+                });
+                marker.setMap(map);
+            };
+            google.maps.event.addDomListener(window, 'load', initialize);
         </script>
         <script src="js/Popup.js"></script>
 
-        <%@include file="footer.jsp" %>
+        <%--<%@include file="footer.jsp" %>--%>
     </body>
 </html>
