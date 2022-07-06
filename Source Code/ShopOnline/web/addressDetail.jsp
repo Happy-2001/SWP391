@@ -1,0 +1,237 @@
+<%-- 
+    Document   : addressDetail
+    Created on : Jul 6, 2022, 4:22:41 PM
+    Author     : Administrator
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+         <!-- Site Icons -->
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/profile.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <script src="js/fontAwesome.js"></script>
+
+        <!-- Bootstrap 5 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <%@include file="topbar.jsp" %>
+        <%@include file="header.jsp" %>   
+        <!-- Edit Address -->
+        <form action="UpdateProfile" method="POST">
+            <div >              <!--sửa ở đây-->
+              
+                <div class="container Popup-body2">
+                    <div class="Pop-title">
+                        <h3>Address User</h3>
+                    </div>
+                    <div class="options-divider"></div>
+                    <input type="hidden" name="id" value="${sessionScope.user.userid}">
+                    <div class="Set-pop">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div style="border-right: 1px solid #231f20;">
+                                    <h5>Add address</h5>
+                                    <div class="options">
+                                        <label>Province, District, Sub-district</label>
+                                        <input id="straddress" name="straddress"  type="text" value="${valueAddress}" placeholder="Address..." onclick="onClickAddress()"  	onblur ="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
+                                        <div id="selectaddress" class="select-addess row"  >                <!--select-->
+                                            <div class="col-md-4"  onclick="changeProvince()">
+                                                <h6 id="province">Province</h6>
+
+
+                                            </div>
+                                            <div class="col-md-4"  >
+                                                <h6 id="district">District</h6>
+                                            </div>
+                                            <div class="col-md-4"  >
+                                                <h6 id="subdistrict">Sub-district</h6>
+                                            </div>  
+
+                                            <ul id="provinces" style="display: block; "  >
+                                                <c:forEach items="${listProvince}" var="province">
+                                                    <li onclick="changeDistrict()">${province.name}</li>
+                                                    </c:forEach>
+
+                                            </ul>
+
+                                            <ul id="districts" >
+                                                <c:forEach items="${listDistrict}" var="district">
+                                                    <li onclick="changeSubdistrict()">${district.prefix} ${district.name}</li>
+                                                    </c:forEach>
+                                            </ul>
+
+                                            <ul id="subdistricts" >
+                                                <c:forEach items="${adList}" var="adList">
+                                                    <li>${adList.addressDetail}</li>
+                                                  
+                                                </c:forEach>
+                                            </ul>
+                                            
+
+                                        </div>
+                                        
+                                        <div id="selectaddress2" class="select-addess2" style="${selectaddress2Style};">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                            <ul style="display: block">
+                                                <c:forEach items="${adList}" var="adList">
+                                                    <li>${adList.addressDetail}</li>
+                                                  
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="options">
+                                        <input id="password" type="password" name="password" placeholder="Password">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 card-body" >
+                                <div>
+                                    <h5>Info</h5>
+                                    <div class="options">
+                                        <div class="auth-actions">
+                                            <input type="text" name="fname" placeholder="Fist Name">
+                                            <input type="text" name="mdname" placeholder="Middle Name">
+                                            <input type="text" name="lname" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="options">
+                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
+                                    </div>
+                                    <div class="options">
+                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
+                                    </div>
+                                    <div class="save-pass">
+                                        <div class="auth-actions">
+                                            <label class="save-pass-container">Male
+                                                <input class="checkbox" name="gender" type="radio" value="1">
+                                                <span class="radio-mark"></span>
+                                            </label>
+                                            <label class="save-pass-container">Female
+                                                <input class="checkbox" name="gender" type="radio" value="0">
+                                                <span class="radio-mark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h5>Info</h5>
+                                    <div class="options">
+                                        <div class="auth-actions">
+                                            <input type="text" name="fname" placeholder="Fist Name">
+                                            <input type="text" name="mdname" placeholder="Middle Name">
+                                            <input type="text" name="lname" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="options">
+                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
+                                    </div>
+                                    <div class="options">
+                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
+                                    </div>
+                                    <div class="save-pass">
+                                        <div class="auth-actions">
+                                            <label class="save-pass-container">Male
+                                                <input class="checkbox" name="gender" type="radio" value="1">
+                                                <span class="radio-mark"></span>
+                                            </label>
+                                            <label class="save-pass-container">Female
+                                                <input class="checkbox" name="gender" type="radio" value="0">
+                                                <span class="radio-mark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="options-divider"></div>
+                            <div class="options">
+                                <button class="opt-btn" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+                                    <script>                      
+            function changeProvince() {
+                
+                document.getElementById('province').style.borderBottomColor = "#d33b33";
+                document.getElementById('province').style.color = "#d33b33";
+                document.getElementById('provinces').style.display = "block";
+                
+                
+                document.getElementById('district').style.borderBottomColor = "#ccc";
+                document.getElementById('district').style.color = "black";
+                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
+                document.getElementById('subdistrict').style.color = "black";
+                
+                document.getElementById('districts').style.display = "none";
+                document.getElementById('subdistricts').style.display = "none";
+            }
+            function changeDistrict() {
+                
+                document.getElementById('district').style.borderBottomColor = "#d33b33";
+                document.getElementById('district').style.color = "#d33b33";
+                document.getElementById('districts').style.display = "block";
+                
+                document.getElementById('province').style.borderBottomColor = "#ccc";
+                document.getElementById('province').style.color = "black";
+                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
+                document.getElementById('subdistrict').style.color = "black";
+                
+                document.getElementById('provinces').style.display = "none";
+                document.getElementById('subdistricts').style.display = "none";
+            }
+            function changeSubdistrict() {
+                
+                document.getElementById('subdistrict').style.borderBottomColor = "#d33b33";
+                document.getElementById('subdistrict').style.color = "#d33b33";
+                document.getElementById('subdistricts').style.display = "block";
+                
+                document.getElementById('province').style.borderBottomColor = "#ccc";
+                document.getElementById('province').style.color = "black";
+                document.getElementById('district').style.borderBottomColor = "#ccc";
+                document.getElementById('district').style.color = "black";
+                
+                document.getElementById('provinces').style.display = "none";
+                document.getElementById('districts').style.display = "none";
+            }
+            function onClickAddress() {
+                document.getElementById('selectaddress').style.height = '300px';
+                document.getElementById('selectaddress2').style.height = '0';
+                document.getElementById('hindaddress').style.display = 'none';
+            }
+            function onKeydownAdress() {
+                 var straddress = document.getElementById('straddress').value;
+//                alert(straddress)
+                                 window.location.href= 'address?straddress='+straddress;
+                document.getElementById('selectaddress').style.height = '0';
+                document.getElementById('selectaddress2').style.height = '300px';
+                document.getElementById('hindaddress').style.display = 'block';
+              
+
+               
+            }
+            
+        </script>
+        <script src="js/Popup.js"></script>
+
+        <%@include file="footer.jsp" %>
+    </body>
+</html>

@@ -23,6 +23,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
     </head>
     <body>
         <%@include file="topbar.jsp" %>
@@ -63,7 +65,7 @@
                             <button id="myBtn" class="btn"><i class="fa-regular fa-pen-to-square"></i> Edit Profile</button>
                         </div>
                         <div class="why-text">
-                            <button id="myBtn2" class="btn btn2"><i class="fa-solid fa-location-dot"></i> Addresses User</button>
+                            <a href="address"> <button  class="btn btn2"><i class="fa-solid fa-location-dot"></i> Addresses User</button></a>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -142,284 +144,30 @@
         </div>
         <!-- end profile -->
 
-        <!-- Edit Profile -->
-        <form action="UpdateProfile" method="POST">
-            <div class="Popup" id="myModal">
-                <span class="close">&times;</span>
-                <div class="container Popup-body">
-                    <div class="Pop-title">
-                        <h3>Edit Profile</h3>
-                    </div>
-                    <div class="options-divider"></div>
-                    <input type="hidden" name="id" value="${sessionScope.user.userid}">
-                    <div class="Set-pop">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div style="border-right: 1px solid #231f20;">
-                                    <h5>Account</h5>
-                                    <div class="options">
-                                        <input id="user-name" type="text" value="${sessionScope.user.username}" disabled>
-                                    </div>
-                                    <div class="options">
-                                        <input id="password" type="password" name="password" placeholder="Password">
-                                    </div>
-                                    <div class="options check__pass">
-                                        <input id="password_confirmation" type="password" placeholder="Enter password again">
-                                        <span id="check-err"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div>
-                                    <h5>Info</h5>
-                                    <div class="options">
-                                        <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
-                                            <input type="text" name="mdname" placeholder="Middle Name">
-                                            <input type="text" name="lname" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="options">
-                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
-                                    </div>
-                                    <div class="options">
-                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
-                                    </div>
-                                    <div class="save-pass">
-                                        <div class="auth-actions">
-                                            <label class="save-pass-container">Male
-                                                <input class="checkbox" name="gender" type="radio" value="1">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                            <label class="save-pass-container">Female
-                                                <input class="checkbox" name="gender" type="radio" value="0">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="options-divider"></div>
-                            <div class="options">
-                                <button class="opt-btn" type="submit">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+       
 
 
 
-        <!-- Edit Address -->
-        <form action="UpdateProfile" method="POST">
-            <div class="Popup" id="myModal2">              <!--sửa ở đây-->
-                <span class="close2">&times;</span>
-                <div class="container Popup-body">
-                    <div class="Pop-title">
-                        <h3>Address User</h3>
-                    </div>
-                    <div class="options-divider"></div>
-                    <input type="hidden" name="id" value="${sessionScope.user.userid}">
-                    <div class="Set-pop">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div style="border-right: 1px solid #231f20;">
-                                    <h5>Add address</h5>
-                                    <div class="options">
-                                        <label>Province, District, Sub-district</label>
-                                        <input id="straddress" name="straddress"  type="text" value="" placeholder="Address..." onclick="onClickAddress()" 	onkeydown="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
-                                        <div id="selectaddress" class="select-addess row"  >                <!--select-->
-                                            <div class="col-md-4"  onclick="changeProvince()">
-                                                <h6 id="province">Province</h6>
-
-
-                                            </div>
-                                            <div class="col-md-4"  onclick="changeDistrict()">
-                                                <h6 id="district">District</h6>
-                                            </div>
-                                            <div class="col-md-4"  onclick="changeSubdistrict()">
-                                                <h6 id="subdistrict">Sub-district</h6>
-                                            </div>  
-
-                                            <ul id="provinces" style="display: block" >
-                                                <c:forEach items="${listProvince}" var="province">
-                                                    <li>${province.name}</li>
-                                                    </c:forEach>
-
-                                            </ul>
-
-                                            <ul id="districts" >
-                                                <c:forEach items="${listDistrict}" var="district">
-                                                    <li>${district.prefix} ${district.name}</li>
-                                                    </c:forEach>
-                                            </ul>
-
-                                            <ul id="subdistricts" >
-                                                <c:forEach items="${listSubDistrict}" var="subdistrict">
-                                                    <li>${subdistrict.prefix} ${subdistrict.name}</li>
-                                                    </c:forEach>
-                                            </ul>
-
-                                        </div>
-                                        <div id="selectaddress2" class="select-addess2">           <!--xử lý việc khách hàng nhập địa chỉ-->
-                                            <ul>
-                                                <c:forEach items="${adList}" var="adList">
-                                                    <li>${adList.addressDetail}</li>
-                                                  
-                                                    </c:forEach>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="options">
-                                        <input id="password" type="password" name="password" placeholder="Password">
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 card-body" >
-                                <div>
-                                    <h5>Info</h5>
-                                    <div class="options">
-                                        <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
-                                            <input type="text" name="mdname" placeholder="Middle Name">
-                                            <input type="text" name="lname" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="options">
-                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
-                                    </div>
-                                    <div class="options">
-                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
-                                    </div>
-                                    <div class="save-pass">
-                                        <div class="auth-actions">
-                                            <label class="save-pass-container">Male
-                                                <input class="checkbox" name="gender" type="radio" value="1">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                            <label class="save-pass-container">Female
-                                                <input class="checkbox" name="gender" type="radio" value="0">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h5>Info</h5>
-                                    <div class="options">
-                                        <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
-                                            <input type="text" name="mdname" placeholder="Middle Name">
-                                            <input type="text" name="lname" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="options">
-                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
-                                    </div>
-                                    <div class="options">
-                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
-                                    </div>
-                                    <div class="save-pass">
-                                        <div class="auth-actions">
-                                            <label class="save-pass-container">Male
-                                                <input class="checkbox" name="gender" type="radio" value="1">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                            <label class="save-pass-container">Female
-                                                <input class="checkbox" name="gender" type="radio" value="0">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                            <div class="options-divider"></div>
-                            <div class="options">
-                                <button class="opt-btn" type="submit">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        
         <script>
             var checkArea = document.getElementById('check-err');
             var passIn = document.getElementById('password');
             var passCf = document.getElementById('password_confirmation');
-
+            
             passCf.onkeyup = () => {
                 var inP = passCf.value;
-
+                
                 if (inP !== passIn.value) {
                     checkArea.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
                     return false;
                 }
-
+                
                 checkArea.innerHTML = '<i style="color: #2e8b57;" class="fa-solid fa-circle-check"></i>';
                 return true;
             };
-
-            function changeProvince() {
-
-                document.getElementById('province').style.borderBottomColor = "#d33b33";
-                document.getElementById('province').style.color = "#d33b33";
-                document.getElementById('provinces').style.display = "block";
-
-
-                document.getElementById('district').style.borderBottomColor = "#ccc";
-                document.getElementById('district').style.color = "black";
-                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
-                document.getElementById('subdistrict').style.color = "black";
-
-                document.getElementById('districts').style.display = "none";
-                document.getElementById('subdistricts').style.display = "none";
-            }
-            function changeDistrict() {
-
-                document.getElementById('district').style.borderBottomColor = "#d33b33";
-                document.getElementById('district').style.color = "#d33b33";
-                document.getElementById('districts').style.display = "block";
-
-                document.getElementById('province').style.borderBottomColor = "#ccc";
-                document.getElementById('province').style.color = "black";
-                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
-                document.getElementById('subdistrict').style.color = "black";
-
-                document.getElementById('provinces').style.display = "none";
-                document.getElementById('subdistricts').style.display = "none";
-            }
-            function changeSubdistrict() {
-
-                document.getElementById('subdistrict').style.borderBottomColor = "#d33b33";
-                document.getElementById('subdistrict').style.color = "#d33b33";
-                document.getElementById('subdistricts').style.display = "block";
-
-                document.getElementById('province').style.borderBottomColor = "#ccc";
-                document.getElementById('province').style.color = "black";
-                document.getElementById('district').style.borderBottomColor = "#ccc";
-                document.getElementById('district').style.color = "black";
-
-                document.getElementById('provinces').style.display = "none";
-                document.getElementById('districts').style.display = "none";
-            }
-            function onClickAddress() {
-                document.getElementById('selectaddress').style.height = '300px';
-                document.getElementById('selectaddress2').style.height ='0';   
-            }
-            function onKeydownAdress() {
-                document.getElementById('selectaddress').style.height = '0';
-                var straddress = document.getElementById('straddress').value;
-                <c:set var="straddress" value="${straddress}"/>
-                document.getElementById('selectaddress2').style.height ='300px';        
-            }
+            
+            
+            
         </script>
         <script src="js/Popup.js"></script>
 
