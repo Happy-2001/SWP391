@@ -70,3 +70,66 @@
     background-color: #ff6e40;
     border-color: #ff6e40;
 }
+.favorite:hover{
+    color: #faae42;
+}
+/* ===================================================================================================== */
+h6{
+    padding: 0;
+}
+.card{
+    border: 0 !important;
+    border-radius: 1rem !important;
+}
+.avatar {
+    display: inline-block;
+    margin-bottom: 0;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.star-rate{
+    color: #faae42;
+}
+
+.Attachments .image{
+    width: 180px;
+    height: 180px;
+    border: 1px dashed #666;
+}
+.Attachments .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.fb-reply{
+    height: auto;
+    position: relative;
+}
+.fb-reply #ql-editor {
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    line-height: 1.42;
+    overflow-y: auto;
+    padding: 12px 15px;
+    tab-size: 4;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.fb-reply #left{
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    font-weight: 500;
+    color: #05b171;
+}
