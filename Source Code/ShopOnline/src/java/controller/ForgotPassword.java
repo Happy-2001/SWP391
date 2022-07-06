@@ -44,6 +44,7 @@ public class ForgotPassword extends HttpServlet {
             out.println("<h1>Servlet ForgotPassword at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            //
         }
     }
 
