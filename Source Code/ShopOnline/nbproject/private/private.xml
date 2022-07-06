@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/css/profile.css</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/DetailAddressDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/UserProfile.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/ProfileUserController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/model/AddressDetail.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/UploadImage.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/FeedbackDetails.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/FeedbackList.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/FeedbackAdController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/CustomerDetail.jsp</file>
         </group>
     </open-files>
 </project-private>
