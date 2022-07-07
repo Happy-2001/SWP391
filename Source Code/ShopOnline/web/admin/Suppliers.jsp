@@ -109,6 +109,63 @@
                 </div>
             </div>
             <div class="col-lg-9 main">
+                <div aria-label="breadcrumb" class="mb-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <i class="fa-solid fa-globe fa-sm"></i>
+                            <a href="dashboard">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Suppliers</li>
+                    </ul>
+                </div>
+                <div class="container-fluid">
+                    <div class="table-responsive cus-box">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company Name</th>
+                                <th>Contact Name</th>
+                                <th>Contact Title</th>
+                                <th>Date</th>
+                                <th>Gender</th>
+                                <th>Creator</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               <c:forEach items="${suplist}" var="sup">
+                                    <tr class="customers">
+                                        <td>${sup.id}</td>
+                                        <td>${sup.name}</td>
+                                        <td>${sup.contactName}</td>
+                                        <td>${sup.contactTitle}</td>
+                                        <td>${sup.dob}</td>
+                                        <td>${sup.gender}</td>
+                                        <td>${sup.creator}</td>
+                                        <td class="text-end">
+                                            <div class="px-3">
+                                                <a href="#link"><i class="fa-solid fa-trash-can"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <script src="js/list-select.js"></script>
             </div>
         </div>
     </div>
