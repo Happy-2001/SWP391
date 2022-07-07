@@ -100,6 +100,7 @@
     padding: 20px;
     border-radius: 16px;
     transform: translate(-50%, -50%);
+    width: 100%;
 }
 .Pop-title{
     text-align: center;
@@ -186,7 +187,7 @@
     height: 300px;
 }
 .Set-pop .card-body{
-    overflow: auto;
+    overflow-y: auto;
     height: 500px;
 }
 /* width */
@@ -269,4 +270,10 @@
 .select-addess3 ul li:hover , .select-addess2 ul li:hover{
     background-color: #ebebeb;
 }
-
+.card-body .mainaddress p{
+    color: gray;
+    font-size: 13px;
+}
+.card-body .contentaddress, .card-body .optionaddress {
+    margin-top: 38px;
+}

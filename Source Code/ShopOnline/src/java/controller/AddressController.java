@@ -83,18 +83,40 @@ public class AddressController extends HttpServlet {
         Object objuser = session.getAttribute("userlogged");
         if (objuser != null) {
             user = (User) objuser;
-           
+            if (user.getUserid() == Integer.parseInt(userid)) {
 
                 String straddress = request.getParameter("straddress");
                 String adddetail = request.getParameter("straddressdetail");
                 String districtID = request.getParameter("districtID");
                 String provinceID = request.getParameter("provinceID");
+                String subDistrictID = request.getParameter("subDistrictID");
+                String fullname = request.getParameter("fullname");
+                String phone = request.getParameter("phone");
 
                 ArrayList<Provinces> listProvince = adao.getProvince();
                 ArrayList<District> listDistrict = adao.getDistrict();
                 ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
-                ArrayList<UserAddress> listUserAddress = adao.getUserAddress("1");
-
+                ArrayList<UserAddress> listUserAddress = adao.getUserAddress(String.valueOf(user.getUserid()));
+                
+                Object objProvinceID = session.getAttribute("provinceID");
+                Object objdistrictID = session.getAttribute("districtID");
+                Object objsubDistrictID = session.getAttribute("subDistrictID");
+                Object objAdddetail = session.getAttribute("adddetail");
+                Object objStraddress = session.getAttribute("straddress");
+                Object objfullname = session.getAttribute("fullname");
+                Object objphone = session.getAttribute("phone");
+                //xử lý trong trường hợp address detail nhận được value
+                
+                session.setAttribute("fullname", fullname);
+                session.setAttribute("phone", phone);
+                session.setAttribute("adddetail", adddetail);
+                if (provinceID == null || districtID == null || subDistrictID == null) {
+                    session.setAttribute("straddress", straddress);
+                } else {
+                    session.setAttribute("provinceID", provinceID);
+                    session.setAttribute("districtID", districtID);
+                    session.setAttribute("subDistrictID", subDistrictID);
+                }
                 if (straddress != null) {
 
                     if (!straddress.trim().equals("")) {
@@ -110,9 +132,10 @@ public class AddressController extends HttpServlet {
                             }
                         }
                         if (adddetail == null || districtID == null || provinceID == null) {
-
-                            request.setAttribute("selectaddress2Style", "height: 300px");
-                            request.setAttribute("ulBlock", "display:block");
+                            if (!adList2.isEmpty()) {
+                                request.setAttribute("selectaddress2Style", "height: 300px;display: block");
+                                request.setAttribute("ulBlock", "display:block");
+                            }
                         }
                         request.setAttribute("adList", adList2);
 
@@ -123,16 +146,16 @@ public class AddressController extends HttpServlet {
                 }
 
                 if (districtID != null && provinceID != null) {
-                    request.setAttribute("selectaddress2Style", "height: 0");
+                    request.setAttribute("selectaddress2Style", "height: 0;display: none");
                     request.setAttribute("ulBlock", "display:none");
                     ArrayList<project> listProject = adao.getProjectWith(provinceID, districtID);
                     request.setAttribute("listProject", listProject);
-                    request.setAttribute("selectaddress3Style", "height: 300px");
+                    request.setAttribute("selectaddress3Style", "height: 300px;display: block");
                     request.setAttribute("ulBlock3", "display:block");
                 }
                 if (adddetail != null && provinceID == null) {
                     response.getWriter().println(adddetail);
-                    request.setAttribute("selectaddress2Style", "height: 0");
+                    request.setAttribute("selectaddress2Style", "height: 0;display: none");
                     request.setAttribute("ulBlock", "display:none");
                     if (!adddetail.trim().equals("")) {
                         ArrayList<project> listProject = adao.getProject();
@@ -149,11 +172,13 @@ public class AddressController extends HttpServlet {
                         }
 
                         request.setAttribute("listProject", listProject2);
-                        request.setAttribute("selectaddress3Style", "height: 400px");
+                        request.setAttribute("selectaddress3Style", "height: 400px;display: block");
                         request.setAttribute("ulBlock3", "display:block");
                     }
                 }
 
+                request.setAttribute("fullname", fullname);
+                request.setAttribute("phone", phone);
                 request.setAttribute("listUserAddress", listUserAddress);
                 request.setAttribute("adddetail", adddetail);
                 request.setAttribute("valueAddress", straddress);
@@ -163,8 +188,7 @@ public class AddressController extends HttpServlet {
 
                 request.getRequestDispatcher("addressDetail.jsp").forward(request, response);
             }
-        
-
+        }
 
     }
 
@@ -179,7 +203,43 @@ public class AddressController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.getWriter().print("hello");
+        HttpSession session = request.getSession();
+        AddressDAO adao = new AddressDAO();
+        Object objProvinceID = session.getAttribute("provinceID");
+        Object objdistrictID = session.getAttribute("districtID");
+        Object objsubDistrictID = session.getAttribute("subDistrictID");
+        Object objAdddetail = session.getAttribute("adddetail");
+        Object objStraddress = session.getAttribute("straddress");
+        Object objfullname = session.getAttribute("fullname");
+        Object objphone = session.getAttribute("phone");
+        Object objuserid = session.getAttribute("userid");
+
+        
+            Integer userid = (Integer) objuserid;
+            String fullname = (String) objfullname;
+            String phone = (String) objphone;
+            String Adddetail = (String) objAdddetail;
+            String provinceID = "";
+            String districtID = "";
+            String subDistrictID = "";
+            String straddress = "";
+            String eaID = adao.getEaIDbyUserID(String.valueOf(userid));
+            if (objProvinceID == null || objdistrictID == null || objsubDistrictID == null) {
+                straddress = (String) objStraddress;
+                adao.insertUserAddress(String.valueOf(userid), fullname, null, null, null, null, null, eaID, phone, straddress);
+
+            } else {
+                provinceID = (String) objProvinceID;
+                districtID = (String) objdistrictID;
+                subDistrictID = (String) objsubDistrictID;
+                adao.insertUserAddress(String.valueOf(userid), fullname, provinceID, districtID, subDistrictID, null, null, eaID, phone, Adddetail);
+
+            }
+            response.sendRedirect("address?userid="+userid);
+        
     }
 
     /**

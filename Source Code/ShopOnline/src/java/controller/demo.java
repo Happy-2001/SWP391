@@ -7,8 +7,10 @@ package controller;
 import dal.CartDAO;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
+import model.User;
 
 /**
  *
@@ -18,8 +20,9 @@ public class demo {
     public static void main(String[] args) {
         String s = "Nam Định";
         String[] str = s.split("\\W+");
-        for (String string : str) {
-            System.out.println(string);
-        }
+        ArrayList<User> list = new ArrayList<>();
+        Integer a = 3;
+        String b = String.valueOf(a);
+        System.out.println(b);
     }
 }

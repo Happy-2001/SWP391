@@ -65,7 +65,7 @@
                             <button id="myBtn" class="btn"><i class="fa-regular fa-pen-to-square"></i> Edit Profile</button>
                         </div>
                         <div class="why-text">
-                            <a href="address"> <button  class="btn btn2"><i class="fa-solid fa-location-dot"></i> Addresses User</button></a>
+                            <a href="address?userid=${sessionScope.userid}"> <button  class="btn btn2"><i class="fa-solid fa-location-dot"></i> Addresses User</button></a>
                         </div>
                     </div>
                     <div class="col-lg-8">

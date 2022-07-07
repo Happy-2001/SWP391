@@ -57,6 +57,31 @@ public class AddressDAO {
         }
     }
 
+    public void insertUserAddress(String userID, String fullname, String provinceID, String districtID, String wardID, String projectID, String streetID, String eaID, String otherPhone, String detailAddress) {
+        String sql = "INSERT INTO `user_address` ( `userID`,`fullname`, `provinceID`, `districtID`, `wardID`, `streetID`, `projectID`, `eaID`,`otherPhone`, `addressDetail`) VALUES\n"
+                + "(?,?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
+            ps.setString(1, userID);
+            ps.setString(2, fullname);
+            ps.setString(3, provinceID);
+            ps.setString(4, districtID);
+            ps.setString(5, wardID);
+            ps.setString(6, streetID);
+            ps.setString(7, projectID);
+            ps.setString(8, eaID);
+            ps.setString(9, otherPhone);
+            ps.setString(10, detailAddress);
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+
     public String getEaIDbyUserID(String UserID) {
         String eaID = "";
         String sql = "SELECT ea.eaID FROM `electronicaddress` ea INNER JOIN user_address ua \n"
@@ -216,11 +241,11 @@ public class AddressDAO {
                 p.setPname(rs.getString(3));
                 p.setDname(rs.getString(4));
                 p.setWname(rs.getString(5));
-                p.setPrname(rs.getString(6));
-                p.setStrname(rs.getString(7));
-                p.setDetailAddress(rs.getString(8));
-                p.setPhone(rs.getString(9));
-                p.setEmail(rs.getString(10));
+                p.setPrname(rs.getString(6) == null ? "" : rs.getString(6));
+                p.setStrname(rs.getString(7) == null ? "" : rs.getString(7));
+                p.setDetailAddress(rs.getString(8) == null ? "" : rs.getString(8));
+                p.setPhone(rs.getString(9) == null ? "" : rs.getString(9));
+                p.setEmail(rs.getString(10) == null ? "" : rs.getString(10));
 
                 list.add(p);
             }
@@ -235,9 +260,7 @@ public class AddressDAO {
     public static void main(String[] args) {
         AddressDAO adao = new AddressDAO();
         ArrayList<UserAddress> list = adao.getUserAddress("1");
-        for (UserAddress object : list) {
-            System.out.println(object.getDname());
-        }
+        adao.insertUserAddress("3", "Đào Phúc Thạch", "24", "333", "5154", null, null, "3", "012312454543", "KTX HL");
     }
 
 }
