@@ -52,7 +52,7 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a href="#">
+                            <a href="SuppliersController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-box fa-xl"></i>
                                 </span>
