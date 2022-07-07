@@ -138,7 +138,7 @@
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
-                                        <input type="hidden" name="cusID" value="${sessionScope.cusID}">
+                                        <input type="hidden" name="cusID" value="${cus.us.userid}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>

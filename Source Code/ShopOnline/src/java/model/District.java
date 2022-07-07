@@ -8,16 +8,25 @@ public class District {
     private int districtID;
     private String name;
     private String prefix;
-
+    private String provinceID;
     public District() {
     }
 
-    public District(int districtID, String name, String prefix) {
+    public District(int districtID, String name, String prefix,String provinceID) {
         this.districtID = districtID;
         this.name = name;
         this.prefix = prefix;
+        this.provinceID = provinceID;
     }
 
+    public String getProvinceID() {
+        return provinceID;
+    }
+
+    public void setProvinceID(String provinceID) {
+        this.provinceID = provinceID;
+    }
+    
     public int getDistrictID() {
         return districtID;
     }

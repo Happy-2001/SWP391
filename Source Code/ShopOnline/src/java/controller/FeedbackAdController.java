@@ -17,7 +17,6 @@ public class FeedbackAdController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
         String page = request.getParameter("page");
         FeedbackDAO db = new FeedbackDAO();
         
@@ -29,6 +28,12 @@ public class FeedbackAdController extends HttpServlet {
 
         int countPage = db.countPage();
         request.setAttribute("countPage", countPage);
+        
+        int task = db.CountTask();
+        request.setAttribute("AllTask", task);
+        
+        int work = db.TaskWork(1);
+        request.setAttribute("Done", work);
         
         List<MyFeedback> list = db.ListAllFeedback(pageNumber);   
         request.setAttribute("fblist", list);

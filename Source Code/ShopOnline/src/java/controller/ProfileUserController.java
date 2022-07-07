@@ -5,14 +5,21 @@
  */
 package controller;
 
+import dal.AddressDAO;
+import dal.DetailAddressDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AddressDetail;
+import model.District;
+import model.Provinces;
+import model.SubDistrict;
 import model.User;
 
 /**
@@ -21,43 +28,47 @@ import model.User;
  */
 public class ProfileUserController extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProfileUserController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProfileUserController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userid = request.getParameter("userid");  
-        
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+       String userid = request.getParameter("userid");  
+       String straddress = request.getParameter("straddress");
+       
         UserDAO udb = new UserDAO();
-        User user = udb.getUserById(userid);  
+        AddressDAO adao = new AddressDAO();
+        DetailAddressDAO dadao = new DetailAddressDAO();
+        User user = udb.getUserById(userid);
+        ArrayList<Provinces> listProvince = adao.getProvince();
+        ArrayList<District> listDistrict = adao.getDistrict();
+        ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
+    
+        if(straddress != null){
+             ArrayList<AddressDetail> adList = dadao.getDetailAddress();
+             request.setAttribute("adList", adList);
+             
+        }else{
+             ArrayList<AddressDetail> adList = dadao.getDetailAddress();
+             request.setAttribute("adList", adList);
+//             for (AddressDetail addressDetail : adList) {
+//                response.getWriter().println(addressDetail.getAddressDetail());
+//            }
         
+        }
+        request.setAttribute("selectaddress2Style", "height: 300px");        
+        request.setAttribute("valueAddress", straddress);
+        request.setAttribute("listProvince", listProvince);
+        request.setAttribute("listDistrict", listDistrict);
+        request.setAttribute("listSubDistrict", listSubDistrict);
+        
+
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-//         response.getWriter().print(user.getEmail());
+        
         request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
     }
 
@@ -72,7 +83,7 @@ public class ProfileUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
     }
 
     /**
