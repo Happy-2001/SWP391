@@ -29,5 +29,4 @@ public class BlogController extends HttpServlet {
         request.setAttribute("blogs", blogsForEachPage);
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
-    
 }
