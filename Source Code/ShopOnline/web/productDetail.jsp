@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/product.css">
         <script src="js/fontAwesome.js"></script>
+        <link rel="stylesheet" href="css/style.css">
 
         <!-- Bootstrap 5 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -111,76 +112,81 @@
                                 </li>
                             </ul>
 
-                            <div class="price-box-bar">
-                                <div class="cart-and-bay-btn">
-                                    <a class="btn hvr-hover" data-fancybox-close="" href="BuyNewServlet?pid=${productDetail.id}">Buy now</a>
-                                    <a class="btn hvr-hover" data-fancybox-close="" href="#">Add to cart</a>
+                            <div class="">
+                                <div class="add-comp add-comp1">
+                                  
+                                    <button><a  href="BuyNewServlet?pid=${productDetail.id}"><i class="fa-solid fa-credit-card"></i> Buy now</button>
+                                    <button><a href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${productDetail.id}"><i class="fa-solid fa-cart-plus"></i> Add to cart</a></button>
                                 </div>
                             </div>
 
-                            <div class="add-to-btn">
-                                <div class="add-comp">
-                                    <a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i> Add to wishlist</a>
-                                    <a class="btn hvr-hover" href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a>
+                            <div class="">
+                                <div class="add-comp add-comp2">
+                                 
+                                    <button><a href="#"><i class="fas fa-heart"></i> Add to wishlist</a></button>
+                                    <button><a href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a></button>
                                 </div>
                             </div>
+
+                            
+
                         </div>
                     </div>
                 </div>
 
                 <div class="row my-5">
                     <!-- Start Products  -->
-        <div class="products-box">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="title-all text-center">
-                            <h1>FEATURED PRODUCTS</h1>
-                            <p>Exclusive products, limited quantity</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row special-list">
-                    <c:forEach items="${products}" var="product">
-                        <div class="col-lg-3 col-md-6 special-grid best-seller">
-                            <div class="products-single">
-                                <div class="box-img-hover">
-                                    <div class="type-lb">
-                                        <p class="sale">Sale</p>
+                    <div class="products-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="title-all text-center">
+                                        <h1>FEATURED PRODUCTS</h1>
+                                        <p>Exclusive products, limited quantity</p>
                                     </div>
-                                    <img src="${product.img}" class="img-fluid" alt="Image">
-                                    <div class="mask-icon">
-                                        <ul>
-                                            <li><a href="productDetail?product_id=${product.id}" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                            <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                            <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                        </ul>
-                                        <c:choose>
-                                            <c:when test="${sessionScope.userlogged eq null}">
-                                                <a class="cart" href="login" title="Login">Add to Cart</a>
-                                            </c:when>
-                                            <c:when test="${sessionScope.userlogged ne null}">
-                                                <a class="cart" href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${product.id}">Add to Cart</a>
-                                            </c:when>
-                                        </c:choose>
-                                    </div>
-                                </div>
-                                <div class="why-text">
-                                    <h4>${product.name}</h4>
-                                    <h5>${product.price} VND</h5>
                                 </div>
                             </div>
+                            <div class="row special-list">
+                                <c:forEach items="${products}" var="product">
+                                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                                        <div class="products-single">
+                                            <div class="box-img-hover">
+                                                <div class="type-lb">
+                                                    <p class="sale">Sale</p>
+                                                </div>
+                                                <img src="${product.img}" class="img-fluid" alt="Image">
+                                                <div class="mask-icon">
+                                                    <ul>
+                                                        <li><a href="productDetail?product_id=${product.id}" data-bs-toggle="tooltip" data-bs-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                        <li><a href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                    </ul>
+                                                    <c:choose>
+                                                        <c:when test="${sessionScope.userlogged eq null}">
+                                                            <a class="cart" href="login" title="Login">Add to Cart</a>
+                                                        </c:when>
+                                                        <c:when test="${sessionScope.userlogged ne null}">
+                                                            <a class="cart" href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${product.id}">Add to Cart</a>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                            <div class="why-text">
+                                                <h4>${product.name}</h4>
+                                                <h5>${product.price} VND</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-        <!-- End Products  -->
+                    </div>
+                    <!-- End Products  -->
                 </div>
             </div>
         </div>
 
-        
+
 
         <%@include file="footer.jsp" %>
 
