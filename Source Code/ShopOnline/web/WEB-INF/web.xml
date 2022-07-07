@@ -116,6 +116,10 @@
         <servlet-name>FeedbackAdController</servlet-name>
         <servlet-class>controller.FeedbackAdController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SuppliersController</servlet-name>
+        <servlet-class>controller.SuppliersController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>FeedbackAdController</servlet-name>
         <url-pattern>/FeedbackAd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SuppliersController</servlet-name>
+        <url-pattern>/SuppliersController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

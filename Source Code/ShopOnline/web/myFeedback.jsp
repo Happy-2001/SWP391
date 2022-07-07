@@ -3,31 +3,25 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
+     <head>
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <!-- Mobile Metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Site Metas -->
-        <title>Feedback</title>
-        <meta name="keywords" content="">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shop Online</title>
         <!-- Site Icons -->
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!-- Site CSS -->
         <link rel="stylesheet" href="css/style.css">
-        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="css/HomePage.css">
         <link rel="stylesheet" href="css/responsive.css">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="css/custom.css">
+
+        <script src="js/fontAwesome.js"></script>
+        <script src="js/message.js"></script>
+        
+        <!-- Bootstrap 5 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     </head>
     <body>
@@ -38,7 +32,7 @@
                 <div class="Scriptcontent">
 
 
-                    <div class="feedback">
+                    <div class="feedback" style="margin-top: 60px">
                         <p>Dear Customer,<br>
                             Thank you for your support and use of our products. We want to know the quality of our products. Please take a moment to give us your valuable feedback as it will help us improve our product. </p>
                         </br>
