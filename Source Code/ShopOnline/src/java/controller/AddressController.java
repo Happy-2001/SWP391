@@ -22,6 +22,7 @@ import model.District;
 import model.Provinces;
 import model.SubDistrict;
 import model.User;
+import model.UserAddress;
 import model.project;
 
 /**
@@ -71,90 +72,100 @@ public class AddressController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String userid = request.getParameter("userid");
-        String straddress = request.getParameter("straddress");
-        String adddetail = request.getParameter("straddressdetail");        
-        String districtID = request.getParameter("districtID");
-        String provinceID = request.getParameter("provinceID");
-                
         UserDAO udb = new UserDAO();
         AddressDAO adao = new AddressDAO();
         DetailAddressDAO dadao = new DetailAddressDAO();
-        User user = udb.getUserById(userid);
-        ArrayList<Provinces> listProvince = adao.getProvince();
-        ArrayList<District> listDistrict = adao.getDistrict();
-        ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
-        
-        if (straddress != null) {
-
-            if (!straddress.trim().equals("") ) {
-                ArrayList<AddressDetail> adList = dadao.getDetailAddress();
-                ArrayList<AddressDetail> adList2 = new ArrayList<>();
-                ArrayList<Integer> saveADLIST = new ArrayList<>();
-                String[] str = straddress.split("\\W+");
-
-                for (AddressDetail ad : adList) {
-                    if (ad.getAddressDetail().toUpperCase().contains(straddress.toUpperCase())) {
-                        adList2.add(ad);
-
-                    }
-                }
-                if(adddetail == null||districtID == null || provinceID == null){
-                    
-                request.setAttribute("selectaddress2Style", "height: 300px");
-                request.setAttribute("ulBlock", "display:block");
-                }
-                request.setAttribute("adList", adList2);
-                
-            }
-        } else {
-            ArrayList<AddressDetail> adList = dadao.getDetailAddress();
-            request.setAttribute("adList", adList);
-        }
-        
-        if(districtID != null && provinceID != null){
-            request.setAttribute("selectaddress2Style", "height: 0");
-            request.setAttribute("ulBlock", "display:none");
-             ArrayList<project> listProject = adao.getProjectWith(provinceID, districtID);
-             request.setAttribute("listProject", listProject);
-                request.setAttribute("selectaddress3Style", "height: 300px");
-                request.setAttribute("ulBlock3", "display:block");
-        }
-        if (adddetail != null && provinceID == null) {
-            response.getWriter().println(adddetail);
-            request.setAttribute("selectaddress2Style", "height: 0");
-            request.setAttribute("ulBlock", "display:none");
-            if (!adddetail.trim().equals("")) {
-                ArrayList<project> listProject = adao.getProject();
-                ArrayList<project> listProject2 = new ArrayList<>();
-               
-                String[] str = adddetail.split("\\W+");
-
-                for (project ad : listProject) {
-                    if (ad.getName().toUpperCase().contains(adddetail.toUpperCase())) {
-                        listProject2.add(ad);
-                        response.getWriter().println(ad.getName());
-
-                    }
-                }
-
-                
-                request.setAttribute("listProject", listProject2);
-                request.setAttribute("selectaddress3Style", "height: 300px");
-                request.setAttribute("ulBlock3", "display:block");
-            }
-        }
-        
-        request.setAttribute("adddetail", adddetail);
-        request.setAttribute("valueAddress", straddress);
-        request.setAttribute("listProvince", listProvince);
-        request.setAttribute("listDistrict", listDistrict);
-        request.setAttribute("listSubDistrict", listSubDistrict);
-
         HttpSession session = request.getSession();
-        session.setAttribute("user", user);
 
-        request.getRequestDispatcher("addressDetail.jsp").forward(request, response);
+        String userid = request.getParameter("userid");
+        User user = new User();
+
+        Object objuser = session.getAttribute("userlogged");
+        if (objuser != null) {
+            user = (User) objuser;
+           
+
+                String straddress = request.getParameter("straddress");
+                String adddetail = request.getParameter("straddressdetail");
+                String districtID = request.getParameter("districtID");
+                String provinceID = request.getParameter("provinceID");
+
+                ArrayList<Provinces> listProvince = adao.getProvince();
+                ArrayList<District> listDistrict = adao.getDistrict();
+                ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
+                ArrayList<UserAddress> listUserAddress = adao.getUserAddress("1");
+
+                if (straddress != null) {
+
+                    if (!straddress.trim().equals("")) {
+                        ArrayList<AddressDetail> adList = dadao.getDetailAddress();
+                        ArrayList<AddressDetail> adList2 = new ArrayList<>();
+                        ArrayList<Integer> saveADLIST = new ArrayList<>();
+                        String[] str = straddress.split("\\W+");
+
+                        for (AddressDetail ad : adList) {
+                            if (ad.getAddressDetail().toUpperCase().contains(straddress.toUpperCase())) {
+                                adList2.add(ad);
+
+                            }
+                        }
+                        if (adddetail == null || districtID == null || provinceID == null) {
+
+                            request.setAttribute("selectaddress2Style", "height: 300px");
+                            request.setAttribute("ulBlock", "display:block");
+                        }
+                        request.setAttribute("adList", adList2);
+
+                    }
+                } else {
+                    ArrayList<AddressDetail> adList = dadao.getDetailAddress();
+                    request.setAttribute("adList", adList);
+                }
+
+                if (districtID != null && provinceID != null) {
+                    request.setAttribute("selectaddress2Style", "height: 0");
+                    request.setAttribute("ulBlock", "display:none");
+                    ArrayList<project> listProject = adao.getProjectWith(provinceID, districtID);
+                    request.setAttribute("listProject", listProject);
+                    request.setAttribute("selectaddress3Style", "height: 300px");
+                    request.setAttribute("ulBlock3", "display:block");
+                }
+                if (adddetail != null && provinceID == null) {
+                    response.getWriter().println(adddetail);
+                    request.setAttribute("selectaddress2Style", "height: 0");
+                    request.setAttribute("ulBlock", "display:none");
+                    if (!adddetail.trim().equals("")) {
+                        ArrayList<project> listProject = adao.getProject();
+                        ArrayList<project> listProject2 = new ArrayList<>();
+
+                        String[] str = adddetail.split("\\W+");
+
+                        for (project ad : listProject) {
+                            if (ad.getName().toUpperCase().contains(adddetail.toUpperCase())) {
+                                listProject2.add(ad);
+                                response.getWriter().println(ad.getName());
+
+                            }
+                        }
+
+                        request.setAttribute("listProject", listProject2);
+                        request.setAttribute("selectaddress3Style", "height: 400px");
+                        request.setAttribute("ulBlock3", "display:block");
+                    }
+                }
+
+                request.setAttribute("listUserAddress", listUserAddress);
+                request.setAttribute("adddetail", adddetail);
+                request.setAttribute("valueAddress", straddress);
+                request.setAttribute("listProvince", listProvince);
+                request.setAttribute("listDistrict", listDistrict);
+                request.setAttribute("listSubDistrict", listSubDistrict);
+
+                request.getRequestDispatcher("addressDetail.jsp").forward(request, response);
+            }
+        
+
+
     }
 
     /**

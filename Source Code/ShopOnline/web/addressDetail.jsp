@@ -31,7 +31,7 @@
         <form action="UpdateProfile" method="POST">
             <div  >              <!--sửa ở đây-->
 
-                <div class="container Popup-body2" style="margin-top: 280px;">
+                <div class="container Popup-body2" style="margin-top: 200px;">
                     <div class="Pop-title">
                         <h3>Address User</h3>
                     </div>
@@ -61,13 +61,12 @@
 
                                     <div class="options">
                                         <input value="${adddetail}" id="adddetail" type="text" name="adddetail" placeholder="Address detail..." ondblclick="searchProject()">
-                                        <div id="selectaddress3" class="select-addess3" style="height: 300px; ${selectaddress3Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                        <div id="selectaddress3" class="select-addess3" style=" ${selectaddress3Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
                                             <ul id="ulsearch3" style="display: none; ${ulBlock3}">
                                                 <c:if test="${listProject ne null}">
                                                     <c:forEach items="${listProject}" var="listProject">
                                                         
-                                                        <li onclick="getProject('${listProject.name}')" <c:set var="lat" value="${listProject.lat}"/>
-                                                        <c:set var="ing" value="${listProject.ing}"/>>${listProject.name}</li>
+                                                        <li onclick="getProject('${listProject.name}','${listProject.lat}','${listProject.ing}')">${listProject.name}</li>
 
                                                     </c:forEach>
                                                 </c:if>
@@ -78,63 +77,27 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 card-body" >
-                                <div>
-                                    <h5>Info</h5>
-                                    <div class="options">
-                                        <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
-                                            <input type="text" name="mdname" placeholder="Middle Name">
-                                            <input type="text" name="lname" placeholder="Last Name">
+                                <c:set var="count" value="0"/>
+                                <c:forEach items="${listUserAddress}" var="ua">
+                                    <div>
+                                        <div>
+                                            <h4>Address ${count+1}</h4>
+                                            <h6>Full Name <h5> ${sessionScope.user.lastname}</h5></h6> 
+                                            <h6>Phone <h5> ${ua.phone}</h5></h6> 
+                                            <h6>Address <h5> 
+                                                    ${ua.addressDetail}, ${ua.prname}, ${ua.strname}, ${ua.wname}
+                                                , ${ua.dname}, ${ua.pname}</h5></h6> 
+                                        </div>
+                                        <div>
+                                            <a>Delete</a>
+                                            <a>Change</a>
+                                            
                                         </div>
                                     </div>
-                                    <div class="options">
-                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
-                                    </div>
-                                    <div class="options">
-                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
-                                    </div>
-                                    <div class="save-pass">
-                                        <div class="auth-actions">
-                                            <label class="save-pass-container">Male
-                                                <input class="checkbox" name="gender" type="radio" value="1">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                            <label class="save-pass-container">Female
-                                                <input class="checkbox" name="gender" type="radio" value="0">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
+                                
 
-                                <div>
-                                    <h5>Info</h5>
-                                    <div class="options">
-                                        <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
-                                            <input type="text" name="mdname" placeholder="Middle Name">
-                                            <input type="text" name="lname" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="options">
-                                        <input id="phone" type="tel" name="phone" value="${sessionScope.user.phone}" disabled>
-                                    </div>
-                                    <div class="options">
-                                        <input id="email" type="text" value="${sessionScope.user.email}" disabled>
-                                    </div>
-                                    <div class="save-pass">
-                                        <div class="auth-actions">
-                                            <label class="save-pass-container">Male
-                                                <input class="checkbox" name="gender" type="radio" value="1">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                            <label class="save-pass-container">Female
-                                                <input class="checkbox" name="gender" type="radio" value="0">
-                                                <span class="radio-mark"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
 
 
@@ -148,7 +111,8 @@
                 </div>
             </div>
         </form>
-        <script>
+         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript">
             function changeProvince() {
 
                 document.getElementById('province').style.borderBottomColor = "#d33b33";
@@ -222,17 +186,24 @@
                 window.location.href = 'address?straddress=' + straddress+'&&straddressdetail='+straddressdetail;
                 
             }
-            function getProject(address) {
+             
+            function getProject(address,lat,ing) {
                 document.getElementById('adddetail').value = address;
                 document.getElementById('selectaddress3').style.height = '0';
                 document.getElementById('ulsearch3').style.display = 'none';
-                    
+                initialize(lat,ing);
+        
+                
+                
             }
+            
         </script>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+        
         <script type="text/javascript">
-            var myCenter = new google.maps.LatLng(${lat}, ${ing});
-            function initialize() {
+           
+            function initialize(lat,ing) {
+                
+                var myCenter = new google.maps.LatLng(lat, ing);
                 var mapProp = {
                     center: myCenter,
                     zoom: 12,
@@ -244,7 +215,10 @@
                 });
                 marker.setMap(map);
             };
+            if(lat !== null || ing !== null){
             google.maps.event.addDomListener(window, 'load', initialize);
+            }
+        
         </script>
         <script src="js/Popup.js"></script>
 

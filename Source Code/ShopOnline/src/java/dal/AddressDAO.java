@@ -15,6 +15,7 @@ import model.Blog;
 import model.District;
 import model.Provinces;
 import model.SubDistrict;
+import model.UserAddress;
 import model.project;
 
 /**
@@ -165,8 +166,8 @@ public class AddressDAO {
         }
         return list;
     }
-    
-    public ArrayList<project> getProjectWith(String provinceID,String districtID) {
+
+    public ArrayList<project> getProjectWith(String provinceID, String districtID) {
         ArrayList<project> list = new ArrayList<>();
         try {
             String sql = "SELECT * FROM `project` WHERE _province_id = ? AND _district_id = ?";
@@ -192,11 +193,51 @@ public class AddressDAO {
         }
         return list;
     }
+
+    public ArrayList<UserAddress> getUserAddress(String userID) {
+        ArrayList<UserAddress> list = new ArrayList<>();
+        try {
+            String sql = "SELECT uaID,userID,pname,dname,wname, prname,strname,addressDetail,ela.telephone,ela.email FROM\n"
+                    + "(SELECT eaID,uaID,userID,pname,dname,wname, prname,concat(str._prefix,' ',str._name) AS strname,addressDetail FROM\n"
+                    + "(SELECT eaID,uaID,userID,pname,dname,wname,(pr._name) as prname,streetID,addressDetail FROM\n"
+                    + "(SELECT eaID,uaID,userID,pname,dname,concat(w._prefix,' ',w._name) as wname,projectID,streetID,addressDetail FROM\n"
+                    + "(SELECT  eaID,uaID,userID,provinceID,pname,concat(d._prefix,' ',d._name) as dname,wardID,projectID,streetID,addressDetail FROM \n"
+                    + "(SELECT ua.eaID,ua.uaID,ua.userID,p._name as pname,ua.provinceID,ua.districtID  ,ua.wardID,ua.projectID,ua.streetID,ua.addressDetail FROM user_address ua LEFT JOIN province p ON p.id = ua.provinceID) AS tb1 LEFT JOIN district d \n"
+                    + "ON d.id = tb1.districtID) AS tb2 LEFT JOIN ward w ON w.id = tb2.wardID) AS tb3 LEFT JOIN project pr ON pr.id = tb3.projectID) AS tb4\n"
+                    + "LEFT JOIN street str ON str.id = tb4.streetID)AS tb5 LEFT JOIN electronicaddress ela ON ela.eaID =tb5.eaID WHERE userID = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, userID);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                UserAddress p = new UserAddress();
+                p.setUaID((rs.getString(1)));
+                p.setUserID(rs.getString(2));
+                p.setPname(rs.getString(3));
+                p.setDname(rs.getString(4));
+                p.setWname(rs.getString(5));
+                p.setPrname(rs.getString(6));
+                p.setStrname(rs.getString(7));
+                p.setDetailAddress(rs.getString(8));
+                p.setPhone(rs.getString(9));
+                p.setEmail(rs.getString(10));
+
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         AddressDAO adao = new AddressDAO();
-        ArrayList<project> list = adao.getProjectWith("2", "49");
-        for (project object : list) {
-            System.out.println(object.getName());
+        ArrayList<UserAddress> list = adao.getUserAddress("1");
+        for (UserAddress object : list) {
+            System.out.println(object.getDname());
         }
     }
+
 }

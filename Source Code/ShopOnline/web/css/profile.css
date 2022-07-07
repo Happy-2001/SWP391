@@ -181,9 +181,13 @@
 }
 
 /*----*/
-.Set-pop .card-body, .select-addess{
+ .select-addess{
     overflow: auto;
     height: 300px;
+}
+.Set-pop .card-body{
+    overflow: auto;
+    height: 500px;
 }
 /* width */
 .Set-pop .card-body::-webkit-scrollbar {
@@ -205,13 +209,14 @@
 }
 
 /*address*/
-.select-addess, .select-addess2,select-addess3{
+.select-addess, .select-addess2, .select-addess3{
     background-color: white;
     padding-left: 15px;
     padding-right: 15px;    
     width: 500px;
     height: 0;
     position: absolute;
+    display: none;
    
 }
 .options.row{
@@ -243,8 +248,13 @@
 .select-addess2 ul{
     display: block;
 }
-
+.select-addess3 ul::-webkit-scrollbar, .select-addess2 ul::-webkit-scrollbar {
+    width: 5px;
+    background: black;
+    position: absolute;
+}
 .select-addess3 ul::-webkit-scrollbar-thumb, .select-addess2 ul::-webkit-scrollbar-thumb {
+    
     background: black;
     position: absolute;
 }
