@@ -259,39 +259,33 @@ public class FeedbackDAO extends DBConnect {
     }
 
     public MyFeedback getFeedbackById(int id) {
-        String sql = "SELECT\n"
-                + "    user_account.full_name,\n"
-                + "    user_account.email,\n"
-                + "    user_account.phone,\n"
-                + "    products.product_name,\n"
-                + "    products.url,\n"
-                + "    feedback.star_rating,\n"
-                + "    feedback.description,\n"
-                + "    feedback.feedback_id,\n"
-                + "    feedback.note,\n"
-                + "    feedback.User_Account_user_id\n"
-                + "FROM\n"
-                + "    feedback\n"
-                + "JOIN products products ON\n"
-                + "    feedback.products_product_id = products.product_id\n"
-                + "JOIN user_account ON feedback.User_Account_user_id = user_account.user_id "
-                + "WHERE feedback.feedback_id = ?";
+        String sql = "SELECT fb.feedback_id, fb.image1, fb.image2, fb.description,\n" +
+                    "fb.note, fb.status, fb.createDate, fb.updateDate, fb.star_rating,\n" +
+                    "ua.user_id, ua.user_name, ua.first_name, ua.middle_name,\n" +
+                    "ua.last_name, eca.photo, eca.email, od.order_id\n" +
+                    "FROM `feedbacks` AS fb\n" +
+                    "INNER JOIN `user_accounts` AS ua ON fb.userID = ua.user_id\n" +
+                    "INNER JOIN `orders` AS od ON fb.orderID = od.order_id\n" +
+                    "INNER JOIN `electronicaddress` AS eca ON fb.userID = eca.eaID\n" +
+                    "WHERE fb.feedback_id = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 MyFeedback s = new MyFeedback();
-                s.setFeedback_id(rs.getInt("feedback_id"));
-                s.setUserid(rs.getInt("User_Account_user_id"));
-                s.setFull_name(rs.getString("full_name"));
-                s.setUrl(rs.getString("url"));
-                s.setProduct_name(rs.getString("product_name"));
-                s.setStar_rating(rs.getInt("star_rating"));
-                s.setDescription(rs.getString("description"));
-                s.setUsemail(rs.getString("email"));
-                s.setPhone(rs.getInt("phone"));
-                s.setNote(rs.getString("note"));
+                s.setFbID(rs.getInt(1));
+                s.setPhoto1(rs.getString(2));
+                s.setPhoto2(rs.getString(3));
+                s.setDescription(rs.getString(4));
+                s.setNote(rs.getString(5));
+                s.setStatus(rs.getInt(6));
+                s.setCreateDate(rs.getString(7));
+                s.setUpdateDate(rs.getString(8));
+                s.setRating(rs.getInt(9));
+                s.setUser(new User(rs.getInt(10), rs.getString(11),
+                                    rs.getString(12), rs.getString(13),
+                                    rs.getString(14), rs.getString(15), rs.getString(16)));
                 return s;
             }
         } catch (SQLException ex) {
