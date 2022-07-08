@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -110,10 +110,10 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <i class="fa-solid fa-globe fa-sm"></i>
-                                <a href="#">Dashboard</a>
+                                <a href="dashboard">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="#">Feedback</a>
+                                <a href="FeedbackAd">Feedback</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Feedback Details</li>
                         </ul>
@@ -123,21 +123,21 @@
                             <div class="d-flex align-items-center my-4">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar me-3">
-                                        <img src="/images/default-avatar.jpg" class="rounded-circle" alt="image">
+                                        <img src="RetrieveImg?eaID=${mfb.user.userid}" class="rounded-circle" alt="image">
                                     </div>
                                     <div>
                                         <h6 class="mb-1 p-0">
-                                            Valentine Maton
-                                            <span class="d-sm-inline fw-normal d-none text-muted ms-2">&lt;elnora@gmail.com&gt;</span>
+                                            ${mfb.user.firstname} ${mfb.user.middlename} ${mfb.user.lastname}
+                                            <span class="d-sm-inline fw-normal d-none text-muted ms-2">&lt;${mfb.user.email}&gt;</span>
                                         </h6>
-                                        <span class="small text-muted">to Lois Jimenez</span>
+                                        <span class="small text-muted">${mfb.user.username}</span>
                                     </div>
                                 </div>
                                 <div class="ms-auto d-none d-md-flex align-items-center gap-3">
                                     <a href="#" style="color: #666;">
                                         <i class="fa-solid fa-star favorite" style="color: #faae42;"></i>
                                     </a>
-                                    <span class="text-muted">4:14 AM</span>
+                                    <span class="text-muted">${mfb.createDate}</span>
                                     <div class="dropdown">
                                         <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa-solid fa-ellipsis"></i>
@@ -150,64 +150,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-4">
-                                        <div>
-                                            <strong>Order</strong>
-                                        </div>
-                                        <div>
-                                            
-                                        </div>
-                                        <div>
-                                            <strong>Star Rating</strong>
-                                            <div class="star-rate">
+                            <div class="mb-4">
+                                <div class="mb-3">
+                                    Feedback for order num:
+                                    <a href="#" style="color: #ff6e40;">
+                                        <em>#1</em>
+                                    </a>
+                                </div>
+                                <div class="mb-4">
+                                    <div>
+                                        <strong>Feedback</strong>
+                                    </div>
+                                    <div>
+                                        <p>${mfb.description}</p>
+                                    </div>
+                                    <div>
+                                        <strong>Star Rating</strong>
+                                        <div class="star-rate">
+                                            <c:forEach begin="1" end="${mfb.rating}">
                                                 <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="mb-4">
-                                        <div>
-                                            <strong>Feedback</strong>
+                                <div class="Attachments mb-3">
+                                    <h6 class="mb-3">Attachments</h6>
+                                    <div class="d-flex gap-3">
+                                        <div class="image">
+                                            <img src="${mfb.photo1}" onError="this.onerror=null;this.src='images/camera-icon-bg.jpg';">
                                         </div>
-                                        <div>
-                                            <p>It is a long established fact that a reader will be distracted by the readable
-                                                content of
-                                                a page when looking at its layout.The point of using Lorem Ipsum is that it has a
-                                                more-or-less normal distribution of letters, as opposed to using 'Content here,
-                                                content
-                                                here',making it look like readable English.</p>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                                suffered alteration in some form, by injected humour, or randomised words which
-                                                don't
-                                                look even slightly believable.</p>
-                                        </div>
-                                        <div>
-                                            <strong>Star Rating</strong>
-                                            <div class="star-rate">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="Attachments mb-3">
-                                        <h6 class="mb-3">Attachments</h6>
-                                        <div class="d-flex gap-3">
-                                            <div class="image">
-                                                <img src="/images/10.jpg" alt="">
-                                            </div>
-                                            <div class="image">
-                                                <img src="/images/11.jpg" alt="">
-                                            </div>
+                                        <div class="image">
+                                            <img src="${mfb.photo2}" onError="this.onerror=null;this.src='images/camera-icon-bg.jpg';">
                                         </div>
                                     </div>
                                 </div>
@@ -218,7 +191,9 @@
                                     <textarea name="" id="ql-editor" placeholder="Type something... " onkeyup="req()"></textarea>
                                     <span id="left">Remaining 1000 fillable characters</span>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <div class="del-btn">
+                                    <button type="submit" class="btn">Send</button>
+                                </div>
                             </form>
                         </div>
                         <script>

@@ -189,9 +189,9 @@
                             <script>
                                 var checkB = document.querySelectorAll(".form-check-input");
                                 var box = document.querySelectorAll(".list-group-item");
-                                for (let j=0; j<checkB.length; j++){
-                                    box[j].onclick = function() {
-                                        window.location.href = "#link"+checkB[j].value;
+                                for (let i=0; i<checkB.length; i++){
+                                    box[i].onclick = function() {
+                                        window.location.href = "FeedbackDetails?fbID="+checkB[i].value;
                                     };
                                 }
                             </script>

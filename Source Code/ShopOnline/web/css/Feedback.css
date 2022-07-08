@@ -133,3 +133,12 @@ h6{
     font-weight: 500;
     color: #05b171;
 }
+.del-btn .btn{
+    background-color: #ff470d;
+    color: #fff;
+    transition: all ease-in-out 0.2s;
+}
+.del-btn .btn:hover{
+    background: rgba(255, 71, 13, 0.8);
+    border-color: rgba(255, 71, 13, 0.8);
+}

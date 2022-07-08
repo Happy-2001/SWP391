@@ -164,7 +164,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <c:forEach items="${blogs}" var="b">
+                    <c:forEach begin="1" end="3" items="${blogs}" var="b">
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="blog-box">
                                 <div class="blog-img">
@@ -187,23 +187,5 @@
 
         <%@include file="Messenger.jsp" %>
         <%@include file="footer.jsp" %>
-        <script>
-            let scroll_to_bottom = document.getElementById('scroll-to-bottom');
-		scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
-                
-                
-                
-function hindMessage(){
-     document.getElementById('message2').style.display = 'block';
-    document.getElementById('mess1').style.width = '0';
-    document.getElementById('mess1').style.height = '0';
-}
-function showMessage(){
-    document.getElementById('message2').style.display = 'none';
-    document.getElementById('mess1').style.width = '340px';
-    document.getElementById('mess1').style.height = '460px';
-}
-
-        </script>
     </body>
 </html>

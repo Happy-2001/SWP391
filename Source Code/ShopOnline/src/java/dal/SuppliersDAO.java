@@ -44,4 +44,7 @@ public class SuppliersDAO extends DBConnect{
         }
         return null;
     }
+    public List<Suppliers> listSupplierDetail() {
+        return null;
+    }
 }
