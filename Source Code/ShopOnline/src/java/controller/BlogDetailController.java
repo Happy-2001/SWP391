@@ -19,11 +19,4 @@ public class BlogDetailController extends HttpServlet {
         request.setAttribute("post", bdb.getBlogById(id));
         request.getRequestDispatcher("blogdetail.jsp").forward(request, response);      
     }                                            
-    /*
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-       BlogDAO bdb = new BlogDAO();
-        String id = request.getParameter("id");
-      
-    */
 }
