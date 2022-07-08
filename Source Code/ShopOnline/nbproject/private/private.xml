@@ -3,17 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/AddressDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/css/profile.css</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/demo.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/DetailAddressDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/model/ElectronicAddress.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/UserProfile.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/addressDetail.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/model/AddressDetail.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/AddressController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/LoginController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/ElectronicAddressDAO.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/FeedbackDetails.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/FeedbackDAO.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/FeedbackDetails.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/FeedbackList.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/RetrieveImg.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/User.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Orders.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/MyFeedback.java</file>
         </group>
     </open-files>
 </project-private>
