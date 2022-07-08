@@ -150,43 +150,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-4">
-                                        <div>
-                                            <strong>Order</strong>
-                                        </div>
-                                        <div>
-                                            
+                            <div class="mb-4">
+                                <div class="mb-3">
+                                    Feedback for order num:
+                                    <a href="#" style="color: #ff6e40;">
+                                        <em>#1</em>
+                                    </a>
+                                </div>
+                                <div class="mb-4">
+                                    <div>
+                                        <strong>Feedback</strong>
+                                    </div>
+                                    <div>
+                                        <p>${mfb.description}</p>
+                                    </div>
+                                    <div>
+                                        <strong>Star Rating</strong>
+                                        <div class="star-rate">
+                                            <c:forEach begin="1" end="${mfb.rating}">
+                                                <i class="fa-solid fa-star"></i>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="mb-4">
-                                        <div>
-                                            <strong>Feedback</strong>
+                                <div class="Attachments mb-3">
+                                    <h6 class="mb-3">Attachments</h6>
+                                    <div class="d-flex gap-3">
+                                        <div class="image">
+                                            <img src="${mfb.photo1}" onError="this.onerror=null;this.src='images/camera-icon-bg.jpg';">
                                         </div>
-                                        <div>
-                                            <p>${mfb.description}</p>
-                                        </div>
-                                        <div>
-                                            <strong>Star Rating</strong>
-                                            <div class="star-rate">
-                                                <c:forEach begin="1" end="${mfb.rating}">
-                                                    <i class="fa-solid fa-star"></i>
-                                                </c:forEach>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="Attachments mb-3">
-                                        <h6 class="mb-3">Attachments</h6>
-                                        <div class="d-flex gap-3">
-                                            <div class="image">
-                                                <img src="${mfb.photo1}" alt="empty">
-                                            </div>
-                                            <div class="image">
-                                                <img src="${mfb.photo2}" alt="empty">
-                                            </div>
+                                        <div class="image">
+                                            <img src="${mfb.photo2}" onError="this.onerror=null;this.src='images/camera-icon-bg.jpg';">
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +191,9 @@
                                     <textarea name="" id="ql-editor" placeholder="Type something... " onkeyup="req()"></textarea>
                                     <span id="left">Remaining 1000 fillable characters</span>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <div class="del-btn">
+                                    <button type="submit" class="btn">Send</button>
+                                </div>
                             </form>
                         </div>
                         <script>
