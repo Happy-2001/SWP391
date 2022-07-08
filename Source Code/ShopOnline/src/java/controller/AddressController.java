@@ -86,9 +86,21 @@ public class AddressController extends HttpServlet {
             if (user.getUserid() == Integer.parseInt(userid)) {
                 String accessType = request.getParameter("accesstype");
                 if (accessType.equals("settings")) {
-                    
+                    String settingtype = request.getParameter("settingtype");
+                    if(settingtype.equalsIgnoreCase("editaddress")){
+                        
+                    }else{
+                        String idSetDefault = request.getParameter("idSetDefault");
+                        String idDefault = request.getParameter("idDefault");
+                        adao.updateStatusUserAddress2(idDefault);
+                        adao.updateStatusUserAddress1(idSetDefault);
+                        
+                        response.sendRedirect("address?accesstype=access&&userid=" + userid);
+                    }
                 }else if(accessType.equals("delete")){
-                    
+                    String uaID = request.getParameter("uaID");
+                    adao.deleteUserAddress(uaID);
+                    response.sendRedirect("address?accesstype=access&&userid=" + userid);
                 }else{
                     String straddress = request.getParameter("straddress");
                     String adddetail = request.getParameter("straddressdetail");
@@ -190,6 +202,8 @@ public class AddressController extends HttpServlet {
 
                     request.getRequestDispatcher("addressDetail.jsp").forward(request, response);
                 }
+                
+                
 
             }
         }
@@ -241,7 +255,7 @@ public class AddressController extends HttpServlet {
             adao.insertUserAddress(String.valueOf(userid), fullname, provinceID, districtID, subDistrictID, null, null, eaID, phone, Adddetail);
 
         }
-        response.sendRedirect("address?userid=" + userid);
+        response.sendRedirect("address?accesstype=access&&userid=" + userid);
 
     }
 

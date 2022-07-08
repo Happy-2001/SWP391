@@ -98,156 +98,166 @@
 
 
                                         <c:if test="${ua.status ne null}">
+                                            <c:set var="idDefault" value="${ua.uaID}" />
                                             <p> ${ua.fullname} <font>Default</font></p>
                                             </c:if>
                                             <c:if test="${ua.status eq null}">
                                             <p> ${ua.fullname} </p>
-                                            </c:if>
+                                        </c:if>
                                         <p> ${ua.phone} - ${ua.otherPhone}</p>
                                         <p>${ua.detailAddress} ${ua.prname} ${ua.strname} ${ua.wname} ${ua.dname} ${ua.pname} </p>
                                     </div>
                                     <div class="col-md-2 optionaddress">
 
-                                        <a href="address?accesstype=delete">Delete</a>
-                                        <a href="address?accesstype=settings">Settings</a>
-
+                                        <a href="#" onclick="deleteAddress('${count}',${ua.uaID})">Delete</a>
+                                        
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                Settings
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=editaddress&&userid=${sessionScope.userid}">Edit address</a></li>
+                                                <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=setdefault&&idDefault=${idDefault}&&idSetDefault=${ua.uaID}&&userid=${sessionScope.userid}">Set as default</a></li>
+                                                
+                                            </ul>
+                                        </div>
                                     </div>
+
                                 </div>
-                            </c:forEach>
-
-
-
-
-
-
-
-
-                        </div>
-                        <div class="options-divider"></div>
-
+                           
+                        </c:forEach>
                     </div>
+                    <div class="options-divider"></div>
+
                 </div>
             </div>
+        </div>
 
-        </form>
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
-        <script type="text/javascript">
-                                                            function changeProvince() {
+    </form>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript">
+                                            function changeProvince() {
 
-                                                                document.getElementById('province').style.borderBottomColor = "#d33b33";
-                                                                document.getElementById('province').style.color = "#d33b33";
-                                                                document.getElementById('provinces').style.display = "block";
+                                                document.getElementById('province').style.borderBottomColor = "#d33b33";
+                                                document.getElementById('province').style.color = "#d33b33";
+                                                document.getElementById('provinces').style.display = "block";
 
 
-                                                                document.getElementById('district').style.borderBottomColor = "#ccc";
-                                                                document.getElementById('district').style.color = "black";
-                                                                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
-                                                                document.getElementById('subdistrict').style.color = "black";
+                                                document.getElementById('district').style.borderBottomColor = "#ccc";
+                                                document.getElementById('district').style.color = "black";
+                                                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
+                                                document.getElementById('subdistrict').style.color = "black";
 
-                                                                document.getElementById('districts').style.display = "none";
-                                                                document.getElementById('subdistricts').style.display = "none";
-                                                            }
-                                                            function changeDistrict() {
+                                                document.getElementById('districts').style.display = "none";
+                                                document.getElementById('subdistricts').style.display = "none";
+                                            }
+                                            function changeDistrict() {
 
-                                                                document.getElementById('district').style.borderBottomColor = "#d33b33";
-                                                                document.getElementById('district').style.color = "#d33b33";
-                                                                document.getElementById('districts').style.display = "block";
+                                                document.getElementById('district').style.borderBottomColor = "#d33b33";
+                                                document.getElementById('district').style.color = "#d33b33";
+                                                document.getElementById('districts').style.display = "block";
 
-                                                                document.getElementById('province').style.borderBottomColor = "#ccc";
-                                                                document.getElementById('province').style.color = "black";
-                                                                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
-                                                                document.getElementById('subdistrict').style.color = "black";
+                                                document.getElementById('province').style.borderBottomColor = "#ccc";
+                                                document.getElementById('province').style.color = "black";
+                                                document.getElementById('subdistrict').style.borderBottomColor = "#ccc";
+                                                document.getElementById('subdistrict').style.color = "black";
 
-                                                                document.getElementById('provinces').style.display = "none";
-                                                                document.getElementById('subdistricts').style.display = "none";
-                                                            }
-                                                            function changeSubdistrict() {
+                                                document.getElementById('provinces').style.display = "none";
+                                                document.getElementById('subdistricts').style.display = "none";
+                                            }
+                                            function changeSubdistrict() {
 
-                                                                document.getElementById('subdistrict').style.borderBottomColor = "#d33b33";
-                                                                document.getElementById('subdistrict').style.color = "#d33b33";
-                                                                document.getElementById('subdistricts').style.display = "block";
+                                                document.getElementById('subdistrict').style.borderBottomColor = "#d33b33";
+                                                document.getElementById('subdistrict').style.color = "#d33b33";
+                                                document.getElementById('subdistricts').style.display = "block";
 
-                                                                document.getElementById('province').style.borderBottomColor = "#ccc";
-                                                                document.getElementById('province').style.color = "black";
-                                                                document.getElementById('district').style.borderBottomColor = "#ccc";
-                                                                document.getElementById('district').style.color = "black";
+                                                document.getElementById('province').style.borderBottomColor = "#ccc";
+                                                document.getElementById('province').style.color = "black";
+                                                document.getElementById('district').style.borderBottomColor = "#ccc";
+                                                document.getElementById('district').style.color = "black";
 
-                                                                document.getElementById('provinces').style.display = "none";
-                                                                document.getElementById('districts').style.display = "none";
-                                                            }
-                                                            function onClickAddress() {
-                                                                document.getElementById('selectaddress').style.height = '300px';
-                                                                document.getElementById('selectaddress2').style.height = '0';
-                                                                document.getElementById('hindaddress').style.display = 'none';
-                                                            }
-                                                            function onKeydownAdress() {
-                                                                var straddress = document.getElementById('straddress').value;
-                                                                var fullname = document.getElementById('fullname').value;
-                                                                var phone = document.getElementById('phone').value;
+                                                document.getElementById('provinces').style.display = "none";
+                                                document.getElementById('districts').style.display = "none";
+                                            }
+                                            function onClickAddress() {
+                                                document.getElementById('selectaddress').style.height = '300px';
+                                                document.getElementById('selectaddress2').style.height = '0';
+                                                document.getElementById('hindaddress').style.display = 'none';
+                                            }
+                                            function onKeydownAdress() {
+                                                var straddress = document.getElementById('straddress').value;
+                                                var fullname = document.getElementById('fullname').value;
+                                                var phone = document.getElementById('phone').value;
 //                alert(straddress)
-                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + straddress + "&&fullname=" + fullname + "&&phone=" + phone;
-                                                                document.getElementById('selectaddress').style.height = '0';
-                                                                document.getElementById('selectaddress2').style.height = '300px';
-                                                                document.getElementById('hindaddress').style.display = 'block';
+                                                window.location.href = 'address?accesstype=access&&userid=${sessionScope.userid}&&straddress=' + straddress + "&&fullname=" + fullname + "&&phone=" + phone;
+                                                document.getElementById('selectaddress').style.height = '0';
+                                                document.getElementById('selectaddress2').style.height = '300px';
+                                                document.getElementById('hindaddress').style.display = 'block';
 
 
 
-                                                            }
-                                                            function getAddress(address, provinceID, districtID, subDistrictID) {
-                                                                document.getElementById('straddress').value = address;
-                                                                document.getElementById('selectaddress2').style.height = '0';
-                                                                document.getElementById('ulsearch').style.display = 'none';
-                                                                var fullname = document.getElementById('fullname').value;
-                                                                var phone = document.getElementById('phone').value;
-                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + address + '&&provinceID=' + provinceID + '&&districtID=' + districtID + '&&subDistrictID=' + subDistrictID + "&&fullname=" + fullname + "&&phone=" + phone;
-                                                            }
-                                                            function searchProject() {
-                                                                var straddress = document.getElementById('straddress').value;
-                                                                var straddressdetail = document.getElementById('adddetail').value;
-                                                                var fullname = document.getElementById('fullname').value;
-                                                                var phone = document.getElementById('phone').value;
+                                            }
+                                            function getAddress(address, provinceID, districtID, subDistrictID) {
+                                                document.getElementById('straddress').value = address;
+                                                document.getElementById('selectaddress2').style.height = '0';
+                                                document.getElementById('ulsearch').style.display = 'none';
+                                                var fullname = document.getElementById('fullname').value;
+                                                var phone = document.getElementById('phone').value;
+                                                window.location.href = 'address?accesstype=access&&userid=${sessionScope.userid}&&straddress=' + address + '&&provinceID=' + provinceID + '&&districtID=' + districtID + '&&subDistrictID=' + subDistrictID + "&&fullname=" + fullname + "&&phone=" + phone;
+                                            }
+                                            function searchProject() {
+                                                var straddress = document.getElementById('straddress').value;
+                                                var straddressdetail = document.getElementById('adddetail').value;
+                                                var fullname = document.getElementById('fullname').value;
+                                                var phone = document.getElementById('phone').value;
 //                alert(straddress)
 
-                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + straddress + '&&straddressdetail=' + straddressdetail + "&&phone=" + phone + "&&fullname=" + fullname;
+                                                window.location.href = 'address?accesstype=access&&userid=${sessionScope.userid}&&straddress=' + straddress + '&&straddressdetail=' + straddressdetail + "&&phone=" + phone + "&&fullname=" + fullname;
 
-                                                            }
+                                            }
 
-                                                            function getProject(address, lat, ing) {
-                                                                document.getElementById('adddetail').value = address;
-                                                                document.getElementById('selectaddress3').style.height = '0';
-                                                                document.getElementById('ulsearch3').style.display = 'none';
-                                                                initialize(lat, ing);
+                                            function getProject(address, lat, ing) {
+                                                document.getElementById('adddetail').value = address;
+                                                document.getElementById('selectaddress3').style.height = '0';
+                                                document.getElementById('ulsearch3').style.display = 'none';
+                                                initialize(lat, ing);
 
 
 
-                                                            }
+                                            }
+                                            function deleteAddress(address, uaID) {
+                                                var option = confirm("Delete address: " + address + " ?");
+                                                if (option === true) {
+                                                    window.location.href = 'address?accesstype=delete&&uaID=' + uaID + '&&userid=${sessionScope.userid}';
+                                                }
 
-        </script>
+                                            }
+    </script>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            function initialize(lat, ing) {
+        function initialize(lat, ing) {
 
-                var myCenter = new google.maps.LatLng(lat, ing);
-                var mapProp = {
-                    center: myCenter,
-                    zoom: 12,
-                    mapTypeId: google.maps.MapTypeId.RoadMAP
-                };
-                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-                var marker = new google.maps.Marker({
-                    position: myCenter
-                });
-                marker.setMap(map);
-            }
-            ;
-            if (lat !== null || ing !== null) {
-                google.maps.event.addDomListener(window, 'load', initialize);
-            }
+            var myCenter = new google.maps.LatLng(lat, ing);
+            var mapProp = {
+                center: myCenter,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.RoadMAP
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var marker = new google.maps.Marker({
+                position: myCenter
+            });
+            marker.setMap(map);
+        }
+        ;
+        if (lat !== null || ing !== null) {
+            google.maps.event.addDomListener(window, 'load', initialize);
+        }
 
-        </script>
-        <script src="js/Popup.js"></script>
+    </script>
+    <script src="js/Popup.js"></script>
 
-        <%--<%@include file="footer.jsp" %>--%>
-    </body>
+    <%--<%@include file="footer.jsp" %>--%>
+</body>
 </html>
