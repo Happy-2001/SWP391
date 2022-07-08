@@ -116,7 +116,7 @@
                                                 Settings
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=editaddress&&userid=${sessionScope.userid}">Edit address</a></li>
+                                                <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=editaddress&&uaid=${ua.uaID}&&userid=${sessionScope.userid}">Edit address</a></li>
                                                 <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=setdefault&&idDefault=${idDefault}&&idSetDefault=${ua.uaID}&&userid=${sessionScope.userid}">Set as default</a></li>
                                                 
                                             </ul>
