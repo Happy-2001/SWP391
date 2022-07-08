@@ -67,6 +67,16 @@ public class User {
         this.middlename = middlename;
         this.lastname = lastname;
     }
+    
+    public User(int userid, String username, String firstname, String middlename, String lastname, String photo, String email) {
+        this.userid = userid;
+        this.username = username;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.photo = photo;
+        this.email = email;
+    }
 
     public String getPhoto() {
         return photo;
