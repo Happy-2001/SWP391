@@ -29,100 +29,106 @@
         <%@include file="header.jsp" %>   
         <!-- Edit Address -->
         <form action="address" method="post">
-                 <!--sửa ở đây-->
+            <!--sửa ở đây-->
 
-                <div class=" Popup-body2" style="margin-top: 200px;">
-                    <div class="Pop-title">
-                        <h3>Address User</h3>
-                    </div>
-                    <div class="options-divider"></div>
-                    <input type="hidden" name="id" value="${sessionScope.user.userid}">
-                    <div class="Set-pop">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5">
-                                <div style="border-right: 1px solid #231f20;">
-                                    <h5>Add address</h5>
-                                    <div class="options ">
-                                        <label>Full name</label>
-                                        <input id="fullname" class="col-md-6" name="fullname" type="text" value="${fullname}" placeholder="Full name" />
-                                        <label>Phone</label>
-                                        <input id="phone" class="col-md-6" name="phone" type="text" value="${phone}" placeholder="Phone" />
-                                        <label>Province, District, Sub-district</label>
-                                        <input id="straddress" name="straddress"  type="text" value="${valueAddress}" placeholder="Address..." onclick="onClickAddress()"  onblur="outSearchAddress()"	ondblclick ="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
-                                        
+            <div class=" Popup-body2" style="margin-top: 200px;">
+                <div class="Pop-title">
+                    <h3>Address User</h3>
+                </div>
+                <div class="options-divider"></div>
+                <input type="hidden" name="id" value="${sessionScope.user.userid}">
+                <div class="Set-pop">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5">
+                            <div style="border-right: 1px solid #231f20;">
+                                <h5>Add address</h5>
+                                <div class="options ">
+                                    <label>Full name</label>
+                                    <input id="fullname" class="col-md-6" name="fullname" type="text" value="${fullname}" placeholder="Full name" />
+                                    <label>Phone</label>
+                                    <input id="phone" class="col-md-6" name="phone" type="text" value="${phone}" placeholder="Phone" />
+                                    <label>Province, District, Sub-district</label>
+                                    <input id="straddress" name="straddress"  type="text" value="${valueAddress}" placeholder="Address..." onclick="onClickAddress()"  onblur="outSearchAddress()"	ondblclick ="onKeydownAdress()"> <!--onclick để hiển thị select, 	onkeydown ẩn select-->
 
-                                        <div id="selectaddress2" class="select-addess2" style="${selectaddress2Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
-                                            <ul id="ulsearch" style=" ${ulBlock}">
-                                                <c:if test="${adList ne null}">
-                                                    <c:forEach items="${adList}" var="adList">
-                                                        <li onclick="getAddress('${adList.addressDetail}', '${adList.provinceID}', '${adList.districtID}',${adList.subDistrictID})">${adList.addressDetail}</li>
 
-                                                    </c:forEach>
-                                                </c:if>
-                                            </ul>
-                                        </div>
+                                    <div id="selectaddress2" class="select-addess2" style="${selectaddress2Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                        <ul id="ulsearch" style=" ${ulBlock}">
+                                            <c:if test="${adList ne null}">
+                                                <c:forEach items="${adList}" var="adList">
+                                                    <li onclick="getAddress('${adList.addressDetail}', '${adList.provinceID}', '${adList.districtID}',${adList.subDistrictID})">${adList.addressDetail}</li>
+
+                                                </c:forEach>
+                                            </c:if>
+                                        </ul>
                                     </div>
-
-                                    <div class="options">
-                                        <input value="${adddetail}" id="adddetail" type="text" name="adddetail" placeholder="Address detail..." ondblclick="searchProject()">
-                                        <div id="selectaddress3" class="select-addess3" style=" ${selectaddress3Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
-                                            <ul id="ulsearch3" style="${ulBlock3}">
-                                                <c:if test="${listProject ne null}">
-                                                    <c:forEach items="${listProject}" var="listProject">
-
-                                                        <li onclick="getProject('${listProject.name}', '${listProject.lat}', '${listProject.ing}')">${listProject.name}</li>
-
-                                                    </c:forEach>
-                                                </c:if>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div id="googleMap" style="width: 100%;height: 400px;"></div>           
                                 </div>
-                                                <div class="options">
+
+                                <div class="options">
+                                    <input value="${adddetail}" id="adddetail" type="text" name="adddetail" placeholder="Address detail..." ondblclick="searchProject()">
+                                    <div id="selectaddress3" class="select-addess3" style=" ${selectaddress3Style}">           <!--xử lý việc khách hàng nhập địa chỉ-->
+                                        <ul id="ulsearch3" style="${ulBlock3}">
+                                            <c:if test="${listProject ne null}">
+                                                <c:forEach items="${listProject}" var="listProject">
+
+                                                    <li onclick="getProject('${listProject.name}', '${listProject.lat}', '${listProject.ing}')">${listProject.name}</li>
+
+                                                </c:forEach>
+                                            </c:if>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="googleMap" style="width: 100%;height: 400px;"></div>           
+                            </div>
+                            <div class="options">
                                 <button class="opt-btn" type="submit">Save</button>
                             </div>
-                            </div>
-                            <div class="col-lg-7 col-md-7 card-body" >
-                                <c:set var="count" value="0"/>
-                                <c:forEach items="${listUserAddress}" var="ua">
-                                    <div class="row" >
-                                        <div class="col-md-3 mainaddress" style="">
-                                            <h6>Address ${count+1}</h6>
-                                            <p>Full Name </p> 
-                                            <p>Phone </p> 
-                                            <p>Address</p> 
-
-                                        </div>
-                                            <div class="col-md-7 contentaddress" style="">
-                                                
-                                                <p> ${sessionScope.user.getFullname()}</p>
-                                                <p> ${ua.phone}</p>
-                                                 <p> ${ua.prname} ${ua.strname} ${ua.wname} ${ua.dname} ${ua.pname}</p>
-                                            </div>
-                                        <div class="col-md-2 optionaddress">
-                                           
-                                            <a href="#">Delete</a>
-                                            <a href="#">Change</a>
-
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                                
-                                
-
-
-
-
-
-
-                            </div>
-                            <div class="options-divider"></div>
-                            
                         </div>
+                        <div class="col-lg-7 col-md-7 card-body" >
+                            <c:set var="count" value="0"/>
+                            <c:forEach items="${listUserAddress}" var="ua">
+                                <div class="row" >
+                                    <div class="col-md-3 mainaddress" style="">
+                                        <h6>Address ${count = count+1}</h6>
+                                        <p>Full Name </p> 
+                                        <p>Phone </p> 
+                                        <p>Address</p> 
+
+                                    </div>
+                                    <div class="col-md-7 contentaddress" style="">
+
+
+                                        <c:if test="${ua.status ne null}">
+                                            <p> ${ua.fullname} <font>Default</font></p>
+                                            </c:if>
+                                            <c:if test="${ua.status eq null}">
+                                            <p> ${ua.fullname} </p>
+                                            </c:if>
+                                        <p> ${ua.phone} - ${ua.otherPhone}</p>
+                                        <p>${ua.detailAddress} ${ua.prname} ${ua.strname} ${ua.wname} ${ua.dname} ${ua.pname} </p>
+                                    </div>
+                                    <div class="col-md-2 optionaddress">
+
+                                        <a href="address?accesstype=delete">Delete</a>
+                                        <a href="address?accesstype=settings">Settings</a>
+
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+
+
+
+
+
+
+
+                        </div>
+                        <div class="options-divider"></div>
+
                     </div>
                 </div>
-            
+            </div>
+
         </form>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
         <script type="text/javascript">
@@ -179,7 +185,7 @@
                                                                 var fullname = document.getElementById('fullname').value;
                                                                 var phone = document.getElementById('phone').value;
 //                alert(straddress)
-                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + straddress+"&&fullname="+fullname+"&&phone="+phone;
+                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + straddress + "&&fullname=" + fullname + "&&phone=" + phone;
                                                                 document.getElementById('selectaddress').style.height = '0';
                                                                 document.getElementById('selectaddress2').style.height = '300px';
                                                                 document.getElementById('hindaddress').style.display = 'block';
@@ -187,20 +193,22 @@
 
 
                                                             }
-                                                            function getAddress(address, provinceID, districtID,subDistrictID) {
+                                                            function getAddress(address, provinceID, districtID, subDistrictID) {
                                                                 document.getElementById('straddress').value = address;
                                                                 document.getElementById('selectaddress2').style.height = '0';
                                                                 document.getElementById('ulsearch').style.display = 'none';
                                                                 var fullname = document.getElementById('fullname').value;
                                                                 var phone = document.getElementById('phone').value;
-                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + address + '&&provinceID=' + provinceID + '&&districtID=' + districtID+'&&subDistrictID='+subDistrictID+"&&fullname="+fullname+"&&phone="+phone;
+                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + address + '&&provinceID=' + provinceID + '&&districtID=' + districtID + '&&subDistrictID=' + subDistrictID + "&&fullname=" + fullname + "&&phone=" + phone;
                                                             }
                                                             function searchProject() {
                                                                 var straddress = document.getElementById('straddress').value;
                                                                 var straddressdetail = document.getElementById('adddetail').value;
+                                                                var fullname = document.getElementById('fullname').value;
+                                                                var phone = document.getElementById('phone').value;
 //                alert(straddress)
 
-                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + straddress + '&&straddressdetail=' + straddressdetail;
+                                                                window.location.href = 'address?userid=${sessionScope.userid}&&straddress=' + straddress + '&&straddressdetail=' + straddressdetail + "&&phone=" + phone + "&&fullname=" + fullname;
 
                                                             }
 

@@ -277,3 +277,15 @@
 .card-body .contentaddress, .card-body .optionaddress {
     margin-top: 38px;
 }
+.contentaddress font{
+        display: inline-flex;
+    justify-content: center;
+    background: #00bfa5;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 8px;
+    font-size: .8125rem;
+    font-weight: 500;
+    height: 24px;
+    white-space: nowrap;
+}

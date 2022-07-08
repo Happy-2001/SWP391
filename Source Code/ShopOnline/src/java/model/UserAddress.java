@@ -10,14 +10,15 @@ package model;
  * @author Administrator
  */
 public class UserAddress {
-    private String uaID,userID,pname,dname,wname,prname,strname,detailAddress,phone,email;
+    private String uaID,userID,fullname,pname,dname,wname,prname,strname,detailAddress,phone,otherPhone,email,status;
 
     public UserAddress() {
     }
 
-    public UserAddress(String uaID, String userID, String pname, String dname, String wname, String prname, String strname, String detailAddress, String phone, String email) {
+    public UserAddress(String uaID, String userID, String fullname, String pname, String dname, String wname, String prname, String strname, String detailAddress, String phone, String otherPhone, String email,String status) {
         this.uaID = uaID;
         this.userID = userID;
+        this.fullname = fullname;
         this.pname = pname;
         this.dname = dname;
         this.wname = wname;
@@ -25,7 +26,17 @@ public class UserAddress {
         this.strname = strname;
         this.detailAddress = detailAddress;
         this.phone = phone;
+        this.otherPhone = otherPhone;
         this.email = email;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getUaID() {
@@ -42,6 +53,14 @@ public class UserAddress {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getPname() {
@@ -100,6 +119,14 @@ public class UserAddress {
         this.phone = phone;
     }
 
+    public String getOtherPhone() {
+        return otherPhone;
+    }
+
+    public void setOtherPhone(String otherPhone) {
+        this.otherPhone = otherPhone;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -107,6 +134,8 @@ public class UserAddress {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    
     
     
 }
