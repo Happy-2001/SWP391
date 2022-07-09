@@ -60,11 +60,14 @@ svg rect {
 }
 /* ===================================================================== */
 .message{
-    width: 300px;
-    height: 420px !important;
+/*    height: 460px !important;
+    width: 340px;*/
+    height: 0;
+    width: 0;
     overflow-x: hidden;
+    
     background-color: white;
-    z-index: 1000;
+    z-index: 0100;
     position: fixed !important;
     bottom: 40px;
     right: 5%;
@@ -73,12 +76,12 @@ svg rect {
 }
 
 .message2{
-    font-size: 30px;
-    color: red;
+    font-size: 33px;
+    color: #d33b33;
     z-index: 1000;
     position: fixed !important;
-    right: 3.1%;
-    top: 85%;
+    right: 2.4%;
+    top: 88%;
     transition: ease-in-out 1s;
     cursor: pointer;
     

@@ -43,28 +43,8 @@ public class ProfileUserController extends HttpServlet {
         AddressDAO adao = new AddressDAO();
         DetailAddressDAO dadao = new DetailAddressDAO();
         User user = udb.getUserById(userid);
-        ArrayList<Provinces> listProvince = adao.getProvince();
-        ArrayList<District> listDistrict = adao.getDistrict();
-        ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
-    
-        if(straddress != null){
-             ArrayList<AddressDetail> adList = dadao.getDetailAddress();
-             request.setAttribute("adList", adList);
-             
-        }else{
-             ArrayList<AddressDetail> adList = dadao.getDetailAddress();
-             request.setAttribute("adList", adList);
-//             for (AddressDetail addressDetail : adList) {
-//                response.getWriter().println(addressDetail.getAddressDetail());
-//            }
-        
-        }
-        request.setAttribute("selectaddress2Style", "height: 300px");        
-        request.setAttribute("valueAddress", straddress);
-        request.setAttribute("listProvince", listProvince);
-        request.setAttribute("listDistrict", listDistrict);
-        request.setAttribute("listSubDistrict", listSubDistrict);
-        
+              
+      
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
