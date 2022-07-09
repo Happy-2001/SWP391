@@ -12,13 +12,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Suppliers;
+import model.SupDetail;
 
 /**
  *
  * @author nguye
  */
-public class SupplierDetail extends HttpServlet {
+public class SupplierDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +32,9 @@ public class SupplierDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("supID");
+        String id = request.getParameter("1");
         SuppliersDAO db = new SuppliersDAO();
-        Suppliers sup = db.getSupById(Integer.parseInt(id));
+        SupDetail sup = db.getSupById(1);
         
         request.setAttribute("sup", sup);
         

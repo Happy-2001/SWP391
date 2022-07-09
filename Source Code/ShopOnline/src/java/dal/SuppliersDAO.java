@@ -10,8 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.SupDetail;
+import model.Supplier_address;
 import model.Suppliers;
-import model.User;
 
 /**
  *
@@ -47,8 +50,8 @@ public class SuppliersDAO extends DBConnect {
         return null;
     }
 
-    public Suppliers getSupById(int id) {
-        String sql = "SELECT sup.supplierID,sup.companyName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,sup_add.provinceID,sup_add.districtID,sup_add.wardID,sup_add.streetID,sup_add.projectID,sup_add.eaID,sup_add.addressDetail\n"
+    public SupDetail getSupById(int id) {
+        String sql = "SELECT sup.supplierID,sup.companyName,sup.contactName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,sup_add.provinceID,sup_add.districtID,sup_add.wardID,sup_add.streetID,sup_add.projectID,sup_add.eaID,sup_add.addressDetail\n"
                 + "FROM `suppliers` as sup\n"
                 + "inner JOIN supplier_address as sup_add on sup_add.supplierID=sup.supplierID\n"
                 + "WHERE sup.supplierID=?";
@@ -57,21 +60,28 @@ public class SuppliersDAO extends DBConnect {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Customers c = new Customers();
-                c.setUs(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"),
-                        rs.getString("ua.first_name"), rs.getString("ua.middle_name"),
-                        rs.getString("ua.last_name"), rs.getInt("ua.gender"),
-                        rs.getDate("ua.DOB"), rs.getInt("ua.status_id"),
-                        rs.getString("eca.email"), rs.getString("eca.telephone"),
-                        rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
-                c.setUad(new Address(new Provinces(rs.getString("uad._name"))));
+                SupDetail c = new SupDetail();
+                c.setSup(new Suppliers(rs.getInt("sup.supplierID"), rs.getString("sup.companyName"),
+                        rs.getString("sup.contactName"),rs.getString("sup.contactTitle"), rs.getDate("sup.DOB"),
+                        rs.getInt("sup.gender"), rs.getInt("sup.creator")));
+                c.setSup_add(new Supplier_address(rs.getInt("sup_add.provinceID"),rs.getInt("sup_add.districtID") ,
+                        rs.getInt("sup_add.wardID"),rs.getInt("sup_add.streetID"), rs.getInt("sup_add.projectID"),
+                        rs.getInt("sup_add.eaID"), rs.getString("sup_add.addressDetail")));
                 return c;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SuppliersDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
         return null;
+    }
+    public static void main(String[] args) {
+        SuppliersDAO dao =new SuppliersDAO();
+        SuppliersDAO db = new SuppliersDAO();
+        SupDetail sup = db.getSupById(1);
+        
+            System.out.println(sup);
+        
     }
 }
