@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cart;
-import model.Orderlist;
+import model.Orders;
 
 /**
  *
@@ -41,7 +41,7 @@ public class OrderInformationController extends HttpServlet {
         OrderDAO dao = new OrderDAO();
         CartDAO cartDao = new CartDAO();
         List<Cart> carts = cartDao.listById(Integer.parseInt(id));
-        Orderlist o = dao.listOrderById(Integer.parseInt(id));
+        Orders o = dao.listOrderById(Integer.parseInt(id));
         int total = cartDao.getAmountByID(Integer.parseInt(id));
         request.setAttribute("total", total);
         request.setAttribute("order", o);
