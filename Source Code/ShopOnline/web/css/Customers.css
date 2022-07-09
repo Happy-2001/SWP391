@@ -90,3 +90,10 @@
     background: #25c2e3;
     color: #fff!important;
 }
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ff6e40;
+    border-color: #ff6e40;
+}
