@@ -76,12 +76,12 @@ svg rect {
 }
 
 .message2{
-    font-size: 30px;
-    color: red;
+    font-size: 33px;
+    color: #d33b33;
     z-index: 1000;
     position: fixed !important;
-    right: 3.1%;
-    top: 85%;
+    right: 2.4%;
+    top: 88%;
     transition: ease-in-out 1s;
     cursor: pointer;
     

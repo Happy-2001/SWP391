@@ -121,8 +121,8 @@
         <servlet-class>controller.SuppliersController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SupplierDetail</servlet-name>
-        <servlet-class>controller.SupplierDetail</servlet-class>
+        <servlet-name>FeedbackDetails</servlet-name>
+        <servlet-class>controller.FeedbackDetails</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -245,12 +245,10 @@
         <url-pattern>/SuppliersController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SupplierDetail</servlet-name>
-        <url-pattern>/SupplierDetail</url-pattern>
+        <servlet-name>FeedbackDetails</servlet-name>
+        <url-pattern>/FeedbackDetails</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>

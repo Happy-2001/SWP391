@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -151,7 +151,7 @@
                                     <c:forEach items="${fblist}" var="feedb">
                                         <li class="list-group-item <c:if test="${feedb.status == 0}">todo-completed</c:if>">
                                             <div class="flex-shrink-0">
-                                                <input class="form-check-input" type="checkbox" value="${feedb.fbID}">
+                                                <input class="form-check-input" id="form-check" type="checkbox" value="${feedb.fbID}">
                                             </div>
                                             <div class="flex-shrink-0">
                                                 <i class="fa-regular fa-star"></i>
@@ -187,11 +187,11 @@
                             </div>
                             
                             <script>
-                                var checkB = document.querySelectorAll(".form-check-input");
+                                var checkB = document.querySelectorAll("#form-check");
                                 var box = document.querySelectorAll(".list-group-item");
-                                for (let j=0; j<checkB.length; j++){
-                                    box[j].onclick = function() {
-                                        window.location.href = "#link"+checkB[j].value;
+                                for (let i=0; i<checkB.length; i++){
+                                    box[i].onclick = function() {
+                                        window.location.href = "FeedbackDetails?fbID="+checkB[i].value;
                                     };
                                 }
                             </script>

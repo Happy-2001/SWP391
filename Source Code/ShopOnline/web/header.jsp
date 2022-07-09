@@ -32,7 +32,6 @@
                     </ul>
                 </div>
 
-
                 <div class="account-header">
                     <ul class="nav navbar-nav">
                         <li class="search">
@@ -60,25 +59,36 @@
                                 </c:when>
                             </c:choose>
                         </li>
-                        <li class="account">
+                        <li class="account dropdown">
                             <c:choose>
                                 <c:when test="${sessionScope.userlogged eq null}">
                                     <a href="login" title="Login"><i class="fa fa-user"></i></a>
-                                    </c:when>
-                                    <c:when test="${sessionScope.userlogged ne null}">
-                                        <c:set var="linkToRedirect">
-                                            <c:choose>
-                                                <c:when test="${sessionScope.Arole.authority.id == 1}">
-                                                    dashboard
-                                                </c:when>
-                                                <c:otherwise>
-                                                    ProfileUser?userid=${sessionScope.userlogged.userid}
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:set>
-                                    <a href="${linkToRedirect}" style="border-left: 2px solid #d33b33;">
-                                        <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
-                                    </a>
+                                </c:when>
+                                <c:when test="${sessionScope.userlogged ne null}">
+                                    <c:choose>
+                                        <c:when test="${sessionScope.Arole.authority.id == 1}">
+                                            <a href="dashboard" style="border-left: 2px solid #d33b33;">
+                                                <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="#" data-bs-toggle="dropdown" style="border-left: 2px solid #d33b33;">
+                                                <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a href="ProfileUser?userid=${sessionScope.userlogged.userid}" class="dropdown-item">
+                                                    <i class="fa-regular fa-circle-user pe-2"></i> Profile
+                                                </a>
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="fa-solid fa-box pe-2"></i> My order
+                                                </a>
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="fa-regular fa-heart pe-2"></i> Favorites
+                                                </a>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    
                                     <a href="logout" style="border-left: 2px solid #d33b33;" title="Logout"><i class="fa-solid fa-power-off"></i></a>
                                 </c:when>
                             </c:choose>

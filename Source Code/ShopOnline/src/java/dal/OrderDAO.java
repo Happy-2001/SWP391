@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Category;
-import model.Orderlist;
+import model.Orders;
 import model.Product;
 
 /**
@@ -22,14 +22,14 @@ public class OrderDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
 
-    public List<Orderlist> listAllOder() {
-        List<Orderlist> Orderlist = new ArrayList<>();
+    public List<Orders> listAllOder() {
+        List<Orders> Orders = new ArrayList<>();
         String sql = "SELECT * FROM `order` ORDER BY `order_id` ASC";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                Orderlist c = new Orderlist();
+                Orders c = new Orders();
                 c.setOrder_id(rs.getInt("order_id"));
                 c.setCustomer_id(rs.getInt("customer_id"));
                 c.setName_receiver(rs.getString("name_receiver"));
@@ -42,17 +42,17 @@ public class OrderDAO extends DBConnect {
                 c.setNote(rs.getString("status"));
                 c.setStatus(rs.getString("note"));
         
-                Orderlist.add(c);
+                Orders.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
             mysqlConnect.disconnect();
         }
-        return Orderlist;
+        return Orders;
     }
-     public List<Orderlist> searchOrderByName(String name) {
-        List<Orderlist> Orderlist = new ArrayList<>();
+     public List<Orders> searchOrderByName(String name) {
+        List<Orders> Orders = new ArrayList<>();
         String sql = "SELECT * FROM `order` WHERE `name_receiver` LIKE ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);                       
@@ -60,7 +60,7 @@ public class OrderDAO extends DBConnect {
             ResultSet rs = statement.executeQuery();
           
             while (rs.next()) {
-                Orderlist c = new Orderlist();
+                Orders c = new Orders();
                 c.setOrder_id(rs.getInt("order_id"));
                 c.setCustomer_id(rs.getInt("customer_id"));
                 c.setName_receiver(rs.getString("name_receiver"));
@@ -73,14 +73,14 @@ public class OrderDAO extends DBConnect {
                 c.setNote(rs.getString("status"));
                 c.setStatus(rs.getString("note"));
         
-                Orderlist.add(c);
+                Orders.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
             mysqlConnect.disconnect();
         }
-        return Orderlist;
+        return Orders;
     }
      // phân trang 
       public int countPage() {
@@ -105,14 +105,14 @@ public class OrderDAO extends DBConnect {
         return 0;
     }
      
-      public List<Orderlist> getFeedbackByPageNumber() {
-        List<Orderlist> Orderlist = new ArrayList<>();
+      public List<Orders> getFeedbackByPageNumber() {
+        List<Orders> Orders = new ArrayList<>();
         String sql = "SELECT * FROM `order` ORDER BY `order_id` ASC";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                Orderlist c = new Orderlist();
+                Orders c = new Orders();
                 c.setOrder_id(rs.getInt("order_id"));
                 c.setCustomer_id(rs.getInt("customer_id"));
                 c.setName_receiver(rs.getString("name_receiver"));
@@ -125,17 +125,17 @@ public class OrderDAO extends DBConnect {
                 c.setNote(rs.getString("status"));
                 c.setStatus(rs.getString("note"));
         
-                Orderlist.add(c);
+                Orders.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
             mysqlConnect.disconnect();
         }
-        return Orderlist;
+        return Orders;
     }
-    public Orderlist listOrderById(int id) {
-        Orderlist c = new Orderlist();
+    public Orders listOrderById(int id) {
+        Orders c = new Orders();
         String sql = "SELECT `order_id`, `name_receiver`, `phone`, `order_date`, `email`, `address`, `note` \n" +
                     "FROM `order` \n" +
                     "WHERE order_id = ?";
@@ -160,8 +160,8 @@ public class OrderDAO extends DBConnect {
         }
         return c;
     }
-    public Orderlist getOrderById(int id) {
-        Orderlist c = new Orderlist();
+    public Orders getOrderById(int id) {
+        Orders c = new Orders();
         String sql = "SELECT o.`order_id`, o.`order_date`, p.product_name, d.unit_price, d.quantity, o.`status`\n" +
                     "FROM `order` o\n" +
                     "JOIN `oder_details` d ON o.`order_id` = d.`order_id`\n" +

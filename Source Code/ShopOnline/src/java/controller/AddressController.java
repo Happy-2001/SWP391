@@ -84,11 +84,44 @@ public class AddressController extends HttpServlet {
         if (objuser != null) {
             user = (User) objuser;
             if (user.getUserid() == Integer.parseInt(userid)) {
+                ArrayList<Provinces> listProvince = adao.getProvince();
+                    ArrayList<District> listDistrict = adao.getDistrict();
+                    ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
+                    ArrayList<UserAddress> listUserAddress = adao.getUserAddress(String.valueOf(user.getUserid()));
                 String accessType = request.getParameter("accesstype");
                 if (accessType.equals("settings")) {
+                    String settingtype = request.getParameter("settingtype");
+                    if(settingtype.equalsIgnoreCase("editaddress")){
+                        
+                        String uaid = request.getParameter("uaid");
+                        UserAddress uadd = null;
+                        for (UserAddress ua : listUserAddress) {
+                            if(ua.getUaID().equals(uaid)){
+                                uadd = ua;
+                            }
+                        }
+                    request.setAttribute("fullname", uadd.getFullname());
+                    request.setAttribute("phone", uadd.getPhone());
+                    request.setAttribute("listUserAddress", listUserAddress);
+                    request.setAttribute("adddetail", uadd.getDetailAddress());
+                    request.setAttribute("valueAddress", uadd.getPname()+" "+uadd.getDname()+" "+uadd.getWname());
                     
+                    
+
+                    request.getRequestDispatcher("addressDetail.jsp").forward(request, response);
+                    
+                    }else{
+                        String idSetDefault = request.getParameter("idSetDefault");
+                        String idDefault = request.getParameter("idDefault");
+                        adao.updateStatusUserAddress2(idDefault);
+                        adao.updateStatusUserAddress1(idSetDefault);
+                        
+                        response.sendRedirect("address?accesstype=access&&userid=" + userid);
+                    }
                 }else if(accessType.equals("delete")){
-                    
+                    String uaID = request.getParameter("uaID");
+                    adao.deleteUserAddress(uaID);
+                    response.sendRedirect("address?accesstype=access&&userid=" + userid);
                 }else{
                     String straddress = request.getParameter("straddress");
                     String adddetail = request.getParameter("straddressdetail");
@@ -98,10 +131,7 @@ public class AddressController extends HttpServlet {
                     String fullname = request.getParameter("fullname");
                     String phone = request.getParameter("phone");
 
-                    ArrayList<Provinces> listProvince = adao.getProvince();
-                    ArrayList<District> listDistrict = adao.getDistrict();
-                    ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
-                    ArrayList<UserAddress> listUserAddress = adao.getUserAddress(String.valueOf(user.getUserid()));
+                    
 
                     Object objProvinceID = session.getAttribute("provinceID");
                     Object objdistrictID = session.getAttribute("districtID");
@@ -190,6 +220,8 @@ public class AddressController extends HttpServlet {
 
                     request.getRequestDispatcher("addressDetail.jsp").forward(request, response);
                 }
+                
+                
 
             }
         }
@@ -241,7 +273,7 @@ public class AddressController extends HttpServlet {
             adao.insertUserAddress(String.valueOf(userid), fullname, provinceID, districtID, subDistrictID, null, null, eaID, phone, Adddetail);
 
         }
-        response.sendRedirect("address?userid=" + userid);
+        response.sendRedirect("address?accesstype=access&&userid=" + userid);
 
     }
 

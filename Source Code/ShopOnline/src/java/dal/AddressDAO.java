@@ -270,7 +270,44 @@ public class AddressDAO {
         }
         return list;
     }
+    public void updateStatusUserAddress1( String idSetDefault) {
+        try {
+            String sql = "UPDATE `user_address` SET `status` = 'default' WHERE `user_address`.`uaID` = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
+            statement.setString(1, idSetDefault);
+            
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    public void updateStatusUserAddress2( String idDefault) {
+        try {
+            String sql = "UPDATE `user_address` SET `status` = '' WHERE `user_address`.`uaID` = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+
+            
+            statement.setString(1, idDefault);
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+   public void deleteUserAddress( String id) {
+        try {
+            String sql = "DELETE FROM user_address WHERE uaID = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
     public static void main(String[] args) {
         AddressDAO adao = new AddressDAO();
         ArrayList<UserAddress> list = adao.getUserAddress("1");

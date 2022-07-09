@@ -18,7 +18,7 @@ public class MyFeedback {
     private String note;
     private int status;
     User user;
-    Product product;
+    Orders order;
     private String createDate;
     private String updateDate;
     private int rating;
@@ -26,7 +26,7 @@ public class MyFeedback {
     public MyFeedback() {
     }
 
-    public MyFeedback(int fbID, String photo1, String photo2, String description, String note, int status, User user, Product product, String createDate, String updateDate, int rating) {
+    public MyFeedback(int fbID, String photo1, String photo2, String description, String note, int status, User user, Orders order, String createDate, String updateDate, int rating) {
         this.fbID = fbID;
         this.photo1 = photo1;
         this.photo2 = photo2;
@@ -34,7 +34,7 @@ public class MyFeedback {
         this.note = note;
         this.status = status;
         this.user = user;
-        this.product = product;
+        this.order = order;
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.rating = rating;
@@ -96,12 +96,12 @@ public class MyFeedback {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
+    public Orders getOrder() {
+        return order;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setOrder(Orders order) {
+        this.order = order;
     }
 
     public String getCreateDate() {

@@ -164,7 +164,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <c:forEach items="${blogs}" var="b">
+                    <c:forEach begin="1" end="3" items="${blogs}" var="b">
                         <div class="col-md-6 col-lg-4 col-xl-4">
                             <div class="blog-box">
                                 <div class="blog-img">

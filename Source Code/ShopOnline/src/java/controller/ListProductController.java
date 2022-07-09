@@ -50,7 +50,7 @@ public class ListProductController extends HttpServlet {
                 int countPage = productDAO.countPage();
                 request.setAttribute("countPage", countPage);
                 //get list courses for each pageNumber
-                List<Product> productsForEachPage = productDAO.getCourseByPageNumber(pageNumber, sort);
+                List<Product> productsForEachPage = productDAO.getProductByPageNumber(pageNumber, sort);
                 request.setAttribute("sort", sort);
                 request.setAttribute("products", productsForEachPage);
             } else {
@@ -65,8 +65,7 @@ public class ListProductController extends HttpServlet {
                 int countPage = productDAO.countPage();
                 request.setAttribute("countPage", countPage);
                 //get list courses for each pageNumber
-                List<Product> productsForEachPage = productDAO.getCourseByPag
-                        eNumber(pageNumber);
+                List<Product> productsForEachPage = productDAO.getProductByPageNumber(pageNumber);
                 request.setAttribute("sort", sort);
                 request.setAttribute("products", productsForEachPage);
             }
@@ -84,7 +83,6 @@ public class ListProductController extends HttpServlet {
         String productStock = request.getParameter("productStock");
         String description = request.getParameter("description");
         String image = request.getParameter("image");
-        String sortDesc = request.getParameter("sortdescription");
         ProductDAO productDAO = new ProductDAO();
 
         Product p = new Product();
@@ -94,7 +92,6 @@ public class ListProductController extends HttpServlet {
         p.setPrice(Float.parseFloat(productPrice));
         p.setStock(Integer.parseInt(productStock));
         p.setDescription(description);
-        p.setSortdesc(sortDesc);
 
         switch (actionpage) {
             case "add":
