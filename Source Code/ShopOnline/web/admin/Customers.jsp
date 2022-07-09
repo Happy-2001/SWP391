@@ -141,7 +141,14 @@
                                         </td>
                                         <td>
                                             <div class="avatar avatar-info">
-                                                <span class="avatar-text rounded-circle">${cus.us.lastname.charAt(0)}</span>
+                                                <c:choose>
+                                                    <c:when test="${cus.us.photo ne null}">
+                                                        <img src="RetrieveImg?eaID=${cus.us.userid}" class="rounded-circle">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="avatar-text rounded-circle">${cus.us.lastname.charAt(0)}</span>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
                                         </td>
                                         <td>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</td>

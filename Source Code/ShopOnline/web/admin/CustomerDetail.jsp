@@ -184,7 +184,7 @@
                                         });
                                         deleBtn.onclick = function(){
                                             popupDis.style.display = "none";
-                                        }
+                                        };
                                 </script>
                             </div>
                         </form>
