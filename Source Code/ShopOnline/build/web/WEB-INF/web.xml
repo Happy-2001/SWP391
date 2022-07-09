@@ -121,13 +121,8 @@
         <servlet-class>controller.SuppliersController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>FeedbackDetails</servlet-name>
         <servlet-class>controller.FeedbackDetails</servlet-class>
-=======
-        <servlet-name>SupplierDetail</servlet-name>
-        <servlet-class>controller.SupplierDetail</servlet-class>
->>>>>>> 5870c5a9ec6f8df34901455b4113e2cc89ab3167
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -248,15 +243,6 @@
     <servlet-mapping>
         <servlet-name>SuppliersController</servlet-name>
         <url-pattern>/SuppliersController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-<<<<<<< HEAD
-        <servlet-name>FeedbackDetails</servlet-name>
-        <url-pattern>/FeedbackDetails</url-pattern>
-=======
-        <servlet-name>SupplierDetail</servlet-name>
-        <url-pattern>/SupplierDetail</url-pattern>
->>>>>>> 5870c5a9ec6f8df34901455b4113e2cc89ab3167
     </servlet-mapping>
     <session-config>
         <session-timeout>

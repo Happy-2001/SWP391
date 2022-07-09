@@ -951,6 +951,8 @@ CREATE TABLE `favorite_products` (
 
 CREATE TABLE `feedbacks` (
   `feedback_id` int(11) NOT NULL,
+  `image1` mediumblob NULL,
+  `image2` mediumblob NULL,
   `description` varchar(1000) NOT NULL,
   `note` varchar(1000) NOT NULL,
   `status` int(1) NOT NULL,
