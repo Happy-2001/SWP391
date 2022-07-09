@@ -33,6 +33,16 @@ public class Supplier_address {
         this.eaID = eaID;
         this.addDetail = addDetail;
     }
+    
+    public Supplier_address( int proID, int disID, int wardID, int streetID, int projectID, int eaID, String addDetail) {
+        this.proID = proID;
+        this.disID = disID;
+        this.wardID = wardID;
+        this.streetID = streetID;
+        this.projectID = projectID;
+        this.eaID = eaID;
+        this.addDetail = addDetail;
+    }
 
     public int getSupID() {
         return supID;
