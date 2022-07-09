@@ -141,7 +141,7 @@
                                         <td>${sup.contactName}</td>
                                         <td>${sup.contactTitle}</td>
                                         <td>${sup.dob}</td>
-                                        <td><%=sup.gender() ? "checked" : ""%>Male</td>
+                                        <td>${sup.gender}</td>
                                         <td>${sup.creator}</td>
                                         <td class="text-end">
                                             <div class="px-3">
