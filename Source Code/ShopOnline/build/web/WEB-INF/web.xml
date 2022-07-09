@@ -61,10 +61,6 @@
         <servlet-class>controller.DeleteCartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RemoveCartController</servlet-name>
-        <servlet-class>controller.RemoveCartController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>controller.CheckOutController</servlet-class>
     </servlet>
@@ -81,8 +77,8 @@
         <servlet-class>controller.RetrieveImg</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateCartController</servlet-name>
-        <servlet-class>controller.UpdateCartController</servlet-class>
+        <servlet-name>CartUpdateController</servlet-name>
+        <servlet-class>controller.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>orderInformation</servlet-name>
@@ -185,10 +181,6 @@
         <url-pattern>/DeleteCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RemoveCartController</servlet-name>
-        <url-pattern>/RemoveCartController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/CheckOutController</url-pattern>
     </servlet-mapping>
@@ -205,8 +197,8 @@
         <url-pattern>/RetrieveImg</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateCartController</servlet-name>
-        <url-pattern>/UpdateCartController</url-pattern>
+        <servlet-name>CartUpdateController</servlet-name>
+        <url-pattern>/CartUpdateController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>orderInformation</servlet-name>

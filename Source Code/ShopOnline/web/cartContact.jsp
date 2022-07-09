@@ -165,14 +165,17 @@
                                         </script>
                                     </div>
                                     <div class="col-lg-7">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter discount code">
-                                            <button class="btn btn-danger" type="button">Apply</button>
-                                        </div>
+                                        <form action="CartContact" method="POST">
+                                            <div class="input-group">
+                                                <input type="hidden" name="userID" value="${sessionScope.userlogged.userid}">
+                                                <input type="text" name="code" class="form-control" placeholder="Enter discount code">
+                                                <button class="btn btn-danger" type="submit">Apply</button>
+                                            </div>
+                                        </form>
                                         <ul class="d-flex align-items-center justify-content-between mt-3 mb-0 p-0">
                                             <li style="color: #d33b33; font-size: 20px; font-weight: 600;">Total:</li>
                                             <li id="total-price" style="font-weight: 700; font-size: 18px;">
-                                                <fmt:formatNumber value="${total}" type="currency"/>
+                                                <fmt:formatNumber value="${sum}" type="currency"/>
                                             </li>
                                         </ul>
                                         <div class="add-comp why-text">
