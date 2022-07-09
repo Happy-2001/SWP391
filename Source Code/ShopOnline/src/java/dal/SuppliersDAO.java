@@ -17,8 +17,10 @@ import model.User;
  *
  * @author nguye
  */
-public class SuppliersDAO extends DBConnect{
+public class SuppliersDAO extends DBConnect {
+
     DBConnect mysqlConnect = new DBConnect();
+
     public List<Suppliers> listSupplier() {
         List<Suppliers> suppliers = new ArrayList<>();
         String sql = "SELECT * FROM `suppliers`";
@@ -44,19 +46,12 @@ public class SuppliersDAO extends DBConnect{
         }
         return null;
     }
+
     public Suppliers getSupById(int id) {
-        String sql = "SELECT ur.roleID, ua.user_id, ua.user_name,\n" +
-                    "ua.first_name, ua.middle_name, ua.last_name,\n" +
-                    "ua.gender, ua.DOB, ua.status_id, uad._name,\n" +
-                    "eca.email, eca.telephone, eca.webSite, eca.photo\n" +
-                    "FROM\n" +
-                    "(((`user_accounts` AS ua INNER JOIN `user_role` AS ur ON ua.`user_id` = ur.`userID`)\n" +
-                    "INNER JOIN\n" +
-                    "(SELECT * FROM `province` JOIN `user_address`\n" +
-                    "ON `province`.`id` = `user_address`.`provinceID`) AS uad\n" +
-                    "ON ua.`user_id` = uad.`userID`)\n" +
-                    "INNER JOIN `electronicaddress` AS eca ON ua.`user_id` = eca.`eaID`)\n" +
-                    "WHERE ur.roleID = 3 AND ua.user_id = ?";
+        String sql = "SELECT sup.supplierID,sup.companyName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,sup_add.provinceID,sup_add.districtID,sup_add.wardID,sup_add.streetID,sup_add.projectID,sup_add.eaID,sup_add.addressDetail\n"
+                + "FROM `suppliers` as sup\n"
+                + "inner JOIN supplier_address as sup_add on sup_add.supplierID=sup.supplierID\n"
+                + "WHERE sup.supplierID=?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
@@ -64,11 +59,11 @@ public class SuppliersDAO extends DBConnect{
             if (rs.next()) {
                 Customers c = new Customers();
                 c.setUs(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"),
-                                rs.getString("ua.first_name"),rs.getString("ua.middle_name"), 
-                                rs.getString("ua.last_name"), rs.getInt("ua.gender"),
-                                rs.getDate("ua.DOB"), rs.getInt("ua.status_id"), 
-                                rs.getString("eca.email"), rs.getString("eca.telephone"),
-                                rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
+                        rs.getString("ua.first_name"), rs.getString("ua.middle_name"),
+                        rs.getString("ua.last_name"), rs.getInt("ua.gender"),
+                        rs.getDate("ua.DOB"), rs.getInt("ua.status_id"),
+                        rs.getString("eca.email"), rs.getString("eca.telephone"),
+                        rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
                 c.setUad(new Address(new Provinces(rs.getString("uad._name"))));
                 return c;
             }
