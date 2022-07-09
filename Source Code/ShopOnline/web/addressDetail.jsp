@@ -109,9 +109,21 @@
                                     </div>
                                     <div class="col-md-2 optionaddress">
 
-                                        <a href="#" onclick="deleteAddress('${count}',${ua.uaID})">Delete</a>
                                         
-                                        <div class="dropdown">
+                                        <c:if test="${ua.status ne null}">
+                                            <div class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                Settings
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=editaddress&&uaid=${ua.uaID}&&userid=${sessionScope.userid}">Edit address</a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                        </c:if>
+                                        <c:if test="${ua.status eq null}">
+                                            <a href="#" onclick="deleteAddress('${count}',${ua.uaID})">Delete</a>
+                                            <div class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                                 Settings
                                             </a>
@@ -121,6 +133,8 @@
                                                 
                                             </ul>
                                         </div>
+                                        </c:if>
+                                        
                                     </div>
 
                                 </div>
