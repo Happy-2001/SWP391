@@ -8,11 +8,13 @@ package controller;
 import dal.MessageDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Message;
 
 /**
  *
@@ -61,11 +63,20 @@ public class MessageEdits extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        MessageDAO mdao = new MessageDAO();
         String type = request.getParameter("type");
         String messID = request.getParameter("messid");
         if(type.equalsIgnoreCase("delete")){
-            MessageDAO mdao = new MessageDAO();
+            
             mdao.deleteMessages2(messID);
+            response.sendRedirect("home");
+        }else{
+            ArrayList<String> listMessages = mdao.getMrIDbyMessageID(messID);
+            for (String listMessage : listMessages) {
+                mdao.deleteRecipientMessages(listMessage);
+                
+            }
+            mdao.deleteMessages(messID);
             response.sendRedirect("home");
         }
     }

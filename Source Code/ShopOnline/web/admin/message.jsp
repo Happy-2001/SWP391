@@ -139,7 +139,7 @@
                                     <span class="text nav-text">Accounts</span>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-link">
                                 <a href="SuppliersController">
                                     <span class="nav-link-icon">
@@ -391,12 +391,42 @@
                                                             <c:if test="${mess.isread eq 1}">
                                                                 <span class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color: #50b5ba"></i></span>
                                                                 </c:if>
-                                                            <div class="MYS" title="${mess.createDate}">
-                                                                <p>${mess.content}</p>
-                                                            </div>
-                                                            <span class="text-time">${hourMess2}</span>
-                                                            <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                                <c:if test="${mess.content ne null}">
+                                                                <div class="MYS" title="${mess.createDate}">
+                                                                    <p>${mess.content}</p>
+                                                                </div>
+                                                                <span class="text-time">${hourMess2}</span>
+                                                                <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                                <div class="dropdown dropdown-option-reply ">
+                                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                                    </a>
 
+                                                                    <ul class="dropdown-menu">
+
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </c:if>
+
+                                                            <c:if test="${mess.content eq null}">
+                                                                <div class="MYS mess-removed" >
+                                                                    This messages is removed
+                                                                </div>
+                                                                <span class="text-time">${hourMess2}</span>
+                                                                <div class="dropdown dropdown-option-reply ">
+                                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                                    </a>
+
+                                                                    <ul class="dropdown-menu">
+
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+
+                                                                    </ul>
+                                                                </div>
+                                                            </c:if>
                                                         </div>
 
                                                     </c:when>
@@ -443,12 +473,44 @@
                                                         </c:if>
 
                                                         <div class="divMYR">
-                                                            <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
-                                                            <span class="text-time">${hourMess2}</span>
-                                                            <div class="MYR" title="${mess.createDate}" onmouseover="readMess(${mess.id})">
-                                                                <p>${mess.content}</p>
-                                                            </div>
+                                                            <c:if test="${mess.content ne null}">
+                                                                <div class="dropdown dropdown-option-reply ">
+                                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                                    </a>
 
+                                                                    <ul class="dropdown-menu">
+
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                                <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                                <span class="text-time">${hourMess2}</span>
+                                                                <div class="MYR" title="${mess.createDate}" onmouseover="readMess(${mess.id})">
+                                                                    <p>${mess.content}</p>
+                                                                </div>
+                                                            </c:if>
+
+                                                            <c:if test="${mess.content eq null}">
+                                                                <div class="dropdown dropdown-option-reply ">
+                                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                                    </a>
+
+                                                                    <ul class="dropdown-menu">
+
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="MYR mess-removed">
+                                                                    This messages is removed
+                                                                </div>
+
+
+
+                                                            </c:if>
                                                         </div>
 
                                                     </c:otherwise>
@@ -508,7 +570,7 @@
             scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
 
 
-           
+
         </script>
     </body>
 

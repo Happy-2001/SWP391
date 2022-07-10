@@ -96,7 +96,7 @@ public class MessageDAO {
         }
         return list;
     }
-
+    
     public Message getLastMessage(String groupID, String userID) {
         Message s = new Message();
         try {
@@ -137,7 +137,7 @@ public class MessageDAO {
         }
         return s;
     }
-
+    
     // add message
     public void addMessage(String creatorID, String messageBody) {
         String sql = "INSERT INTO messages(creatorID,messageBody,createDate) VALUES\n"
@@ -209,6 +209,25 @@ public class MessageDAO {
             mysqlConnect.disconnect();
         }
         return messageID;
+    }
+    
+    public ArrayList<String> getMrIDbyMessageID(String messageID) {
+        ArrayList<String> listMrID = new ArrayList<>();
+        String sql = "SELECT * FROM `message_recipient` mr WHERE mr.messageID = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, messageID);
+            ResultSet rs = statement.executeQuery();
+            
+            while (rs.next()) {
+                listMrID.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return listMrID;
     }
     
     //get max mrID 
