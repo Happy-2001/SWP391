@@ -7,13 +7,17 @@ package controller;
 
 import dal.CartDAO;
 import dal.OrderDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Orders;
+import model.Product;
 
 
 /**
@@ -36,9 +40,11 @@ public class OrderDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         OrderDAO dao = new OrderDAO();
-        Orders o = dao.getOrderById(Integer.parseInt(id));
+
+        ArrayList<Orders> o = dao.getOrderById(1);
+
         request.setAttribute("order", o);
-        request.getRequestDispatcher("admin/OrderDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/OrderDetails.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

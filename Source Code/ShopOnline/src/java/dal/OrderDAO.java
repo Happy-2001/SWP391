@@ -71,8 +71,8 @@ public class OrderDAO extends DBConnect {
      
 
     
-    public Orders getOrderById(int id) {
-        Orders c = new Orders();
+    public ArrayList<Orders> getOrderById(int id) {
+        ArrayList<Orders> listOrder =new  ArrayList<>();
         String sql = "select o.order_id, o.order_date, p.product_name,p.unit_price, d.quantity, d.amount from orders o "
                 + "JOIN oder_details d on o.order_id = d.orderID "
                 + "JOIN products p on p.product_id = d.productID "
@@ -82,23 +82,29 @@ public class OrderDAO extends DBConnect {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                Orders c = new Orders();
                 c.setOrderID(rs.getInt("order_id"));
                 c.setOrderDate(rs.getString("order_date")); 
                 c.setProduct_name(rs.getString("product_name"));
                 c.setUnit_price(rs.getInt("unit_price"));
                 c.setQuantity(rs.getInt("quantity"));
+                listOrder.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
             mysqlConnect.disconnect();
         }
-        return c;
+        return listOrder;
     }
     public static void main(String[] args) {
          OrderDAO udb = new OrderDAO();
-         Orders Orderlist = udb.getOrderById(2);
-         System.out.println(Orderlist);
+         ArrayList<Orders> Orderlist = udb.getOrderById(1);
+         for (Orders orders : Orderlist) {
+             System.out.println(orders.getProduct_name());
+             
+        }
+         
     }
     
 }

@@ -132,7 +132,7 @@
                                 <c:forEach items="${order}}" var="o">
                                     <tr>
                                         <td>
-                                            ${o.id}
+                                            ${o.orderID}
                                         </td>
                                     </tr>
                                 </c:forEach>
