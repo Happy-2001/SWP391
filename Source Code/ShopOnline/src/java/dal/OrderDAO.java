@@ -36,7 +36,6 @@ public class OrderDAO extends DBConnect {
                 c.setShippedDate(rs.getString("shipped_date"));
                 c.setCustomer_id(rs.getInt("customerID"));
                 c.setEmployee_id(rs.getInt("employee_id"));
-        
                 Orderlist.add(c);
             }
         } catch (SQLException e) {

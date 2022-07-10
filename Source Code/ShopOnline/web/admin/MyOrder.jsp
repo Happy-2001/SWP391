@@ -116,12 +116,15 @@
                         <table  class="table table-dark table-striped">               
                             <thead>
                                 <tr>
+                                    <th scope="col">STT</th>
                                     <th scope="col">Order ID</th>
                                     <th scope="col">Order Date</th>
                                     <th scope="col">Required Date</th>
                                     <th scope="col">Shipped Date</th>
                                     <th scope="col">Employee ID</th>
                                     <th scope="col">Customer ID</th>
+                                    <th scope="col">View</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,7 +143,8 @@
 
                                         <td>${u.customer_id}</td>
 
-                                        
+
+                                        <td><a class="btn btn-success" href="OrderDetailController?id=${u.orderID}">View</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
