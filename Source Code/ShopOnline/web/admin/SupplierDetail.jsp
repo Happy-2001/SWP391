@@ -99,6 +99,15 @@
                                 <span class="text nav-text">Accounts</span>
                             </a>
                         </li>
+                        
+                        <li class="nav-link">
+                            <a class="active" href="#">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                </span>
+                                <span class="text nav-text">Suppliers</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

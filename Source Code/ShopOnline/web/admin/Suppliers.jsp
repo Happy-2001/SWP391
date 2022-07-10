@@ -25,7 +25,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a class="active" href="#">
+                            <a href="dashborad">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple"></i>
                                 </span>
@@ -48,15 +48,6 @@
                                     <i class="fa-solid fa-box fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Products</span>
-                            </a>
-                        </li>
-                        
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-box fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
 
@@ -103,6 +94,15 @@
                                     <i class="fa-solid fa-circle-user fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Accounts</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                            <a class="active" href="#">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                </span>
+                                <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
                     </ul>

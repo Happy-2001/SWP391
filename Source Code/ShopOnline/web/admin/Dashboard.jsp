@@ -52,15 +52,6 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a href="SuppliersController">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-box fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Suppliers</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
                             <a href="CusController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group fa-xl"></i>
@@ -103,6 +94,15 @@
                                     <i class="fa-solid fa-circle-user fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Accounts</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                            <a href="SuppliersController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                </span>
+                                <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
                     </ul>
