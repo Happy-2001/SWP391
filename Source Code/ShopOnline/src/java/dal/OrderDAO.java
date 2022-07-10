@@ -23,33 +23,28 @@ public class OrderDAO extends DBConnect {
     DBConnect mysqlConnect = new DBConnect();
 
     public List<Orders> listAllOder() {
-        List<Orders> Orders = new ArrayList<>();
-        String sql = "SELECT * FROM `order` ORDER BY `order_id` ASC";
+        List<Orders> Orderlist = new ArrayList<>();
+        String sql = "SELECT * FROM `orders` ORDER BY `order_id` ASC";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Orders c = new Orders();
-                c.setOrder_id(rs.getInt("order_id"));
-                c.setCustomer_id(rs.getInt("customer_id"));
-                c.setName_receiver(rs.getString("name_receiver"));
-                c.setPhone(rs.getInt("phone"));
-                c.setAddress(rs.getString("address"));
-                c.setEmail(rs.getString("email"));
-                c.setEmployee_id(rs.getInt("employee_id"));        
-                c.setOrder_date(rs.getDate("order_date")); 
-                c.setShipped_date(rs.getDate("shipped_date"));
-                c.setNote(rs.getString("status"));
-                c.setStatus(rs.getString("note"));
+                c.setOrderID(rs.getInt("order_id"));
+                c.setOrderDate(rs.getString("order_date")); 
+                c.setRequireDate(rs.getString("require_date"));
+                c.setShippedDate(rs.getString("shipped_date"));
+                c.setCustomer_id(rs.getInt("customerID"));
+                c.setEmployee_id(rs.getInt("employee_id"));
         
-                Orders.add(c);
+                Orderlist.add(c);
             }
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
             mysqlConnect.disconnect();
         }
-        return Orders;
+        return Orderlist;
     }
      public List<Orders> searchOrderByName(String name) {
         List<Orders> Orders = new ArrayList<>();
@@ -134,10 +129,10 @@ public class OrderDAO extends DBConnect {
         }
         return Orders;
     }
-    public Orders listOrderById(int id) {
-        Orders c = new Orders();
+    public Orderlist listOrderById(int id) {
+        Orderlist c = new Orderlist();
         String sql = "SELECT `order_id`, `name_receiver`, `phone`, `order_date`, `email`, `address`, `note` \n" +
-                    "FROM `order` \n" +
+                    "FROM `orders` \n" +
                     "WHERE order_id = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -160,8 +155,8 @@ public class OrderDAO extends DBConnect {
         }
         return c;
     }
-    public Orders getOrderById(int id) {
-        Orders c = new Orders();
+    public Orderlist getOrderById(int id) {
+        Orderlist c = new Orderlist();
         String sql = "SELECT o.`order_id`, o.`order_date`, p.product_name, d.unit_price, d.quantity, o.`status`\n" +
                     "FROM `order` o\n" +
                     "JOIN `oder_details` d ON o.`order_id` = d.`order_id`\n" +
@@ -185,6 +180,11 @@ public class OrderDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
         return c;
+    }
+    public static void main(String[] args) {
+         OrderDAO udb = new OrderDAO();
+        List<Orderlist> Orderlist = udb.listAllOder();
+         System.out.println(Orderlist);
     }
     
 }

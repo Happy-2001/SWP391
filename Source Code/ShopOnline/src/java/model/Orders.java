@@ -10,7 +10,8 @@ public class Orders {
     private String requireDate;
     private String shippedDate;
     private int status;
-    Customers customer;
+    private int customer_id;
+    private int employee_id;
     Product product;
     private int quantity;
     private double amount;
@@ -18,13 +19,14 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(int orderID, String orderDate, String requireDate, String shippedDate, int status, Customers customer, Product product, int quantity, double amount) {
+    public Orders(int orderID, String orderDate, String requireDate, String shippedDate, int status, int customer_id, int employee_id, Product product, int quantity, double amount) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
         this.status = status;
-        this.customer = customer;
+        this.customer_id = customer_id;
+        this.employee_id = employee_id;
         this.product = product;
         this.quantity = quantity;
         this.amount = amount;
@@ -70,12 +72,20 @@ public class Orders {
         this.status = status;
     }
 
-    public Customers getCustomer() {
-        return customer;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomer(Customers customer) {
-        this.customer = customer;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
     }
 
     public Product getProduct() {
@@ -103,3 +113,4 @@ public class Orders {
     }
     
 }
+    
