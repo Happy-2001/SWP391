@@ -79,7 +79,7 @@
                             <a href="blogdetail?id=${p.id}" class="h3">                                
                                  ${p.content}
                             </a>    
-                                 <p>${post.description}</p>
+                            <p>${post.description}</p>
                         </div>
                     </div>
                 </div>

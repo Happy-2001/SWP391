@@ -28,7 +28,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="Dashboard.jsp">
+                            <a href="dashboard">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>

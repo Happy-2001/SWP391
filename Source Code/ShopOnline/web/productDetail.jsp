@@ -46,7 +46,7 @@
                     <div class="col-lg-12">
                         <h2>Product Detail</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="home">Home</a></li>
                             <li class="breadcrumb-item active">Product Detail </li>
                         </ul>
                     </div>
@@ -114,15 +114,13 @@
 
                             <div class="">
                                 <div class="add-comp add-comp1">
-                                  
-                                    <button><a  href="BuyNewServlet?pid=${productDetail.id}"><i class="fa-solid fa-credit-card"></i> Buy now</button>
+                                    <button><a href="BuyNewServlet?pid=${productDetail.id}"><i class="fa-solid fa-credit-card"></i> Buy now</button>
                                     <button><a href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${productDetail.id}"><i class="fa-solid fa-cart-plus"></i> Add to cart</a></button>
                                 </div>
                             </div>
 
                             <div class="">
                                 <div class="add-comp add-comp2">
-                                 
                                     <button><a href="#"><i class="fas fa-heart"></i> Add to wishlist</a></button>
                                     <button><a href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a></button>
                                 </div>
