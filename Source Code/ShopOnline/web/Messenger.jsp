@@ -89,7 +89,7 @@
                                                     <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                                     </a>
-                                                    
+
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=editaddress&&uaid=${ua.uaID}&&userid=${sessionScope.userid}">Edit address</a></li>
                                                         <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=setdefault&&idDefault=${idDefault}&&idSetDefault=${ua.uaID}&&userid=${sessionScope.userid}">Set as default</a></li>
@@ -101,11 +101,36 @@
                                                     <div class="MYR" title="${mess.createDate}">
                                                         ${mess.content}
                                                     </div>
+                                                    <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                    <div class="dropdown dropdown-option-reply ">
+                                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                        </a>
+
+                                                        <ul class="dropdown-menu">
+
+                                                            <li><a class="dropdown-item" href="messageedits?type=hindmess&&messid=${mess.id}">Delete All</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </c:if>
-                                                    <c:if test="${mess.content eq null}">
-                                                        <div class="MYR">
-                                                            This messages is removed
-                                                        </div>
+                                                <c:if test="${mess.content eq null}">
+                                                    <div class="MYR mess-removed">
+                                                        This messages is removed
+                                                    </div>
+
+
+                                                    <div class="dropdown dropdown-option-reply ">
+                                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                        </a>
+
+                                                        <ul class="dropdown-menu">
+
+                                                            <li><a class="dropdown-item" href="messageedits?type=hindmess&&messid=${mess.id}">Delete All</a></li>
+
+                                                        </ul>
+                                                    </div>
                                                 </c:if>
                                             </div>
                                         </c:when>
@@ -149,31 +174,44 @@
                                             <div class="divMYS">         <!--div noi dung-->
                                                 <c:if test="${mess.isread eq 1}">
                                                     <span style="margin-left: 5px" class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color:#BBB "></i></span>
-                                                </c:if>
+                                                    </c:if>
 
                                                 <c:if test="${mess.content ne null}">
                                                     <div class="MYS" title="${mess.createDate}">
                                                         ${mess.content}
                                                     </div>
+                                                    <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                    <div class="dropdown dropdown-option-reply ">
+                                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                        </a>
+
+                                                        <ul class="dropdown-menu">
+
+                                                            <li><a class="dropdown-item" href="messageedits?type=hindmess&&messid=${mess.id}">Delete All</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </c:if>
-                                                    <c:if test="${mess.content eq null}">
-                                                        <div class="MYS">
-                                                            This messages is removed
-                                                        </div>
+                                                <c:if test="${mess.content eq null}">
+                                                    <div class="MYS mess-removed" >
+                                                        This messages is removed
+                                                    </div>
+
+                                                    <div class="dropdown dropdown-option-reply ">
+                                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                        </a>
+
+                                                        <ul class="dropdown-menu">
+
+                                                            <li><a class="dropdown-item" href="messageedits?type=hindmess&&messid=${mess.id}">Delete All</a></li>
+
+                                                        </ul>
+                                                    </div>
                                                 </c:if>
 
-                                                <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
-                                                <div class="dropdown dropdown-option-reply ">
-                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                    </a>
-                                                    
-                                                    <ul class="dropdown-menu">
-                                                        
-                                                        <li><a class="dropdown-item" href="messageedits?type=hindmess&&messid=${mess.id}">Hide messages</a></li>
-                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
-                                                    </ul>
-                                                </div>
+
                                             </div>
                                         </c:otherwise>
                                     </c:choose>

@@ -346,3 +346,8 @@ img .avatar .avatarSeen  {
 .checkIsread{
     right: 0;
 }
+.mess-removed{
+    color: #E4E6EB !important;
+    background-color: white !important;
+    border: 1px solid #E4E6EB;
+}
