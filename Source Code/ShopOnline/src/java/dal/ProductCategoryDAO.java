@@ -31,4 +31,9 @@ DBConnect mysqlConnect = new DBConnect();
         }
         return categories;
     }
+    
+    public static void main(String[] args) {
+        ProductCategoryDAO p = new ProductCategoryDAO();
+        System.out.println(p.listAll());
+    }
 }

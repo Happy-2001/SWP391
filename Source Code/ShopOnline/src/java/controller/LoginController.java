@@ -46,6 +46,7 @@ public class LoginController extends HttpServlet {
         
         if (u != null) { // login successfully!
             String remember = request.getParameter("remember");
+            int b = u.getUserid();
             if (remember != null) {
                 Cookie c_user = new Cookie("username", username);
                 Cookie c_pass = new Cookie("password", password);
@@ -83,7 +84,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("userid",u.getUserid());
             session.setAttribute("userlogged", u);
             session.setAttribute("Arole", ur);
-            
+            session.setAttribute("namez", b);
             response.sendRedirect("home");
            
                   

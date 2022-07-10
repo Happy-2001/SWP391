@@ -13,11 +13,13 @@ import model.Product;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Administrator
  */
 public class ProductDAO {
+
     DBConnect mysqlConnect = new DBConnect();
 
     public List<Product> listAll() {
@@ -92,8 +94,7 @@ public class ProductDAO {
         }
         return products;
     }
-    
-    
+
     public List<Product> listTopNew(int quantity) {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM `products` ORDER BY product_id DESC LIMIT ?";
@@ -116,25 +117,53 @@ public class ProductDAO {
         }
         return products;
     }
-    
-    public Product getProductByID(int id) {
-        String sql = "SELECT * FROM `products` WHERE product_id = ?";
+
+    public List<Product> listProductByCate(String cid) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `products` WHERE category_id =?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setString(1, cid);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                return new Product(rs.getInt("product_id"), rs.getString("product_name"),
-                        rs.getInt("category_id"), rs.getFloat("unit_price"),
-                        rs.getFloat("sale_price"), rs.getInt("unitsln_stock"), rs.getString("brief_information"),
-                        rs.getString("description"), rs.getString("url"));
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getFloat("unit_price"));
+                p.setImg(rs.getString("url"));
+                products.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
-        return null;
+        return products;
+    }
+
+    public List<Product> listProductByColor(String cid) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `product_color` pc \n"
+                + "JOIN products p on p.product_id = pc.productID\n"
+                + "WHERE colorID = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, cid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getFloat("unit_price"));
+                p.setImg(rs.getString("url"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return products;
     }
 
     public int countPage() {
@@ -210,12 +239,12 @@ public class ProductDAO {
         }
         return lc;
     }
-    
+
     public List<Product> listByPageNum(int pageNum) {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM\n" +
-                "(SELECT * , ROW_NUMBER() OVER (ORDER BY product_id) AS Seq FROM  `products`) as x\n" +
-                "WHERE Seq BETWEEN ? AND ?";
+        String sql = "SELECT * FROM\n"
+                + "(SELECT * , ROW_NUMBER() OVER (ORDER BY product_id) AS Seq FROM  `products`) as x\n"
+                + "WHERE Seq BETWEEN ? AND ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, ((pageNum - 1) * 9) + 1);
@@ -354,10 +383,30 @@ public class ProductDAO {
         return lc;
     }
 
+    public Product getProductByID(int id) {
+        String sql = "SELECT * FROM `products` WHERE product_id = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return new Product(rs.getInt("product_id"), rs.getString("product_name"),
+                        rs.getInt("category_id"), rs.getFloat("unit_price"),
+                        rs.getFloat("sale_price"), rs.getInt("unitsln_stock"), rs.getString("brief_information"),
+                        rs.getString("description"), rs.getString("url"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        
+
         ProductDAO product = new ProductDAO();
-        Product Product = product.findById("1");
+        List<Product> Product = product.listProductByColor("9");
         System.out.println(Product);
     }
 
