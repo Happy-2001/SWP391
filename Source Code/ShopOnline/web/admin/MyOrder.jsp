@@ -116,7 +116,6 @@
                         <table  class="table table-dark table-striped">               
                             <thead>
                                 <tr>
-                                    <th scope="col">STT</th>
                                     <th scope="col">Order ID</th>
                                     <th scope="col">Order Date</th>
                                     <th scope="col">Required Date</th>
