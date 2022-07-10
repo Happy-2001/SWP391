@@ -123,14 +123,16 @@ public class MessageController extends HttpServlet {
                 mdao.addMessageWithParent(fromid, content, parentMessageID);
             }
 //            response.getWriter().print(fromid+"||"+toid+"||"+content+"|"+parentMessageID.equals(""));
-
+            
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
             String maxmrID = mdao.getMaxmrID();
             if (getFROMandTOsplit.length == 4) {                 // check chuyển hướng sang message.jsp  tính nhắn gần nhất
                 response.sendRedirect("message?mrID=" + maxmrID);
             } else {
-                response.sendRedirect("home");
+                request.setAttribute("showChatBox", "width: 340px;height: 460px;");
+                
+                request.getRequestDispatcher("home").forward(request, response);
 
             }
         } else {

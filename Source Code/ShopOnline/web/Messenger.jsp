@@ -12,7 +12,7 @@
     <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null }">
         <!-- mess -->
         <div class="collapse show" id="mess">
-            <div class="card message" id="mess1">
+            <div class="card message" id="mess1" style="${showChatBox}">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-lg-10 col-md-10">            
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div id="scroll-to-bottom" class="card-body">
-                    <div class="content_message">
+                    <div class="content_message content_messageCUS">
                         <div class="slogans">
                             <img src="images/logo.png" width="60%">
                                 <h6>Wear your Best - A Moments of Your Style</h6>

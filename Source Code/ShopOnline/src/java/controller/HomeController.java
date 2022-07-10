@@ -83,8 +83,13 @@ public class HomeController extends HttpServlet {
 //            }
         }
 
+        String showChatBox =(String) request.getAttribute("showChatBox");
+        if(showChatBox != null){
+            request.setAttribute("showChatBox", showChatBox);
+        response.getWriter().print(showChatBox);
+        }
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-
+        
     }
 
     @Override
