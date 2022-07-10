@@ -5,12 +5,17 @@
  */
 package controller;
 
+import dal.ProductCategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
+import model.Product;
 
 /**
  *
@@ -30,18 +35,16 @@ public class ColorController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ColorController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ColorController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+         ProductDAO dao = new ProductDAO();
+        ProductCategoryDAO dao1 = new ProductCategoryDAO();
+        String cId = request.getParameter("id");
+        List<Product> listD = dao.listProductByColor(cId);        
+        List<Category> listC = dao1.listAll();
+        request.setAttribute("listC", listC);
+
+        //request.setAttribute("listP", list);
+        request.setAttribute("productsForEachPage", listD);
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

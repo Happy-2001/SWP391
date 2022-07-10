@@ -187,45 +187,34 @@
                                             <a href="ColorController?id=9">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #000;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=8">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #F1778A;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=10">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #8A5CA0;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=11">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #008000;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=12">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #F5D255;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=13">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #ffa600;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=14">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #ff0000;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=15">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #808080;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=16">
                                                 <i class="fa-regular fa-square fa-2x" style="color: #f2f2f2;"></i>
                                             </a>
-                                            <a href="#">
+                                            <a href="ColorController?id=17">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #c0c0c0;"></i>
                                             </a>
-                                            <a href="#">
-                                                <i class="fa-solid fa-square fa-2x" style="color: #c10013;"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa-solid fa-square fa-2x" style="color: #ebd0a2;"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa-solid fa-square fa-2x" style="color: #865439;"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa-solid fa-square fa-2x" style="color: #1C487C;"></i>
-                                            </a>
+                                            
                                         </div>
                                     </div>
                                     <div class="sub-men">
