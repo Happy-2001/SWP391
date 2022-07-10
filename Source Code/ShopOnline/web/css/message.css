@@ -62,8 +62,8 @@ svg rect {
 .message{
 /*    height: 460px !important;
     width: 340px;*/
-    height: 0;
-    width: 0;
+    height: 460px;
+    width: 340px;
     overflow-x: hidden;
     
     background-color: white;
@@ -84,7 +84,7 @@ svg rect {
     top: 82%;
     transition: ease-in-out 1s;
     cursor: pointer;
-    
+    display: none;
 }
 
 .card-body{

@@ -130,9 +130,9 @@ public class MessageController extends HttpServlet {
             if (getFROMandTOsplit.length == 4) {                 // check chuyển hướng sang message.jsp  tính nhắn gần nhất
                 response.sendRedirect("message?mrID=" + maxmrID);
             } else {
-                request.setAttribute("showChatBox", "width: 340px;height: 460px;");
                 
-                request.getRequestDispatcher("home").forward(request, response);
+                
+                response.sendRedirect("home");
 
             }
         } else {
