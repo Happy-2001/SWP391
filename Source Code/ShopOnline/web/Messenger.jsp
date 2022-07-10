@@ -19,9 +19,9 @@
                             <img src="images/logo.png" class="logo" width="50%">
                         </div>
                         <div class="col-lg-2 col-md-2 text-center" onclick="hindMessage()">
-                            
-                            <i  class="fa-solid fa-minus"></i>
-                            
+
+                            <i  class="fa-solid fa-minus" style="cursor: pointer;color: #d95e36"></i>
+
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                                                         <c:set var="creatorParentContent" value="${messParent.content}"/>
                                                     </c:if>
                                                 </c:forEach>
-                                                
+
                                                 <c:choose>
                                                     <c:when test="${listUserAdminID.contains(creatorParentContent)}">   <!--nếu creatorParentContent do admin tạo -->
                                                         <div class="divMYR parent-message-title" >
@@ -75,7 +75,7 @@
                                                         </div>
                                                     </c:otherwise>
                                                 </c:choose>
-                                                
+
                                                 <div class="divMYR parent-message" >
                                                     <div class="MYR" style="background-color: #f6f9fa;color: #CCCCCC;margin-bottom: -25px">
                                                         ${parentContent}
@@ -85,10 +85,28 @@
 
 
                                             <div class="divMYR">
-                                                <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
-                                                <div class="MYR" title="${mess.createDate}">
-                                                    ${mess.content}
+                                                <div class="dropdown dropdown-option-reply ">
+                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                    </a>
+                                                    
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=editaddress&&uaid=${ua.uaID}&&userid=${sessionScope.userid}">Edit address</a></li>
+                                                        <li><a class="dropdown-item" href="address?accesstype=settings&&settingtype=setdefault&&idDefault=${idDefault}&&idSetDefault=${ua.uaID}&&userid=${sessionScope.userid}">Set as default</a></li>
+
+                                                    </ul>
                                                 </div>
+                                                <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                <c:if test="${mess.content ne null}">
+                                                    <div class="MYR" title="${mess.createDate}">
+                                                        ${mess.content}
+                                                    </div>
+                                                </c:if>
+                                                    <c:if test="${mess.content eq null}">
+                                                        <div class="MYR">
+                                                            This messages is removed
+                                                        </div>
+                                                </c:if>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
@@ -133,12 +151,29 @@
                                                     <span style="margin-left: 5px" class="small text-muted checkIsread"><i class="fa-solid fa-circle-check" style="color:#BBB "></i></span>
                                                 </c:if>
 
-                                                <div class="MYS" title="${mess.createDate}">
-                                                    ${mess.content}
-                                                </div>
+                                                <c:if test="${mess.content ne null}">
+                                                    <div class="MYS" title="${mess.createDate}">
+                                                        ${mess.content}
+                                                    </div>
+                                                </c:if>
+                                                    <c:if test="${mess.content eq null}">
+                                                        <div class="MYS">
+                                                            This messages is removed
+                                                        </div>
+                                                </c:if>
 
                                                 <i onclick="replyMessageS('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
-
+                                                <div class="dropdown dropdown-option-reply ">
+                                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                    </a>
+                                                    
+                                                    <ul class="dropdown-menu">
+                                                        
+                                                        <li><a class="dropdown-item" href="messageedits?type=hindmess&&messid=${mess.id}">Hide messages</a></li>
+                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
@@ -176,7 +211,7 @@
                                         <input id="parentMessageID" name="parentMessageID" type="hidden"/>
                                 </div>
                                 <div class="send_button col-md-2">
-                                    <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;background-color: white"  title="Send"><i class="fa-solid fa-paper-plane"></i></button
+                                    <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;width: 0;height: 0"  title="Send"><i class="fa-solid fa-paper-plane" style="font-size: 20px"></i></button
                                 </div>
                             </div>
                         </form>
@@ -187,5 +222,5 @@
         <!-- end mess -->
         <i id="message2" onclick="showMessage()" class="fa-brands fa-facebook-messenger message2" ></i>
     </c:if>
-   
-        
+
+

@@ -169,16 +169,25 @@ p{
     transition: ease-in 0.3s;
     display: none;
 }
-.divMYS:hover .checkIsread,.divMYS:hover .fa-reply{
+.dropdown-option-reply ul li 
+.dropdown-option-reply a , .dropdown-option-reply a i{
+    color: #ced4da;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.dropdown-option-reply{
+    display: none;
+}
+.divMYS:hover .checkIsread,.divMYS:hover .fa-reply,.divMYS:hover .dropdown-option-reply{
     display: block;
 }
-.divMYR:hover .checkIsread,.divMYR:hover .fa-reply{
+.divMYR:hover .checkIsread,.divMYR:hover .fa-reply,.divMYR:hover .dropdown-option-reply{
     display: block;
 }
 .fa-reply{
     color: #ced4da;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
     display: none;
     transition: ease-in 0.3s;
 }
@@ -204,7 +213,7 @@ p{
 .message .menu_message .send_button button{
     border: 0;
     outline: 0;
-    background-color: inherit;
+    background-color: var(--bs-card-cap-bg) ;
     color: #d95e36;
 }
 

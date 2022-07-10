@@ -246,7 +246,56 @@ public class MessageDAO {
         }
         return creatorID;
     }
+    public void deleteMessages2( String id) {       // chỉ xóa nội dung
+        try {
+            String sql = "UPDATE `messages` SET `messageBody` = NULL WHERE `messageID` = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
+            
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    public void readMess( String id) {       // chỉ xóa nội dung
+        try {
+            String sql = "UPDATE `message_recipient` SET `isRead` = '1' WHERE `mrID` = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+
+            
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    public void deleteRecipientMessages(String id) {
+        try {
+            String sql = "DELETE FROM message_recipient WHERE mrID = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    public void deleteMessages( String id) {
+        try {
+            String sql = "DELETE FROM messages WHERE messageID = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
     public static void main(String[] args) {
         MessageDAO m = new MessageDAO();
         ArrayList<Message> list = m.getAllMessageofUser("1", "1");
