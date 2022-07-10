@@ -61,10 +61,6 @@
         <servlet-class>controller.DeleteCartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RemoveCartController</servlet-name>
-        <servlet-class>controller.RemoveCartController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>controller.CheckOutController</servlet-class>
     </servlet>
@@ -81,8 +77,8 @@
         <servlet-class>controller.RetrieveImg</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdateCartController</servlet-name>
-        <servlet-class>controller.UpdateCartController</servlet-class>
+        <servlet-name>CartUpdateController</servlet-name>
+        <servlet-class>controller.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>orderInformation</servlet-name>
@@ -123,6 +119,18 @@
     <servlet>
         <servlet-name>FeedbackDetails</servlet-name>
         <servlet-class>controller.FeedbackDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SupplierDetailController</servlet-name>
+        <servlet-class>controller.SupplierDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyOrderController</servlet-name>
+        <servlet-class>controller.MyOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>controller.OrderDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -185,10 +193,6 @@
         <url-pattern>/DeleteCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RemoveCartController</servlet-name>
-        <url-pattern>/RemoveCartController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/CheckOutController</url-pattern>
     </servlet-mapping>
@@ -205,8 +209,8 @@
         <url-pattern>/RetrieveImg</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateCartController</servlet-name>
-        <url-pattern>/UpdateCartController</url-pattern>
+        <servlet-name>CartUpdateController</servlet-name>
+        <url-pattern>/CartUpdateController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>orderInformation</servlet-name>
@@ -247,6 +251,18 @@
     <servlet-mapping>
         <servlet-name>FeedbackDetails</servlet-name>
         <url-pattern>/FeedbackDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupplierDetailController</servlet-name>
+        <url-pattern>/SupplierDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyOrderController</servlet-name>
+        <url-pattern>/MyOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/OrderDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

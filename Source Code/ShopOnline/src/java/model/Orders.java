@@ -10,24 +10,26 @@ public class Orders {
     private String requireDate;
     private String shippedDate;
     private int status;
-    Customers customer;
-    Product product;
+    private int customer_id;
+    private int employee_id;
+    private String product_name;
+    private int unit_price;
     private int quantity;
-    private double amount;
 
     public Orders() {
     }
 
-    public Orders(int orderID, String orderDate, String requireDate, String shippedDate, int status, Customers customer, Product product, int quantity, double amount) {
+    public Orders(int orderID, String orderDate, String requireDate, String shippedDate, int status, int customer_id, int employee_id, String product_name, int unit_price, int quantity) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
         this.status = status;
-        this.customer = customer;
-        this.product = product;
+        this.customer_id = customer_id;
+        this.employee_id = employee_id;
+        this.product_name = product_name;
+        this.unit_price = unit_price;
         this.quantity = quantity;
-        this.amount = amount;
     }
 
     public int getOrderID() {
@@ -70,20 +72,36 @@ public class Orders {
         this.status = status;
     }
 
-    public Customers getCustomer() {
-        return customer;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomer(Customers customer) {
-        this.customer = customer;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getEmployee_id() {
+        return employee_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public int getUnit_price() {
+        return unit_price;
+    }
+
+    public void setUnit_price(int unit_price) {
+        this.unit_price = unit_price;
     }
 
     public int getQuantity() {
@@ -93,13 +111,6 @@ public class Orders {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
     
+
 }

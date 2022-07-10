@@ -102,7 +102,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <form action="UpdateCartController" method="POST">
+                                            <form action="CartUpdateController" method="POST">
                                                 <div class="input-group">
                                                     <input type="hidden" name="id" value="${carts.itemId}">
                                                     <input type="hidden" name="uid" value="${carts.userId}">
@@ -143,29 +143,12 @@
                         </ul>
                     </div>
                     <div class="why-text d-flex justify-content-center">
-                        <a href="#" class="btn" onclick="redirect()">Buy Now</a>
+                        <a href="CartContact?userID=${sessionScope.userlogged.userid}" class="btn">Buy Now</a>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            var getItem = document.querySelectorAll("#buyItem");
-            function redirect(){
-                var itemid = "item=";
-                var sum = 0;
-                for (let i = 0; i < getItem.length; i++){
-                    if (getItem[i].checked == true){
-                        sum = sum+1;
-                        if(sum > 1){
-                            itemid = itemid + "&item=" + getItem[i].value;
-                        }else{
-                            itemid = itemid + getItem[i].value;
-                        }
-                    }
-                }
-                window.location.href = 'CartContact?'+itemid;
-            };
-        </script>
+        
         <script src="js/cart-select.js"></script>
     </div>
 

@@ -89,4 +89,9 @@ public class CustomerDAO {
         }
         return null;
     }
+    public static void main(String[] args) {
+         CustomerDAO udb = new CustomerDAO();
+         Customers Orderlist = udb.getCusByUserId(5);
+         System.out.println(Orderlist);
+    }
 }
