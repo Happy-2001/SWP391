@@ -87,6 +87,17 @@ public class OrderInformationController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
+    /*
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
+        OrderDAO dao = new OrderDAO();
+        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
+        request.setAttribute("order", o);
+        request.getRequestDispatcher("admin/OrderDetails.jsp").forward(request, response);
+    }
+    */
 
 }
 
