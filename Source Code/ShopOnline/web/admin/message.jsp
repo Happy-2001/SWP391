@@ -139,6 +139,15 @@
                                     <span class="text nav-text">Accounts</span>
                                 </a>
                             </li>
+                            
+                            <li class="nav-link">
+                                <a href="SuppliersController">
+                                    <span class="nav-link-icon">
+                                        <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
+                                    </span>
+                                    <span class="text nav-text">Suppliers</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
