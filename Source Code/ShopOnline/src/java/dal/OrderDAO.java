@@ -106,5 +106,9 @@ public class OrderDAO extends DBConnect {
         }
          
     }
+
+    public Orders listOrderById(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
