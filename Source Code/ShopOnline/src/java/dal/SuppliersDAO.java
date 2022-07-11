@@ -50,31 +50,22 @@ public class SuppliersDAO extends DBConnect {
         return null;
     }
 
-    public SupDetail getSupById(int id) {
-        String sql = "SELECT ur.roleID, ua.user_id, ua.user_name, ua.first_name,\n" +
-                    "ua.middle_name, ua.last_name, ua.gender, ua.DOB, ua.status_id,\n" +
-                    "uad._name, eca.email, eca.telephone, eca.photo, uad.status\n" +
-                    "FROM\n" +
-                    "(((`user_accounts` AS ua INNER JOIN `user_role` AS ur ON ua.`user_id` = ur.`userID`)\n" +
-                    "INNER JOIN\n" +
-                    "(SELECT * FROM `province` JOIN `user_address`\n" +
-                    "ON `province`.`id` = `user_address`.`provinceID`) AS uad\n" +
-                    "ON ua.`user_id` = uad.`userID`)\n" +
-                    "INNER JOIN `electronicaddress` AS eca ON ua.`user_id` = eca.`eaID`)\n" +
-                    "WHERE ur.roleID = 3 AND uad.status = 'default'";
+    public Suppliers getSupById(int id) {
+        String sql = "SELECT * FROM `suppliers` WHERE supplierID=?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                SupDetail c = new SupDetail();
-                c.setSup(new Suppliers(rs.getInt("sup.supplierID"), rs.getString("sup.companyName"),
-                        rs.getString("sup.contactName"),rs.getString("sup.contactTitle"), rs.getDate("sup.DOB"),
-                        rs.getInt("sup.gender"), rs.getInt("sup.creator")));
-                c.setSup_add(new Supplier_address(rs.getInt("sup_add.provinceID"),rs.getInt("sup_add.districtID") ,
-                        rs.getInt("sup_add.wardID"),rs.getInt("sup_add.streetID"), rs.getInt("sup_add.projectID"),
-                        rs.getInt("sup_add.eaID"), rs.getString("sup_add.addressDetail")));
-                return c;
+                Suppliers u = new Suppliers();
+                u.setId(rs.getInt("supplierID"));
+                u.setName(rs.getString("companyName"));
+                u.setContactName(rs.getString("contactName"));
+                u.setContactTitle(rs.getString("contactTitle"));
+                u.setDob(rs.getDate("DOB"));
+                u.setGender(rs.getInt("gender"));
+                u.setCreator(rs.getInt("creator"));
+                return u;
             }
         } catch (SQLException ex) {
             Logger.getLogger(SuppliersDAO.class.getName()).log(Level.SEVERE, null, ex);
