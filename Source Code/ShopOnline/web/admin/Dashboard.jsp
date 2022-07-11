@@ -43,7 +43,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="listproduct.jsp">
+                            <a href="listproduct">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-box fa-xl"></i>
                                 </span>
