@@ -6,6 +6,10 @@
 package dal;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Supplier_address;
 
 /**
@@ -13,25 +17,29 @@ import model.Supplier_address;
  * @author nguye
  */
 public class SupAdressDAO extends DBConnect{
+    
+    DBConnect mysqlConnect = new DBConnect();
+    
     public Supplier_address getSupAdressById(int id) {
-        String sql = "SELECT * FROM `suppliers` WHERE supplierID=?";
+        String sql = "SELECT * FROM `supplier_address` WHERE supplierID=?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Suppliers u = new Suppliers();
-                u.setId(rs.getInt("supplierID"));
-                u.setName(rs.getString("companyName"));
-                u.setContactName(rs.getString("contactName"));
-                u.setContactTitle(rs.getString("contactTitle"));
-                u.setDob(rs.getDate("DOB"));
-                u.setGender(rs.getInt("gender"));
-                u.setCreator(rs.getInt("creator"));
+                Supplier_address u = new Supplier_address();
+                u.setDisID(rs.getInt("supplierID"));
+                u.setProID(rs.getInt("provinceID"));
+                u.setDisID(rs.getInt("districtID"));
+                u.setWardID(rs.getInt("wardID"));
+                u.setStreetID(rs.getInt("streetID"));
+                u.setProjectID(rs.getInt("projectID"));
+                u.setEaID(rs.getInt("eaID"));
+                u.setAddDetail(rs.getString("addressDetail"));
                 return u;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SuppliersDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SupAdressDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }

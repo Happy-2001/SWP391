@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.SupAdressDAO;
 import dal.SuppliersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Supplier_address;
 import model.Suppliers;
 
 /**
@@ -34,10 +36,11 @@ public class SupplierDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("supID");
         
-        SuppliersDAO db = new SuppliersDAO();
-        Suppliers sup = db.getSupById(Integer.parseInt(id));
+        SuppliersDAO supDAO = new SuppliersDAO();
+        Suppliers sup = supDAO.getSupById(Integer.parseInt(id));
         
-        
+        SupAdressDAO supaddressDAO = new SupAdressDAO();
+        Supplier_address supAdd = supaddressDAO.getSupAdressById(Integer.parseInt(id));
         
         request.setAttribute("sup", sup);
         
