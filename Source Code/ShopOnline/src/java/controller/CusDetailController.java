@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Customers;
+import model.District;
 import model.Provinces;
+import model.SubDistrict;
 
 /**
  *
@@ -28,8 +30,26 @@ public class CusDetailController extends HttpServlet {
         AddressDAO dbb = new AddressDAO();
         ArrayList<Provinces> province = dbb.getProvince();
         
+        int prvid = 0;
+        for(Provinces pv : province){
+            if(pv.getName().equals(cus.getUad().getProvince().getName())){
+                prvid = pv.getId();
+            }
+        }
+        ArrayList<District> district = dbb.getDistrict(prvid);
+        
+        int wid = 0;
+        for(District ds : district){
+            if(ds.getDistrictID() == cus.getUad().getDistrict().getDistrictID()){
+                wid = ds.getDistrictID();
+            }
+        }
+        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
+        
         request.setAttribute("cus", cus);
         request.setAttribute("province", province);
+        request.setAttribute("district", district);
+        request.setAttribute("ward", ward);
         
         request.getRequestDispatcher("admin/CustomerDetail.jsp").forward(request, response);
     }

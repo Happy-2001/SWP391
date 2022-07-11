@@ -11,7 +11,9 @@ import model.Customers;
 import model.Role;
 import model.User;
 import model.Address;
+import model.District;
 import model.Provinces;
+import model.SubDistrict;
 
 /**
  *
@@ -59,16 +61,16 @@ public class CustomerDAO {
         String sql = "SELECT ur.roleID, ua.user_id, ua.user_name,\n" +
                     "ua.first_name, ua.middle_name, ua.last_name,\n" +
                     "ua.gender, ua.DOB, ua.status_id, uad._name,\n" +
-                    "uad.addressDetail, uad.status, eca.email,\n" +
-                    "eca.telephone, eca.webSite, eca.photo\n" +
-                    "FROM\n" +
+                    "uad.districtID, uad.wardID, uad.addressDetail,\n" +
+                    "uad.status, eca.email, eca.telephone,\n" +
+                    "eca.webSite, eca.photo FROM\n" +
                     "(((`user_accounts` AS ua INNER JOIN `user_role` AS ur ON ua.`user_id` = ur.`userID`)\n" +
                     "INNER JOIN\n" +
                     "(SELECT * FROM `province` JOIN `user_address`\n" +
                     "ON `province`.`id` = `user_address`.`provinceID`) AS uad\n" +
                     "ON ua.`user_id` = uad.`userID`)\n" +
                     "INNER JOIN `electronicaddress` AS eca ON ua.`user_id` = eca.`eaID`)\n" +
-                    "WHERE ur.roleID = 3 AND ua.user_id = ? AND uad.status = 'default'";
+                    "WHERE ur.roleID = 3 AND uad.status = 'default' AND ua.user_id = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
@@ -81,7 +83,10 @@ public class CustomerDAO {
                                 rs.getDate("ua.DOB"), rs.getInt("ua.status_id"), 
                                 rs.getString("eca.email"), rs.getString("eca.telephone"),
                                 rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
-                c.setUad(new Address(new Provinces(rs.getString("uad._name")), rs.getString("uad.status")));
+                c.setUad(new Address(new Provinces(rs.getString("uad._name")),
+                                    new District(rs.getInt("uad.districtID")),
+                                    new SubDistrict(rs.getInt("uad.wardID")),
+                                    rs.getString("uad.addressDetail"), rs.getString("uad.status")));
                 return c;
             }
         } catch (SQLException ex) {
