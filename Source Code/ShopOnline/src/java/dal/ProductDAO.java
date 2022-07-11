@@ -444,10 +444,17 @@ public class ProductDAO {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                return new Product(rs.getInt("product_id"), rs.getString("product_name"),
-                        rs.getInt("category_id"), rs.getFloat("unit_price"),
-                        rs.getFloat("sale_price"), rs.getInt("unitsln_stock"), rs.getString("brief_information"),
-                        rs.getString("description"), rs.getString("url"));
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setCategoryid(rs.getInt("category_id"));
+                p.setSalePrice(rs.getFloat("sale_price"));
+                p.setPrice(rs.getFloat("unit_price"));
+                p.setStock(rs.getInt("unitsln_stock"));
+                p.setDescription(rs.getString("description"));
+                p.setImg(rs.getString("url"));
+                p.setSortdesc(rs.getString("description-short"));
+                return p;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);

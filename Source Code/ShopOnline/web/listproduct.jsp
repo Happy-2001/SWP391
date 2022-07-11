@@ -82,7 +82,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-success" href="listproduct?action=edit&id=${product.id}">Edit</a>
-                                <a class="btn btn-danger" href="listproduct?action=delete&id=${product.id}">Delete</a>
+                                <a class="btn btn-danger" href="#" onclick="deleteProduct('${product.id}')">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -178,6 +178,12 @@
                     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
                     window.location.href = "listproduct?sort=" + selectedValue;
                 }
+                function deleteProduct(id) {
+                    var option = confirm("Delete product with id: " + id + " ?");
+                                                if (option === true) {
+                                                    window.location.href = 'listproduct?action=delete&id='+id;
+                                                }
+}
         </script>
     </body>
 </html>
