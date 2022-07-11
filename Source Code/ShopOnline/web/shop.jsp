@@ -395,7 +395,7 @@
                                                             <p class="sale">Sale</p>
                                                         </div>
                                                         <div class="box-img-hover">
-                                                            <img src="${product.img}" class="img-fluid" alt="Image">
+                                                            <a href="productDetail?product_id=${product.id}"><img src="${product.img}" class="img-fluid" alt="Image"></a>>
                                                         </div>
                                                         <div class="why-text">
                                                             <a href="productDetail?product_id=${product.id}">${product.name}</a>
