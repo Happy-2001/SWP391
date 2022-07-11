@@ -43,6 +43,7 @@ public class SupplierDetailController extends HttpServlet {
         Supplier_address supAdd = supaddressDAO.getSupAdressById(Integer.parseInt(id));
         
         request.setAttribute("sup", sup);
+        request.setAttribute("supAdd", supAdd);
         
         request.getRequestDispatcher("admin/SupplierDetail.jsp").forward(request, response);
     }

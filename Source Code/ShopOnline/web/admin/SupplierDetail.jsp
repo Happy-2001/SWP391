@@ -128,13 +128,13 @@
                     <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${cus.us.userid}" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</h5>
+                                <h5>${sup.name}</h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -147,7 +147,7 @@
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
-                                        <input type="hidden" name="cusID" value="${cus.us.userid}">
+                                        <input type="hidden" name="cusID" value="${sup.id}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -218,16 +218,10 @@
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}">
+                                                            <input type="text" class="form-control" value="${sup.name}">
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="${cus.us.username}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="${cus.us.email}">
-                                                        </div>
+                                                        
+                                                        
                                                         <div class="mb-3">
                                                             <label class="form-label">Gender</label>
                                                             <div>
@@ -278,64 +272,28 @@
                                             <h6 class="card-title mb-4">Contact</h6>
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    
                                                     <div class="mb-3">
-                                                        <label class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" value="${cus.us.phone}">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Ward</label>
-                                                        <div class="d-flex gap-3">
-                                                            <select class="form-select">
-                                                                <c:forEach items="${ward}" var="ward">
-                                                                    <c:if test="${ward.subDistrictID eq cus.uad.ward.subDistrictID}">
-                                                                        <option value="${prv.id}" selected>${ward.name}</option>
-                                                                    </c:if>
-                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
-                                                                </c:forEach>
-                                                            </select>
+                                                            <label class="form-label">ID</label>
+                                                            <input type="text" class="form-control" value="${supAdd.supID}">
                                                         </div>
-                                                    </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Province</label>
-                                                        <div class="d-flex gap-3">
-                                                            <select class="form-select">
-                                                                <c:forEach items="${province}" var="prv">
-                                                                    <c:if test="${prv.name eq cus.uad.province.name}">
-                                                                        <option value="${prv.id}" selected>${cus.uad.province.name}</option>
-                                                                    </c:if>
-                                                                    <option value="${prv.id}">${prv.name}</option>
-                                                                </c:forEach>
-                                                            </select>
+                                                            <label class="form-label">DIsID</label>
+                                                            <input type="text" class="form-control" value="${supAdd.disID}">
                                                         </div>
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Post Code</label>
                                                         <input type="text" class="form-control" value="1868" spellcheck="false" data-ms-editor="true">
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">District</label>
-                                                        <div class="d-flex gap-3">
-                                                            <select class="form-select">
-                                                                <c:forEach items="${district}" var="dis">
-                                                                    <c:if test="${dis.districtID eq cus.uad.district.districtID}">
-                                                                        <option value="${dis.districtID}" selected>${dis.name}</option>
-                                                                    </c:if>
-                                                                    <option value="${dis.districtID}">${dis.name}</option>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="mb-3">
                                                         <label class="form-label">Country</label>
                                                         <input type="text" class="form-control" value="Việt Nam">
                                                     </div>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" value="${cus.uad.addressDetail}">
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                     </div>
