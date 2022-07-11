@@ -100,7 +100,7 @@ public void insert(Slide slide) {
         public Slide getById(String id) {
         try {
             String sql = "SELECT * FROM `slides` "
-                    + "WHERE `slide`.`slide_id` = ?";
+                    + "WHERE `slides`.`slide_id` = ?";
             PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
             st.setString(1, id);
             ResultSet rs = st.executeQuery();
@@ -126,10 +126,8 @@ public void insert(Slide slide) {
     public static void main(String[] args) {
         SlideDAO slideDAO = new SlideDAO();
 
-        List<Slide> slides = slideDAO.listSlide();
-        for (Slide slide : slides) {
-            System.out.println(slide.getId());
-        }
+        Slide s = slideDAO.getById("1");
+        System.out.println(s.getId());
 
     }
 }

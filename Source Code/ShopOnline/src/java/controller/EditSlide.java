@@ -20,7 +20,7 @@ import model.Slide;
  * @author Administrator
  */
 @WebServlet(name = "EditSlide", urlPatterns = {"/editslide"})
-public class EditSlide extends HttpServlet {
+public class EditSlide extends HttpServlet {     
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
