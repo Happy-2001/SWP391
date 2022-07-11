@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin || Shop Online</title>
+        <title>${sessionScope.userlogged.username} Order || Shop Online</title>
         <!-- Site Icons -->
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="css/style.css">
@@ -20,57 +20,69 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </head>
     <body>
-
-        <div class="container my-5">
-            <table  class="table table-dark table-striped">               
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Order Date</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Sub total</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:set var="i" value="0"></c:set>
-                    <c:forEach items="${Orderlist}" var="u">
+        <%@include file="topbar.jsp" %>
+        <%@include file="header.jsp" %>
+        <div class="col-lg-9 main">
+            <div aria-label="breadcrumb" class="mb-3">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <i class="fa-solid fa-globe fa-sm"></i>
+                        <a href="home">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"> ${sessionScope.userlogged.username} Order</li>
+                </ul>
+            </div>
+            <div class="container my-5">
+                <table  class="table table-dark table-striped">               
+                    <thead>
                         <tr>
-                            <td>${u.orderID}</td>
+                            <th>ID</th>
+                            <th>Order Date</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Sub total</th>
 
-                            <td>${u.orderDate}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:set var="i" value="0"></c:set>
+                        <c:forEach items="${Orderlist}" var="u">
+                            <tr>
+                        <a><td>${u.orderID}</td></a>
 
-                            <td>${u.product_name}</td>
+                        <td>${u.orderDate}</td>
 
-                            <td>${u.unit_price}</td>
+                        <td>${u.product_name}</td>
 
-                            <td>${u.quantity}</td>
+                        <td>${u.unit_price}</td>
 
-                            <td>${u.quantity * u.unit_price}</td>
+                        <td>${u.quantity}</td>
+
+                        <td>${u.quantity * u.unit_price}</td>
 
                         </tr>
                     </c:forEach>
-                </tbody>
-            </table>
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
-                </li>
-            </ul>
+                    </tbody>
+                </table>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <script src="js/list-select.js"></script>
     </div>
-    <script src="js/list-select.js"></script>
-</div>
 </div>
 </div>
 </body>
 </html>
+<%@include file="footer.jsp" %>
 
