@@ -79,7 +79,7 @@
                                                 <a href="ProfileUser?userid=${sessionScope.userlogged.userid}" class="dropdown-item">
                                                     <i class="fa-regular fa-circle-user pe-2"></i> Profile
                                                 </a>
-                                                <a href="#" class="dropdown-item">
+                                                <a href="CusOrderController?cid=${sessionScope.userlogged.userid}" class="dropdown-item">
                                                     <i class="fa-solid fa-box pe-2"></i> My order
                                                 </a>
                                                 <a href="#" class="dropdown-item">
