@@ -10,20 +10,23 @@ public class Address {
     District district;
     private int eaID;
     private String addressDetail;
+    private String status;
 
     public Address() {
     }
     
-    public Address(Provinces province) {
+    public Address(Provinces province, String status) {
         this.province = province;
+        this.status = status;
     }
 
-    public Address(int countryID, Provinces province, District district, int eaID, String addressDetail) {
+    public Address(int countryID, Provinces province, District district, int eaID, String addressDetail, String status) {
         this.countryID = countryID;
         this.province = province;
         this.district = district;
         this.eaID = eaID;
         this.addressDetail = addressDetail;
+        this.status = status;
     }
 
     public int getCountryID() {
@@ -64,6 +67,14 @@ public class Address {
 
     public void setAddressDetail(String addressDetail) {
         this.addressDetail = addressDetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

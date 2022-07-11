@@ -398,7 +398,16 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Province</label>
-                                                        <input type="text" class="form-control" value="${cus.uad.province.name}">
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${province}" var="prv">
+                                                                    <c:if test="${prv.name eq cus.uad.province.name}">
+                                                                        <option value="${prv.id}" selected>${cus.uad.province.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${prv.id}">${prv.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Country</label>

@@ -141,12 +141,13 @@
                             </thead>
                             <tbody>
                                 <c:forEach items="${cuslist}" var="cus">
+                                    <c:if test="${cus.uad.status ne null}">
                                     <tr class="customers">
                                         <td>
                                             <input class="form-check-input" type="checkbox" value="${cus.us.userid}">
                                         </td>
                                         <td>
-                                            <a href="#">#1</a>
+                                            <a href="#">#${cus.us.userid}</a>
                                         </td>
                                         <td>
                                             <div class="avatar avatar-info">
@@ -173,6 +174,8 @@
                                             </div>
                                         </td>
                                     </tr>
+                                        
+                                    </c:if>
                                 </c:forEach>
                             </tbody>
                         </table>

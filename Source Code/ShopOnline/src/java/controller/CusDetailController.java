@@ -1,12 +1,15 @@
 package controller;
 
+import dal.AddressDAO;
 import dal.CustomerDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Customers;
+import model.Provinces;
 
 /**
  *
@@ -22,7 +25,11 @@ public class CusDetailController extends HttpServlet {
         CustomerDAO db = new CustomerDAO();
         Customers cus = db.getCusByUserId(Integer.parseInt(id));
         
+        AddressDAO dbb = new AddressDAO();
+        ArrayList<Provinces> province = dbb.getProvince();
+        
         request.setAttribute("cus", cus);
+        request.setAttribute("province", province);
         
         request.getRequestDispatcher("admin/CustomerDetail.jsp").forward(request, response);
     }

@@ -105,7 +105,7 @@ public class AddressDAO {
     public ArrayList<Provinces> getProvince() {
         ArrayList<Provinces> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM province";
+            String sql = "SELECT * FROM `province`";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -116,7 +116,7 @@ public class AddressDAO {
                 list.add(p);
             }
         } catch (SQLException ex) {
-
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
