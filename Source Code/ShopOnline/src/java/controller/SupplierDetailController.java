@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.SupAdressDAO;
 import dal.SuppliersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.SupDetail;
+import model.Supplier_address;
+import model.Suppliers;
 
 /**
  *
@@ -32,11 +34,16 @@ public class SupplierDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("1");
-        SuppliersDAO db = new SuppliersDAO();
-        SupDetail sup = db.getSupById(1);
+        String id = request.getParameter("supID");
+        
+        SuppliersDAO supDAO = new SuppliersDAO();
+        Suppliers sup = supDAO.getSupById(Integer.parseInt(id));
+        
+        SupAdressDAO supaddressDAO = new SupAdressDAO();
+        Supplier_address supAdd = supaddressDAO.getSupAdressById(Integer.parseInt(id));
         
         request.setAttribute("sup", sup);
+        request.setAttribute("supAdd", supAdd);
         
         request.getRequestDispatcher("admin/SupplierDetail.jsp").forward(request, response);
     }

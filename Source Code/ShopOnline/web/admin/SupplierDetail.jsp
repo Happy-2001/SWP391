@@ -28,7 +28,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="Dashboard.jsp">
+                            <a href="dashboard">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>
@@ -101,9 +101,9 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a class="active" href="#">
+                            <a href="SuppliersController">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Suppliers</span>
                             </a>
@@ -119,7 +119,7 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="/ShopOnline/SuplliersController">Suplliers</a>
+                            <a href="/ShopOnline/SuppliersController">Suppliers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
@@ -128,13 +128,13 @@
                     <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${cus.us.userid}" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</h5>
+                                <h5>${sup.name}</h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -147,7 +147,7 @@
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
-                                        <input type="hidden" name="cusID" value="${cus.us.userid}">
+                                        <input type="hidden" name="cusID" value="${sup.id}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -218,18 +218,27 @@
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="${sup.contactName} ">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="${sup.contactTitle}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="${sup.companyName}">
+                                                            <input type="text" class="form-control" value="${sup.name}">
                                                         </div>
                                                         
                                                         
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Gender</label>
+                                                            <div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio1" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio2" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio3" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
@@ -250,13 +259,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Department</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="">Sales</option>
-                                                                <option value="" selected="">Development</option>
-                                                                <option value="">Management</option>
-                                                            </select>
+                                                            <label class="form-label">Date of Birth</label>
+                                                            <input type="date" class="form-control" value="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -268,37 +272,28 @@
                                             <h6 class="card-title mb-4">Contact</h6>
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    
                                                     <div class="mb-3">
-                                                        <label class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" value="${cus.us.phone}">
-                                                    </div>
+                                                            <label class="form-label">ID</label>
+                                                            <input type="text" class="form-control" value="${supAdd.supID}">
+                                                        </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Website</label>
-                                                        <input type="text" class="form-control" value="http://laborasyon.com/" spellcheck="false" data-ms-editor="true">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Languages</label>
-                                                        <input type="text" class="form-control" value="http://laborasyon.com/" spellcheck="false" data-ms-editor="true">
-                                                    </div>
+                                                            <label class="form-label">DIsID</label>
+                                                            <input type="text" class="form-control" value="${supAdd.disID}">
+                                                        </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Post Code</label>
                                                         <input type="text" class="form-control" value="1868" spellcheck="false" data-ms-editor="true">
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Province</label>
-                                                        <input type="text" class="form-control" value="${cus.uad.province.name}">
-                                                    </div>
+                                                    
                                                     <div class="mb-3">
                                                         <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="Viet Nam">
+                                                        <input type="text" class="form-control" value="Việt Nam">
                                                     </div>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" value="A-65, Belvedere Streets" spellcheck="false" data-ms-editor="true">
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                     </div>
