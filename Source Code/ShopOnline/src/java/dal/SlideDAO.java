@@ -45,7 +45,84 @@ public class SlideDAO {
         }
         return null;
     }
+public void insert(Slide slide) {
+        try {
+            String sql = "INSERT INTO `slides` (`img`, `heading`, `description`, `name_button`, `url`, `status`) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setString(1, slide.getImg());
+            st.setString(2, slide.getHeading());
+            st.setString(3, slide.getDescription());
+            st.setString(4, slide.getNamebutton());
+            st.setString(5, slide.getUrl());
+            st.setBoolean(6, slide.isStatus());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
 
+    public void delete(int id) {
+        try {
+            String sql = "DELETE FROM `slides` WHERE `slide`.`slide_id` = ?";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+
+    public void update(Slide s) {
+        try {
+            String sql = "UPDATE `slides` SET `img` = ?, `heading` = ?, `description` = ?, `name_button` = ?, `url` = ?, `status` = ? WHERE `slide`.`slide_id` = ?";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setString(1, s.getImg());
+            st.setString(2, s.getHeading());
+            st.setString(3, s.getDescription());
+            st.setString(4, s.getNamebutton());
+            st.setString(5, s.getUrl());
+            st.setBoolean(6, s.isStatus());
+            st.setInt(7, s.getId());
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    
+        public Slide getById(String id) {
+        try {
+            String sql = "SELECT * FROM `slides` "
+                    + "WHERE `slide`.`slide_id` = ?";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Slide s = new Slide();
+                s.setId(rs.getInt("slide_id"));
+                s.setImg(rs.getString("img"));
+                s.setHeading(rs.getString("heading"));
+                s.setDescription(rs.getString("description"));
+                s.setNamebutton(rs.getString("name_button"));
+                s.setUrl(rs.getString("url"));
+                s.setStatus(rs.getBoolean("status"));
+                return s;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
     public static void main(String[] args) {
         SlideDAO slideDAO = new SlideDAO();
 
