@@ -54,6 +54,7 @@ public class FavouriteDAO {
                 c.setName(rs.getString("product_name"));
                 c.setPrice(rs.getFloat("unit_price"));
                 c.setSalePrice(rs.getFloat("sale_price"));
+                c.setImg(rs.getString("url"));
                 
                 listOrder.add(c);
             }
@@ -63,6 +64,18 @@ public class FavouriteDAO {
             mysqlConnect.disconnect();
         }
         return listOrder;
+    }
+    public void delete(int id) {
+        try {
+            String sql = "DELETE FROM `favorite_products` WHERE `productID` = ?";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
     }
     
 }

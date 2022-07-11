@@ -121,7 +121,7 @@
 
                             <div class="">
                                 <div class="add-comp add-comp2">
-                                    <button><a href="#"><i class="fas fa-heart"></i> Add to wishlist</a></button>
+                                    <button><a href="favouriteController?id=${productDetail.id}"><i class="fas fa-heart"></i> Add to wishlist</a></button>
                                     <button><a href="#"><i class="fas fa-sync-alt"></i> Add to Compare</a></button>
                                 </div>
                             </div>
