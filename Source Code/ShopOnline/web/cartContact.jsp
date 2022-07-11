@@ -31,9 +31,9 @@
             <div class="all-title-box" style="margin-top: 60px;">
                 <div aria-label="breadcrumb">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="HomeController">Home</a></li>
-                        <li class="breadcrumb-item"><a href="CartController">Card</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Card Contact</li>
+                        <li class="breadcrumb-item"><a href="home">Home</a></li>
+                        <li class="breadcrumb-item"><a href="CartController?userID=${sessionScope.userlogged.userid}">Cart</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Cart Contact</li>
                     </ul>
                 </div>
             </div>

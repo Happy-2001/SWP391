@@ -31,7 +31,7 @@
             <div aria-label="breadcrumb">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Card</li>
+                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
                 </ul>
             </div>
         </div>
