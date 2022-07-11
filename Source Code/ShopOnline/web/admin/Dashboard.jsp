@@ -105,6 +105,15 @@
                                 <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="slider">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders"></i>
+                                </span>
+                                <span class="text nav-text">Manage Slider</span>
+                               
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -177,6 +177,10 @@ p{
 }
 .dropdown-option-reply{
     display: none;
+    color: #ced4da;
+}
+.dropdown-menu{
+    color: #ced4da;
 }
 .divMYS:hover .checkIsread,.divMYS:hover .fa-reply,.divMYS:hover .dropdown-option-reply{
     display: block;
