@@ -49,6 +49,60 @@ public class ProductDAO {
         return products;
     }
 
+    public List<Product> listProductASC() {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `products` order by unit_price ASC";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setCategoryid(rs.getInt(3));
+                p.setPrice(rs.getFloat(4));
+                p.setSalePrice(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setBrief_information(rs.getString(8));
+                p.setDescription(rs.getString(9));
+                p.setImg(rs.getString(10));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return products;
+    }
+
+    public List<Product> listProductDESC() {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `products` order by unit_price DESC";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setCategoryid(rs.getInt(3));
+                p.setPrice(rs.getFloat(4));
+                p.setSalePrice(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setBrief_information(rs.getString(8));
+                p.setDescription(rs.getString(9));
+                p.setImg(rs.getString(10));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return products;
+    }
+
     public List<Product> listAll(String sort) {
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM `products` ORDER BY `products`.`unit_price` " + sort;
@@ -406,7 +460,7 @@ public class ProductDAO {
     public static void main(String[] args) {
 
         ProductDAO product = new ProductDAO();
-        List<Product> Product = product.listProductByColor("9");
+        List<Product> Product = product.listProductDESC();
         System.out.println(Product);
     }
 

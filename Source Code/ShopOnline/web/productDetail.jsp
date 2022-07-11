@@ -114,7 +114,7 @@
 
                             <div class="">
                                 <div class="add-comp add-comp1">
-                                    <button><a href="BuyNewServlet?pid=${productDetail.id}"><i class="fa-solid fa-credit-card"></i> Buy now</button>
+                                    <button><a href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${productDetail.id}"></i> Buy now</button>
                                     <button><a href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${productDetail.id}"><i class="fa-solid fa-cart-plus"></i> Add to cart</a></button>
                                 </div>
                             </div>
