@@ -144,6 +144,10 @@
         <servlet-name>ColorController</servlet-name>
         <servlet-class>controller.ColorController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SettingList</servlet-name>
+        <servlet-class>controller.SettingList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -287,6 +291,10 @@
     <servlet-mapping>
         <servlet-name>ColorController</servlet-name>
         <url-pattern>/ColorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SettingList</servlet-name>
+        <url-pattern>/SettingList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

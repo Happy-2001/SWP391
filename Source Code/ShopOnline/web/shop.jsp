@@ -214,7 +214,7 @@
                                             <a href="ColorController?id=17">
                                                 <i class="fa-solid fa-square fa-2x" style="color: #c0c0c0;"></i>
                                             </a>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="sub-men">
@@ -353,7 +353,7 @@
                                 </div>
                                 <div class="filter-sidebar">
                                 </div>
-                            
+
                             </div>
                         </div>
 
@@ -361,14 +361,15 @@
                             <div class="product-item-filter row">
                                 <div class="col-12 col-sm-8 text-ms-start">
                                     <div class="filter-button-group">
-                                        <span>Sort by </span>
-                                        <select id="basic" class="form-select">
-                                            <option selected>Nothing</option>
-                                            <option value="1">Popularity</option>
-                                            <option value="2">High Price → High Price</option>
-                                            <option value="3">Low Price → High Price</option>
-                                            <option value="4">Best Selling</option>
-                                        </select>
+                                        <form action="SettingList" method="POST">
+                                            <span>Sort by </span>
+                                            <select id="basic" class="form-select" name="filter">
+                                                <option value="-2" ${param.filter==-1 ? 'selected' : ''} selected>Nothing</option>
+                                                <option value="-1" ${param.filter==-1 ? 'selected' : ''}>High Price → High Price</option>
+                                                <option value="0" ${param.filter==0 ? 'selected' : ''}>Low Price → High Price</option>
+                                            </select>
+                                            <input type="submit" value="Search" />
+                                            </form>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4 text-sm-end">
