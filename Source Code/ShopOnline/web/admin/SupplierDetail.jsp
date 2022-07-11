@@ -28,7 +28,7 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="Dashboard.jsp">
+                            <a href="dashboard">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>
@@ -101,9 +101,9 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a class="active" href="#">
+                            <a href="SuppliersController">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Suppliers</span>
                             </a>
@@ -119,7 +119,7 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="/ShopOnline/SuplliersController">Suplliers</a>
+                            <a href="/ShopOnline/CusController">Customers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
@@ -218,18 +218,33 @@
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="${sup.contactName} ">
+                                                            <input type="text" class="form-control" value="${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="${sup.contactTitle}">
+                                                            <input type="text" class="form-control" value="${cus.us.username}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="${sup.companyName}">
+                                                            <input type="text" class="form-control" value="${cus.us.email}">
                                                         </div>
-                                                        
-                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Gender</label>
+                                                            <div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio1" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio2" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio3" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
@@ -250,13 +265,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Department</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="">Sales</option>
-                                                                <option value="" selected="">Development</option>
-                                                                <option value="">Management</option>
-                                                            </select>
+                                                            <label class="form-label">Date of Birth</label>
+                                                            <input type="date" class="form-control" value="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,12 +283,30 @@
                                                         <input type="text" class="form-control" value="${cus.us.phone}">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Website</label>
-                                                        <input type="text" class="form-control" value="http://laborasyon.com/" spellcheck="false" data-ms-editor="true">
+                                                        <label class="form-label">Ward</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${ward}" var="ward">
+                                                                    <c:if test="${ward.subDistrictID eq cus.uad.ward.subDistrictID}">
+                                                                        <option value="${prv.id}" selected>${ward.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Languages</label>
-                                                        <input type="text" class="form-control" value="http://laborasyon.com/" spellcheck="false" data-ms-editor="true">
+                                                        <label class="form-label">Province</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${province}" var="prv">
+                                                                    <c:if test="${prv.name eq cus.uad.province.name}">
+                                                                        <option value="${prv.id}" selected>${cus.uad.province.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${prv.id}">${prv.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -287,17 +315,26 @@
                                                         <input type="text" class="form-control" value="1868" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label class="form-label">Province</label>
-                                                        <input type="text" class="form-control" value="${cus.uad.province.name}">
+                                                        <label class="form-label">District</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${district}" var="dis">
+                                                                    <c:if test="${dis.districtID eq cus.uad.district.districtID}">
+                                                                        <option value="${dis.districtID}" selected>${dis.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${dis.districtID}">${dis.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="Viet Nam">
+                                                        <input type="text" class="form-control" value="Việt Nam">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" value="A-65, Belvedere Streets" spellcheck="false" data-ms-editor="true">
+                                                    <input type="text" class="form-control" value="${cus.uad.addressDetail}">
                                                 </div>
                                             </div>
                                         </div>
