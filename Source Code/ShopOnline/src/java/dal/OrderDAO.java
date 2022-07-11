@@ -97,9 +97,35 @@ public class OrderDAO extends DBConnect {
         }
         return listOrder;
     }
+    public ArrayList<Orders> getOrderByCusID(int cid) {
+        ArrayList<Orders> listOrder =new  ArrayList<>();
+        String sql = "select o.order_id, o.order_date, p.product_name,p.unit_price, d.quantity, d.amount from orders o \n" +
+"                JOIN oder_details d on o.order_id = d.orderID \n" +
+"                JOIN products p on p.product_id = d.productID \n" +
+"                 WHERE customerID = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, cid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt("order_id"));
+                c.setOrderDate(rs.getString("order_date")); 
+                c.setProduct_name(rs.getString("product_name"));
+                c.setUnit_price(rs.getInt("unit_price"));
+                c.setQuantity(rs.getInt("quantity"));
+                listOrder.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return listOrder;
+    }
     public static void main(String[] args) {
          OrderDAO udb = new OrderDAO();
-         ArrayList<Orders> Orderlist = udb.getOrderById(1);
+         ArrayList<Orders> Orderlist = udb.getOrderByCusID(4);
          for (Orders orders : Orderlist) {
              System.out.println(orders.getProduct_name());
              

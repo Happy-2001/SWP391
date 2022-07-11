@@ -8,19 +8,21 @@ package controller;
 import dal.FavouriteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Favourite;
+import model.Orders;
 
 /**
  *
  * @author thund
  */
-public class favouriteController extends HttpServlet {
+public class CusFavouriteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +36,15 @@ public class favouriteController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String pid = request.getParameter("id");
         HttpSession session = request.getSession();
 
         int uid = (int) session.getAttribute("userid");
         FavouriteDAO f = new FavouriteDAO();
-        f.addProductLike(uid, pid);
-        RequestDispatcher dispth
-                = request.getRequestDispatcher("home");
-        dispth.forward(request, response);
+        ArrayList<Favourite> Orderlist = f.getOrderByCusID(uid);
+        request.setAttribute("Orderlist", Orderlist);
+        System.out.println(Orderlist);
+                request.getRequestDispatcher("CusFavourite.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

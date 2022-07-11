@@ -30,7 +30,7 @@
         <div class="all-title-box" style="margin-top: 60px;">
             <div aria-label="breadcrumb">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="home">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Cart</li>
                 </ul>
             </div>
