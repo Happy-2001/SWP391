@@ -26,7 +26,7 @@
 }
 .ava-popup .edit-img{
     display: flex;
-    gap: 20px;
+    gap: 30px;
     height: 100%;
     align-items: center;
     flex-direction: column;
@@ -125,4 +125,7 @@
 .qty input{
     width: 40px;
     text-align: center;
+}
+.save-btn.close{
+    display: none;
 }

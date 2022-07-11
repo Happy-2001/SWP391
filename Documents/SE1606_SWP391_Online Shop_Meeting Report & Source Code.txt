@@ -1,4 +1,4 @@
-Meeting Minutes: https://drive.google.com/drive/folders/1QPT19WghsVNaOQomScFoUQ70dnjMA3fj?usp=sharing
+Meeting Minutes: https://drive.google.com/drive/folders/1zGzbppGMnETY5VAeFf-l0CyFTP8GOakK?usp=sharing
 Meeting Report: https://docs.google.com/spreadsheets/d/1jHXRPFPVZ-lUR4AFOQjYMeVBXvO-9dLwFBg0ZpUxKtk/edit?usp=sharing
 Source Code: https://github.com/Happy-2001/SWP391
 Github: https://github.com/Thachdp2808/SWP391
@@ -6,5 +6,3 @@ Nguyễn Mạnh Hưng:https://github.com/ManhHung01
 Đào Phúc Thạch:https://github.com/Thachdp2808
 Lê Minh Đức:https://github.com/fptduc24
 Ngô Vũ Anh Võ:https://github.com/Avin-Vo
-
-okeee1
