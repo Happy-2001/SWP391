@@ -119,7 +119,7 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="/ShopOnline/CusController">Customers</a>
+                            <a href="/ShopOnline/SuppliersController">Suppliers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
