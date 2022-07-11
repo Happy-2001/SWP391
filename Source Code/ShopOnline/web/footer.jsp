@@ -9,8 +9,8 @@
                         <p>TheWay shoes were born based on the shop owner's love of Nike shoes, Adidas shoes, Vans shoes... by the enchanting beauty of these trendy shoe models!
                         </p>
                         <ul>
-                            <li><a href="https://www.facebook.com/bibeoauthentic97"><i class="fa-brands fa-facebook-square"></i></a></li>
-                            <li><a href="https://www.instagram.com/bibeo.authentic/?fbclid=IwAR2o3TdF84Ha1U-idkHYnu1vte-pbUbaRrSsvjl3ClZBPLqk67Wb19-VZss"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="https://www.facebook.com"><i class="fa-brands fa-facebook-square"></i></a></li>
+                            <li><a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a></li>
 
                         </ul>
                     </div>
@@ -39,13 +39,13 @@
                         <h4>Contact Us</h4>
                         <ul>
                             <li>
-                                <p><i class="fas fa-map-marker-alt"></i>103 phố Hồ Đắc Di , phường Nam Đồng, <br> quận Đống Đa Hanoi, Vietnam 100000</p>
+                                <p><i class="fas fa-map-marker-alt"></i>Trường ĐH FPT</p>
                             </li>
                             <li>
                                 <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+091 978 55 48">091 978 55 48</a></p>
                             </li>
                             <li>
-                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:bi1508.97@gmail.com">bi1508.97@gmail.com</a></p>
+                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:bi1508.97@gmail.com">fpt.16@gmail.com</a></p>
                             </li>
                         </ul>
                     </div>
