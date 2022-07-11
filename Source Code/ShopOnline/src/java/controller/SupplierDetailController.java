@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.SupDetail;
+import model.Suppliers;
 
 /**
  *
@@ -32,9 +32,12 @@ public class SupplierDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("ID");
+        String id = request.getParameter("supID");
+        
         SuppliersDAO db = new SuppliersDAO();
-        SupDetail sup = db.getSupById(1);
+        Suppliers sup = db.getSupById(Integer.parseInt(id));
+        
+        
         
         request.setAttribute("sup", sup);
         

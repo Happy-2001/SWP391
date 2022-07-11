@@ -74,12 +74,5 @@ public class SuppliersDAO extends DBConnect {
         }
         return null;
     }
-    public static void main(String[] args) {
-        SuppliersDAO dao =new SuppliersDAO();
-        SuppliersDAO db = new SuppliersDAO();
-        SupDetail sup = db.getSupById(1);
-        
-            System.out.println(sup);
-        
-    }
+   
 }
