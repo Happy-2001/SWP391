@@ -9,9 +9,14 @@ public class District {
     private String name;
     private String prefix;
     private String provinceID;
+    
     public District() {
     }
 
+    public District(int districtID) {
+        this.districtID = districtID;
+    }
+    
     public District(int districtID, String name, String prefix,String provinceID) {
         this.districtID = districtID;
         this.name = name;

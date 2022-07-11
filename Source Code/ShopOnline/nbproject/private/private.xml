@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/shop.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/HomePage.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/header.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/ProductController.java</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/productDetail.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/cartContact.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/footer.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/DetailProduct.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/cartDetail.jsp</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/SettingList.java</file>
-            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/topbar.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Address.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Provinces.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/District.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/CusDetailController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/CustomerDetail.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Customers.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/CustomerDAO.java</file>
         </group>
     </open-files>
 </project-private>

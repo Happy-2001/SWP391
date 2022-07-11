@@ -8,6 +8,7 @@ public class Address {
     private int countryID;
     Provinces province;
     District district;
+    SubDistrict ward;
     private int eaID;
     private String addressDetail;
     private String status;
@@ -19,11 +20,20 @@ public class Address {
         this.province = province;
         this.status = status;
     }
+    
+    public Address(Provinces province, District district, SubDistrict ward, String addressDetail, String status) {
+        this.province = province;
+        this.district = district;
+        this.ward = ward;
+        this.addressDetail = addressDetail;
+        this.status = status;
+    }
 
-    public Address(int countryID, Provinces province, District district, int eaID, String addressDetail, String status) {
+    public Address(int countryID, Provinces province, District district, SubDistrict ward, int eaID, String addressDetail, String status) {
         this.countryID = countryID;
         this.province = province;
         this.district = district;
+        this.ward = ward;
         this.eaID = eaID;
         this.addressDetail = addressDetail;
         this.status = status;
@@ -51,6 +61,14 @@ public class Address {
 
     public void setDistrict(District district) {
         this.district = district;
+    }
+
+    public SubDistrict getWard() {
+        return ward;
+    }
+
+    public void setWard(SubDistrict ward) {
+        this.ward = ward;
     }
 
     public int getEaID() {

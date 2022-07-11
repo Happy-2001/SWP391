@@ -4,12 +4,16 @@
  */
 package controller;
 
+import dal.AddressDAO;
 import dal.CartDAO;
+import dal.CustomerDAO;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
+import model.Customers;
+import model.Provinces;
 import model.User;
 
 /**
@@ -18,11 +22,20 @@ import model.User;
  */
 public class demo {
     public static void main(String[] args) {
-        String s = "Nam Định";
-        String[] str = s.split("\\W+");
-        ArrayList<User> list = new ArrayList<>();
-        Integer a = 3;
-        String b = String.valueOf(a);
-        System.out.println(b);
+        String id = "5";
+        
+        CustomerDAO db = new CustomerDAO();
+        Customers cus = db.getCusByUserId(Integer.parseInt(id));
+        
+        AddressDAO dbb = new AddressDAO();
+        ArrayList<Provinces> province = dbb.getProvince();
+        
+        int prvid = 0;
+        for(Provinces pv : province){
+            if(pv.getName().equals(cus.getUad().getProvince().getName())){
+                prvid = pv.getId();
+            }
+        }
+        System.out.println(prvid);
     }
 }
