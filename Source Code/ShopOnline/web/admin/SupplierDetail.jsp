@@ -228,6 +228,14 @@
                                                             <label class="form-label">Contact Name</label>
                                                             <input type="text" class="form-control" value="${sup.contactName}">
                                                         </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Contact Title</label>
+                                                            <input type="text" class="form-control" value="${sup.contactTitle}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Contact Name</label>
+                                                            <input type="text" class="form-control" value="${sup.contactName}">
+                                                        </div>
                                                         
                                                         
                                                         <div class="mb-3">
