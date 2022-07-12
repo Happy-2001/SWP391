@@ -217,8 +217,16 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
+                                                            <label class="form-label">ID</label>
+                                                            <input type="text" class="form-control" value="${sup.id}">
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <label class="form-label">Name</label>
                                                             <input type="text" class="form-control" value="${sup.name}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Contact Name</label>
+                                                            <input type="text" class="form-control" value="${sup.contactName}">
                                                         </div>
                                                         
                                                         
