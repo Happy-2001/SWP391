@@ -81,3 +81,14 @@ public class SuppliersController extends HttpServlet {
     }// </editor-fold>
 
 }
+/*
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        SuppliersDAO sup = new SuppliersDAO();
+        List<Suppliers> list = sup.listSupplier();
+        request.setAttribute("suplist", list);
+        
+        request.getRequestDispatcher("admin/Suppliers.jsp").forward(request, response);
+    }
+*/
