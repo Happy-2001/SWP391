@@ -217,7 +217,7 @@
                             </nav>
                         </div>
                         <div class="col-md-3">
-                            <div class="card sticky-top">
+                            <div class="card">
                                 <div class="card-body">
                                     <ul class="nav nav-pills flex-column gap-2">
                                         <li class="nav-item">

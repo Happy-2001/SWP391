@@ -3,17 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/editproduct.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/ListProductController.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/model/Product.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/addproduct.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/listproduct.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/SlideDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/addressDetail.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/editslide.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/admin/Dashboard.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/ProductController.java</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/FeedbackList.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/MyOrder.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/Dashboard.jsp</file>
+            <file>file:/D:/FPTU/Sem5/SWP391/Source%20Code/ShopOnline/web/admin/CustomerDetail.jsp</file>
         </group>
     </open-files>
 </project-private>

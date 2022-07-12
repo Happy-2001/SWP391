@@ -108,6 +108,15 @@
                                 <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="slider">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders"></i>
+                                </span>
+                                <span class="text nav-text">Manage Slider</span>
+                               
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -204,17 +213,21 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade active show" id="profile">
                                     <div class="mb-4">
-                                        <div class="card mb-4">
-                                            <div class="card-body">
-                                                <div class="card-title mb-4">
-                                                    <h6>
-                                                        Basic Information
-                                                    </h6>
-                                                    <span id="editBtn">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="row">
+                                        <form action="" method="">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
+                                                    <div class="card-title mb-4">
+                                                        <h6>Basic Information</h6>
+                                                        <span class="d-flex">
+                                                            <button type="submit" class="btn save-btn close">
+                                                                <i class="fa-regular fa-floppy-disk"></i> Save
+                                                            </button>
+                                                            <button type="button" class="btn ms-2" id="infoBtn">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
@@ -270,13 +283,25 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <div class="card mb-4">
-                                        <div class="card-body">
-                                            <h6 class="card-title mb-4">Contact</h6>
-                                            <div class="row">
+                                        <form action="" method="">
+                                            <div class="card-body">
+                                                <div class="card-title mb-4">
+                                                    <h6>Contact</h6>
+                                                    <span class="d-flex">
+                                                        <button type="submit" class="btn save-btn close">
+                                                            <i class="fa-regular fa-floppy-disk"></i> Save
+                                                        </button>
+                                                        <button type="button" class="btn ms-2" id="infoBtn">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Phone</label>
@@ -337,9 +362,20 @@
                                                     <input type="text" class="form-control" value="${cus.uad.addressDetail}">
                                                 </div>
                                             </div>
-                                        </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                    var editBtn = document.querySelectorAll("#infoBtn");
+                                    var save = document.querySelectorAll(".save-btn");
+
+                                    for(let i = 0; i < editBtn.length; i++){
+                                        editBtn[i].addEventListener("click", function() {
+                                            save[i].classList.toggle("close");
+                                        });
+                                    }
+                                </script>
                             </div>
                         </div>
                         <div class="col-md-5">

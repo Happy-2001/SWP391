@@ -28,7 +28,7 @@
                     <div class="menu">
                         <ul class="menu-links">
                             <li class="nav-link">
-                                <a href="Dashboard.jsp">
+                                <a href="Dashboard">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-chart-simple fa-xl"></i>
                                     </span>
@@ -37,9 +37,9 @@
                             </li>
 
                             <li class="nav-link">
-                                <a href="MyOrderController">
+                                <a class="active" href="MyOrderController">
                                     <span class="nav-link-icon">
-                                        <i class="fa-solid fa-receipt fa-xl"></i>
+                                        <i class="fa-solid fa-receipt"></i>
                                     </span>
                                     <span class="text nav-text">Orders</span>
                                 </a>
@@ -55,16 +55,16 @@
                             </li>
 
                             <li class="nav-link">
-                                <a class="active" href="#">
+                                <a href="CusController">
                                     <span class="nav-link-icon">
-                                        <i class="fa-solid fa-user-group"></i>
+                                        <i class="fa-solid fa-user-group fa-xl"></i>
                                     </span>
                                     <span class="text nav-text">Customers</span>
                                 </a>
                             </li>
 
                             <li class="nav-link">
-                                <a href="/ShopOnline/message">
+                                <a href="message">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-envelope fa-xl"></i>
                                     </span>
