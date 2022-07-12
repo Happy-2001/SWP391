@@ -40,6 +40,7 @@ public class OrderInformationController extends HttpServlet {
         String id = request.getParameter("id");
         OrderDAO dao = new OrderDAO();
         CartDAO cartDao = new CartDAO();
+        // CartDAO cartDao = new CartDAO();
         List<Cart> carts = cartDao.listById(Integer.parseInt(id));
         Orders o = dao.listOrderById(Integer.parseInt(id));
         int total = cartDao.getAmountByID(Integer.parseInt(id));
