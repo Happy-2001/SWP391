@@ -87,8 +87,6 @@ public class OrderInformationController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    
-
 }
 
     
