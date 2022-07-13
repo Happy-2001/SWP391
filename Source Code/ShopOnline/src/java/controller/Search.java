@@ -5,27 +5,24 @@
  */
 package controller;
 
-import dal.AddressDAO;
-import dal.SupAdressDAO;
-import dal.SuppliersDAO;
+import dal.ProductCategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.District;
-import model.Provinces;
-import model.SubDistrict;
-import model.Supplier_address;
-import model.Suppliers;
+import model.Category;
+import model.Product;
 
 /**
  *
- * @author nguye
+ * @author thund
  */
-public class SupplierDetailController extends HttpServlet {
+public class Search extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,42 +36,20 @@ public class SupplierDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("supID");
-        
-        SuppliersDAO supDAO = new SuppliersDAO();
-        Suppliers sup = supDAO.getSupById(Integer.parseInt(id));
-        
-//        SupAdressDAO supaddressDAO = new SupAdressDAO();
-//        Supplier_address supAdd = supaddressDAO.getSupAdressById(Integer.parseInt(id));
-        
-        AddressDAO dbb = new AddressDAO();
-        ArrayList<Provinces> province = dbb.getProvince();
-        
-//        int prvid = 0;
-//        for(Provinces pv : province){
-//            if(pv.getName().equals(supAdd.getProID().getName())){
-//                prvid = pv.getId();
-//            }
-//        }
-//        ArrayList<District> district = dbb.getDistrict(prvid);
-//        
-//        int wid = 0;
-//        for(District ds : district){
-//            if(ds.getDistrictID() == supAdd.getDisID().getDistrictID()){
-//                wid = ds.getDistrictID();
-//            }
-//        }
-//        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
-        
-        request.setAttribute("sup", sup);
-//        request.setAttribute("supAdd", supAdd);
-//        request.setAttribute("Dis", district);
-//        request.setAttribute("ward", ward);
-        request.setAttribute("provinces", province);
-        
-        request.getRequestDispatcher("admin/SupplierDetail.jsp").forward(request, response);
+        String txtSearch = request.getParameter("txt");//get tu search
+        ProductDAO p = new ProductDAO();
+        ProductCategoryDAO dao1 = new ProductCategoryDAO();
+
+        List<Product> listP = p.findByName(txtSearch);
+        List<Category> listC = dao1.listAll();
+        request.setAttribute("productsForEachPage", listP);// luu tu đã đc search 
+
+        request.setAttribute("listC", listC);
+        request.setAttribute("txtS", txtSearch);
+        request.getRequestDispatcher("shop.jsp").forward(request, response);
+
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

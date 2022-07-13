@@ -286,11 +286,11 @@
                                                     
                                                     <div class="mb-3">
                                                             <label class="form-label">Provice ID</label>
-                                                            <input type="text" class="form-control" value="${supAdd.proID}">
+                                                            <input type="text" class="form-control" value="11">
                                                         </div>
                                                     <div class="mb-3">
                                                             <label class="form-label">DIsID</label>
-                                                            <input type="text" class="form-control" value="${supAdd.disID}">
+                                                            <input type="text" class="form-control" value="333">
                                                         </div>
                                                 </div>
                                                 <div class="col-md-6">

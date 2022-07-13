@@ -467,7 +467,7 @@ public class ProductDAO {
     public static void main(String[] args) {
 
         ProductDAO product = new ProductDAO();
-        List<Product> Product = product.listProductDESC();
+        List<Product> Product = product.findByName("w");
         System.out.println(Product);
     }
 
