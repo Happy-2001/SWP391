@@ -356,7 +356,7 @@ public ArrayList<SubDistrict> getSubDistrict() {
         AddressDAO adao = new AddressDAO();
         ArrayList<UserAddress> list = adao.getUserAddress("1");
         adao.insertUserAddress("3", "Đào Phúc Thạch", "24", "333", "5154", null, null, "3", "012312454543", "KTX HL");
-        ArrayList<Provinces> list2 = adao.getProvince();
+        ArrayList<District> list2 = adao.getDistrict();
         System.out.println(list2.get(0).getName());
     }
 
