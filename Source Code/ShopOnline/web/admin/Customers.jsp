@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/Customers.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Customers.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -153,7 +153,7 @@
                                             <div class="avatar avatar-info">
                                                 <c:choose>
                                                     <c:when test="${cus.us.photo ne null}">
-                                                        <img src="RetrieveImg?eaID=${cus.us.userid}" class="rounded-circle">
+                                                        <img src="../RetrieveImg?eaID=${cus.us.userid}" class="rounded-circle">
                                                     </c:when>
                                                     <c:otherwise>
                                                         <span class="avatar-text rounded-circle">${cus.us.lastname.charAt(0)}</span>
@@ -192,7 +192,7 @@
                         </ul>
                     </div>
                 </div>
-                <script src="js/list-select.js"></script>
+                <script src="../js/list-select.js"></script>
             </div>
         </div>
     </div>

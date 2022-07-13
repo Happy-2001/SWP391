@@ -72,7 +72,7 @@ public class SupplierDetailController extends HttpServlet {
 //        request.setAttribute("ward", ward);
         request.setAttribute("provinces", province);
         
-        request.getRequestDispatcher("admin/SupplierDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("SupplierDetail.jsp").forward(request, response);
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

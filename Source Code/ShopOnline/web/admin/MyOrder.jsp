@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin || Shop Online</title>
         <!-- Site Icons -->
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/Dashboard.css">
-        <link rel="stylesheet" href="css/Customers.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/Dashboard.css">
+        <link rel="stylesheet" href="../css/Customers.css">
         <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
 
         <!-- Bootstrap 5 -->
@@ -64,7 +64,7 @@
                             </li>
 
                             <li class="nav-link">
-                                <a href="message">
+                                <a href="/ShopOnline/message">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-envelope fa-xl"></i>
                                     </span>
@@ -74,31 +74,50 @@
                             </li>
 
                             <li class="nav-link">
-                                <a href="#">
-                                    <span class="nav-link-icon">
-                                        <i class="fa-solid fa-bell fa-xl"></i>
-                                    </span>
-                                    <span class="text nav-text">Notifications</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-link">
-                                <a href="FeedbackAd">
-                                    <span class="nav-link-icon">
-                                        <i class="fa-solid fa-comment-dots fa-xl"></i>
-                                    </span>
-                                    <span class="text nav-text">Feedback</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-link">
-                                <a href="account.html">
-                                    <span class="nav-link-icon">
-                                        <i class="fa-solid fa-circle-user fa-xl"></i>
-                                    </span>
-                                    <span class="text nav-text">Accounts</span>
-                                </a>
-                            </li>
+                            <a href="#">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-bell fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Notifications</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="FeedbackAd">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-comment-dots fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Feedback</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-link">
+                            <a href="admin/userList.jsp">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-circle-user fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Accounts</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                            <a href="SuppliersController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Suppliers</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                            <a href="/ShopOnline/slider">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Manage Slider</span>
+                               
+                            </a>
+                        </li>
                         </ul>
                     </div>
                 </div>

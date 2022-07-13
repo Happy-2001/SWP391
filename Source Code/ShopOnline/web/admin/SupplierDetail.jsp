@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/ProfileAd.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/ProfileAd.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -55,9 +55,9 @@
                         </li>
 
                         <li class="nav-link">
-                            <a class="active" href="#">
+                            <a href="#">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-user-group"></i>
+                                    <i class="fa-solid fa-user-group fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Customers</span>
                             </a>
@@ -101,9 +101,9 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a href="SuppliersController">
+                            <a class="active" href="SuppliersController">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
+                                    <i class="fa-solid fa-truck-arrow-right"></i>
                                 </span>
                                 <span class="text nav-text">Suppliers</span>
                             </a>
@@ -119,13 +119,13 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="/ShopOnline/SuppliersController">Suppliers</a>
+                            <a href="SuppliersController">Suppliers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
                 </div>
                 <div class="content">
-                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
+                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
                                 <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=" alt="...">

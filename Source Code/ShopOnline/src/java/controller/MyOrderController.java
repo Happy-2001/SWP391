@@ -39,7 +39,7 @@ public class MyOrderController extends HttpServlet {
        OrderDAO udb = new OrderDAO();
         List<Orders> Orderlist = udb.listAllOder();
         request.setAttribute("Orderlist", Orderlist);
-        request.getRequestDispatcher("admin/MyOrder.jsp").forward(request, response);
+        request.getRequestDispatcher("MyOrder.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

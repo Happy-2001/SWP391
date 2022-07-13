@@ -8,7 +8,7 @@
             <div class="col-lg-3">
                 <nav class="navbar">
                     <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
-                    <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="images/logo.png" class="logo"></a>
+                    <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
                 </nav>
             </div>
             <div class="col-lg-7">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="admin">
                         <div class="admin-avatar" data-bs-toggle="collapse" data-bs-target="#setting">
-                            <img src="RetrieveImg?eaID=${sessionScope.userlogged.userid}" onError="this.onerror=null;this.src='images/default-avatar.jpg';">
+                            <img src="../RetrieveImg?eaID=${sessionScope.userlogged.userid}" onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
                             <span class="online"></span> 
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                 <hr style="margin: 0;"></hr>
                             </li>
                             <li class="nav-link">
-                                <a href="logout">
+                                <a href="/ShopOnline/logout">
                                     <span class="nav-link-icon">
                                         <i class="fa fa-sign-out"></i>
                                     </span>

@@ -37,7 +37,7 @@ public class UploadImage extends HttpServlet {
         ImageDAO upli = new ImageDAO();
         if (userid == null || userid.isEmpty()){
             upli.loadImg(inputStream, Integer.parseInt(cusid));
-            response.sendRedirect("CusDetail?cusID="+cusid);
+            response.sendRedirect("admin/CusDetail?cusID="+cusid);
         }else{
             upli.loadImg(inputStream, Integer.parseInt(userid));
             response.sendRedirect("ProfileUser?userid="+userid);

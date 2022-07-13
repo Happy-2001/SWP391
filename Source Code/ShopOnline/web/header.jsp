@@ -69,7 +69,7 @@
                                 <c:when test="${sessionScope.userlogged ne null}">
                                     <c:choose>
                                         <c:when test="${sessionScope.Arole.authority.id == 1}">
-                                            <a href="dashboard" style="border-left: 2px solid #d33b33;">
+                                            <a href="admin/dashboard" style="border-left: 2px solid #d33b33;">
                                                 <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
                                             </a>
                                         </c:when>
