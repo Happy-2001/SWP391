@@ -221,7 +221,7 @@
                                                             <input type="text" class="form-control" value="${sup.id}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Name</label>
+                                                            <label class="form-label">Company Name</label>
                                                             <input type="text" class="form-control" value="${sup.name}">
                                                         </div>
                                                         <div class="mb-3">
@@ -258,25 +258,20 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Role</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="">Admin</option>
-                                                                <option value="">User</option>
-                                                                <option value="" selected>Customer</option>
-                                                            </select>
+                                                            <label class="form-label">Creator</label>
+                                                            <input type="text" class="form-control" value="${sup.creator}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Status</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="" selected>Active</option>
-                                                                <option value="">Blocked</option>
-                                                            </select>
+                                                            <label class="form-label">Create On</label>
+                                                            <input type="date" class="form-control" value="">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Update On</label>
+                                                            <input type="text" class="form-control" value="${sup.dob}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
-                                                            <input type="date" class="form-control" value="">
+                                                            <input type="date" class="form-control" value="${sup.dob}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -285,13 +280,13 @@
                                     </div>
                                     <div class="card mb-4">
                                         <div class="card-body">
-                                            <h6 class="card-title mb-4">Contact</h6>
+                                            <h6 class="card-title mb-4">Adress</h6>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     
                                                     <div class="mb-3">
-                                                            <label class="form-label">ID</label>
-                                                            <input type="text" class="form-control" value="${supAdd.supID}">
+                                                            <label class="form-label">Provice ID</label>
+                                                            <input type="text" class="form-control" value="${supAdd.proID}">
                                                         </div>
                                                     <div class="mb-3">
                                                             <label class="form-label">DIsID</label>
