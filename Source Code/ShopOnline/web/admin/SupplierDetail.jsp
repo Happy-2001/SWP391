@@ -218,9 +218,7 @@
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="card-title mb-4">
-                                                            <h6>
-                                                                Basic Information
-                                                            </h6>
+                                                            <h6>Basic Information</h6>
                                                             <span class="d-flex">
                                                                 <button type="submit" class="btn save-btn close">
                                                                     <i class="fa-regular fa-floppy-disk"></i> Save
