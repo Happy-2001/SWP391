@@ -7,6 +7,7 @@ package controller;
 import dal.AddressDAO;
 import dal.CartDAO;
 import dal.CustomerDAO;
+import dal.FeedbackDAO;
 import dal.OrderDAO;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -24,24 +25,14 @@ import model.User;
  */
 public class demo {
     public static void main(String[] args) {
-        String id = "5";
+        String fid = "5";
+        String reply = "123";
         
-        CartDAO db = new CartDAO();
-        OrderDAO odb = new OrderDAO();
+        FeedbackDAO db = new FeedbackDAO();
         
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");  
-        Date date = new Date();
-        odb.insertOrder(fm.format(date), Integer.parseInt(id));
-        Orders od = odb.getOrderLatest();
-        System.out.println(od.getOrderID());
-//        
-        ArrayList<Cart> carts = db.listById(Integer.parseInt(id));
-        for (Cart o : carts) {
-            odb.insertOrderD(o.getQuantity(), od.getOrderID(), o.getProduct().getId());
-        }
-        
-//        db.deleteByCartID(Integer.parseInt(id));
-        
-        
+        Date date = new Date();  
+        db.updateFb(reply, fm.format(date), Integer.parseInt(fid));
+        System.out.println("Success!");
     }
 }

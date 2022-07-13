@@ -38,7 +38,7 @@ public class FeedbackAdController extends HttpServlet {
         List<MyFeedback> list = db.ListAllFeedback(pageNumber);   
         request.setAttribute("fblist", list);
         
-        request.getRequestDispatcher("admin/FeedbackList.jsp").forward(request, response);
+        request.getRequestDispatcher("FeedbackList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

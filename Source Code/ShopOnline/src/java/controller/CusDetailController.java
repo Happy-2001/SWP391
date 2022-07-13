@@ -51,7 +51,7 @@ public class CusDetailController extends HttpServlet {
         request.setAttribute("district", district);
         request.setAttribute("ward", ward);
         
-        request.getRequestDispatcher("admin/CustomerDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
