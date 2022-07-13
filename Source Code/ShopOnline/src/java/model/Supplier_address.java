@@ -11,9 +11,9 @@ package model;
  */
 public class Supplier_address {
     private int supID;
-    private int proID;
-    private int disID;
-    private int wardID;
+    Provinces  proID;
+    District disID;
+    SubDistrict wardID;
     private int streetID;
     private int projectID;
     private int eaID;
@@ -23,18 +23,8 @@ public class Supplier_address {
     
     }
 
-    public Supplier_address(int supID, int proID, int disID, int wardID, int streetID, int projectID, int eaID, String addDetail) {
+    public Supplier_address(int supID, Provinces proID, District disID, SubDistrict wardID, int streetID, int projectID, int eaID, String addDetail) {
         this.supID = supID;
-        this.proID = proID;
-        this.disID = disID;
-        this.wardID = wardID;
-        this.streetID = streetID;
-        this.projectID = projectID;
-        this.eaID = eaID;
-        this.addDetail = addDetail;
-    }
-    
-    public Supplier_address( int proID, int disID, int wardID, int streetID, int projectID, int eaID, String addDetail) {
         this.proID = proID;
         this.disID = disID;
         this.wardID = wardID;
@@ -52,27 +42,27 @@ public class Supplier_address {
         this.supID = supID;
     }
 
-    public int getProID() {
+    public Provinces getProID() {
         return proID;
     }
 
-    public void setProID(int proID) {
+    public void setProID(Provinces proID) {
         this.proID = proID;
     }
 
-    public int getDisID() {
+    public District getDisID() {
         return disID;
     }
 
-    public void setDisID(int disID) {
+    public void setDisID(District disID) {
         this.disID = disID;
     }
 
-    public int getWardID() {
+    public SubDistrict getWardID() {
         return wardID;
     }
 
-    public void setWardID(int wardID) {
+    public void setWardID(SubDistrict wardID) {
         this.wardID = wardID;
     }
 
@@ -108,10 +98,7 @@ public class Supplier_address {
         this.addDetail = addDetail;
     }
 
-    @Override
-    public String toString() {
-        return "Supplier_address{" + "supID=" + supID + ", proID=" + proID + ", disID=" + disID + ", wardID=" + wardID + ", streetID=" + streetID + ", projectID=" + projectID + ", eaID=" + eaID + ", addDetail=" + addDetail + '}';
-    }
+    
     
 
 }
