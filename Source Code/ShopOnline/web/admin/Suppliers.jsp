@@ -122,7 +122,11 @@
                     <div class="table-responsive cus-box">
                         <table class="table table-hover">
                             <thead>
+                                
                             <tr>
+                                <th>
+                                    <input class="select-all" type="checkbox" value="deselect">
+                                </th>
                                 <th>ID</th>
                                 <th>Company Name</th>
                                 <th>Contact Name</th>
@@ -136,6 +140,9 @@
                             <tbody>
                                <c:forEach items="${suplist}" var="sup">
                                     <tr class="customers">
+                                        <td>
+                                            <input class="form-check-input" type="checkbox" value="${sup.id}">
+                                        </td>
                                         <td>${sup.id}</td>
                                         <td>${sup.name}</td>
                                         <td>${sup.contactName}</td>
@@ -165,7 +172,7 @@
                         </ul>
                     </div>
                 </div>
-                <script src="js/list-select.js"></script>
+                <script src="js/list-selectSup.js"></script>
             </div>
         </div>
     </div>
