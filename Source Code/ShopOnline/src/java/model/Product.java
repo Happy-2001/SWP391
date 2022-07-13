@@ -43,9 +43,11 @@ public class Product {
         this.img = img;
         this.sortdesc = sortdesc;
     }
-    public Product(int id, String name, float price, float salePrice, int stock, String brief_information, String description, String img) {
+    
+    public Product(int id, String name, int categoryid, float price, float salePrice, int stock, String brief_information, String description, String img) {
         this.id = id;
         this.name = name;
+        this.categoryid = categoryid;
         this.price = price;
         this.salePrice = salePrice;
         this.stock = stock;
