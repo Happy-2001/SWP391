@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -179,7 +179,7 @@
                                             </li>
                                         </ul>
                                         <div class="add-comp why-text">
-                                            <a href="#" class="ms-auto btn">Place Order</a>
+                                            <a href="CartCompletion?cartID=${sessionScope.userlogged.userid}&sum=${sum}" class="ms-auto btn">Place Order</a>
                                             <a href="CartController?userID=${sessionScope.userlogged.userid}" class="ml-auto btn">Change</a>
                                         </div>
                                     </div>

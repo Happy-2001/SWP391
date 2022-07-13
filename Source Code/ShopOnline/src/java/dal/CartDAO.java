@@ -147,6 +147,20 @@ public class CartDAO {
             mysqlConnect.disconnect();
         }
     }
+    
+    public void deleteByCartID(int id) {
+        try {
+            String sql = "DELETE FROM `cart_items` WHERE cartID = ?";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    
     public Cart getCartById(int id) {
         String sql = "SELECT `item_id`, `quantity`, `cartID`, `productID` FROM `cart_items` WHERE cartID = ?";
         try {

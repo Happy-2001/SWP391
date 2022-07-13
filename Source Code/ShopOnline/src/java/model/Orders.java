@@ -9,26 +9,27 @@ public class Orders {
     private String orderDate;
     private String requireDate;
     private String shippedDate;
-    private int status;
-    private int customer_id;
-    private int employee_id;
-    private String product_name;
-    private int unit_price;
+    private String status;
+    private int customerId;
+    User user;
+    private int shiperId;
+    Product product;
+    private float amount;
     private int quantity;
 
     public Orders() {
     }
 
-    public Orders(int orderID, String orderDate, String requireDate, String shippedDate, int status, int customer_id, int employee_id, String product_name, int unit_price, int quantity) {
+    public Orders(int orderID, String orderDate, String requireDate, String shippedDate, String status, int customerId, int shiperId, Product product, float amount, int quantity) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
         this.status = status;
-        this.customer_id = customer_id;
-        this.employee_id = employee_id;
-        this.product_name = product_name;
-        this.unit_price = unit_price;
+        this.customerId = customerId;
+        this.shiperId = shiperId;
+        this.product = product;
+        this.amount = amount;
         this.quantity = quantity;
     }
 
@@ -64,44 +65,52 @@ public class Orders {
         this.shippedDate = shippedDate;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public User getUser() {
+        return user;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public int getShiperId() {
+        return shiperId;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setShiperId(int shiperId) {
+        this.shiperId = shiperId;
     }
 
-    public int getUnit_price() {
-        return unit_price;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setUnit_price(int unit_price) {
-        this.unit_price = unit_price;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 
     public int getQuantity() {
@@ -111,6 +120,5 @@ public class Orders {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
 
 }

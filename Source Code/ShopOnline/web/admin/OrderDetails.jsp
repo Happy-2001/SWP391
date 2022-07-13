@@ -35,9 +35,9 @@
                             </li>
 
                             <li class="nav-link">
-                                <a href="/ShopOnline/MyOrderController">
+                                <a class="active" href="MyOrderController">
                                     <span class="nav-link-icon">
-                                        <i class="fa-solid fa-receipt fa-xl"></i>
+                                        <i class="fa-solid fa-receipt"></i>
                                     </span>
                                     <span class="text nav-text">Orders</span>
                                 </a>
@@ -53,16 +53,16 @@
                             </li>
 
                             <li class="nav-link">
-                                <a class="active" href="#">
+                                <a href="#">
                                     <span class="nav-link-icon">
-                                        <i class="fa-solid fa-user-group"></i>
+                                        <i class="fa-solid fa-user-group fa-xl"></i>
                                     </span>
                                     <span class="text nav-text">Customers</span>
                                 </a>
                             </li>
 
                             <li class="nav-link">
-                                <a href="/ShopOnline/message">
+                                <a href="message">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-envelope fa-xl"></i>
                                     </span>
@@ -107,7 +107,10 @@
                                 <i class="fa-solid fa-globe fa-sm"></i>
                                 <a href="dashboard">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Customers</li>
+                            <li class="breadcrumb-item">
+                                <a href="MyOrderController">Order</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Order Detail</li>
                         </ul>
                     </div>
                     <div class="container-fluid">
@@ -133,10 +136,10 @@
                                         <tr>
                                             <td>${o.orderID}</td>
                                             <td>${o.orderDate}</td>
-                                            <td>${o.product_name}</td>
-                                            <td>${o.unit_price}</td>
+                                            <td>${o.product.name}</td>
+                                            <td>${o.product.price}</td>
                                             <td>${o.quantity}</td>
-                                            <td>${o.quantity * o.unit_price }</td>
+                                            <td>${o.quantity * o.product.price}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
