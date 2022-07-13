@@ -197,4 +197,8 @@ public class OrderDAO extends DBConnect {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public Orders listOrderById(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
