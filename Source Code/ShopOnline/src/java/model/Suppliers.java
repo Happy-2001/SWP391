@@ -19,9 +19,23 @@ public class Suppliers {
     private Date dob;
     private int gender;
     private int creator;
+    private Date createOn;
+    private Date updateOn;
 
     public Suppliers(){
         
+    }
+
+    public Suppliers(int id, String name, String contactName, String contactTitle, Date dob, int gender, int creator, Date createOn, Date updateOn) {
+        this.id = id;
+        this.name = name;
+        this.contactName = contactName;
+        this.contactTitle = contactTitle;
+        this.dob = dob;
+        this.gender = gender;
+        this.creator = creator;
+        this.createOn = createOn;
+        this.updateOn = updateOn;
     }
     public Suppliers(int id, String name, String contactName, String contactTitle, Date dob, int gender, int creator) {
         this.id = id;
@@ -88,6 +102,23 @@ public class Suppliers {
     public void setCreator(int creator) {
         this.creator = creator;
     }
+
+    public Date getCreateOn() {
+        return createOn;
+    }
+
+    public void setCreateOn(Date createOn) {
+        this.createOn = createOn;
+    }
+
+    public Date getUpdateOn() {
+        return updateOn;
+    }
+
+    public void setUpdateOn(Date updateOn) {
+        this.updateOn = updateOn;
+    }
+    
 
     @Override
     public String toString() {
