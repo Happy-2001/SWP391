@@ -53,13 +53,13 @@
 
                         <td>${u.orderDate}</td>
 
-                        <td>${u.product_name}</td>
+                        <td>${u.product.name}</td>
 
-                        <td>${u.unit_price}</td>
+                        <td>${u.product.salePrice}</td>
 
                         <td>${u.quantity}</td>
 
-                        <td>${u.quantity * u.unit_price}</td>
+                        <td>${u.quantity * u.product.salePrice}</td>
 
                         </tr>
                     </c:forEach>

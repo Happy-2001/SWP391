@@ -108,7 +108,7 @@ public class OrderDAO extends DBConnect {
         ArrayList<Orders> listOrder =new  ArrayList<>();
         String sql = "SELECT o.order_id, o.order_date, o.require_date, \n" +
                     "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
-                    "d.quantity, d.productID, p.product_name, p.unit_price\n" +
+                    "d.quantity, d.productID, p.product_name, p.unit_price, p.url\n" +
                     "FROM orders o\n" +
                     "JOIN oder_details d on o.order_id = d.orderID\n" +
                     "JOIN products p on p.product_id = d.productID\n" +
@@ -127,7 +127,8 @@ public class OrderDAO extends DBConnect {
                 c.setShiperId(rs.getInt("o.shipperID"));
                 c.setCustomerId(rs.getInt("o.customerID"));
                 c.setQuantity(rs.getInt("d.quantity"));
-                c.setAmount(rs.getFloat("p.unit_price"));
+                c.setProduct(new Product(rs.getString("p.product_name"),
+                                        rs.getFloat("p.unit_price"), rs.getString("p.url")));
                 
                 listOrder.add(c);
             }
