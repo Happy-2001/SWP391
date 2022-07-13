@@ -28,7 +28,7 @@
                     <div class="menu">
                         <ul class="menu-links">
                             <li class="nav-link">
-                                <a href="Dashboard">
+                                <a href="dashboard">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-chart-simple fa-xl"></i>
                                     </span>
@@ -112,50 +112,55 @@
                             <li class="breadcrumb-item active" aria-current="page">Order</li>
                         </ul>
                     </div>
-                    <div class="container my-5">
-                        <table  class="table table-dark table-striped">               
-                            <thead>
-                                <tr>
-                                    <th scope="col">Order ID</th>
-                                    <th scope="col">Order Date</th>
-                                    <th scope="col">Required Date</th>
-                                    <th scope="col">Shipped Date</th>
-                                    <th scope="col">Customer ID</th>
-                                    <th scope="col">View</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:set var="i" value="0"></c:set>
-                                <c:forEach items="${Orderlist}" var="u">
+                    <div class="container-fluid">
+                        <div class="table-responsive cus-box">
+                            <table class="table table-striped">               
+                                <thead>
                                     <tr>
-                                        <td>${u.orderID}</td>
-
-                                        <td>${u.orderDate}</td>
-
-                                        <td>${u.requireDate}</td>
-
-                                        <td>${u.shippedDate}</td>
-
-                                        <td>${u.customerId}</td>
-
-
-                                        <td><a class="btn btn-success" href="OrderDetailController?id=${u.orderID}">View</a></td>
+                                        <th>Order ID</th>
+                                        <th>Order Date</th>
+                                        <th>Required Date</th>
+                                        <th>Shipped Date</th>
+                                        <th>Customer ID</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
-                            </li>
-                        </ul>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${Orderlist}" var="u">
+                                        <tr>
+                                            <td>${u.orderID}</td>
+                                            <td>${u.orderDate}</td>
+                                            <td>${u.requireDate}</td>
+                                            <td>${u.shippedDate}</td>
+                                            <td>${u.customerId}</td>
+                                            <td class="text-center">
+                                                <div class="dropdown ms-auto">
+                                                    <a href="#" data-bs-toggle="dropdown">
+                                                        <i class="fa-solid fa-ellipsis"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a href="OrderDetailController?id=${u.orderID}" class="dropdown-item">View</a>
+                                                        <a href="#" class="dropdown-item">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
                 <script src="js/list-select.js"></script>

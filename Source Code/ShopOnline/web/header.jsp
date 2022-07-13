@@ -15,17 +15,17 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <!-- Start Top Search -->
-                    <form action="Search" method="post" class="form-inline my-2 my-lg-0">
-                                <div class="input-group input-group-sm">
-                                    <input value="${txtS}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-secondary btn-number">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </form>
+                    <form action="Search" method="POST">
+                        <div class="top-search">
+                            <div class="input-group">
+                                <span class="input-group-text close-search"><i class="fa fa-times"></i></span>
+                                <input type="search" class="form-control" value="${txtS}" name="txt"  placeholder="Search...">
+                                <button type="submit" class="input-group-text">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <!-- End Top Search -->
                     <ul id="page-header" class="nav navbar-nav ms-auto">
                         <li class="nav-item active"><a class="nav-link" href="home" title="Home">Home</a></li>
