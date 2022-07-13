@@ -38,13 +38,15 @@
                         </div>
                         <div class="collapse navbar-collapse" id="navbar-menu">
                             <!-- Start Top Search -->
-                            <form action="action">
-                                <div class="top-search">
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                        <input type="search" class="form-control"  placeholder="Search...">
-                                        <span class="input-group-text close-search"><i class="fa fa-times"></i></span>
+                            <form action="Search" method="post" class="form-inline my-2 my-lg-0">
+                                <div class="input-group input-group-sm">
+                                    <input value="${txtS}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-secondary btn-number">
+                                            <i class="fa fa-search"></i>
+                                        </button>
                                     </div>
+
                                 </div>
                             </form>
                             <!-- End Top Search -->
@@ -59,7 +61,7 @@
                         <div class="account-header">
                             <ul class="nav navbar-nav">
                                 <li class="search">
-                                    <a href="#"><i class="fa fa-search"></i></a>
+                                    <a href="Search"><i class="fa fa-search"></i></a>
                                 </li>
 
                                 <li class="side-menu">
@@ -159,11 +161,17 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-sm-12 shop-left">
                             <div class="product-filter">
-                                <form action="#">
-                                    <div class="input-group" style="margin-bottom: 16px;">
-                                        <input type="text" placeholder="Search" class="form-control">
+                                <form action="Search" method="post" class="form-inline my-2 my-lg-0">
+                                <div class="input-group input-group-sm">
+                                    <input value="${txtS}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-secondary btn-number">
+                                            <i class="fa fa-search"></i>
+                                        </button>
                                     </div>
-                                </form>
+
+                                </div>
+                            </form>
                                 <div id="category" class="filter-category">
                                     <div class="sub-men">
                                         <div class="title-ls">
@@ -369,7 +377,7 @@
                                                 <option value="0" ${param.filter==0 ? 'selected' : ''}>Low Price → High Price</option>
                                             </select>
                                             <input type="submit" value="Search" />
-                                            </form>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4 text-sm-end">
