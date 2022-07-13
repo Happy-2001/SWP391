@@ -12,33 +12,45 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.District;
 import model.Provinces;
+import model.Street;
+import model.SupDetail;
 import model.Supplier_address;
+import model.Suppliers;
 import model.Ward;
+import model.project;
 
 /**
  *
  * @author nguye
  */
-public class SupAdressDAO extends DBConnect{
-    
+public class SupAdressDAO extends DBConnect {
+
     DBConnect mysqlConnect = new DBConnect();
-    
-    public Supplier_address getSupAdressById(int id) {
-        String sql = "SELECT * FROM `supplier_address` WHERE supplierID=?";
+
+    public SupDetail getSupAdressById(int id) {
+        String sql = "SELECT sup.supplierID,sup.companyName, sup.contactName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,supadd.districtID,supadd.wardID,supadd.streetID,supadd.projectID,supadd.addressDetail,eca.telephone,eca.fax,eca.email from\n"
+                + "(((`suppliers` AS sup INNER JOIN `supplier_address` AS supadd ON supadd.supplierID=sup.supplierID)\n"
+                + "INNER JOIN\n"
+                + "(SELECT * FROM `province` JOIN `supplier_address`\n"
+                + "ON `province`.`id` = `supplier_address`.`provinceID`) AS uad\n"
+                + "ON sup.`supplierID` = uad.`supplierID`)\n"
+                + " INNER JOIN `electronicaddress` AS eca ON supadd.`eaID` = eca.`eaID`)\n"
+                + " where sup.supplierID=?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Supplier_address u = new Supplier_address();
-                u.setSupID(rs.getInt("supplierID"));
-                u.setProID(new Provinces(rs.getInt("id"),rs.getString("name"),rs.getString("code")));
-                u.setDisID(new District(rs.getInt("id"),rs.getString("name"),rs.getString("prefix"),rs.getString("provinceID")));
-                u.setWardID(new Ward(rs.getInt("id"),rs.getString("name"),rs.getString("prefix"),rs.getInt("provinceid"),rs.getInt("districtid")));
-                u.setStreetID(rs.getInt("streetID"));
-                u.setProjectID(rs.getInt("projectID"));
-                u.setEaID(rs.getInt("eaID"));
-                u.setAddDetail(rs.getString("addressDetail"));
+                SupDetail u = new SupDetail();
+                u.setSup(new Suppliers(rs.getInt("sup.supplierID"),rs.getString("sup.companyName"),rs.getString("sup.contactName"),
+                                       rs.getString("sup.contactTitle"),rs.getDate("sup.DOB"),
+                                       rs.getInt("sup.gender"),rs.getInt("sup.creator")));
+                u.setSup_add(new Supplier_address(new District(rs.getInt("supadd.districtID")),
+                                                  new Ward(rs.getInt("supadd.wardID")),
+                                                  new Street(rs.getInt("supadd.streetID")),
+                                                  new project(rs.getString("supadd.projectID")),
+                                                    rs.getString("upadd.addressDetail")));
+                
                 return u;
             }
         } catch (SQLException ex) {

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.District;
 import model.Provinces;
 import model.SubDistrict;
+import model.SupDetail;
 import model.Supplier_address;
 import model.Suppliers;
 
@@ -45,19 +46,19 @@ public class SupplierDetailController extends HttpServlet {
         Suppliers sup = supDAO.getSupById(Integer.parseInt(id));
         
         SupAdressDAO supaddressDAO = new SupAdressDAO();
-        Supplier_address supAd  = supaddressDAO.getSupAdressById(Integer.parseInt(id));
+        SupDetail supAdd  = supaddressDAO.getSupAdressById(Integer.parseInt(id));
         
         AddressDAO dbb = new AddressDAO();
         ArrayList<Provinces> province = dbb.getProvince();
         
-//        int prvid = 0;
-//        for(Provinces pv : province){
-//            if(pv.getName().equals(supAdd.getProID().getName())){
-//                prvid = pv.getId();
-//            }
-//        }
-//        ArrayList<District> district = dbb.getDistrict(prvid);
-//        
+        int prvid = 0;
+        for(Provinces pv : province){
+            if(pv.getName().equals(supAdd.getSup_add().getProID().getName())){
+                prvid = pv.getId();
+            }
+        }
+        ArrayList<District> district = dbb.getDistrict(prvid);
+        
 //        int wid = 0;
 //        for(District ds : district){
 //            if(ds.getDistrictID() == supAdd.getDisID().getDistrictID()){
@@ -67,8 +68,8 @@ public class SupplierDetailController extends HttpServlet {
 //        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
         
         request.setAttribute("sup", sup);
-//        request.setAttribute("supAdd", supAdd);
-//        request.setAttribute("Dis", district);
+        request.setAttribute("supAdd", supAdd);
+        request.setAttribute("district", district);
 //        request.setAttribute("ward", ward);
         request.setAttribute("provinces", province);
         

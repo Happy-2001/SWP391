@@ -9,30 +9,28 @@ package model;
  *
  * @author nguye
  */
-public class Ward {
+public class Street {
     private int id;
     private String name;
     private String prefix;
-    private int provinceID;
-    private int districtID;
-    
-    public Ward(){
+    private int provine_id;
+    private int district_id;
+
+    public Street(){
         
     }
     
-    public Ward(int id){
+    public Street(int id){
         this.id=id;
     }
-
-    public Ward(int id, String name, String prefix, int provinceID, int districtID) {
+    
+    public Street(int id, String name, String prefix, int provine_id, int district_id) {
         this.id = id;
         this.name = name;
         this.prefix = prefix;
-        this.provinceID = provinceID;
-        this.districtID = districtID;
+        this.provine_id = provine_id;
+        this.district_id = district_id;
     }
-
-    
 
     public int getId() {
         return id;
@@ -58,20 +56,20 @@ public class Ward {
         this.prefix = prefix;
     }
 
-    public int getProvinceID() {
-        return provinceID;
+    public int getProvine_id() {
+        return provine_id;
     }
 
-    public void setProvinceID(int provinceID) {
-        this.provinceID = provinceID;
+    public void setProvine_id(int provine_id) {
+        this.provine_id = provine_id;
     }
 
-    public int getDistrictID() {
-        return districtID;
+    public int getDistrict_id() {
+        return district_id;
     }
 
-    public void setDistrictID(int districtID) {
-        this.districtID = districtID;
+    public void setDistrict_id(int district_id) {
+        this.district_id = district_id;
     }
     
 }

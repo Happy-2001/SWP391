@@ -14,7 +14,10 @@ public class project {
 
     public project() {
     }
-
+    
+    public project(String id) {
+        this.id=id;
+    }
     public project(String id, String name, String provinceID, String districtID, String lat, String ing) {
         this.id = id;
         this.name = name;

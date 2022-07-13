@@ -315,9 +315,18 @@
                                                     <div class="col-md-6">
 
                                                         <div class="mb-3">
-                                                            <label class="form-label">Provice ID</label>
-                                                            <input type="text" class="form-control" value="11">
+                                                        <label class="form-label">Province</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${province}" var="prv">
+                                                                    
+                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.province.name}</option>
+                                                                    
+                                                                    <option value="${prv.id}">${prv.name}</option>
+                                                                </c:forEach>
+                                                            </select>
                                                         </div>
+                                                    </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">DIsID</label>
                                                             <input type="text" class="form-control" value="333">
