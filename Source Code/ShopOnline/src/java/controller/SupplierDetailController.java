@@ -59,18 +59,18 @@ public class SupplierDetailController extends HttpServlet {
         }
         ArrayList<District> district = dbb.getDistrict(prvid);
         
-//        int wid = 0;
-//        for(District ds : district){
-//            if(ds.getDistrictID() == supAdd.getDisID().getDistrictID()){
-//                wid = ds.getDistrictID();
-//            }
-//        }
-//        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
+        int wid = 0;
+        for(District ds : district){
+            if(ds.getDistrictID() == supAdd.getSup_add().getDisID().getDistrictID()){
+                wid = ds.getDistrictID();
+            }
+        }
+        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
         
         request.setAttribute("sup", sup);
         request.setAttribute("supAdd", supAdd);
         request.setAttribute("district", district);
-//        request.setAttribute("ward", ward);
+        request.setAttribute("ward", ward);
         request.setAttribute("provinces", province);
         
         request.getRequestDispatcher("SupplierDetail.jsp").forward(request, response);

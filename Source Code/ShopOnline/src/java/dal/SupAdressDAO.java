@@ -49,7 +49,7 @@ public class SupAdressDAO extends DBConnect {
                                                   new Ward(rs.getInt("supadd.wardID")),
                                                   new Street(rs.getInt("supadd.streetID")),
                                                   new project(rs.getString("supadd.projectID")),
-                                                    rs.getString("upadd.addressDetail")));
+                                                    rs.getString("supadd.addressDetail")));
                 
                 return u;
             }
@@ -59,5 +59,10 @@ public class SupAdressDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
         return null;
+    }
+    public static void main(String[] args) {
+        SupAdressDAO dao = new SupAdressDAO();
+        SupDetail a = dao.getSupAdressById(1);
+        System.out.println(a.getSup_add().getAddDetail());
     }
 }
