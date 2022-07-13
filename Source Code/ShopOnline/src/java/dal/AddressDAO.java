@@ -109,9 +109,9 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Provinces p = new Provinces();
-                p.setId(Integer.parseInt(rs.getString(1)));
-                p.setName(rs.getString(2));
-                p.setCode(rs.getString(3));
+                p.setId(Integer.parseInt(rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setCode(rs.getString("_code"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -130,10 +130,10 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 District p = new District();
-                p.setDistrictID(Integer.parseInt(rs.getString(1)));
-                p.setName(rs.getString(2));
-                p.setPrefix(rs.getString(3));
-                p.setProvinceID(rs.getString(4));
+                p.setDistrictID((rs.getInt("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                p.setProvinceID(rs.getString("_province_id"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -153,10 +153,10 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 District p = new District();
-                p.setDistrictID(Integer.parseInt(rs.getString(1)));
-                p.setName(rs.getString(2));
-                p.setPrefix(rs.getString(3));
-                p.setProvinceID(rs.getString(4));
+                p.setDistrictID((rs.getInt("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                p.setProvinceID(rs.getString("_province_id"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -174,11 +174,11 @@ public ArrayList<SubDistrict> getSubDistrict() {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 SubDistrict p = new SubDistrict();
-                p.setSubDistrictID((rs.getInt(1)));
-                p.setName(rs.getString(2));
-                p.setPrefix(rs.getString(3));
-                p.setProvinceID(rs.getInt(4));
-                p.setDistrictID(rs.getInt(5));
+                p.setSubDistrictID((rs.getInt("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                p.setProvinceID(rs.getInt("_province_id"));
+                p.setDistrictID(rs.getInt("_district_id"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -197,11 +197,11 @@ public ArrayList<SubDistrict> getSubDistrict() {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 SubDistrict p = new SubDistrict();
-                p.setSubDistrictID((rs.getInt(1)));
-                p.setName(rs.getString(2));
-                p.setPrefix(rs.getString(3));
-                p.setProvinceID(rs.getInt(4));
-                p.setDistrictID(rs.getInt(5));
+                p.setSubDistrictID((rs.getInt("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                p.setProvinceID(rs.getInt("_province_id"));
+                p.setDistrictID(rs.getInt("_district_id"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -220,12 +220,12 @@ public ArrayList<SubDistrict> getSubDistrict() {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString(1)));
-                p.setName(rs.getString(2));
-                p.setProvinceID(rs.getString(3));
-                p.setDistrictID(rs.getString(4));
-                p.setLat(rs.getString(5));
-                p.setIng(rs.getString(6));
+                p.setId((rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setProvinceID(rs.getString("_province_id"));
+                p.setDistrictID(rs.getString("_district_id"));
+                p.setLat(rs.getString("_lat"));
+                p.setIng(rs.getString("_lng"));
 
                 list.add(p);
             }
@@ -247,12 +247,12 @@ public ArrayList<SubDistrict> getSubDistrict() {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString(1)));
-                p.setName(rs.getString(2));
-                p.setProvinceID(rs.getString(3));
-                p.setDistrictID(rs.getString(4));
-                p.setLat(rs.getString(5));
-                p.setIng(rs.getString(6));
+                p.setId((rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setProvinceID(rs.getString("_province_id"));
+                p.setDistrictID(rs.getString("_district_id"));
+                p.setLat(rs.getString("_lat"));
+                p.setIng(rs.getString("_lng"));
 
                 list.add(p);
             }
@@ -282,19 +282,19 @@ public ArrayList<SubDistrict> getSubDistrict() {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 UserAddress p = new UserAddress();
-                p.setUaID((rs.getString(1)));
-                p.setUserID(rs.getString(2));
-                p.setPname(rs.getString(3));
-                p.setDname(rs.getString(4) == null ? "" : rs.getString(4) + ",");
-                p.setWname(rs.getString(5) == null ? "" : rs.getString(5) + ",");
-                p.setPrname(rs.getString(6) == null ? "" : rs.getString(6) + ",");
-                p.setStrname(rs.getString(7) == null ? "" : rs.getString(7) + ",");
-                p.setDetailAddress(rs.getString(8) == null ? "" : rs.getString(8) + ",");
-                p.setPhone(rs.getString(9) == null ? "" : rs.getString(9));
-                p.setEmail(rs.getString(10) == null ? "" : rs.getString(10));
-                p.setFullname(rs.getString(11) == null ? "" : rs.getString(11));
-                p.setOtherPhone(rs.getString(12) == null ? "" : rs.getString(12));
-                p.setStatus(rs.getString(13).equals("") ? null : rs.getString(13));
+                p.setUaID((rs.getString("uaID")));
+                p.setUserID(rs.getString("userID"));
+                p.setPname(rs.getString("pname"));
+                p.setDname(rs.getString("dname") == null ? "" : rs.getString("dname") + ",");
+                p.setWname(rs.getString("wname") == null ? "" : rs.getString("wname") + ",");
+                p.setPrname(rs.getString("prname") == null ? "" : rs.getString("prname") + ",");
+                p.setStrname(rs.getString("strname") == null ? "" : rs.getString("strname") + ",");
+                p.setDetailAddress(rs.getString("addressDetail") == null ? "" : rs.getString("addressDetail") + ",");
+                p.setPhone(rs.getString("telephone") == null ? "" : rs.getString("telephone"));
+                p.setEmail(rs.getString("email") == null ? "" : rs.getString("email"));
+                p.setFullname(rs.getString("fullname") == null ? "" : rs.getString("fullname"));
+                p.setOtherPhone(rs.getString("otherPhone") == null ? "" : rs.getString("otherPhone"));
+                p.setStatus(rs.getString("status").equals("") ? null : rs.getString("status"));
 
                 list.add(p);
             }
@@ -356,6 +356,8 @@ public ArrayList<SubDistrict> getSubDistrict() {
         AddressDAO adao = new AddressDAO();
         ArrayList<UserAddress> list = adao.getUserAddress("1");
         adao.insertUserAddress("3", "Đào Phúc Thạch", "24", "333", "5154", null, null, "3", "012312454543", "KTX HL");
+        ArrayList<Provinces> list2 = adao.getProvince();
+        System.out.println(list2.get(0).getName());
     }
 
 }
