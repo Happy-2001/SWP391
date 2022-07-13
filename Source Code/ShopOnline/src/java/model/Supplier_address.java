@@ -13,7 +13,7 @@ public class Supplier_address {
     private int supID;
     Provinces  proID;
     District disID;
-    SubDistrict wardID;
+    Ward wardID;
     private int streetID;
     private int projectID;
     private int eaID;
@@ -23,7 +23,7 @@ public class Supplier_address {
     
     }
 
-    public Supplier_address(int supID, Provinces proID, District disID, SubDistrict wardID, int streetID, int projectID, int eaID, String addDetail) {
+    public Supplier_address(int supID, Provinces proID, District disID, Ward wardID, int streetID, int projectID, int eaID, String addDetail) {
         this.supID = supID;
         this.proID = proID;
         this.disID = disID;
@@ -58,11 +58,11 @@ public class Supplier_address {
         this.disID = disID;
     }
 
-    public SubDistrict getWardID() {
+    public Ward getWardID() {
         return wardID;
     }
 
-    public void setWardID(SubDistrict wardID) {
+    public void setWardID(Ward wardID) {
         this.wardID = wardID;
     }
 

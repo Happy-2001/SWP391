@@ -296,8 +296,21 @@
                                             </form>
                                         </div>
                                         <div class="card mb-4">
-                                            <div class="card-body">
-                                                <h6 class="card-title mb-4">Address</h6>
+                                            <form action="" method="">
+                                                <div class="card-body">
+                                                    <div class="card-title mb-4">
+                                                        <h6>Address</h6>
+                                                        <span class="d-flex">
+                                                            <button type="submit" class="btn save-btn close">
+                                                                <i class="fa-regular fa-floppy-disk"></i> Save
+                                                            </button>
+                                                            <button type="button" class="btn ms-2" id="infoBtn">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                
+                                                    
                                                 <div class="row">
                                                     <div class="col-md-6">
 
@@ -323,53 +336,63 @@
                                                     </div>
 
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="card-title mb-4">Product</h6>
-                                        <div class="od-items">
-                                            <div class="od-date">
-                                                20-06-2022
+                        </div>
+                        <script type="text/javascript">
+                                        var editBtn = document.querySelectorAll("#infoBtn");
+                                        var save = document.querySelectorAll(".save-btn");
+
+                                        for (let i = 0; i < editBtn.length; i++) {
+                                            editBtn[i].addEventListener("click", function () {
+                                                save[i].classList.toggle("close");
+                                            });
+                                        }
+                        </script>
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-4">Product</h6>
+                                    <div class="od-items">
+                                        <div class="od-date">
+                                            20-06-2022
+                                        </div>
+                                        <div class="items">
+                                            <div class="pd-img">
+                                                <img src="/images/1.jpg">
                                             </div>
-                                            <div class="items">
-                                                <div class="pd-img">
-                                                    <img src="/images/1.jpg">
-                                                </div>
-                                                <div class="qty pe-3">
-                                                    <h5>Adidas</h5>
-                                                    <span>200.000</span>
-                                                    <input type="text" value="1" disabled>
-                                                    <span>Size: 40</span>
-                                                    <span>
-                                                        Color: 
-                                                        <i class="fa-solid fa-square" style="color: blue;"></i>
-                                                    </span>
-                                                </div>
+                                            <div class="qty pe-3">
+                                                <h5>Adidas</h5>
+                                                <span>200.000</span>
+                                                <input type="text" value="1" disabled>
+                                                <span>Size: 40</span>
+                                                <span>
+                                                    Color: 
+                                                    <i class="fa-solid fa-square" style="color: blue;"></i>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="od-items">
-                                            <div class="od-date">
-                                                20-06-2022
+                                    </div>
+                                    <div class="od-items">
+                                        <div class="od-date">
+                                            20-06-2022
+                                        </div>
+                                        <div class="items">
+                                            <div class="pd-img">
+                                                <img src="/images/1.jpg">
                                             </div>
-                                            <div class="items">
-                                                <div class="pd-img">
-                                                    <img src="/images/1.jpg">
-                                                </div>
-                                                <div class="qty pe-3">
-                                                    <h5>Adidas</h5>
-                                                    <span>200.000</span>
-                                                    <input type="text" value="1" disabled>
-                                                    <span>Size: 40</span>
-                                                    <span>
-                                                        Color: 
-                                                        <i class="fa-solid fa-square" style="color: blue;"></i>
-                                                    </span>
-                                                </div>
+                                            <div class="qty pe-3">
+                                                <h5>Adidas</h5>
+                                                <span>200.000</span>
+                                                <input type="text" value="1" disabled>
+                                                <span>Size: 40</span>
+                                                <span>
+                                                    Color: 
+                                                    <i class="fa-solid fa-square" style="color: blue;"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -380,5 +403,6 @@
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

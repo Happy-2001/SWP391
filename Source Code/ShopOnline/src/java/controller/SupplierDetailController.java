@@ -44,8 +44,8 @@ public class SupplierDetailController extends HttpServlet {
         SuppliersDAO supDAO = new SuppliersDAO();
         Suppliers sup = supDAO.getSupById(Integer.parseInt(id));
         
-//        SupAdressDAO supaddressDAO = new SupAdressDAO();
-//        Supplier_address supAdd = supaddressDAO.getSupAdressById(Integer.parseInt(id));
+        SupAdressDAO supaddressDAO = new SupAdressDAO();
+        Supplier_address supAd  = supaddressDAO.getSupAdressById(Integer.parseInt(id));
         
         AddressDAO dbb = new AddressDAO();
         ArrayList<Provinces> province = dbb.getProvince();
