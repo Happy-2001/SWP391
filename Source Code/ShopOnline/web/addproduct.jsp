@@ -59,20 +59,37 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="Supplier" class="form-label">Supplier</label>
+                <select class="form-select form-control" id="Supplier" name="supplier">
+                    <option selected>Select Supplier</option>
+                    <c:forEach items="${suppliers}" var="c">
+                        <option value="${c.id}">${c.contactName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" class="form-control" id="price" name="productPrice" required>
+            </div>
+            <div class="mb-3">
+                <label for="saleprice" class="form-label">Sale Price</label>
+                <input type="number" class="form-control" id="saleprice" name="productSalePrice" required>
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" class="form-control" id="stock" name="productStock" required>
             </div>
             <div class="mb-3">
+                <label for="brief_information" class="form-label">Brief Information</label>
+                <textarea name="brief_information" id="brief_information" class="form-control"  rows="10"></textarea>
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea name="description" id="description" class="form-control"  rows="10"></textarea>
             </div>
             <div class="mb-3">
-                <label for="sortdescription" class="form-label">Sort description</label>
-                <textarea name="sortdescription" id="sortdescription" class="form-control"  rows="6"></textarea>
+                <label for="shortdescription" class="form-label">Short description</label>
+                <textarea name="shortdescription" id="shortdescription" class="form-control"  rows="6"></textarea>
             </div>
 
             <div id="inputfile" class="form-group mb-3">

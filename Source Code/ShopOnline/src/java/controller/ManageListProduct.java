@@ -7,6 +7,7 @@ package controller;
 
 import dal.ProductCategoryDAO;
 import dal.ProductDAO;
+import dal.SuppliersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Product;
+import model.Suppliers;
 
 /**
  *
@@ -94,7 +96,11 @@ public class ManageListProduct extends HttpServlet {
         String productPrice = request.getParameter("productPrice");
         String productStock = request.getParameter("productStock");
         String description = request.getParameter("description");
-        String image = request.getParameter("image");
+        String shortdescription = request.getParameter("shortdescription");
+        String supplier = request.getParameter("supplier");
+        String productSalePrice = request.getParameter("productSalePrice");
+        String brief_information = request.getParameter("brief_information");
+        String image = request.getParameter("file");
         ProductDAO productDAO = new ProductDAO();
 
         Product p = new Product();
@@ -104,14 +110,20 @@ public class ManageListProduct extends HttpServlet {
         p.setPrice(Float.parseFloat(productPrice));
         p.setStock(Integer.parseInt(productStock));
         p.setDescription(description);
+        p.setSupplierID(supplier);
+        p.setSortdesc(shortdescription);
+        p.setSalePrice(Float.parseFloat(productSalePrice));
+        p.setBrief_information(brief_information);
+       
+        
 
         switch (actionpage) {
             case "add":
-                p.setImg("upload/" + image);
+                p.setImg("images/" + image);
                 productDAO.addProduct(p);
                 break;
             case "edit":
-                p.setImg("upload/" + image);
+                p.setImg("images/" + image);
                 String pid = request.getParameter("id");
                 p.setId(Integer.parseInt(pid));
                 productDAO.update(p);
@@ -140,8 +152,11 @@ public class ManageListProduct extends HttpServlet {
     protected void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductCategoryDAO categoryDAO = new ProductCategoryDAO();
+        SuppliersDAO supdao = new SuppliersDAO();
         List<Category> categories = categoryDAO.listAll();
+        List<Suppliers> suppliers = supdao.listSupplier();
         request.setAttribute("categories", categories);
+        request.setAttribute("suppliers", suppliers);
         request.getRequestDispatcher("addproduct.jsp").forward(request, response);
     }
 
@@ -151,9 +166,12 @@ public class ManageListProduct extends HttpServlet {
         String productId = request.getParameter("id");
         Product product = productDAO.findById(productId);
         ProductCategoryDAO categoryDAO = new ProductCategoryDAO();
+        SuppliersDAO supdao = new SuppliersDAO();
         List<Category> categories = categoryDAO.listAll();
+        List<Suppliers> suppliers = supdao.listSupplier();
         request.setAttribute("product", product);
         request.setAttribute("categories", categories);
+        request.setAttribute("suppliers", suppliers);
         request.getRequestDispatcher("editproduct.jsp").forward(request, response);
     }
 

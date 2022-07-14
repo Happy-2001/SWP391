@@ -21,7 +21,8 @@ public class Product {
     private String description;
     private String img;
     private String sortdesc;
-
+    private String supplierID,view,like;
+    
     public Product() {
     }
     
@@ -61,6 +62,61 @@ public class Product {
         this.description = description;
         this.img = img;
     }
+
+    public Product(int id, String name, int categoryid, float price, float salePrice, int stock, String brief_information, String description, String img, String sortdesc, String supplierID) {
+        this.id = id;
+        this.name = name;
+        this.categoryid = categoryid;
+        this.price = price;
+        this.salePrice = salePrice;
+        this.stock = stock;
+        this.brief_information = brief_information;
+        this.description = description;
+        this.img = img;
+        this.sortdesc = sortdesc;
+        this.supplierID = supplierID;
+    }
+
+    public Product(int id, String name, int categoryid, float price, float salePrice, int stock, String brief_information, String description, String img, String sortdesc, String supplierID, String view, String like) {
+        this.id = id;
+        this.name = name;
+        this.categoryid = categoryid;
+        this.price = price;
+        this.salePrice = salePrice;
+        this.stock = stock;
+        this.brief_information = brief_information;
+        this.description = description;
+        this.img = img;
+        this.sortdesc = sortdesc;
+        this.supplierID = supplierID;
+        this.view = view;
+        this.like = like;
+    }
+
+    public String getView() {
+        return view;
+    }
+
+    public void setView(String view) {
+        this.view = view;
+    }
+
+    public String getLike() {
+        return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
+
+    public String getSupplierID() {
+        return supplierID;
+    }
+
+    public void setSupplierID(String supplierID) {
+        this.supplierID = supplierID;
+    }
+    
     public float getSalePrice() {
         return salePrice;
     }

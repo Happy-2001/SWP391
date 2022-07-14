@@ -20,7 +20,7 @@
         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
         <!-- Bootstrap CSS -->
-       
+
         <!-- Site CSS -->
         <link rel="stylesheet" href="css/style.css">
         <!-- Responsive CSS -->
@@ -29,10 +29,10 @@
         <link rel="stylesheet" href="css/custom.css">
 
         <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
-    
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 
     </head>
@@ -62,12 +62,34 @@
                 </select>
             </div>
             <div class="mb-3">
+                <label for="supplier" class="form-label">Supplier</label>
+                <select class="form-select form-control" id="category" name="categoryId">
+                    <option selected>Select Supplier</option>
+                    <c:forEach items="${suppliers}" var="c">
+                        <c:if test="${product.supplierID eq c.id}">
+                            <option value="${c.id}" selected>${c.contactName}</option>
+                        </c:if>
+                        <c:if test="${product.supplierID ne c.id}">
+                            <option value="${c.id}">${c.contactName}</option>
+                        </c:if>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" class="form-control" id="price" name="productPrice" value="${product.price}" required>
             </div>
             <div class="mb-3">
+                <label for="price" class="form-label">Sale Price</label>
+                <input type="number" class="form-control" id="price" name="productPrice" value="${product.salePrice}" required>
+            </div>
+            <div class="mb-3">
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" class="form-control" id="stock" name="productStock" value="${product.stock}" required>
+            </div>
+            <div class="mb-3">
+                <label for="brief_information" class="form-label">Brief Information</label>
+                <textarea name="brief_information" id="brief_information" class="form-control"  rows="10">${product.brief_information}</textarea>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -78,15 +100,23 @@
                 <label for="sortdescription" class="form-label">Sort description</label>
                 <textarea name="sortdescription" id="sortdescription" class="form-control"  rows="6">${product.sortdesc}</textarea>
             </div>
-
+            <div class="mb-3">
+                <label for="view" class="form-label">Views</label>
+                <input type="number" class="form-control" id="view" name="view" value="${product.view}" required>
+            </div>
+            <div class="mb-3">
+                <label for="like" class="form-label">Likes</label>
+                <input type="number" class="form-control" id="like" name="like" value="${product.like}" required>
+            </div>
+            <input type="hidden" name="image" id="imagefile" value="">
+            <img style="width: 30%" id="imagedisplay" src="${product.img}"/>
             <div id="inputfile" class="form-group mb-3">
                 <div class="form-group">
                     <label for="file" class="form-label">Image url</label>
                     <input class="form-control" type="file" name="file" id="file" />
                 </div>
             </div>
-            <input type="hidden" name="image" id="imagefile" value="">
-            <img id="imagedisplay" src="${product.img}"/>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
@@ -155,8 +185,8 @@
 
         <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
         <!-- ALL JS FILES -->
-        
-      
+
+
         <script>
             $(document).ready(function () {
                 $("input[name='file']").change(function () {

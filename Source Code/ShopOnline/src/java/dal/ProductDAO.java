@@ -340,16 +340,23 @@ public class ProductDAO {
 
     public void addProduct(Product p) {
         try {
-            String sql = "INSERT INTO `products` (`product_name`, `category_id`, `unit_price`, `unitsln_stock`, `description`, `url`, `description-short`) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `products` ( `product_name`, `category_id`, `unit_price`, `sale_price`, `unitsln_stock`, `discontinued`, `brief_information`, `description`, `url`, `description-short`, `views`, `quantityLike`, `supplierID`) VALUES"
+                    + "(?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?);";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setString(1, p.getName()); //name
-            statement.setInt(2, p.getCategoryid()); //category id
-            statement.setFloat(3, p.getPrice()); //unit price
-            statement.setInt(4, p.getStock()); //stock
-            statement.setString(5, p.getDescription()); //description
-            statement.setString(6, p.getImg()); // image
-            statement.setString(7, p.getSortdesc());
+            statement.setString(1, p.getName());
+            statement.setInt(2, p.getCategoryid());
+            statement.setFloat(3, p.getPrice());
+            statement.setFloat(4, p.getSalePrice());
+            statement.setInt(5, p.getStock());
+            statement.setString(6, null);
+            statement.setString(7, p.getBrief_information());
+            statement.setString(8, p.getDescription());
+            statement.setString(9, p.getImg());
+            statement.setString(10, p.getSortdesc());
+            statement.setString(11, "0");
+            statement.setString(12, "0");
+            statement.setString(13, p.getSupplierID());
+            
             statement.executeUpdate();
         } catch (SQLException ex) {
 
@@ -359,13 +366,14 @@ public class ProductDAO {
     }
 
     public Product findById(String id) {
+        Product p = new Product();
         try {
             String sql = "SELECT * FROM `products` WHERE `products`.`product_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Product p = new Product();
+                
                 p.setId(rs.getInt("product_id"));
                 p.setName(rs.getString("product_name"));
                 p.setCategoryid(rs.getInt("category_id"));
@@ -375,14 +383,16 @@ public class ProductDAO {
                 p.setDescription(rs.getString("description"));
                 p.setImg(rs.getString("url"));
                 p.setSortdesc(rs.getString("description-short"));
-                return p;
+                p.setSupplierID(rs.getString("supplierID "));
+                p.setBrief_information(rs.getString("brief_information"));
+                
             }
         } catch (SQLException ex) {
 
         } finally {
             mysqlConnect.disconnect();
         }
-        return null;
+        return p;
     }
 
     public void update(Product p) {
@@ -395,6 +405,7 @@ public class ProductDAO {
                     + "`description` = ?, "
                     + "`url` = ?, "
                     + "`description-short` = ? "
+                    + "`supplierID` = ? "
                     + "WHERE `products`.`product_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, p.getName());
@@ -404,7 +415,8 @@ public class ProductDAO {
             statement.setString(5, p.getDescription());
             statement.setString(6, p.getImg());
             statement.setString(7, p.getSortdesc());
-            statement.setInt(8, p.getId());
+            statement.setString(8, p.getSupplierID());
+            statement.setInt(9, p.getId());
             statement.executeUpdate();
 
         } catch (SQLException ex) {
@@ -426,6 +438,10 @@ public class ProductDAO {
                 p.setId(rs.getInt("product_id"));
                 p.setName(rs.getString("product_name"));
                 p.setPrice(rs.getFloat("unit_price"));
+                p.setDescription(rs.getString("description"));
+                p.setSupplierID(rs.getString("supplierID"));
+                p.setView(rs.getString("views"));
+                p.setLike(rs.getString("quantityLike"));
                 p.setImg(rs.getString("url"));
                 lc.add(p);
             }

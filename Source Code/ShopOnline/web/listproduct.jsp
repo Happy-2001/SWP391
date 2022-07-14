@@ -65,7 +65,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Description</th>
+                     
                         <th scope="col">Image</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -74,9 +74,9 @@
                     <c:forEach items="${products}" var="product">
                         <tr>
                             <td>${product.id}</td>
-                            <td>  <a class="link-profile" href="DetailProductcontroller?idproduct=${product.id}">${product.name} </a> </td>
+                            <td>  <a class="link-profile" href="productDetail?product_id=${product.id}" style="color: white">${product.name} </a> </td>
                             <td>${product.price}</td>
-                            <td>${product.description}</td>
+                           
                             <td>
                                 <img src="${product.img}" style="width: 100px !important; height: 100px !important;" class="img-thumbnail">
                             </td>
