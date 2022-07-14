@@ -69,7 +69,7 @@ public class ListProductController extends HttpServlet {
                 request.setAttribute("sort", sort);
                 request.setAttribute("products", productsForEachPage);
             }
-            request.getRequestDispatcher("listproduct.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/listproduct.jsp").forward(request, response);
         }
     }
 
@@ -122,7 +122,7 @@ public class ListProductController extends HttpServlet {
         String query = request.getParameter("search").trim();
         List<Product> products = productDAO.findByName(query);
         request.setAttribute("products", products);
-        request.getRequestDispatcher("listproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/listproduct.jsp").forward(request, response);
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response)
@@ -130,7 +130,7 @@ public class ListProductController extends HttpServlet {
         ProductCategoryDAO categoryDAO = new ProductCategoryDAO();
         List<Category> categories = categoryDAO.listAll();
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("addproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/addproduct.jsp").forward(request, response);
     }
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)
@@ -142,7 +142,7 @@ public class ListProductController extends HttpServlet {
         List<Category> categories = categoryDAO.listAll();
         request.setAttribute("product", product);
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("editproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/editproduct.jsp").forward(request, response);
     }
 
 }

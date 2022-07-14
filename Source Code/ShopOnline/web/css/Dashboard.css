@@ -107,6 +107,7 @@ ul, li{
 .menu-bar, .main{
     background-color: #f5f4fe;
     padding: 100px 30px 30px;
+    height: inherit;
     overflow: hidden;
 }
 .menu-bar{
@@ -128,6 +129,7 @@ ul, li{
     position: fixed;
         height: 100%;
     width: inherit;
+    
 }
 .menu-links li a {
     display: flex;

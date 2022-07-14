@@ -8,7 +8,6 @@ package controller;
 import dal.SlideDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +19,8 @@ import model.Slide;
  *
  * @author Administrator
  */
-@WebServlet(name = "ManageSlider", urlPatterns = {"/slider"})
-public class ManageSlider extends HttpServlet {
+@WebServlet(name = "AddSlideController2", urlPatterns = {"/addslide"})
+public class AddSlideController2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class ManageSlider extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageSlider</title>");            
+            out.println("<title>Servlet AddSlideController2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageSlider at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddSlideController2 at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,35 +59,38 @@ public class ManageSlider extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        SlideDAO sld = new SlideDAO();
-        List<Slide> slides =  sld.listSlide();
-        request.setAttribute("slides", slides);
-        request.getRequestDispatcher("admin/listslide.jsp").forward(request, response);
+            throws ServletException, IOException {
+        request.getRequestDispatcher("admin/addslide.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        String button = request.getParameter("button");
+        String image = request.getParameter("image");
+        String heading = request.getParameter("heading");
+        String description = request.getParameter("description");
+        String url = request.getParameter("url");
+        String status = request.getParameter("status");
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        if (status == null) {
+            status = "0";
+        }
+
+        Slide s = new Slide();
+        s.setNamebutton(button);
+        s.setImg(image);
+        s.setHeading(heading);
+        s.setDescription(description);
+        s.setUrl(url);
+        s.setStatus(status.equals("1"));
+
+        SlideDAO sdb = new SlideDAO();
+
+        sdb.insert(s);
+
+        response.sendRedirect("listslide");
+
+    }
 
 }

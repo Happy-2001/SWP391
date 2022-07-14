@@ -18,8 +18,8 @@ import model.GroupChat;
 import model.Message;
 import model.User;
 
-
 public class MessageController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class MessageController extends HttpServlet {
             GroupDAO gdao = new GroupDAO();
             RoleDAO rdao = new RoleDAO();
             AddressDAO adao = new AddressDAO();
-            
+
             List<String> listAdminID = udao.listUserAdminID();
             List<String> listUserAdminID = udao.listUserAdminID();
             ArrayList<GroupChat> listGroupChat = gdao.getGroupChat();
@@ -60,27 +60,30 @@ public class MessageController extends HttpServlet {
                 if (creator.getUserid() == user.getUserid()) {
                     groupChat.setCreatorMessage("You: ");
                 }
-                if(groupChat.getContent().length() > 15){
-                    String newContent = groupChat.getContent().substring(0, 15)+"...";
+                if (groupChat.getContent().length() > 15) {
+                    String newContent = groupChat.getContent().substring(0, 15) + "...";
                     groupChat.setContent(newContent);
                 }
-                
-               
+
                 groupChat.setCustomerID(gdao.getCustomerIDbyGroupID(groupChat.getGroupID()));  /// truyền id khách hàng trong group chat
 //                response.getWriter().println(groupChat.getGroupID() + " || "+ groupChat.getCustomerID());
-                 groupChat.setEaID(adao.getEaIDbyUserID(groupChat.getCustomerID()));
+                groupChat.setEaID(adao.getEaIDbyUserID(groupChat.getCustomerID()));
 //                                 response.getWriter().println(groupChat.getEaID() + " || "+ groupChat.getCustomerID());
                 groupChat.setCreatorIDMessage(groupChat.getMessageID());
             }
-
+            
             request.setAttribute("listGroupChat", listGroupChat);
             request.setAttribute("listUserAdminID", listUserAdminID);
             request.setAttribute("mrID", mrID);
             ArrayList<Message> listMessage = mdao.getAllMessageofUser(groupID, String.valueOf(user.getUserid()));
-            request.setAttribute("listMess", listMessage);
-            for (GroupChat m : listGroupChat) {
-                response.getWriter().println(m.getCreatorMessage() + " 9");
+            for (Message message : listMessage) {
+                    if (!listUserAdminID.contains(message.getFromID())) {
+                        mdao.readMess(message.getToID(), message.getId());
+                        message.setIsread("1");
+                    }
             }
+            request.setAttribute("listMess", listMessage);
+           
             request.getRequestDispatcher("admin/message.jsp").forward(request, response);
         }
     }
@@ -90,6 +93,7 @@ public class MessageController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 //        String content = new
+        UserDAO udao = new UserDAO();
         MessageDAO mdao = new MessageDAO();
         GroupDAO gdao = new GroupDAO();
         HttpSession session = request.getSession();
@@ -103,21 +107,23 @@ public class MessageController extends HttpServlet {
             String fromid = getFROMandTOsplit[0];
             String parentMessageID = request.getParameter("parentMessageID");
             response.getWriter().print(parentMessageID);
-            if(parentMessageID.equals("")){
+            if (parentMessageID.equals("")) {
                 mdao.addMessage(fromid, content);
-            }else{
+            } else {
                 mdao.addMessageWithParent(fromid, content, parentMessageID);
             }
 //            response.getWriter().print(fromid+"||"+toid+"||"+content+"|"+parentMessageID.equals(""));
-            
+
             String maxMessID = mdao.getMaxMessIDb();
             mdao.addRecipientMessage(toid, maxMessID);
             String maxmrID = mdao.getMaxmrID();
-            if (getFROMandTOsplit.length == 4) {                 // check chuyển hướng sang message.jsp  tính nhắn gần nhất
+            if (getFROMandTOsplit.length == 4) {           //Admin      // check chuyển hướng sang message.jsp  tính nhắn gần nhất
+                ArrayList<Message> listMessage = mdao.getAllMessageofUser(toid, fromid); // groupID , userID
+                List<String> listUserAdminID = udao.listUserAdminID();
+                
                 response.sendRedirect("message?mrID=" + maxmrID);
-            } else {
-                
-                
+            } else {                                        //Customer
+
                 response.sendRedirect("home");
 
             }
