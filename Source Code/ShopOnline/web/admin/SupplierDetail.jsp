@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -291,19 +291,7 @@
                                                         <input type="text" class="form-control" value="">
                                                     </div>
                                                     
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Province</label>
-                                                        <div class="d-flex gap-3">
-                                                            <select class="form-select">
-                                                                <c:forEach items="${province}" var="prv">
-                                                                    <c:if test="${prv.name eq supAdd.sup_add.proID.name}">
-                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.proID.name}</option>
-                                                                    </c:if>
-                                                                    <option value="${prv.id}">${prv.name}</option>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
@@ -312,8 +300,17 @@
                                                     </div>
                                                     
                                                     <div class="mb-3">
-                                                        <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="Việt Nam">
+                                                        <label class="form-label">Province</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${provinces}" var="prv">
+                                                                    <c:if test="${prv.name eq supAdd.sup_add.proID.name}">
+                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.proID.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${prv.id}">${prv.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">

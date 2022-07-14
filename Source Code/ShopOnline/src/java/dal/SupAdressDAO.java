@@ -28,7 +28,7 @@ public class SupAdressDAO extends DBConnect {
     DBConnect mysqlConnect = new DBConnect();
 
     public SupDetail getSupAdressById(int id) {
-        String sql = "SELECT sup.supplierID,sup.companyName, sup.contactName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,supadd.districtID,supadd.wardID,supadd.streetID,supadd.projectID,supadd.addressDetail,eca.telephone,eca.fax,eca.email from\n"
+        String sql = "SELECT sup.supplierID,sup.companyName, sup.contactName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,uad._name,supadd.districtID,supadd.wardID,supadd.streetID,supadd.projectID,supadd.addressDetail,eca.telephone,eca.fax,eca.email from\n"
                 + "(((`suppliers` AS sup INNER JOIN `supplier_address` AS supadd ON supadd.supplierID=sup.supplierID)\n"
                 + "INNER JOIN\n"
                 + "(SELECT * FROM `province` JOIN `supplier_address`\n"
@@ -45,7 +45,8 @@ public class SupAdressDAO extends DBConnect {
                 u.setSup(new Suppliers(rs.getInt("sup.supplierID"),rs.getString("sup.companyName"),rs.getString("sup.contactName"),
                                        rs.getString("sup.contactTitle"),rs.getDate("sup.DOB"),
                                        rs.getInt("sup.gender"),rs.getInt("sup.creator")));
-                u.setSup_add(new Supplier_address(new District(rs.getInt("supadd.districtID")),
+                u.setSup_add(new Supplier_address(new Provinces(rs.getString("uad._name")),
+                                                  new District(rs.getInt("supadd.districtID")),
                                                   new Ward(rs.getInt("supadd.wardID")),
                                                   new Street(rs.getInt("supadd.streetID")),
                                                   new project(rs.getString("supadd.projectID")),

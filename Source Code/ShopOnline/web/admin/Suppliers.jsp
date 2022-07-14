@@ -143,6 +143,8 @@
                                 <th>Date</th>
                                 <th>Gender</th>
                                 <th>Creator</th>
+                                <th>Creator</th>
+                                <th>Creator</th>
                                 <th class="text-end">Actions</th>
                             </tr>
                             </thead>
@@ -159,6 +161,8 @@
                                         <td>${sup.dob}</td>
                                         <td>${sup.gender}</td>
                                         <td>${sup.creator}</td>
+                                        <td>${sup.createOn}</td>
+                                        <td>${sup.updateOn}</td>
                                         <td class="text-end">
                                             <div class="px-3">
                                                 <a href="#link"><i class="fa-solid fa-trash-can"></i></a>

@@ -118,12 +118,14 @@ public class Suppliers {
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
     }
-    
 
     @Override
     public String toString() {
-        return "Suppliers{" + "id=" + id + ", name=" + name + ", contactName=" + contactName + ", contactTitle=" + contactTitle + ", dob=" + dob + ", gender=" + gender + ", creator=" + creator + '}';
+        return "Suppliers{" + "id=" + id + ", name=" + name + ", contactName=" + contactName + ", contactTitle=" + contactTitle + ", dob=" + dob + ", gender=" + gender + ", creator=" + creator + ", createOn=" + createOn + ", updateOn=" + updateOn + '}';
     }
+    
+
+    
     
     
 }

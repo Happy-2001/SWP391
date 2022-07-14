@@ -23,7 +23,8 @@ public class Supplier_address {
     
     }
 
-    public Supplier_address(District disID, Ward wardID, Street streetID, project projectID, String addDetail) {
+    public Supplier_address(Provinces  proID,District disID, Ward wardID, Street streetID, project projectID, String addDetail) {
+        this.proID=proID;
         this.disID = disID;
         this.wardID = wardID;
         this.streetID = streetID;

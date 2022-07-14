@@ -40,13 +40,14 @@ public class SupplierDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         
         String id = request.getParameter("supID");
         
         SuppliersDAO supDAO = new SuppliersDAO();
         Suppliers sup = supDAO.getSupById(Integer.parseInt(id));
         
         SupAdressDAO supaddressDAO = new SupAdressDAO();
-        SupDetail supAdd  = supaddressDAO.getSupAdressById(Integer.parseInt(id));
+        SupDetail supAdd  = supaddressDAO.getSupAdressById(sup.getId());
         
         AddressDAO dbb = new AddressDAO();
         ArrayList<Provinces> province = dbb.getProvince();
@@ -74,6 +75,7 @@ public class SupplierDetailController extends HttpServlet {
         request.setAttribute("provinces", province);
         
         request.getRequestDispatcher("SupplierDetail.jsp").forward(request, response);
+         
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
