@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nguye
  */
-public class Supplier2Controller extends HttpServlet {
+public class SupplierListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +31,8 @@ public class Supplier2Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("admin/Supplier2.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            request.getRequestDispatcher("SupplierTop.jsp").forward(request, response);
         }
     }
 

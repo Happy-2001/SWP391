@@ -185,8 +185,8 @@
         <servlet-class>controller.EditPost</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Supplier2Controller</servlet-name>
-        <servlet-class>controller.Supplier2Controller</servlet-class>
+        <servlet-name>SupplierListController</servlet-name>
+        <servlet-class>controller.SupplierListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -373,8 +373,8 @@
         <url-pattern>/EditPost</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Supplier2Controller</servlet-name>
-        <url-pattern>admin/Supplier2</url-pattern>
+        <servlet-name>SupplierListController</servlet-name>
+        <url-pattern>/admin/SupplierListController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
