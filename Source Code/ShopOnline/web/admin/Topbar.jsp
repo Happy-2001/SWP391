@@ -26,9 +26,30 @@
             </div>
             <div class="col-lg-2">
                 <div class="user-head">
-                    <div class="notifications">
-                        <a href="#"><i class="fa-regular fa-bell icon"></i></a>
-                        <span class="badge-num">2</span>
+                    <div class="dropdown">
+                        <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
+                                           url="jdbc:mysql://localhost:3306/shop2"
+                                           user="root"  password=""/>
+
+                        <sql:query dataSource="${db}" var="rs">
+                            SELECT * FROM `orders` 
+                            WHERE `orders`.`status` = 'pending'
+                        </sql:query>
+                        <div class="notifications" data-bs-toggle="dropdown">
+                            <a href="#"><i class="fa-regular fa-bell icon"></i></a>
+                            <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <c:forEach var="tb" items="${rs.rows}">
+                                <a href="#" class="dropdown-item d-flex flex-column">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-circle fa-2xs" style="color: #0099c6;"></i>
+                                        <span class="ps-3" style="font-size: 16px;">New order No. <strong>#${tb.order_id}</strong></span>
+                                    </div>
+                                    <p class="small ps-4" style="color: #0099c6;">${tb.order_date}</p>
+                                </a>
+                            </c:forEach>
+                        </div>
                     </div>
                     <div class="messages">
                         <a href="#"><i class="fa-regular fa-envelope icon"></i></a>
