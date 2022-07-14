@@ -98,7 +98,6 @@ public class SettingList extends HttpServlet {
         }else{
             list = pdb.getProductByPageNumber(pageNumber);
         }
-        
              //get list courses for each pageNumber
         request.setAttribute("productsForEachPage", list);
 
