@@ -13,17 +13,47 @@ import java.sql.Date;
  */
 public class Blog {
     private int id;
-    private Date createdDate;
+    private String createdDate;
     private String content;
     private String description;
     private String noidung;
     private String image;
     private int categoryId;
+    private int uid;
 
     public Blog() {
     }
 
-    public Blog(int id, Date createdDate, String content, String description, String image, int categoryId) {
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public Blog(String createdDate, String content, String description, String noidung, String image, int categoryId, int uid) {
+        this.createdDate = createdDate;
+        this.content = content;
+        this.description = description;
+        this.noidung = noidung;
+        this.image = image;
+        this.categoryId = categoryId;
+        this.uid = uid;
+    }
+
+    public Blog(int id, String createdDate, String content, String description, String noidung, String image, int categoryId, int uid) {
+        this.id = id;
+        this.createdDate = createdDate;
+        this.content = content;
+        this.description = description;
+        this.noidung = noidung;
+        this.image = image;
+        this.categoryId = categoryId;
+        this.uid = uid;
+    }
+
+    public Blog(int id, String createdDate, String content, String description, String image, int categoryId) {
         this.id = id;
         this.createdDate = createdDate;
         this.content = content;
@@ -32,7 +62,7 @@ public class Blog {
         this.categoryId = categoryId;
     }
 
-    public Blog(int id, Date createdDate, String content, String description, String image) {
+    public Blog(int id, String createdDate, String content, String description, String image) {
         this.id = id;
         this.createdDate = createdDate;
         this.content = content;
@@ -41,7 +71,7 @@ public class Blog {
         this.categoryId = categoryId;
     }
 
-    public Blog(int id, Date createdDate, String content, String description, String noidung, String image, int categoryId) {
+    public Blog(int id, String createdDate, String content, String description, String noidung, String image, int categoryId) {
         this.id = id;
         this.createdDate = createdDate;
         this.content = content;
@@ -50,7 +80,7 @@ public class Blog {
         this.image = image;
         this.categoryId = categoryId;
     }
-    public Blog(Date createdDate, String content, String description, String noidung, String image, int categoryId) {
+    public Blog(String createdDate, String content, String description, String noidung, String image, int categoryId) {
         this.createdDate = createdDate;
         this.content = content;
         this.description = description;
@@ -74,11 +104,11 @@ public class Blog {
         this.id = id;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
