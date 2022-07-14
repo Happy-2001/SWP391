@@ -118,14 +118,16 @@ ul, li{
     top: 0;
     left: 0;
     z-index: 99 !important;
+    
+    
 }
 .menu-bar::-webkit-scrollbar{
     display: none;
 }
 .menu-bar .menu{
     position: fixed;
-    height: 100%;
-    width: 350px;
+        height: 100%;
+    width: inherit;
 }
 .menu-links li a {
     display: flex;
