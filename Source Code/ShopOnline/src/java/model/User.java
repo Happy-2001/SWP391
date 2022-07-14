@@ -177,4 +177,12 @@ public class User {
     public String getFullname(){
         return (firstname+" "+middlename+" "+lastname).trim();
     }
+
+    public String getCode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setCode(String random) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

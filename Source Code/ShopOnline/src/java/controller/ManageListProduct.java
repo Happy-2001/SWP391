@@ -83,7 +83,7 @@ public class ManageListProduct extends HttpServlet {
                 request.setAttribute("sort", sort);
                 request.setAttribute("products", productsForEachPage);
             }
-            request.getRequestDispatcher("listproduct.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/listproduct.jsp").forward(request, response);
         }
     }
 
@@ -146,7 +146,7 @@ public class ManageListProduct extends HttpServlet {
         String query = request.getParameter("search").trim();
         List<Product> products = productDAO.findByName(query);
         request.setAttribute("products", products);
-        request.getRequestDispatcher("listproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/listproduct.jsp").forward(request, response);
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response)
@@ -157,7 +157,7 @@ public class ManageListProduct extends HttpServlet {
         List<Suppliers> suppliers = supdao.listSupplier();
         request.setAttribute("categories", categories);
         request.setAttribute("suppliers", suppliers);
-        request.getRequestDispatcher("addproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/addproduct.jsp").forward(request, response);
     }
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)
@@ -172,7 +172,7 @@ public class ManageListProduct extends HttpServlet {
         request.setAttribute("product", product);
         request.setAttribute("categories", categories);
         request.setAttribute("suppliers", suppliers);
-        request.getRequestDispatcher("editproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/editproduct.jsp").forward(request, response);
     }
 
 }

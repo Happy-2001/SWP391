@@ -97,6 +97,8 @@ public class MessageDAO {
         return list;
     }
     
+    
+    
     public Message getLastMessage(String groupID, String userID) {
         Message s = new Message();
         try {
@@ -278,13 +280,14 @@ public class MessageDAO {
             mysqlConnect.disconnect();
         }
     }
-    public void readMess( String id) {       // chỉ xóa nội dung
+    public void readMess( String groupID,String messageID) {       // chỉ xóa nội dung
         try {
-            String sql = "UPDATE `message_recipient` SET `isRead` = '1' WHERE `mrID` = ?";
+            String sql = "UPDATE `message_recipient` SET `isRead` = '1' WHERE `recipientGroupID ` = ? and `messageID ` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
             
-            statement.setString(1, id);
+            statement.setString(1, groupID);
+            statement.setString(2, messageID);
             statement.executeUpdate();
         } catch (Exception e) {
         } finally {

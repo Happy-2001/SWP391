@@ -64,7 +64,7 @@ public class EditSlide extends HttpServlet {
         String id = request.getParameter("id");
         request.setAttribute("s", sdb.getById(id));
         request.setAttribute("id", id);
-        request.getRequestDispatcher("editslide.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/editslide.jsp").forward(request, response);
     }
     
     

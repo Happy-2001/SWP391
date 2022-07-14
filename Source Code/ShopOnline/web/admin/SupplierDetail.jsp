@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +20,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
+        <c:set var="SuppliersActive" value="active"/>
+
     <%@include file="Topbar.jsp" %>
         
     <div class="container-fluid">
@@ -127,7 +129,7 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="CusController">Customers</a>
+                            <a href="SuppliersController">Suppliers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
@@ -136,13 +138,13 @@
                     <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=${supAdd.sup.id}" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5></h5>
+                                <h5>${supAdd.sup.name}</h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -155,7 +157,7 @@
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
-                                        <input type="hidden" name="cusID" value="">
+                                        <input type="hidden" name="cusID" value="${supAdd.sup.id}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -229,40 +231,51 @@
                                                     <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="">
+                                                            <label class="form-label">Company Name</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup.name}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="">
+                                                            <label class="form-label">Contact Name</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup.contactName}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="">
+                                                            <label class="form-label">Contact Title</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup.contactTitle}">
                                                         </div>
-                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Gender</label>
+                                                            <div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio1" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio2" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="inlineRadio3" name="inlineRadio" class="form-check-input">
+                                                                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Role</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="">Admin</option>
-                                                                <option value="">User</option>
-                                                                <option value="" selected>Customer</option>
-                                                            </select>
+                                                            <label class="form-label">Creator</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup.creator}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Status</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="" selected>Active</option>
-                                                                <option value="">Blocked</option>
-                                                            </select>
+                                                            <label class="form-label">Create On</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup.createOn}" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Update On</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup.updateOn}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
-                                                            <input type="date" class="form-control" value="">
+                                                            <input type="date" class="form-control" value="${supAdd.sup.dob}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -286,9 +299,48 @@
                                                 </div>
                                                 <div class="row">
                                                 <div class="col-md-6">
+                                                    
+                                                    
                                                     <div class="mb-3">
-                                                        <label class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" value="">
+                                                        <label class="form-label">Province</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${province}" var="prv">
+                                                                    <c:if test="${prv.name eq supAdd.sup_add.proID.name}">
+                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.proID.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${prv.id}">${prv.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Ward</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${ward}" var="ward">
+                                                                    <c:if test="${ward.subDistrictID eq supAdd.sup_add.wardID.subDistrictID}">
+                                                                        <option value="${ward.subDistrictID}" selected>${ward.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label">District</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${district}" var="dis">
+                                                                    <c:if test="${dis.districtID eq supAdd.sup_add.disID.districtID}">
+                                                                        <option value="${dis.districtID}" selected>${dis.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${dis.districtID}">${dis.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     
                                                     
@@ -300,22 +352,13 @@
                                                     </div>
                                                     
                                                     <div class="mb-3">
-                                                        <label class="form-label">Province</label>
-                                                        <div class="d-flex gap-3">
-                                                            <select class="form-select">
-                                                                <c:forEach items="${provinces}" var="prv">
-                                                                    <c:if test="${prv.name eq supAdd.sup_add.proID.name}">
-                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.proID.name}</option>
-                                                                    </c:if>
-                                                                    <option value="${prv.id}">${prv.name}</option>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </div>
+                                                        <label class="form-label">Country</label>
+                                                        <input type="text" class="form-control" value="Việt Nam">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" value="">
+                                                    <input type="text" class="form-control" value="${cus.uad.addressDetail}">
                                                 </div>
                                             </div>
                                             </div>
