@@ -134,9 +134,8 @@
                                 <th>Fullname</th>
                                 <th>Email</th>
                                 <th>Province</th>
-                                <th>Date</th>
                                 <th>Status</th>
-                                <th class="text-end">Actions</th>
+                                <th>Date</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -164,15 +163,10 @@
                                         <td>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}</td>
                                         <td>${cus.us.email}</td>
                                         <td>${cus.uad.province.name}</td>
-                                        <td></td>
                                         <td>
                                             <span class="badge bg-success">Active</span>
                                         </td>
-                                        <td class="text-end">
-                                            <div class="px-3">
-                                                <a href="#link"><i class="fa-solid fa-trash-can"></i></a>
-                                            </div>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                         
                                     </c:if>

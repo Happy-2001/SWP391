@@ -41,7 +41,20 @@ public class OrderDetailController extends HttpServlet {
         String id = request.getParameter("id");
         OrderDAO dao = new OrderDAO();
         ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
-        request.setAttribute("order", o);
+        Orders oder = dao.getLatestByID(Integer.parseInt(id));
+        
+        double total = 0;
+        for (Orders od : o) {
+            total = total + od.getQuantity()*od.getProduct().getSalePrice();
+        }
+        double vat = 0.1 * total;
+        request.setAttribute("total", total);
+        request.setAttribute("vat", vat);
+        request.setAttribute("sum", total + vat);
+        
+        request.setAttribute("orderlist", o);
+        request.setAttribute("order", oder);
+        
         request.getRequestDispatcher("OrderDetails.jsp").forward(request, response);
     }
 

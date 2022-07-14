@@ -32,8 +32,9 @@
                                            user="root"  password=""/>
 
                         <sql:query dataSource="${db}" var="rs">
-                            SELECT * FROM `orders` 
+                            SELECT * FROM `orders`
                             WHERE `orders`.`status` = 'pending'
+                            ORDER BY order_date DESC
                         </sql:query>
                         <div class="notifications" data-bs-toggle="dropdown">
                             <a href="#"><i class="fa-regular fa-bell icon"></i></a>

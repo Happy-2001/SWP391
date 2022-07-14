@@ -2,6 +2,7 @@ package controller;
 
 import dal.AddressDAO;
 import dal.CustomerDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Customers;
 import model.District;
+import model.Orders;
 import model.Provinces;
 import model.SubDistrict;
 
@@ -46,10 +48,16 @@ public class CusDetailController extends HttpServlet {
         }
         ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
         
+        OrderDAO odb = new OrderDAO();
+        Orders od = odb.getLatestByCusID(Integer.parseInt(id));
+        ArrayList<Orders> order = odb.getOrderById(od.getOrderID());
+        
         request.setAttribute("cus", cus);
         request.setAttribute("province", province);
         request.setAttribute("district", district);
         request.setAttribute("ward", ward);
+        request.setAttribute("orders", order);
+        request.setAttribute("orderDate", od.getOrderDate());
         
         request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
     }

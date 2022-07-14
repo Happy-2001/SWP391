@@ -33,10 +33,11 @@ public class OrderDAO extends DBConnect {
                 c.setRequireDate(rs.getString("require_date"));
                 c.setShippedDate(rs.getString("shipped_date"));
                 c.setCustomerId(rs.getInt("customerID"));
+                c.setStatus(rs.getString("status"));
                 Orderlist.add(c);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -150,6 +151,72 @@ public class OrderDAO extends DBConnect {
                     "ORDER BY order_date DESC LIMIT 1";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setUser(new User(rs.getInt("o.customerID"), rs.getString("ua.first_name"),
+                                    rs.getString("ua.middle_name"), rs.getString("ua.last_name")));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+    
+    public Orders getLatestByCusID(int cid) {
+        String sql = "SELECT o.order_id, o.order_date, o.require_date,\n" +
+                    "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
+                    "ua.first_name, ua.middle_name, ua.last_name\n" +
+                    "FROM `orders` AS o\n" +
+                    "INNER JOIN `user_accounts` AS ua\n" +
+                    "ON o.customerID = ua.user_id\n" +
+                    "WHERE o.customerID = ?\n" +
+                    "ORDER BY order_date DESC LIMIT 1";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, cid);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setUser(new User(rs.getInt("o.customerID"), rs.getString("ua.first_name"),
+                                    rs.getString("ua.middle_name"), rs.getString("ua.last_name")));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+    
+    public Orders getLatestByID(int id) {
+        String sql = "SELECT o.order_id, o.order_date, o.require_date,\n" +
+                    "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
+                    "ua.first_name, ua.middle_name, ua.last_name\n" +
+                    "FROM `orders` AS o\n" +
+                    "INNER JOIN `user_accounts` AS ua\n" +
+                    "ON o.customerID = ua.user_id\n" +
+                    "WHERE o.order_id = ?\n" +
+                    "ORDER BY order_date DESC LIMIT 1";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 Orders c = new Orders();

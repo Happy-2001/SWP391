@@ -1,8 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -111,7 +112,7 @@
                         <li class="nav-link">
                             <a href="slider">
                                 <span class="nav-link-icon">
-                                <i class="fa-solid fa-sliders"></i>
+                                <i class="fa-solid fa-sliders fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Manage Slider</span>
                             </a>
@@ -380,47 +381,24 @@
                         <div class="col-md-5">
                             <div class="card">
                                 <div class="card-body">
-                                    <h6 class="card-title mb-4">Order</h6>
-                                    <div class="od-items">
-                                        <div class="od-date">
-                                            20-06-2022
-                                        </div>
-                                        <div class="items">
-                                            <div class="pd-img">
-                                                <img src="/images/1.jpg">
-                                            </div>
-                                            <div class="qty pe-3">
-                                                <h5>Adidas</h5>
-                                                <span>200.000</span>
-                                                <input type="text" value="1" disabled>
-                                                <span>Size: 40</span>
-                                                <span>
-                                                    Color: 
-                                                    <i class="fa-solid fa-square" style="color: blue;"></i>
-                                                </span>
+                                    <h6 class="card-title mb-3">Recent Order</h6>
+                                    <div class="od-date mb-3">${orderDate}</div>
+                                    <c:forEach items="${orders}" var="order">
+                                        <div class="od-items">
+                                            <div class="items">
+                                                <div class="pd-img">
+                                                    <img src="../${order.product.img}">
+                                                </div>
+                                                <div class="d-flex flex-column qty pe-3">
+                                                    <h5 class="p-0">${order.product.name}</h5>
+                                                    <span>Quantity: ${order.quantity}</span>
+                                                    <span>Size: </span>
+                                                    <span>Color: </span>
+                                                </div>
+                                                <fmt:formatNumber value="${order.product.salePrice}" type="currency"/>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="od-items">
-                                        <div class="od-date">
-                                            20-06-2022
-                                        </div>
-                                        <div class="items">
-                                            <div class="pd-img">
-                                                <img src="/images/1.jpg">
-                                            </div>
-                                            <div class="qty pe-3">
-                                                <h5>Adidas</h5>
-                                                <span>200.000</span>
-                                                <input type="text" value="1" disabled>
-                                                <span>Size: 40</span>
-                                                <span>
-                                                    Color: 
-                                                    <i class="fa-solid fa-square" style="color: blue;"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>

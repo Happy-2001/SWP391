@@ -36,7 +36,7 @@ public class MyOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       OrderDAO udb = new OrderDAO();
+        OrderDAO udb = new OrderDAO();
         List<Orders> Orderlist = udb.listAllOder();
         request.setAttribute("Orderlist", Orderlist);
         request.getRequestDispatcher("MyOrder.jsp").forward(request, response);

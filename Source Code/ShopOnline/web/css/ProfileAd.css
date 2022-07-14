@@ -108,9 +108,10 @@
     border-radius: 0.5rem;
     margin-bottom: 15px;
 }
-.od-items .items{
+.od-items .items {
     display: flex;
-    gap: 30px;
+    gap: 10px;
+    justify-content: space-between;
 }
 .pd-img {
     width: 100px;
