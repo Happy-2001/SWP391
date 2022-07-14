@@ -119,33 +119,51 @@
                 </ul>
             </div>
         </div>
-        <canvas id="myChart" style="width:100%;max-width:800px;margin-left: 500px"></canvas>
+        <div>
+            <div class="col-lg-3">
+                <c:forEach items="${suplist}" var="sup">
+                    <input class="form-check-input"  value="${sup.id}">
+                </c:forEach>
+            </div>
+            <div class="col-lg-9">
+                <canvas id="myChart" style="width:100%;max-width:800px;margin-left: 500px"></canvas>
 
-        <script>
-            
-            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                <script>
+                    var checkB = document.querySelectorAll(".form-check-input");
+                    for (let j = 0; j < checkB.length; j++) {
 
-            var yValues = [4, 3, 2, 2, 1, 0];
-            var barColors = ["red", "green", "blue", "orange", "brown"];
+                        var x = checkB[j].value;
 
-            new Chart("myChart", {
-                type: "bar",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
-                },
-                options: {
-                    legend: {display: false},
-                    title: {
-                        display: true,
-                        text: "Top 5 Supplier 2022"
                     }
-                }
-            });
-        </script>
+                    var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+
+                    var yValues = [4, 3, 2, 2, 1, 0];
+                    var barColors = ["red", "green", "blue", "orange", "brown"];
+
+                    new Chart("myChart", {
+                        type: "bar",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                    backgroundColor: barColors,
+                                    data: yValues
+                                }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            title: {
+                                display: true,
+                                text: "Top 5 Supplier 2022"
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+
+
+
 
     </body>
 </html>
