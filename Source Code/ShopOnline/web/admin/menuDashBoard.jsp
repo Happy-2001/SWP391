@@ -1,18 +1,18 @@
 <div class="col-lg-3 menu-bar">
                 <div class="menu">
                     <ul class="menu-links">
-                        <li class="nav-link">
-                            <a class="active" href="#">
+<!--                        <li class="nav-link">
+                            <a class="active${OrdersActive}" href="#">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-chart-simple"></i>
                                 </span>
                                 <span class="text nav-text">Dashboard</span>
                             </a>
-                        </li>
+                        </li>-->
         
                         <li class="nav-link">
-                            <a href="MyOrderController">
-                                <span class="nav-link-icon">
+                            <a class="${OrdersActive}" href="MyOrderController">
+                                <span class=" nav-link-icon">
                                     <i class="fa-solid fa-receipt fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Orders</span>
@@ -20,7 +20,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="/ShopOnline/listproduct">
+                            <a class="${ProductsActive}" href="/ShopOnline/listproduct">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-box fa-xl"></i>
                                 </span>
@@ -29,7 +29,7 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a href="CusController">
+                            <a class="${CustomersActive}" href="CusController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-user-group fa-xl"></i>
                                 </span>
@@ -38,7 +38,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="/ShopOnline/message">
+                            <a class="${ChatsActive}" href="/ShopOnline/message">
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -48,7 +48,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="#">
+                            <a class="${NotificationsActive}" href="#">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-bell fa-xl"></i>
                                 </span>
@@ -57,7 +57,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="FeedbackAd">
+                            <a class="${FeedbackActive}" href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
                                 </span>
@@ -66,7 +66,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="admin/userList.jsp">
+                            <a class="${AccountsActive}" href="admin/userList.jsp">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-circle-user fa-xl"></i>
                                 </span>
@@ -75,7 +75,7 @@
                         </li>
                         
                         <li class="nav-link">
-                            <a href="SuppliersController">
+                            <a class="${SuppliersActive}" href="SuppliersController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
                                 </span>
@@ -83,7 +83,7 @@
                             </a>
                         </li>
                         <li class="nav-link">
-                            <a href="/ShopOnline/slider">
+                            <a class="${ManageSliderActive}" href="/ShopOnline/slider">
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-sliders fa-xl"></i>
                                 </span>
@@ -92,7 +92,7 @@
                             </a>
                         </li>
                         <li class="nav-link">
-                            <a href="PostMan">
+                            <a class="${PostManagerActive}" href="PostMan">
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-sliders"></i>
                                 </span>

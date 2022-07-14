@@ -203,7 +203,8 @@ public class GroupDAO {
         LocalDateTime sendTime = LocalDateTime.parse("2022-06-29 00:12:12", dtf);
         String displayTime = "";
         GroupDAO gdao = new GroupDAO();
-        System.out.println(gdao.getCustomerIDbyGroupID("3"));
+        ArrayList<GroupChat> list = gdao.getGroupChat();
+        System.out.println(list.get(0).getIsRead());
 
     }
 }

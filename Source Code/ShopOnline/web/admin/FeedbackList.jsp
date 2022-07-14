@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
+    <c:set var="FeedbackActive" value="active"/>
     <%@include file="Topbar.jsp" %>
         
     <div class="container-fluid">
@@ -37,7 +38,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="/ShopOnline/MyOrderController">
+                            <a href="MyOrderController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-receipt fa-xl"></i>
                                 </span>
@@ -103,7 +104,7 @@
                         <li class="nav-link">
                             <a href="SuppliersController">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Suppliers</span>
                             </a>
@@ -112,7 +113,7 @@
                         <li class="nav-link">
                             <a href="slider">
                                 <span class="nav-link-icon">
-                                <i class="fa-solid fa-sliders"></i>
+                                <i class="fa-solid fa-sliders fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Manage Slider</span>
                                
@@ -124,7 +125,7 @@
             
             <!-- ------------ Main Content -------------- -->
             <div class="col-lg-9 main">
-                <div class="content ">
+                <div class="content">
                     <div class="row">
                         <div class="col-md-9">
                             <div class="row mb-4">
@@ -187,6 +188,7 @@
                                                                 <i class="fa-solid fa-ellipsis"></i>
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-end" style="margin: 0px;">
+                                                                <a class="dropdown-item" href="FeedbackDetails?fbID=${feedb.fbID}">View</a>
                                                                 <a class="dropdown-item" href="#">Mark as unread</a>
                                                                 <a class="dropdown-item" href="#">Done</a>
                                                                 <a class="dropdown-item text-danger" href="#">Delete</a>
@@ -204,16 +206,6 @@
                                     </c:forEach>
                                 </ul>
                             </div>
-                            
-                            <script>
-                                var checkB = document.querySelectorAll("#form-check");
-                                var box = document.querySelectorAll(".list-group-item");
-                                for (let i=0; i<checkB.length; i++){
-                                    box[i].onclick = function() {
-                                        window.location.href = "FeedbackDetails?fbID="+checkB[i].value;
-                                    };
-                                }
-                            </script>
                 
                             <nav aria-label="Page navigation">
                                 <c:if test="${countPage != null}">

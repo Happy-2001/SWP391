@@ -64,7 +64,7 @@ public class ManageSlider extends HttpServlet {
         SlideDAO sld = new SlideDAO();
         List<Slide> slides =  sld.listSlide();
         request.setAttribute("slides", slides);
-        request.getRequestDispatcher("listslide.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/listslide.jsp").forward(request, response);
     }
 
     /**

@@ -60,12 +60,12 @@ svg rect {
 }
 /* ===================================================================== */
 .message{
-/*    height: 460px !important;
-    width: 340px;*/
+    /*    height: 460px !important;
+        width: 340px;*/
     height: 460px;
     width: 340px;
     overflow-x: hidden;
-    
+
     background-color: white;
     z-index: 0100;
     position: fixed !important;
@@ -145,7 +145,7 @@ svg rect {
     max-width: 75%; 
     text-align: left;
     width: fit-content;
-    
+
 }
 .content_message .MYS{
     background-color: #ffe2d9;
@@ -199,9 +199,9 @@ p{
     height: 0;
     width: 0;
 
- 
+
     overflow-x: hidden;
-    
+
 }
 /* --------------------------------------------------- */
 .message .menu_message .send{
@@ -307,8 +307,8 @@ p{
 }
 img .avatar .avatarSeen  {
 
-    width: 10%;
-    height: 50%;
+    height: 1rem;
+    width: 1rem;
 
 }
 .fa-solid .fa-circle{
@@ -354,4 +354,7 @@ img .avatar .avatarSeen  {
     color: #E4E6EB !important;
     background-color: white !important;
     border: 1px solid #E4E6EB;
+}
+.flex-grow- span:last-of-type{
+    color: #BBB !important ;
 }
