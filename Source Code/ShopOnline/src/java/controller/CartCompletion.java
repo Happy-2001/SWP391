@@ -23,7 +23,7 @@ public class CartCompletion extends HttpServlet {
         CartDAO db = new CartDAO();
         OrderDAO odb = new OrderDAO();
         
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");  
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");  
         Date date = new Date();
         odb.insertOrder(fm.format(date), Integer.parseInt(id));
         Orders od = odb.getOrderLatest();
