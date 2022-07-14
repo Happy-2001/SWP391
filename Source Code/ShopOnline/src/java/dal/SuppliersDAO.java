@@ -52,6 +52,34 @@ public class SuppliersDAO extends DBConnect {
         return null;
     }
 
+    public List<Suppliers> listSupplierTop5() {
+        List<Suppliers> suppliers = new ArrayList<>();
+        String sql = "SELECT `suppliers`.`supplierID`,`suppliers`.`companyName`,`suppliers`.`contactName`,`suppliers`.`contactTitle`,`suppliers`.`DOB`,`suppliers`.`gender`,`suppliers`.`creator` FROM `suppliers`\n"
+                + "inner JOIN `products` on `products`.`supplierID` = `suppliers`.`supplierID`\n"
+                + "group by `products`.supplierID LIMIT 5";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Suppliers u = new Suppliers();
+                u.setId(rs.getInt("supplierID"));
+                u.setName(rs.getString("companyName"));
+                u.setContactName(rs.getString("contactName"));
+                u.setContactTitle(rs.getString("contactTitle"));
+                u.setDob(rs.getDate("DOB"));
+                u.setGender(rs.getInt("gender"));
+                u.setCreator(rs.getInt("creator"));
+                suppliers.add(u);
+            }
+            return suppliers;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+
     public Suppliers getSupById(int id) {
         String sql = "SELECT * FROM `suppliers` WHERE supplierID=?";
         try {
@@ -76,10 +104,11 @@ public class SuppliersDAO extends DBConnect {
         }
         return null;
     }
+
     public static void main(String[] args) {
         SuppliersDAO dao = new SuppliersDAO();
-        List<Suppliers> a = dao.listSupplier();
-        for(Suppliers o :a){
+        List<Suppliers> a = dao.listSupplierTop5();
+        for (Suppliers o : a) {
             System.out.println(o);
         }
     }

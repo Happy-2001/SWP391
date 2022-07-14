@@ -5,12 +5,16 @@
  */
 package controller;
 
+import dal.SuppliersDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Suppliers;
 
 /**
  *
@@ -31,7 +35,9 @@ public class SupplierListController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            SuppliersDAO dao = new SuppliersDAO();
+            List<Suppliers> sup = dao.listSupplierTop5();
+            request.setAttribute("suplist", sup);
             request.getRequestDispatcher("SupplierTop.jsp").forward(request, response);
         }
     }
