@@ -3,15 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/controller/ManageListProduct.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/editproduct.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/addproduct.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/model/Product.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/listproduct.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/admin/Topbar.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/admin/message.jsp</file>
-            <file>file:/D:/FPTU/Ky5/SWP391/Week%208/SWP391/Source%20Code/ShopOnline/web/admin/Dashboard.jsp</file>
+<<<<<<< Updated upstream
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/CusDetailController.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/web/admin/CustomerDetail.jsp</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/web/admin/test.jsp</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/dal/SuppliersDAO.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/web/admin/SupplierDetail.jsp</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/model/Customers.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/web/admin/Suppliers.jsp</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/controller/SupplierDetailController.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/model/Supplier_address.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/model/SupDetail.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/model/Address.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/dal/SupAdressDAO.java</file>
+            <file>file:/E:/Github/SWP391/Source%20Code/ShopOnline/src/java/dal/CustomerDAO.java</file>
+=======
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/ManagePost.java</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/dal/BlogDAO.java</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Blog.java</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/controller/ManageListProduct.java</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/editpost.jsp</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/Post.java</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/addPost.jsp</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/src/java/model/BlogCategory.java</file>
+            <file>file:/F:/SWP391/Sem5/SWP391/Source%20Code/ShopOnline/web/editproduct.jsp</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

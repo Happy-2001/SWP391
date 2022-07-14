@@ -1,49 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
-import dal.CartDAO;
-import dal.OrderDAO;
+import dal.PostDAO;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cart;
-import model.Orders;
 
-public class CartCompletion extends HttpServlet {
+/**
+ *
+ * @author thund
+ */
+public class EditPost extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("cartID");
-        String total = request.getParameter("sum");
-
-        CartDAO db = new CartDAO();
-        OrderDAO odb = new OrderDAO();
-        
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");  
-        Date date = new Date();
-        odb.insertOrder(fm.format(date), Integer.parseInt(id));
-        Orders od = odb.getOrderLatest();
-        
-        ArrayList<Cart> carts = db.listById(Integer.parseInt(id));
-        for (Cart o : carts) {
-            odb.insertOrderD(o.getQuantity(), od.getOrderID(), o.getProduct().getId());
-        }
-        
-        ArrayList<Orders> order = odb.getOrderById(od.getOrderID());
-        db.deleteByCartID(Integer.parseInt(id));
-        
-        request.setAttribute("name", od.getUser().getFullname());
-        request.setAttribute("orderDate", od.getOrderDate());
-        request.setAttribute("orderNo", od.getOrderID());
-        request.setAttribute("orders", order);
-        request.setAttribute("total", total);
-        
-        
-        request.getRequestDispatcher("cartCompletion.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
+        String createdDate = request.getParameter("createdDate");
+        String content = request.getParameter("content");
+        String categoryId = request.getParameter("categoryId");
+        String brief_infor = request.getParameter("brief_infor");
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+        PostDAO dao = new PostDAO();
+        dao.update(createdDate, content, brief_infor, description, Integer.parseInt(categoryId), image, Integer.parseInt(id));
+        response.sendRedirect("PostMan");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

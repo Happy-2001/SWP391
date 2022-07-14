@@ -184,3 +184,32 @@ ul, li{
 .main{
     background-color: #f5f4fe;
 }
+.card{
+    border: 0 !important;
+    border-radius: 1rem !important;
+}
+.card .card-header{
+    border-top-left-radius: 1rem !important;
+    border-top-right-radius: 1rem !important;
+    background-color: inherit;
+}
+.card .card-header .card-title{
+    margin: 0;
+    padding: 0;
+}
+.user-head .dropdown .dropdown-menu.show{
+    width: 350px;
+    height: 300px;
+    overflow: auto;
+}
+.dropdown .dropdown-menu.show::-webkit-scrollbar {
+    width: 5px;
+}
+/* Handle */
+.dropdown .dropdown-menu.show::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+/* Handle on hover */
+.dropdown .dropdown-menu.show::-webkit-scrollbar-thumb:hover {
+    background: #0099c6; 
+}

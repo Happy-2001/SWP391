@@ -114,6 +114,15 @@
                                
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="PostMan">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders"></i>
+                                </span>
+                                <span class="text nav-text">Post Manager</span>
+                               
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -36,20 +36,18 @@ public class PostDAO extends DBConnect{
         }
         return categories;
     }
-    public ArrayList<Blog> getBlog() {
-        ArrayList<Blog> lc = new ArrayList<>();
+    public List<Blog> getBlogForHomePage() {
+        List<Blog> lc = new ArrayList<>();
         try {
-            String sql = "SELECT blog_id , create_date, content, description, noidung, img, category_blog_id FROM blog";
+            String sql = "SELECT blog_id , create_date, content, description, img FROM blogs ORDER BY create_date DESC";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Blog b = new Blog(rs.getInt("blog_id"),
-                        rs.getDate("create_date"),
+                        rs.getString("create_date"),
                         rs.getString("content"),
                         rs.getString("description"),
-                        rs.getString("noidung"),
-                        rs.getString("img"),
-                        rs.getInt("category_blog_id")
+                        rs.getString("img")
                 );
                 lc.add(b);
             }
@@ -84,7 +82,7 @@ public class PostDAO extends DBConnect{
     }
     public List<Post> listAllPost() {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT post_id, create_date, content, brief_information, description, image FROM `post`";
+        String sql = "SELECT post_id, create_date, content, brief_information, description, image FROM `posts`";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -130,7 +128,7 @@ public class PostDAO extends DBConnect{
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                return new Blog(rs.getInt("blog_id") ,rs.getDate("create_date"), rs.getString("content"), rs.getString("description"), 
+                return new Blog(rs.getInt("blog_id") ,rs.getString("create_date"), rs.getString("content"), rs.getString("description"), 
                         rs.getString("noidung"), rs.getString("img"), rs.getInt("category_blog_id"));
             }
         } catch (SQLException e) {
@@ -142,7 +140,7 @@ public class PostDAO extends DBConnect{
     }
     public void deletePost(int id) {
         try {
-            String sql = "DELETE FROM `blog` WHERE `blog`.`blog_id` = ?";
+            String sql = "DELETE FROM `blogs` WHERE `blog_id`= ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -175,12 +173,12 @@ public class PostDAO extends DBConnect{
     }
     public void update(String date, String content, String description, String noidung, int categoryId, String image, int id) {
         try {
-            String sql = "UPDATE `blog` SET `create_date`= ?,"
+            String sql = "UPDATE `blogs` SET `create_date`= ?,"
                     + "`content`= ?, "
                     + "`description`= ?,"
                     + "`noidung`= ?,"
-                    + "`User_Account_user_id`= ?,"
-                    + "`category_blog_id`= ?,"
+                    + "`userID`= 1,"
+                    + "`blogCategoryID`= ?,"
                     + "`img`= ? "
                     + "WHERE blog_id = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
@@ -188,10 +186,9 @@ public class PostDAO extends DBConnect{
             statement.setString(2, content); 
             statement.setString(3, description); 
             statement.setString(4, noidung); 
-            statement.setInt(5, 1);
-            statement.setInt(6, categoryId);
-            statement.setString(7, image);
-            statement.setInt(8, id);
+            statement.setInt(5, categoryId);
+            statement.setString(6, image);
+            statement.setInt(7, id);
             statement.executeUpdate();
 
         } catch (SQLException ex) {
@@ -202,10 +199,7 @@ public class PostDAO extends DBConnect{
     }
     public static void main(String[] args) {
         PostDAO p = new PostDAO();
-        List<Post> list = p.listPost(4);
-        for (Post post : list) {
-            System.out.println(post);
-        }
+        p.deletePost(25);
         //System.out.println(dao.loginUser("admin1", "123"));
         
     }

@@ -1,49 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
-import dal.CartDAO;
-import dal.OrderDAO;
+import dal.PostDAO;
+import dal.SlideDAO;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cart;
-import model.Orders;
+import model.Blog;
+import model.Slide;
 
-public class CartCompletion extends HttpServlet {
+/**
+ *
+ * @author thund
+ */
+public class PostMan extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("cartID");
-        String total = request.getParameter("sum");
-
-        CartDAO db = new CartDAO();
-        OrderDAO odb = new OrderDAO();
-        
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");  
-        Date date = new Date();
-        odb.insertOrder(fm.format(date), Integer.parseInt(id));
-        Orders od = odb.getOrderLatest();
-        
-        ArrayList<Cart> carts = db.listById(Integer.parseInt(id));
-        for (Cart o : carts) {
-            odb.insertOrderD(o.getQuantity(), od.getOrderID(), o.getProduct().getId());
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet PostMan</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet PostMan at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        ArrayList<Orders> order = odb.getOrderById(od.getOrderID());
-        db.deleteByCartID(Integer.parseInt(id));
-        
-        request.setAttribute("name", od.getUser().getFullname());
-        request.setAttribute("orderDate", od.getOrderDate());
-        request.setAttribute("orderNo", od.getOrderID());
-        request.setAttribute("orders", order);
-        request.setAttribute("total", total);
-        
-        
-        request.getRequestDispatcher("cartCompletion.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,7 +61,11 @@ public class CartCompletion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        SlideDAO sld = new SlideDAO();
+        PostDAO pdb = new PostDAO();
+        List<Blog> posts = pdb.getBlogForHomePage();
+        request.setAttribute("posts", posts);
+        request.getRequestDispatcher("postManager.jsp").forward(request, response);
     }
 
     /**
