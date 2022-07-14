@@ -24,7 +24,6 @@ import model.Orders;
  */
 //@WebServlet(name = "OrderDetailController", urlPatterns = {"/OrderDetailController"})
 public class OrderInformationController extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -89,6 +88,7 @@ public class OrderInformationController extends HttpServlet {
         return "Short description";
     }
 }
+
 
     
 
