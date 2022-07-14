@@ -161,8 +161,16 @@
         <servlet-class>controller.DeleteFavorite</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Search</servlet-name>
-        <servlet-class>controller.Search</servlet-class>
+        <servlet-name>DashboardController</servlet-name>
+        <servlet-class>controller.DashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MessageController</servlet-name>
+        <servlet-class>controller.MessageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartCompletion</servlet-name>
+        <servlet-class>controller.CartCompletion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -266,35 +274,35 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CusController</servlet-name>
-        <url-pattern>/CusController</url-pattern>
+        <url-pattern>/admin/CusController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CusDetailController</servlet-name>
-        <url-pattern>/CusDetail</url-pattern>
+        <url-pattern>/admin/CusDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FeedbackAdController</servlet-name>
-        <url-pattern>/FeedbackAd</url-pattern>
+        <url-pattern>/admin/FeedbackAd</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SuppliersController</servlet-name>
-        <url-pattern>/SuppliersController</url-pattern>
+        <url-pattern>/admin/SuppliersController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FeedbackDetails</servlet-name>
-        <url-pattern>/FeedbackDetails</url-pattern>
+        <url-pattern>/admin/FeedbackDetails</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SupplierDetailController</servlet-name>
-        <url-pattern>/SupplierDetail</url-pattern>
+        <url-pattern>/admin/SupplierDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MyOrderController</servlet-name>
-        <url-pattern>/MyOrderController</url-pattern>
+        <url-pattern>/admin/MyOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderDetailController</servlet-name>
-        <url-pattern>/OrderDetailController</url-pattern>
+        <url-pattern>/admin/OrderDetailController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>favouriteController</servlet-name>
@@ -325,8 +333,16 @@
         <url-pattern>/DeleteFavorite</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Search</servlet-name>
-        <url-pattern>/Search</url-pattern>
+        <servlet-name>DashboardController</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageController</servlet-name>
+        <url-pattern>/message</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartCompletion</servlet-name>
+        <url-pattern>/CartCompletion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

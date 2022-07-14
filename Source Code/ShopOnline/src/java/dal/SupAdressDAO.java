@@ -10,39 +10,60 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.District;
+import model.Provinces;
+import model.Street;
+import model.SupDetail;
 import model.Supplier_address;
+import model.Suppliers;
+import model.Ward;
+import model.project;
 
 /**
  *
  * @author nguye
  */
-public class SupAdressDAO extends DBConnect{
-    
+public class SupAdressDAO extends DBConnect {
+
     DBConnect mysqlConnect = new DBConnect();
-    
-//    public Supplier_address getSupAdressById(int id) {
-//        String sql = "SELECT * FROM `supplier_address` WHERE supplierID=?";
-//        try {
-//            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-//            statement.setInt(1, id);
-//            ResultSet rs = statement.executeQuery();
-//            if (rs.next()) {
-//                Supplier_address u = new Supplier_address();
-//                u.setDisID(rs.getInt("supplierID"));
-//                u.setProID(rs.getInt("provinceID"));
-//                u.setDisID(rs.getInt("districtID"));
-//                u.setWardID(rs.getInt("wardID"));
-//                u.setStreetID(rs.getInt("streetID"));
-//                u.setProjectID(rs.getInt("projectID"));
-//                u.setEaID(rs.getInt("eaID"));
-//                u.setAddDetail(rs.getString("addressDetail"));
-//                return u;
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SupAdressDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            mysqlConnect.disconnect();
-//        }
-//        return null;
-//    }
+
+    public SupDetail getSupAdressById(int id) {
+        String sql = "SELECT sup.supplierID,sup.companyName, sup.contactName,sup.contactTitle,sup.DOB,sup.gender,sup.creator,uad._name,supadd.districtID,supadd.wardID,supadd.streetID,supadd.projectID,supadd.addressDetail,eca.telephone,eca.fax,eca.email from\n"
+                + "(((`suppliers` AS sup INNER JOIN `supplier_address` AS supadd ON supadd.supplierID=sup.supplierID)\n"
+                + "INNER JOIN\n"
+                + "(SELECT * FROM `province` JOIN `supplier_address`\n"
+                + "ON `province`.`id` = `supplier_address`.`provinceID`) AS uad\n"
+                + "ON sup.`supplierID` = uad.`supplierID`)\n"
+                + " INNER JOIN `electronicaddress` AS eca ON supadd.`eaID` = eca.`eaID`)\n"
+                + " where sup.supplierID=?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                SupDetail u = new SupDetail();
+                u.setSup(new Suppliers(rs.getInt("sup.supplierID"),rs.getString("sup.companyName"),rs.getString("sup.contactName"),
+                                       rs.getString("sup.contactTitle"),rs.getDate("sup.DOB"),
+                                       rs.getInt("sup.gender"),rs.getInt("sup.creator")));
+                u.setSup_add(new Supplier_address(new Provinces(rs.getString("uad._name")),
+                                                  new District(rs.getInt("supadd.districtID")),
+                                                  new Ward(rs.getInt("supadd.wardID")),
+                                                  new Street(rs.getInt("supadd.streetID")),
+                                                  new project(rs.getString("supadd.projectID")),
+                                                    rs.getString("supadd.addressDetail")));
+                
+                return u;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SupAdressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+    public static void main(String[] args) {
+        SupAdressDAO dao = new SupAdressDAO();
+        SupDetail a = dao.getSupAdressById(1);
+        System.out.println(a.getSup_add().getAddDetail());
+    }
 }

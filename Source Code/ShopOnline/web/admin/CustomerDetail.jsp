@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/ProfileAd.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/ProfileAd.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -114,7 +114,6 @@
                                 <i class="fa-solid fa-sliders"></i>
                                 </span>
                                 <span class="text nav-text">Manage Slider</span>
-                               
                             </a>
                         </li>
                     </ul>
@@ -128,16 +127,16 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="/ShopOnline/CusController">Customers</a>
+                            <a href="CusController">Customers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
                 </div>
                 <div class="content">
-                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
+                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=${cus.us.userid}" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=${cus.us.userid}" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
@@ -151,7 +150,7 @@
                                 </a>
                             </div>
                         </div>
-                        <form action ="UploadImage" method="POST" enctype="multipart/form-data">
+                        <form action="/ShopOnline/UploadImage" method="POST" enctype="multipart/form-data">
                             <div class="ava-popup collapse" id="e-ava">
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>

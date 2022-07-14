@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,10 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin || Shop Online</title>
         <!-- Site Icons -->
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/Dashboard.css">
-        <link rel="stylesheet" href="css/Customers.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/Dashboard.css">
+        <link rel="stylesheet" href="../css/Customers.css">
         <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
 
         <!-- Bootstrap 5 -->
@@ -21,14 +20,13 @@
     </head>
     <body>
         <%@include file="Topbar.jsp" %>
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 menu-bar">
                     <div class="menu">
                         <ul class="menu-links">
                             <li class="nav-link">
-                                <a href="Dashboard">
+                                <a href="Dashboard.jsp">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-chart-simple fa-xl"></i>
                                     </span>
@@ -55,7 +53,7 @@
                             </li>
 
                             <li class="nav-link">
-                                <a href="CusController">
+                                <a href="#">
                                     <span class="nav-link-icon">
                                         <i class="fa-solid fa-user-group fa-xl"></i>
                                     </span>
@@ -109,54 +107,59 @@
                                 <i class="fa-solid fa-globe fa-sm"></i>
                                 <a href="dashboard">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Order</li>
+                            <li class="breadcrumb-item">
+                                <a href="MyOrderController">Order</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Order Detail</li>
                         </ul>
                     </div>
-                    <div class="container my-5">
-                        <table  class="table table-dark table-striped">               
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
+                    <div class="container-fluid">
+                        <div class="table-responsive cus-box">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input class="select-all" type="checkbox" value="deselect">
+                                        </th>
+                                    <tr>
+                                        <th>ID</th>
                                         <th>Order Date</th>
                                         <th>Product Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Sub total</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:set var="i" value="0"></c:set>
-                                <c:forEach items="${order}" var="o">
+                                    </tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${order}" var="o">
                                         <tr>
                                             <td>${o.orderID}</td>
                                             <td>${o.orderDate}</td>
-                                            <td>${o.product_name}</td>
-                                            <td>${o.unit_price}</td>
+                                            <td>${o.product.name}</td>
+                                            <td>${o.product.price}</td>
                                             <td>${o.quantity}</td>
-                                            <td>${o.quantity * o.unit_price }</td>
+                                            <td>${o.quantity * o.product.price}</td>
                                         </tr>
                                     </c:forEach>
-                            </tbody>
-                        </table>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
-                            </li>
-                        </ul>
+                                </tbody>
+                            </table>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    <script src="js/list-select.js"></script>
                 </div>
-                <script src="js/list-select.js"></script>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
-
- 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.PreparedStatement;
@@ -10,9 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Category;
 import model.Orders;
 import model.Product;
+import model.User;
 
 /**
  *
@@ -34,8 +32,7 @@ public class OrderDAO extends DBConnect {
                 c.setOrderDate(rs.getString("order_date")); 
                 c.setRequireDate(rs.getString("require_date"));
                 c.setShippedDate(rs.getString("shipped_date"));
-                c.setCustomer_id(rs.getInt("customerID"));
-                c.setEmployee_id(rs.getInt("employee_id"));
+                c.setCustomerId(rs.getInt("customerID"));
                 Orderlist.add(c);
             }
         } catch (SQLException e) {
@@ -73,68 +70,135 @@ public class OrderDAO extends DBConnect {
     
     public ArrayList<Orders> getOrderById(int id) {
         ArrayList<Orders> listOrder =new  ArrayList<>();
-        String sql = "select o.order_id, o.order_date, p.product_name,p.unit_price, d.quantity, d.amount from orders o "
-                + "JOIN oder_details d on o.order_id = d.orderID "
-                + "JOIN products p on p.product_id = d.productID "
-                + " WHERE order_id = ?";
+        String sql = "SELECT o.order_id, o.order_date, o.require_date,\n" +
+                    "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
+                    "d.quantity, p.product_name, p.sale_price, p.url\n" +
+                    "FROM orders o\n" +
+                    "INNER JOIN oder_details d on o.order_id = d.orderID\n" +
+                    "INNER JOIN products p on p.product_id = d.productID\n" +
+                    "WHERE order_id = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Orders c = new Orders();
-                c.setOrderID(rs.getInt("order_id"));
-                c.setOrderDate(rs.getString("order_date")); 
-                c.setProduct_name(rs.getString("product_name"));
-                c.setUnit_price(rs.getInt("unit_price"));
-                c.setQuantity(rs.getInt("quantity"));
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setCustomerId(rs.getInt("o.customerID"));
+                c.setQuantity(rs.getInt("d.quantity"));
+                c.setProduct(new Product(rs.getString("p.product_name"),
+                                        rs.getFloat("p.sale_price"), rs.getString("p.url")));
+                
                 listOrder.add(c);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
         return listOrder;
     }
+    
     public ArrayList<Orders> getOrderByCusID(int cid) {
         ArrayList<Orders> listOrder =new  ArrayList<>();
-        String sql = "select o.order_id, o.order_date, p.product_name,p.unit_price, d.quantity, d.amount from orders o \n" +
-"                JOIN oder_details d on o.order_id = d.orderID \n" +
-"                JOIN products p on p.product_id = d.productID \n" +
-"                 WHERE customerID = ?";
+        String sql = "SELECT o.order_id, o.order_date, o.require_date, \n" +
+                    "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
+                    "d.quantity, d.productID, p.product_name, p.unit_price, p.url\n" +
+                    "FROM orders o\n" +
+                    "JOIN oder_details d on o.order_id = d.orderID\n" +
+                    "JOIN products p on p.product_id = d.productID\n" +
+                    "WHERE customerID = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, cid);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Orders c = new Orders();
-                c.setOrderID(rs.getInt("order_id"));
-                c.setOrderDate(rs.getString("order_date")); 
-                c.setProduct_name(rs.getString("product_name"));
-                c.setUnit_price(rs.getInt("unit_price"));
-                c.setQuantity(rs.getInt("quantity"));
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setCustomerId(rs.getInt("o.customerID"));
+                c.setQuantity(rs.getInt("d.quantity"));
+                c.setProduct(new Product(rs.getString("p.product_name"),
+                                        rs.getFloat("p.unit_price"), rs.getString("p.url")));
+                
                 listOrder.add(c);
             }
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
         return listOrder;
     }
-    public static void main(String[] args) {
-         OrderDAO udb = new OrderDAO();
-         ArrayList<Orders> Orderlist = udb.getOrderByCusID(4);
-         for (Orders orders : Orderlist) {
-             System.out.println(orders.getProduct_name());
-             
+    
+    public Orders getOrderLatest() {
+        String sql = "SELECT o.order_id, o.order_date, o.require_date,\n" +
+                    "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
+                    "ua.first_name, ua.middle_name, ua.last_name\n" +
+                    "FROM `orders` AS o\n" +
+                    "INNER JOIN `user_accounts` AS ua\n" +
+                    "ON o.customerID = ua.user_id\n" +
+                    "ORDER BY order_date DESC LIMIT 1";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setUser(new User(rs.getInt("o.customerID"), rs.getString("ua.first_name"),
+                                    rs.getString("ua.middle_name"), rs.getString("ua.last_name")));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
         }
-         
+        return null;
+    }
+    
+    public void insertOrder(String date, int cid){
+        String sql = "INSERT INTO `orders`(`order_date`,`status`, `customerID`) VALUES (?, 'pending', ?)";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, date);
+            statement.setInt(2, cid);
+            
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void insertOrderD(int qty, int oid, int pid){
+        String sql = "INSERT INTO `oder_details`(`quantity`, `orderID`, `productID`) VALUES (?,?,?)";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, qty);
+            statement.setInt(2, oid);
+            statement.setInt(3, pid);
+            
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Orders listOrderById(int parseInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

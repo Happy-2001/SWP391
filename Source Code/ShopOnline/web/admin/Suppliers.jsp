@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -25,9 +25,9 @@
                 <div class="menu">
                     <ul class="menu-links">
                         <li class="nav-link">
-                            <a href="dashborad">
+                            <a href="dashboard">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-chart-simple"></i>
+                                    <i class="fa-solid fa-chart-simple fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Dashboard</span>
                             </a>
@@ -105,6 +105,15 @@
                                 <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="/ShopOnline/slider">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Manage Slider</span>
+                               
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -134,6 +143,8 @@
                                 <th>Date</th>
                                 <th>Gender</th>
                                 <th>Creator</th>
+                                <th>Creator</th>
+                                <th>Creator</th>
                                 <th class="text-end">Actions</th>
                             </tr>
                             </thead>
@@ -150,6 +161,8 @@
                                         <td>${sup.dob}</td>
                                         <td>${sup.gender}</td>
                                         <td>${sup.creator}</td>
+                                        <td>${sup.createOn}</td>
+                                        <td>${sup.updateOn}</td>
                                         <td class="text-end">
                                             <div class="px-3">
                                                 <a href="#link"><i class="fa-solid fa-trash-can"></i></a>
@@ -172,7 +185,7 @@
                         </ul>
                     </div>
                 </div>
-                <script src="js/list-selectSup.js"></script>
+                <script src="../js/list-selectSup.js"></script>
             </div>
         </div>
     </div>

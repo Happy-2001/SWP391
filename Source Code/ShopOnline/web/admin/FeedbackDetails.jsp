@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Sneaker Store</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/Feedback.css">
-    <script src="js/fontAwesome.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/Feedback.css">
+    <script src="../js/fontAwesome.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -99,6 +99,25 @@
                                 <span class="text nav-text">Accounts</span>
                             </a>
                         </li>
+                        
+                        <li class="nav-link">
+                            <a href="SuppliersController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                </span>
+                                <span class="text nav-text">Suppliers</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-link">
+                            <a href="slider">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders"></i>
+                                </span>
+                                <span class="text nav-text">Manage Slider</span>
+                               
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -123,7 +142,7 @@
                             <div class="d-flex align-items-center my-4">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar me-3">
-                                        <img src="RetrieveImg?eaID=${mfb.user.userid}" class="rounded-circle" alt="image">
+                                        <img src="../RetrieveImg?eaID=${mfb.user.userid}" class="rounded-circle" alt="image">
                                     </div>
                                     <div>
                                         <h6 class="mb-1 p-0">
@@ -177,18 +196,25 @@
                                     <h6 class="mb-3">Attachments</h6>
                                     <div class="d-flex gap-3">
                                         <div class="image">
-                                            <img src="${mfb.photo1}" onError="this.onerror=null;this.src='images/camera-icon-bg.jpg';">
+                                            <img src="${mfb.photo1}" onError="this.onerror=null;this.src='../images/camera-icon-bg.jpg';">
                                         </div>
                                         <div class="image">
-                                            <img src="${mfb.photo2}" onError="this.onerror=null;this.src='images/camera-icon-bg.jpg';">
+                                            <img src="${mfb.photo2}" onError="this.onerror=null;this.src='../images/camera-icon-bg.jpg';">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <form action="" method="">
-                                <h6 class="mb-3">Reply</h6>
+                            <h6 class="mb-3">Reply</h6>
+                            <c:if test="${mfb.note ne null}">
+                                <div class="mb-3 p-3" style="border: 1px dashed #666;;">
+                                    <span class="text-muted">${mfb.updateDate}</span>
+                                    <p class="p-0 m-0">${mfb.note}</p>
+                                </div>
+                            </c:if>
+                            <form action="FeedbackDetails" method="POST">
                                 <div class="fb-reply mb-3">
-                                    <textarea name="" id="ql-editor" placeholder="Type something... " onkeyup="req()"></textarea>
+                                    <input type="hidden" name="fbID" value="${mfb.fbID}">
+                                    <textarea name="reply" id="ql-editor" placeholder="Type something... " onkeyup="req()"></textarea>
                                     <span id="left">Remaining 1000 fillable characters</span>
                                 </div>
                                 <div class="del-btn">

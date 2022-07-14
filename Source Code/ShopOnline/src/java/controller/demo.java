@@ -7,12 +7,15 @@ package controller;
 import dal.AddressDAO;
 import dal.CartDAO;
 import dal.CustomerDAO;
+import dal.FeedbackDAO;
+import dal.OrderDAO;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
 import model.Customers;
+import model.Orders;
 import model.Provinces;
 import model.User;
 
@@ -22,20 +25,14 @@ import model.User;
  */
 public class demo {
     public static void main(String[] args) {
-        String id = "5";
+        String fid = "5";
+        String reply = "123";
         
-        CustomerDAO db = new CustomerDAO();
-        Customers cus = db.getCusByUserId(Integer.parseInt(id));
+        FeedbackDAO db = new FeedbackDAO();
         
-        AddressDAO dbb = new AddressDAO();
-        ArrayList<Provinces> province = dbb.getProvince();
-        
-        int prvid = 0;
-        for(Provinces pv : province){
-            if(pv.getName().equals(cus.getUad().getProvince().getName())){
-                prvid = pv.getId();
-            }
-        }
-        System.out.println(prvid);
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");  
+        Date date = new Date();  
+        db.updateFb(reply, fm.format(date), Integer.parseInt(fid));
+        System.out.println("Success!");
     }
 }

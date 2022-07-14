@@ -39,6 +39,8 @@ public class SuppliersDAO extends DBConnect {
                 u.setDob(rs.getDate("DOB"));
                 u.setGender(rs.getInt("gender"));
                 u.setCreator(rs.getInt("creator"));
+                u.setCreateOn(rs.getDate("createOn"));
+                u.setUpdateOn(rs.getDate("updateOn"));
                 suppliers.add(u);
             }
             return suppliers;
@@ -74,5 +76,11 @@ public class SuppliersDAO extends DBConnect {
         }
         return null;
     }
-   
+    public static void main(String[] args) {
+        SuppliersDAO dao = new SuppliersDAO();
+        List<Suppliers> a = dao.listSupplier();
+        for(Suppliers o :a){
+            System.out.println(o);
+        }
+    }
 }

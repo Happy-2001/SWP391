@@ -2,17 +2,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/ProfileAd.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
+    <link rel="stylesheet" href="../css/ProfileAd.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -108,6 +108,14 @@
                                 <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="slider">
+                                <span class="nav-link-icon">
+                                <i class="fa-solid fa-sliders"></i>
+                                </span>
+                                <span class="text nav-text">Manage Slider</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -119,22 +127,22 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="/ShopOnline/SuppliersController">Suppliers</a>
+                            <a href="CusController">Customers</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
                 </div>
                 <div class="content">
-                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;images/profile-bg.jpg&quot;);">
+                    <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="RetrieveImg?eaID=" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5>${sup.name}</h5>
+                                <h5></h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -142,12 +150,12 @@
                                 </a>
                             </div>
                         </div>
-                        <form action ="UploadImage" method="POST" enctype="multipart/form-data">
+                        <form action="/ShopOnline/UploadImage" method="POST" enctype="multipart/form-data">
                             <div class="ava-popup collapse" id="e-ava">
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
-                                        <input type="hidden" name="cusID" value="${sup.id}">
+                                        <input type="hidden" name="cusID" value="">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -204,94 +212,86 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade active show" id="profile">
                                     <div class="mb-4">
-                                        <div class="card mb-4">
-                                            <div class="card-body">
-                                                <div class="card-title mb-4">
-                                                    <h6>
-                                                        Basic Information
-                                                    </h6>
-                                                    <span id="editBtn">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="row">
+                                        <form action="" method="">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
+                                                    <div class="card-title mb-4">
+                                                        <h6>Basic Information</h6>
+                                                        <span class="d-flex">
+                                                            <button type="submit" class="btn save-btn close">
+                                                                <i class="fa-regular fa-floppy-disk"></i> Save
+                                                            </button>
+                                                            <button type="button" class="btn ms-2" id="infoBtn">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">ID</label>
-                                                            <input type="text" class="form-control" value="${sup.id}">
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" class="form-control" value="">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Company Name</label>
-                                                            <input type="text" class="form-control" value="${sup.name}">
+                                                            <label class="form-label">Username</label>
+                                                            <input type="text" class="form-control" value="">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Contact Name</label>
-                                                            <input type="text" class="form-control" value="${sup.contactName}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Contact Title</label>
-                                                            <input type="text" class="form-control" value="${sup.contactTitle}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Contact Name</label>
-                                                            <input type="text" class="form-control" value="${sup.contactName}">
+                                                            <label class="form-label">Email</label>
+                                                            <input type="text" class="form-control" value="">
                                                         </div>
                                                         
-                                                        
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Gender</label>
-                                                            <div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input type="radio" id="inlineRadio1" name="inlineRadio" class="form-check-input">
-                                                                    <label class="form-check-label" for="inlineRadio1">Male</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input type="radio" id="inlineRadio2" name="inlineRadio" class="form-check-input">
-                                                                    <label class="form-check-label" for="inlineRadio2">Female</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input type="radio" id="inlineRadio3" name="inlineRadio" class="form-check-input">
-                                                                    <label class="form-check-label" for="inlineRadio3">Other</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Creator</label>
-                                                            <input type="text" class="form-control" value="${sup.creator}">
+                                                            <label class="form-label">Role</label>
+                                                            <select class="form-select">
+                                                                <option value="">All</option>
+                                                                <option value="">Admin</option>
+                                                                <option value="">User</option>
+                                                                <option value="" selected>Customer</option>
+                                                            </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Create On</label>
-                                                            <input type="date" class="form-control" value="">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Update On</label>
-                                                            <input type="text" class="form-control" value="${sup.dob}" readonly>
+                                                            <label class="form-label">Status</label>
+                                                            <select class="form-select">
+                                                                <option value="">All</option>
+                                                                <option value="" selected>Active</option>
+                                                                <option value="">Blocked</option>
+                                                            </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
-                                                            <input type="date" class="form-control" value="${sup.dob}">
+                                                            <input type="date" class="form-control" value="">
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <div class="card mb-4">
-                                        <div class="card-body">
-                                            <h6 class="card-title mb-4">Adress</h6>
-                                            <div class="row">
+                                        <form action="" method="">
+                                            <div class="card-body">
+                                                <div class="card-title mb-4">
+                                                    <h6>Contact</h6>
+                                                    <span class="d-flex">
+                                                        <button type="submit" class="btn save-btn close">
+                                                            <i class="fa-regular fa-floppy-disk"></i> Save
+                                                        </button>
+                                                        <button type="button" class="btn ms-2" id="infoBtn">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
                                                 <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" value="">
+                                                    </div>
                                                     
-                                                    <div class="mb-3">
-                                                            <label class="form-label">Provice ID</label>
-                                                            <input type="text" class="form-control" value="11">
-                                                        </div>
-                                                    <div class="mb-3">
-                                                            <label class="form-label">DIsID</label>
-                                                            <input type="text" class="form-control" value="333">
-                                                        </div>
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
@@ -300,15 +300,38 @@
                                                     </div>
                                                     
                                                     <div class="mb-3">
-                                                        <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="Việt Nam">
+                                                        <label class="form-label">Province</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${provinces}" var="prv">
+                                                                    <c:if test="${prv.name eq supAdd.sup_add.proID.name}">
+                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.proID.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${prv.id}">${prv.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                               
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" value="">
+                                                </div>
                                             </div>
-                                        </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                    var editBtn = document.querySelectorAll("#infoBtn");
+                                    var save = document.querySelectorAll(".save-btn");
+
+                                    for(let i = 0; i < editBtn.length; i++){
+                                        editBtn[i].addEventListener("click", function() {
+                                            save[i].classList.toggle("close");
+                                        });
+                                    }
+                                </script>
                             </div>
                         </div>
                         <div class="col-md-5">

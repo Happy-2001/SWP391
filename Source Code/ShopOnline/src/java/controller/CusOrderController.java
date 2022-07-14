@@ -37,7 +37,8 @@ public class CusOrderController extends HttpServlet {
         OrderDAO udb = new OrderDAO();
         int cid = (int) request.getAttribute("userid");
         List<Orders> Orderlist = udb.getOrderByCusID(cid);
-        System.out.println(Orderlist);
+        
+        request.setAttribute("Orderlist", Orderlist);
         request.getRequestDispatcher("CusOrder.jsp").forward(request, response);
     }
 

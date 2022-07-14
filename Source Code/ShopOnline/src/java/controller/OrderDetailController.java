@@ -42,7 +42,7 @@ public class OrderDetailController extends HttpServlet {
         OrderDAO dao = new OrderDAO();
         ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
         request.setAttribute("order", o);
-        request.getRequestDispatcher("admin/OrderDetails.jsp").forward(request, response);
+        request.getRequestDispatcher("OrderDetails.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,7 +59,6 @@ public class OrderDetailController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *

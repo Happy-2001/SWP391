@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dal;
 
 import java.sql.PreparedStatement;
@@ -13,12 +8,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.MyFeedback;
-import model.Product;
 import model.User;
 
 /**
  *
- * @author dungk
+ * @author anhvo
  */
 public class FeedbackDAO extends DBConnect {
 
@@ -296,12 +290,13 @@ public class FeedbackDAO extends DBConnect {
         return null;
     }
 
-    public void updateFb(String note, int id) {
+    public void updateFb(String note, String date, int id) {
         try {
-            String sql = "UPDATE `feedback` SET `note` = ? WHERE `feedback`.`feedback_id` = ?";
+            String sql = "UPDATE `feedbacks` SET `note`=?,`status`=1,`updateDate`=? WHERE `feedback_id`=?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, note);
-            statement.setInt(2, id);
+            statement.setString(2, date);
+            statement.setInt(3, id);
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);

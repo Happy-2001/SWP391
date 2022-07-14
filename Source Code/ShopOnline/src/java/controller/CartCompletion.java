@@ -1,57 +1,49 @@
 package controller;
 
-import dal.AddressDAO;
-import dal.CustomerDAO;
+import dal.CartDAO;
+import dal.OrderDAO;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Customers;
-import model.District;
-import model.Provinces;
-import model.SubDistrict;
+import model.Cart;
+import model.Orders;
 
-/**
- *
- * @author anhvo
- */
-public class CusDetailController extends HttpServlet {
+public class CartCompletion extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("cusID");
+        String id = request.getParameter("cartID");
+        String total = request.getParameter("sum");
+
+        CartDAO db = new CartDAO();
+        OrderDAO odb = new OrderDAO();
         
-        CustomerDAO db = new CustomerDAO();
-        Customers cus = db.getCusByUserId(Integer.parseInt(id));
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");  
+        Date date = new Date();
+        odb.insertOrder(fm.format(date), Integer.parseInt(id));
+        Orders od = odb.getOrderLatest();
         
-        AddressDAO dbb = new AddressDAO();
-        ArrayList<Provinces> province = dbb.getProvince();
-        
-        int prvid = 0;
-        for(Provinces pv : province){
-            if(pv.getName().equals(cus.getUad().getProvince().getName())){
-                prvid = pv.getId();
-            }
+        ArrayList<Cart> carts = db.listById(Integer.parseInt(id));
+        for (Cart o : carts) {
+            odb.insertOrderD(o.getQuantity(), od.getOrderID(), o.getProduct().getId());
         }
-        ArrayList<District> district = dbb.getDistrict(prvid);
         
-        int wid = 0;
-        for(District ds : district){
-            if(ds.getDistrictID() == cus.getUad().getDistrict().getDistrictID()){
-                wid = ds.getDistrictID();
-            }
-        }
-        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
+        ArrayList<Orders> order = odb.getOrderById(od.getOrderID());
+        db.deleteByCartID(Integer.parseInt(id));
         
-        request.setAttribute("cus", cus);
-        request.setAttribute("province", province);
-        request.setAttribute("district", district);
-        request.setAttribute("ward", ward);
+        request.setAttribute("name", od.getUser().getFullname());
+        request.setAttribute("orderDate", od.getOrderDate());
+        request.setAttribute("orderNo", od.getOrderID());
+        request.setAttribute("orders", order);
+        request.setAttribute("total", total);
         
-        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("cartCompletion.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

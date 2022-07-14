@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin || Shop Online</title>
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/Dashboard.css">
     <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
     
     <!-- Bootstrap 5 -->
@@ -34,7 +34,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="/ShopOnline/MyOrderController">
+                            <a href="MyOrderController">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-receipt fa-xl"></i>
                                 </span>
@@ -43,7 +43,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="listproduct">
+                            <a href="/ShopOnline/listproduct">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-box fa-xl"></i>
                                 </span>
@@ -61,7 +61,7 @@
                         </li>
 
                         <li class="nav-link">
-                            <a href="message">
+                            <a href="/ShopOnline/message">
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
@@ -100,15 +100,15 @@
                         <li class="nav-link">
                             <a href="SuppliersController">
                                 <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right"></i>
+                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Suppliers</span>
                             </a>
                         </li>
                         <li class="nav-link">
-                            <a href="slider">
+                            <a href="/ShopOnline/slider">
                                 <span class="nav-link-icon">
-                                <i class="fa-solid fa-sliders"></i>
+                                <i class="fa-solid fa-sliders fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Manage Slider</span>
                                
