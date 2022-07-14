@@ -312,21 +312,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Ward</label>
-                                                        <div class="d-flex gap-3">
-                                                            <select class="form-select">
-                                                                <c:forEach items="${ward}" var="ward">
-                                                                    <c:if test="${ward.subDistrictID eq supAdd.sup_add.wardID.subDistrictID}">
-                                                                        <option value="${ward.subDistrictID}" selected>${ward.name}</option>
-                                                                    </c:if>
-                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    
+                                                   
                                                     <div class="mb-3">
                                                         <label class="form-label">District</label>
                                                         <div class="d-flex gap-3">
@@ -341,6 +327,19 @@
                                                         </div>
                                                     </div>
                                                     
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Ward</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${ward}" var="ward">
+                                                                    <c:if test="${ward.subDistrictID eq supAdd.sup_add.wardID.subDistrictID}">
+                                                                        <option value="${ward.subDistrictID}" selected>${ward.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     
                                                 </div>
                                                 <div class="col-md-6">
