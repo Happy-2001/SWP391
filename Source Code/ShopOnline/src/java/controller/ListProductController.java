@@ -85,8 +85,7 @@ public class ListProductController extends HttpServlet {
         String image = request.getParameter("image");
         ProductDAO productDAO = new ProductDAO();
 
-        Product p = new Product();
-
+        Product p = new Product(); 
         p.setName(productName);
         p.setCategoryid(Integer.parseInt(categoryId));
         p.setPrice(Float.parseFloat(productPrice));
