@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.District;
 import model.Provinces;
+import model.Street;
 import model.SubDistrict;
 import model.UserAddress;
 import model.project;
@@ -264,6 +265,29 @@ public ArrayList<SubDistrict> getSubDistrict() {
         return list;
     }
     
+    public ArrayList<Street> getStreet(int strid) {
+        ArrayList<SubDistrict> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `ward` WHERE `ward`.`_district_id` = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, strid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                SubDistrict p = new SubDistrict();
+                p.setSubDistrictID((rs.getInt("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                p.setProvinceID(rs.getInt("_province_id"));
+                p.setDistrictID(rs.getInt("_district_id"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
     
     public ArrayList<UserAddress> getUserAddress(String userID) {
         ArrayList<UserAddress> list = new ArrayList<>();
