@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.MyFeedback;
+import model.Orders;
 import model.User;
 
 /**
@@ -280,6 +281,8 @@ public class FeedbackDAO extends DBConnect {
                 s.setUser(new User(rs.getInt(10), rs.getString(11),
                                     rs.getString(12), rs.getString(13),
                                     rs.getString(14), rs.getString(15), rs.getString(16)));
+                s.setOrder(new Orders(rs.getInt(17)));
+                
                 return s;
             }
         } catch (SQLException ex) {

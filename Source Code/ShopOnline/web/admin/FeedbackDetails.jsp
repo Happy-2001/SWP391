@@ -159,7 +159,7 @@
                                     </a>
                                     <span class="text-muted">${mfb.createDate}</span>
                                     <div class="dropdown">
-                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-sm" aria-haspopup="true" aria-expanded="false">
+                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-sm">
                                             <i class="fa-solid fa-ellipsis"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end" style="margin: 0px;">
@@ -173,8 +173,8 @@
                             <div class="mb-4">
                                 <div class="mb-3">
                                     Feedback for order num:
-                                    <a href="#" style="color: #ff6e40;">
-                                        <em>#1</em>
+                                    <a href="OrderDetailController?id=${mfb.order.orderID}" style="color: #ff6e40;">
+                                        <em>#${mfb.order.orderID}</em>
                                     </a>
                                 </div>
                                 <div class="mb-4">

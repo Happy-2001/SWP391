@@ -19,6 +19,10 @@ public class Orders {
 
     public Orders() {
     }
+    
+    public Orders(int orderID) {
+        this.orderID = orderID;
+    }
 
     public Orders(int orderID, String orderDate, String requireDate, String shippedDate, String status, int customerId, int shiperId, Product product, float amount, int quantity) {
         this.orderID = orderID;
