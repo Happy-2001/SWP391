@@ -72,7 +72,7 @@ public class SupplierDetailController extends HttpServlet {
         request.setAttribute("supAdd", supAdd);
         request.setAttribute("district", district);
         request.setAttribute("ward", ward);
-        request.setAttribute("provinces", province);
+        request.setAttribute("province", province);
         
         request.getRequestDispatcher("SupplierDetail.jsp").forward(request, response);
         /*

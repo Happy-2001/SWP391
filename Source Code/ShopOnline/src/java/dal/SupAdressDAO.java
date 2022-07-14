@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import model.District;
 import model.Provinces;
 import model.Street;
+import model.SubDistrict;
 import model.SupDetail;
 import model.Supplier_address;
 import model.Suppliers;
@@ -47,7 +48,7 @@ public class SupAdressDAO extends DBConnect {
                                        rs.getInt("sup.gender"),rs.getInt("sup.creator")));
                 u.setSup_add(new Supplier_address(new Provinces(rs.getString("uad._name")),
                                                   new District(rs.getInt("supadd.districtID")),
-                                                  new Ward(rs.getInt("supadd.wardID")),
+                                                  new SubDistrict(rs.getInt("supadd.wardID")),
                                                   new Street(rs.getInt("supadd.streetID")),
                                                   new project(rs.getString("supadd.projectID")),
                                                     rs.getString("supadd.addressDetail")));
@@ -64,6 +65,6 @@ public class SupAdressDAO extends DBConnect {
     public static void main(String[] args) {
         SupAdressDAO dao = new SupAdressDAO();
         SupDetail a = dao.getSupAdressById(1);
-        System.out.println(a.getSup_add().getAddDetail());
+        System.out.println(a.getSup_add().getWardID().getSubDistrictID());
     }
 }
