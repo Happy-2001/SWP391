@@ -5,44 +5,24 @@
  */
 package controller;
 
-import dal.CartDAO;
 import dal.OrderDAO;
-import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Orders;
-import model.Product;
 
 
-/**
- *
- * @author thund
- */
 public class OrderDetailController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        OrderDAO dao = new OrderDAO();
-        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
-        request.setAttribute("order", o);
-        request.getRequestDispatcher("admin/OrderDetails.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,21 +37,48 @@ public class OrderDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        OrderDAO dao = new OrderDAO();
+        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
+        Orders oder = dao.getLatestByID(Integer.parseInt(id));
+        
+        double total = 0;
+        for (Orders od : o) {
+            total = total + od.getQuantity()*od.getProduct().getSalePrice();
+        }
+        double vat = 0.1 * total;
+        request.setAttribute("total", total);
+        request.setAttribute("vat", vat);
+        request.setAttribute("sum", total + vat);
+        
+        request.setAttribute("orderlist", o);
+        request.setAttribute("order", oder);
+        
+        request.getRequestDispatcher("OrderDetails.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        String rdate = request.getParameter("rdate");
+        String status = request.getParameter("status");
+        
+        OrderDAO dao = new OrderDAO();
+        
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");  
+        Date date = new Date();
+        
+        switch(status){
+            case "completed" : 
+                dao.updateStatusOrder(fm.format(date), null, status, Integer.parseInt(id));
+                break;
+            case "" :
+                dao.updateStatusOrder(rdate, fm.format(date), status, Integer.parseInt(id));
+                break;
+            default: 
+        }
+        
     }
 
     /**
