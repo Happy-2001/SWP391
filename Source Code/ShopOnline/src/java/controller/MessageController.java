@@ -69,21 +69,23 @@ public class MessageController extends HttpServlet {
 //                response.getWriter().println(groupChat.getGroupID() + " || "+ groupChat.getCustomerID());
                 groupChat.setEaID(adao.getEaIDbyUserID(groupChat.getCustomerID()));
 //                                 response.getWriter().println(groupChat.getEaID() + " || "+ groupChat.getCustomerID());
-                groupChat.setCreatorIDMessage(groupChat.getMessageID());
+                groupChat.setCreatorIDMessage(String.valueOf(creator.getUserid()));
             }
-            
+
             request.setAttribute("listGroupChat", listGroupChat);
             request.setAttribute("listUserAdminID", listUserAdminID);
             request.setAttribute("mrID", mrID);
             ArrayList<Message> listMessage = mdao.getAllMessageofUser(groupID, String.valueOf(user.getUserid()));
             for (Message message : listMessage) {
-                    if (!listUserAdminID.contains(message.getFromID())) {
+                if (!listUserAdminID.contains(message.getFromID())) {
+                    if (message.getIsread().equals("0")) {
                         mdao.readMess(message.getToID(), message.getId());
                         message.setIsread("1");
                     }
+                }
             }
             request.setAttribute("listMess", listMessage);
-           
+
             request.getRequestDispatcher("admin/message.jsp").forward(request, response);
         }
     }
@@ -120,7 +122,7 @@ public class MessageController extends HttpServlet {
             if (getFROMandTOsplit.length == 4) {           //Admin      // check chuyển hướng sang message.jsp  tính nhắn gần nhất
                 ArrayList<Message> listMessage = mdao.getAllMessageofUser(toid, fromid); // groupID , userID
                 List<String> listUserAdminID = udao.listUserAdminID();
-                
+
                 response.sendRedirect("message?mrID=" + maxmrID);
             } else {                                        //Customer
 

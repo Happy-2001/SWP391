@@ -43,7 +43,7 @@
                                 <i class="fa-solid fa-envelope fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Chats</span>
-                                <span class="badge bg-success rounded-circle ms-auto">1</span>
+                                <!--<span class="badge bg-success rounded-circle ms-auto">1</span>-->
                             </a>
                         </li>
         

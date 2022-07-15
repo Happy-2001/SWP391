@@ -8,7 +8,7 @@
             <div class="col-lg-3">
                 <nav class="navbar">
                     <!-- <i class="fa-solid fa-bars fa-lg toggle-switch"></i> -->
-                    <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="../images/logo.png" class="logo"></a>
+                    <a href="/ShopOnline/home" class="navbar-brand ms-4"><img src="images/logo.png" class="logo"></a>
                 </nav>
             </div>
             <div class="col-lg-7">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="admin">
                         <div class="admin-avatar" data-bs-toggle="collapse" data-bs-target="#setting">
-                            <img src="../RetrieveImg?eaID=${sessionScope.userlogged.userid}" onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
+                            <img src="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/245d187674cbe8fccc5bda1d5e8da4a2.jpeg?x-expires=1658001600&x-signature=7eC%2B0yU%2FDf%2FDXEEefISG2aUgdfU%3D" onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
                             <span class="online"></span> 
                         </div>
                     </div>

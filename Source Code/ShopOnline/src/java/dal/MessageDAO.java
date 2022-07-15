@@ -282,7 +282,7 @@ public class MessageDAO {
     }
     public void readMess( String groupID,String messageID) {       // chỉ xóa nội dung
         try {
-            String sql = "UPDATE `message_recipient` SET `isRead` = '1' WHERE `recipientGroupID ` = ? and `messageID ` = ?";
+            String sql = "UPDATE `message_recipient` SET `isRead` = '1' WHERE `recipientGroupID` = ? and `messageID` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
 
             
@@ -320,7 +320,8 @@ public class MessageDAO {
     }
     public static void main(String[] args) {
         MessageDAO m = new MessageDAO();
-        ArrayList<Message> list = m.getAllMessageofUser("1", "1");
+        ArrayList<Message> list = m.getAllMessageofUser("1", "5");
+        System.out.println(list.isEmpty());
         for (Message message : list) {
             System.out.println(message.getIsread());
         }
