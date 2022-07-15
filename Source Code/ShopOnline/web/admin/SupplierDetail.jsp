@@ -343,6 +343,8 @@
                                                         </div>
                                                     </div>
                                                     
+                                                    
+                                                    
                                                     <div class="mb-3">
                                                         <label class="form-label">Street</label>
                                                         <div class="d-flex gap-3">
@@ -352,6 +354,20 @@
                                                                         <option value="${str.district_id}" selected>${str.name}</option>
                                                                     </c:if>
                                                                     <option value="${str.district_id}">${str.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Project</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${project}" var="pro">
+                                                                    <c:if test="${pro.district_id eq supAdd.sup_add.projectID.district_id}">
+                                                                        <option value="${pro.district_id}" selected>${pro.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${pro.district_id}">${pro.name}</option>
                                                                 </c:forEach>
                                                             </select>
                                                         </div>

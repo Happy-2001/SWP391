@@ -237,6 +237,33 @@ public ArrayList<SubDistrict> getSubDistrict() {
         }
         return list;
     }
+    
+     public ArrayList<project> getProjectWith(String provinceID, String districtID) {
+        ArrayList<project> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `project` WHERE _province_id = ? AND _district_id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, provinceID);
+            statement.setString(2, districtID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                project p = new project();
+                p.setId((rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
+
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
 
     public ArrayList<project> getProjectByDisID (int districtID) {
         ArrayList<project> list = new ArrayList<>();
@@ -257,7 +284,7 @@ public ArrayList<SubDistrict> getSubDistrict() {
                 list.add(p);
             }
         } catch (SQLException ex) {
-
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -379,9 +406,9 @@ public ArrayList<SubDistrict> getSubDistrict() {
     }
     public static void main(String[] args) {
         AddressDAO dao = new AddressDAO();
-        ArrayList<project> str = dao.getProjectByDisID(333);
-        for(project o : str){
-            System.out.println(o.getName());
+        ArrayList<Street> str = dao.getStreet(333);
+        for(Street o : str){
+            System.out.println(o.getDistrict_id());
         }
     }
 

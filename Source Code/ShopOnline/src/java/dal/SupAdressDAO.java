@@ -50,7 +50,7 @@ public class SupAdressDAO extends DBConnect {
                                                   new District(rs.getInt("supadd.districtID")),
                                                   new SubDistrict(rs.getInt("supadd.wardID")),
                                                   new Street(rs.getInt("supadd.streetID")),
-                                                  new project(rs.getString("supadd.projectID")),
+                                                  new project(rs.getInt("supadd.projectID")),
                                                     rs.getString("supadd.addressDetail")));
                 
                 return u;
