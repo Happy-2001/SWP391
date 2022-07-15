@@ -58,21 +58,16 @@ public class AddressDAO {
         }
     }
 
-    public void insertUserAddress(String userID, String fullname, String provinceID, String districtID, String wardID, String projectID, String streetID, String eaID, String otherPhone, String detailAddress) {
-        String sql = "INSERT INTO `user_address` ( `userID`,`fullname`, `provinceID`, `districtID`, `wardID`, `streetID`, `projectID`, `eaID`,`otherPhone`, `addressDetail`) VALUES\n"
-                + "(?,?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    public void insertUserAddress(String userID, String fullname, String eaID) {
+        String sql = "INSERT INTO `user_address` ( `userID`,`fullname`, `eaID`) VALUES\n"
+                + "(?,?, ?);";
         try {
             PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
             ps.setString(1, userID);
             ps.setString(2, fullname);
-            ps.setString(3, provinceID);
-            ps.setString(4, districtID);
-            ps.setString(5, wardID);
-            ps.setString(6, streetID);
-            ps.setString(7, projectID);
-            ps.setString(8, eaID);
-            ps.setString(9, otherPhone);
-            ps.setString(10, detailAddress);
+           
+            ps.setString(3, eaID);
+          
 
             ps.executeUpdate();
 
@@ -83,6 +78,8 @@ public class AddressDAO {
         }
     }
 
+    
+    
     public String getEaIDbyUserID(String UserID) {
         String eaID = "";
         String sql = "SELECT ea.eaID FROM `electronicaddress` ea INNER JOIN user_address ua \n"
