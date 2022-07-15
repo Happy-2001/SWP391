@@ -321,20 +321,18 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h6 class="card-title mb-3">Recent Order</h6>
-                                    <div class="od-date mb-3">${orderDate}</div>
-                                    <c:forEach items="${orders}" var="order">
+                                    
+                                    <c:forEach items="${prolist}" var="prolist">
                                         <div class="od-items">
                                             <div class="items">
                                                 <div class="pd-img">
-                                                    <img src="../${order.product.img}">
+                                                    <img src="../${prolist.img}">
                                                 </div>
                                                 <div class="d-flex flex-column qty pe-3">
-                                                    <h5 class="p-0">${order.product.name}</h5>
-                                                    <span>Quantity: ${order.quantity}</span>
-                                                    <span>Size: </span>
-                                                    <span>Color: </span>
-                                                </div>
-                                                <fmt:formatNumber value="${order.product.salePrice}" type="currency"/>
+                                                    <h5 class="p-0">${prolist.name}</h5>
+                                                    <span>Price: ${prolist.price} </span>
+                                                    <span>Quantity: ${prolist.stock}</span>
+                                                </div> 
                                             </div>
                                         </div>
                                     </c:forEach>
