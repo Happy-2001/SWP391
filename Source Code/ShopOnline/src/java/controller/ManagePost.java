@@ -106,7 +106,7 @@ public class ManagePost extends HttpServlet {
         String productPrice = request.getParameter("productPrice");
         String productStock = request.getParameter("productStock");
         String description = request.getParameter("description");
-        String image = request.getParameter("image");
+        String image = request.getParameter("file");
         BlogDAO productDAO = new BlogDAO();
         HttpSession session = request.getSession();
 
@@ -117,8 +117,8 @@ public class ManagePost extends HttpServlet {
         p.setCreatedDate(productName);
         p.setCategoryId(Integer.parseInt(categoryId));
         p.setContent(productPrice);
-        p.setNoidung(productStock);
-        p.setDescription(description);
+        p.setNoidung(description);
+        p.setDescription(productStock);
         p.setUid(uid);
         switch (actionpage) {
             case "add":
@@ -128,7 +128,10 @@ public class ManagePost extends HttpServlet {
             case "edit":
                 String id = request.getParameter("id");
                 PostDAO dao = new PostDAO();
-                dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), image, Integer.parseInt(id));
+                p.setImage("images/" + image);
+                String a = p.getImage();
+                //productDAO.update(p);
+                dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), a, Integer.parseInt(id));
                 break;
         }
         response.sendRedirect("PostMan");

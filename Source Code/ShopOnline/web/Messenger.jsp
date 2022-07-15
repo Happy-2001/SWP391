@@ -32,7 +32,7 @@
                                 <h6>Wear your Best - A Moments of Your Style</h6>
                         </div>
                         <c:choose>
-                            <c:when test="${listMess eq null}">
+                            <c:when test="${listMess.id eq null}">
                                 <div class="autochat">
                                     <div>
                                         <input type="text" name="checkMess" hidden="" value="nullMessage" />

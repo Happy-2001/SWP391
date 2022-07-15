@@ -46,22 +46,26 @@
         <form class="container py-5" action="ManagePost" method="POST" id="fileUploadForm">
             <input type="hidden" name="actionpage" value="edit">
             <div class="mb-3">
+                <label for="name" class="form-label">ID</label>
+                <input value="${post.id}" type="text" class="form-control" id="name" name="id" required>
+            </div>
+            <div class="mb-3">
                 <label for="name" class="form-label">Date</label>
                 <input value="${post.createdDate}" type="text" class="form-control" id="name" name="productName" required>
             </div>
             <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <select class="form-select form-control" name="categoryId">
-                        <c:forEach items="${categories}" var="c">
-                            <c:if test="${post.categoryId eq c.categoryId}">
-                                <option value="${c.categoryId}" selected>${c.categoryName}</option>
-                            </c:if>
-                            <c:if test="${post.categoryId ne c.categoryId}">
-                                <option value="${c.categoryId}">${c.categoryName}</option>
-                            </c:if>
-                        </c:forEach>
-                    </select>
-                </div>   
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select form-control" name="categoryId">
+                    <c:forEach items="${categories}" var="c">
+                        <c:if test="${post.categoryId eq c.categoryId}">
+                            <option value="${c.categoryId}" selected>${c.categoryName}</option>
+                        </c:if>
+                        <c:if test="${post.categoryId ne c.categoryId}">
+                            <option value="${c.categoryId}">${c.categoryName}</option>
+                        </c:if>
+                    </c:forEach>
+                </select>
+            </div>   
             <div class="mb-3">
                 <label for="price" class="form-label">Content</label>
                 <input value="${post.content}" type="text" class="form-control" id="price" name="productPrice" required>
@@ -78,13 +82,13 @@
             <div id="inputfile" class="form-group mb-3">
                 <div class="form-group">
                     <label for="file" class="form-label">Image url</label>
-                    <input type="hidden" name="image" id="imagefile" value="${post.image}">
                     <input class="form-control" type="file" name="file" id="file" />
                 </div>
             </div>
-            <img id="imagedisplay"/>
-
+            <input type="hidden" name="image" id="imagefile" value="">
+            <img id="imagedisplay" src="${post.image}"/>
             <button type="submit" class="btn btn-primary">Submit</button>
+
         </form>
 
         <!-- Start Footer  -->

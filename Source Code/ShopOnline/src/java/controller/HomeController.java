@@ -66,28 +66,31 @@ public class HomeController extends HttpServlet {
             String groupCusID = gdao.getGroupIDbyUserID(userID);
             ArrayList<Message> listMessages = mdao.getAllMessageofUser(groupCusID, userID);
             List<String> listUserAdminID = udao.listUserAdminID();
-          
+          for (Message message : listMessages) {
+                    if (listUserAdminID.contains(message.getFromID())) {
+                        if(message.getIsread().equals("0")){
+                            mdao.readMess(message.getToID(), message.getId());
+                        message.setIsread("1");
+                        }
+                        
+                    }
+            }
             request.setAttribute("listMess", listMessages);
             request.setAttribute("listUserAdminID", listUserAdminID);
             
             if(gdao.getGroupIDbyUserID(userID).equals("") && !listUserAdminID.contains(String.valueOf(u.getUserid()))){  // only for Customer role
                 String maxGroupID = gdao.getMaxGroupIDb();
-                gdao.addGroup((u.getFullname()) +" CSKH"+u.getUserid());
+                gdao.addGroup((u.getFullname()));
                 gdao.addUserGroup(userID,maxGroupID);
                 for (String string : listUserAdminID) {
                     gdao.addUserGroup(string,maxGroupID);
                 }
             }
-//            for (String string : listUserAdminID) {
-//                response.getWriter().print(string);
-//            }
+
         }
 
-        String showChatBox =(String) request.getAttribute("showChatBox");
-        if(showChatBox != null){
-            request.setAttribute("showChatBox", showChatBox);
-        response.getWriter().print(showChatBox);
-        }
+       
+        
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         
     }

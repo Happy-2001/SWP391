@@ -27,8 +27,9 @@ import model.Product;
  * @author Administrator
  */
 public class BlogDAO {
+
     DBConnect mysqlConnect = new DBConnect();
-    
+
     public void addBlog(Blog p) {
         try {
             String sql = "INSERT INTO `blogs`(`create_date`,`userID` ,`content`, `description`, `noidung`, `blogCategoryID`, `img`) VALUES (?,?,?,?,?,?,?)";
@@ -47,25 +48,26 @@ public class BlogDAO {
             mysqlConnect.disconnect();
         }
     }
-    public void update(Blog p) {
+
+    public void update(Blog p, int id) {
         try {
-            String sql = "UPDATE `blogs` SET "
-                    + "`create_date`= ?,"
-                    + "`content`= ?,"
+            String sql = "UPDATE `blogs` SET `create_date`= ?,"
+                    + "`content`= ?, "
                     + "`description`= ?,"
                     + "`noidung`= ?,"
-                    + "`User_Account_user_id`= ?,"
-                    + "`category_blog_id`= ?,"
+                    + "`userID`= 1,"
+                    + "`blogCategoryID`= ?,"
                     + "`img`= ? "
-                    + "WHERE `blog`.`blog_id` = ?";
+                    + "WHERE blog_id = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setString(1, p.getCreatedDate()); 
-            statement.setString(2, p.getContent()); 
-            statement.setString(3, p.getDescription()); 
-            statement.setString(4, p.getNoidung()); 
+            statement.setString(1, p.getCreatedDate());
+            statement.setString(2, p.getContent());
+            statement.setString(3, p.getDescription());
+            statement.setString(4, p.getNoidung());
             statement.setString(5, p.getImage());
             statement.setInt(6, 1);
             statement.setInt(7, p.getCategoryId());
+            statement.setInt(8, id);
             statement.executeUpdate();
 
         } catch (SQLException ex) {
@@ -74,6 +76,23 @@ public class BlogDAO {
             mysqlConnect.disconnect();
         }
     }
+
+    public static void main(String[] args) {
+        BlogDAO b = new BlogDAO();
+        String stringDate = "22/01/2016";
+        String a = "ok";
+        int e = 4;
+        Blog p = new Blog();
+        p.setCreatedDate(stringDate);
+        p.setCategoryId(1);
+        p.setContent(a);
+        p.setDescription(a);
+        p.setNoidung(a);
+        p.setId(40);
+                
+        b.update(p,40);
+    }
+
     public int countPage() {
         try {
             String sql = "SELECT COUNT(*) AS TOTAL FROM `blogs`";
@@ -121,6 +140,7 @@ public class BlogDAO {
         }
         return lc;
     }
+
     public List<BlogCategory> listAll() {
         List<BlogCategory> categories = new ArrayList<>();
         String sql = "SELECT * FROM `blog_categories`";
@@ -140,9 +160,7 @@ public class BlogDAO {
         }
         return categories;
     }
-    
-    
-    
+
     public ArrayList<Blog> getBlogForHomePage() {
         ArrayList<Blog> lc = new ArrayList<>();
         try {
@@ -186,7 +204,6 @@ public class BlogDAO {
         }
         return null;
     }
-    
 
     public Blog getBlogById(String id) {
         try {
@@ -209,14 +226,7 @@ public class BlogDAO {
     public Object getBlogSearch(String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public static void main(String[] args) {
-        BlogDAO b = new BlogDAO();
-        String stringDate = "22/01/2016";
-       String a = "ok";
-       int e = 4;
-        Blog p = new Blog(stringDate, a, stringDate, a, a, 1, e);
-        b.addBlog(p);
-    }
+
 }
 /*
 public ArrayList<Blog> getBlogForHomePage() {
@@ -263,4 +273,4 @@ public ArrayList<Blog> getBlogForHomePage() {
         return null;
     }
     
-*/
+ */

@@ -100,7 +100,7 @@
                                                                 <div class="list-group-item active">
                                                                     <div class="pe-3">
                                                                         <span class="avatar">
-                                                                            <img class="avatar " src="../RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
+                                                                            <img class="avatar " src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar"><!--RetrieveImg?eaID=${listGroupChat.eaID}-->
                                                                             <span class="online"></span>
                                                                         </span>
                                                                     </div>
@@ -109,7 +109,7 @@
                                                                         <c:choose>
                                                                             <c:when test="${!listUserAdminID.contains(listGroupChat.creatorIDMessage)}"> <!--check tin nhan cuoi la cua admin hay customer-->
                                                                                 <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                    <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                    <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                                     </span>  <span class="text-muted">${listGroupChat.time}</span>
                                                                                 </c:if>
                                                                                 <c:if test="${listGroupChat.isRead eq 1}">
@@ -120,7 +120,7 @@
                                                                             </c:when>
                                                                             <c:otherwise>
                                                                                 <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                    <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                    <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                                     </span>  <span class="text-muted">${listGroupChat.time}</span>
                                                                                 </c:if>
                                                                                 <c:if test="${listGroupChat.isRead eq 1}">
@@ -143,13 +143,14 @@
                                                                         </div>
                                                                         <c:choose>
                                                                             <c:when test="${listUserAdminID.contains(listGroupChat.creatorIDMessage)}"> <!--check tin nhan cuoi la cua admin hay customer-->
-                                                                                <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <c:if test="${listGroupChat.isRead eq 0}">
                                                                                     <span class="small text-muted "><i class="fa-solid fa-circle-check" style="color: #BBB"></i></span>
                                                                                     </c:if>
 
-                                                                                <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <c:if test="${listGroupChat.isRead eq 1}">
                                                                                     <span class="small text-muted ">
-                                                                                        <img class="avatar avatarSeen" src="../RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
+                                                                                        <img style="height: 1rem !important;
+                                                                                             width: 1rem !important;" class="avatar avatarSeen" src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
                                                                                     </span>
                                                                                 </c:if>
 
@@ -164,7 +165,7 @@
                                                                 <div class="list-group-item " onclick="changeGroupchat(${listGroupChat.id})">
                                                                     <div class="pe-3">
                                                                         <span class="avatar">
-                                                                            <img class="avatar " src="../RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
+                                                                            <img class="avatar " src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
                                                                             <span class="online"></span>
                                                                         </span>
                                                                     </div>
@@ -173,7 +174,7 @@
                                                                         <c:choose>
                                                                             <c:when test="${!listUserAdminID.contains(listGroupChat.creatorIDMessage)}"> <!--check tin nhan cuoi la cua admin hay customer-->
                                                                                 <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                    <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                    <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                                     </span>  <span class="text-muted">${listGroupChat.time}</span>
                                                                                 </c:if>
                                                                                 <c:if test="${listGroupChat.isRead eq 1}">
@@ -184,7 +185,7 @@
                                                                             </c:when>
                                                                             <c:otherwise>
                                                                                 <c:if test="${listGroupChat.isRead eq 0}">
-                                                                                    <span class="text-muted" style="color: blue !important">${listGroupChat.creatorMessage}${listGroupChat.content}
+                                                                                    <span class="text-muted" >${listGroupChat.creatorMessage}${listGroupChat.content}
                                                                                     </span>  <span class="text-muted">${listGroupChat.time}</span>
                                                                                 </c:if>
                                                                                 <c:if test="${listGroupChat.isRead eq 1}">
@@ -208,13 +209,14 @@
                                                                         </div>
                                                                         <c:choose>
                                                                             <c:when test="${listUserAdminID.contains(listGroupChat.creatorIDMessage)}"> <!--check tin nhan cuoi la cua admin hay customer-->
-                                                                                <c:if test="${listGroupChat.isRead eq 1}">
+                                                                                <c:if test="${listGroupChat.isRead eq 0}">
                                                                                     <span class="small text-muted "><i class="fa-solid fa-circle-check" style="color: #BBB"></i></span>
                                                                                     </c:if>
 
-                                                                                <c:if test="${listGroupChat.isRead eq 0}">
+                                                                                <c:if test="${listGroupChat.isRead eq 1}">
                                                                                     <span class="small text-muted ">
-                                                                                        <img class="avatar avatarSeen" src="../RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
+                                                                                        <img style="height: 1rem !important;
+                                                                                             width: 1rem !important;" class="avatar avatarSeen" src="RetrieveImg?eaID=${listGroupChat.eaID}" alt="avatar">
                                                                                     </span>
                                                                                 </c:if>
 
