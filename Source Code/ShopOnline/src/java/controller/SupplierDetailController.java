@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.District;
+import model.ElectronicAddress;
 import model.Provinces;
 import model.Street;
 import model.SubDistrict;
@@ -74,12 +75,15 @@ public class SupplierDetailController extends HttpServlet {
         
         ArrayList<project> project = dbb.getProjectByDisID(wid);
         
+//        ArrayList<ElectronicAddress> ea = dbb.getEabyID(supAdd.getSup_add().getEaID().getEaID());
+        
         request.setAttribute("sup", sup);
         request.setAttribute("supAdd", supAdd);
         request.setAttribute("district", district);
         request.setAttribute("ward", ward);
         request.setAttribute("street", street);
         request.setAttribute("project", project);
+//        request.setAttribute("ea", ea);
         request.setAttribute("province", province);
         
         request.getRequestDispatcher("SupplierDetail.jsp").forward(request, response);

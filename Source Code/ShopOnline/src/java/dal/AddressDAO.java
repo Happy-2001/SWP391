@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.District;
+import model.ElectronicAddress;
 import model.Provinces;
 import model.Street;
 import model.SubDistrict;
@@ -286,7 +287,7 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString("id")));
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
                 p.setProvince_id(rs.getInt("_province_id"));
                 p.setDistrict_id(rs.getInt("_district_id"));
@@ -312,7 +313,7 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString("id")));
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
                 p.setProvince_id(rs.getInt("_province_id"));
                 p.setDistrict_id(rs.getInt("_district_id"));
@@ -337,7 +338,7 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString("id")));
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
                 p.setProvince_id(rs.getInt("_province_id"));
                 p.setDistrict_id(rs.getInt("_district_id"));
@@ -357,7 +358,7 @@ public class AddressDAO {
     public ArrayList<Street> getStreet(int strid) {
         ArrayList<Street> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM `ward` WHERE `ward`.`_district_id` = ?";
+            String sql = "SELECT * FROM `street` WHERE `street`.`_district_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, strid);
             ResultSet rs = statement.executeQuery();
@@ -372,6 +373,30 @@ public class AddressDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
+    
+    public ArrayList<ElectronicAddress> getEabyID(int eaID) {
+        ArrayList<ElectronicAddress> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `electronicaddress` WHERE `electronicaddress`.`eaID`=? ";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, eaID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                ElectronicAddress p = new ElectronicAddress();
+                p.setEaID(rs.getInt("eaID"));
+                p.setWebsite(rs.getString("webSite"));
+                p.setTelephone(rs.getString("telephone"));
+                p.setFax(rs.getString("fax"));
+                p.setEmail(rs.getString("email"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+
         } finally {
             mysqlConnect.disconnect();
         }
@@ -468,7 +493,6 @@ public class AddressDAO {
     public static void main(String[] args) {
         AddressDAO adao = new AddressDAO();
         ArrayList<UserAddress> list = adao.getUserAddress("1");
-        adao.insertUserAddress("3", "Đào Phúc Thạch", "24", "333", "5154", null, null, "3", "012312454543", "KTX HL");
         ArrayList<District> list2 = adao.getDistrict();
         System.out.println(list2.get(0).getName());
     }

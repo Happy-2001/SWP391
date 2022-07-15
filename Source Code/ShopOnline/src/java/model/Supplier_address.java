@@ -16,26 +16,33 @@ public class Supplier_address {
     SubDistrict wardID;
     Street  streetID;
     project  projectID;
-    private int eaID;
+    ElectronicAddress  eaID;
     private String addDetail;
+    String telephone;
+    String fax;
+    String email;
     
     public Supplier_address(){
     
     }
 
-    public Supplier_address(Provinces  proID,District disID, SubDistrict wardID, Street streetID, project projectID, String addDetail) {
+    public Supplier_address(Provinces  proID,District disID, SubDistrict wardID, Street streetID, project projectID,ElectronicAddress eaID,String telephone,String fax,String email, String addDetail) {
         this.proID=proID;
         this.disID = disID;
         this.wardID = wardID;
         this.streetID = streetID;
         this.projectID = projectID;
+        this.eaID = eaID;
+        this.telephone = telephone;
+        this.fax = fax;
+        this.email = email;
         this.addDetail = addDetail;
     }
 
     
     
 
-    public Supplier_address(int supID, Provinces proID, District disID, SubDistrict wardID, Street streetID, project projectID, int eaID, String addDetail) {
+    public Supplier_address(int supID, Provinces proID, District disID, SubDistrict wardID, Street streetID, project projectID, ElectronicAddress eaID, String addDetail) {
         this.supID = supID;
         this.proID = proID;
         this.disID = disID;
@@ -50,10 +57,34 @@ public class Supplier_address {
         return supID;
     }
 
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public void setSupID(int supID) {
         this.supID = supID;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+    
     public Provinces getProID() {
         return proID;
     }
@@ -94,11 +125,11 @@ public class Supplier_address {
         this.projectID = projectID;
     }
 
-    public int getEaID() {
+    public ElectronicAddress getEaID() {
         return eaID;
     }
 
-    public void setEaID(int eaID) {
+    public void setEaID(ElectronicAddress eaID) {
         this.eaID = eaID;
     }
 

@@ -194,6 +194,29 @@ public class ProductDAO {
         }
         return products;
     }
+    public List<Product> listProductBySupID(int supid) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `products` WHERE `products`.`supplierID`=?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, supid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getFloat("unit_price"));
+                p.setImg(rs.getString("url"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return products;
+    }
+    
 
     public List<Product> listProductByColor(String cid) {
         List<Product> products = new ArrayList<>();
