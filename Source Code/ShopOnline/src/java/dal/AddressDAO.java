@@ -223,10 +223,10 @@ public ArrayList<SubDistrict> getSubDistrict() {
                 project p = new project();
                 p.setId((rs.getString("id")));
                 p.setName(rs.getString("_name"));
-                p.setProvinceID(rs.getString("_province_id"));
-                p.setDistrictID(rs.getString("_district_id"));
-                p.setLat(rs.getString("_lat"));
-                p.setIng(rs.getString("_lng"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
 
                 list.add(p);
             }
@@ -238,22 +238,21 @@ public ArrayList<SubDistrict> getSubDistrict() {
         return list;
     }
 
-    public ArrayList<project> getProjectWith(String provinceID, String districtID) {
+    public ArrayList<project> getProjectByDisID (int districtID) {
         ArrayList<project> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM `project` WHERE _province_id = ? AND _district_id = ?";
+            String sql = "SELECT * FROM `project` WHERE  `project`._district_id = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setString(1, provinceID);
-            statement.setString(2, districtID);
+            statement.setInt(1, districtID);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString("id")));
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
-                p.setProvinceID(rs.getString("_province_id"));
-                p.setDistrictID(rs.getString("_district_id"));
-                p.setLat(rs.getString("_lat"));
-                p.setIng(rs.getString("_lng"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
 
                 list.add(p);
             }
@@ -266,19 +265,19 @@ public ArrayList<SubDistrict> getSubDistrict() {
     }
     
     public ArrayList<Street> getStreet(int strid) {
-        ArrayList<SubDistrict> list = new ArrayList<>();
+        ArrayList<Street> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM `ward` WHERE `ward`.`_district_id` = ?";
+            String sql = "SELECT * FROM `street` WHERE `street`.`_district_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, strid);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                SubDistrict p = new SubDistrict();
-                p.setSubDistrictID((rs.getInt("id")));
+                Street p = new Street();
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
                 p.setPrefix(rs.getString("_prefix"));
-                p.setProvinceID(rs.getInt("_province_id"));
-                p.setDistrictID(rs.getInt("_district_id"));
+                p.setProvine_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -288,6 +287,8 @@ public ArrayList<SubDistrict> getSubDistrict() {
         }
         return list;
     }
+    
+    
     
     public ArrayList<UserAddress> getUserAddress(String userID) {
         ArrayList<UserAddress> list = new ArrayList<>();
@@ -377,11 +378,11 @@ public ArrayList<SubDistrict> getSubDistrict() {
         }
     }
     public static void main(String[] args) {
-        AddressDAO adao = new AddressDAO();
-        ArrayList<UserAddress> list = adao.getUserAddress("1");
-        adao.insertUserAddress("3", "Đào Phúc Thạch", "24", "333", "5154", null, null, "3", "012312454543", "KTX HL");
-        ArrayList<District> list2 = adao.getDistrict();
-        System.out.println(list2.get(0).getName());
+        AddressDAO dao = new AddressDAO();
+        ArrayList<project> str = dao.getProjectByDisID(333);
+        for(project o : str){
+            System.out.println(o.getName());
+        }
     }
 
 }

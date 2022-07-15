@@ -335,9 +335,23 @@
                                                             <select class="form-select">
                                                                 <c:forEach items="${ward}" var="ward">
                                                                     <c:if test="${ward.subDistrictID eq supAdd.sup_add.wardID.subDistrictID}">
-                                                                        <option value="${ward.subDistrictID}" selected>${ward.name}</option>
+                                                                        <option value="${ward.subDistrictID}" selected>${ward.prefix}  ${ward.name} </option>
                                                                     </c:if>
-                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
+                                                                    <option value="${ward.subDistrictID}">${ward.prefix}  ${ward.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Street</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${street}" var="str">
+                                                                    <c:if test="${str.district_id eq supAdd.sup_add.streetID.district_id}">
+                                                                        <option value="${str.district_id}" selected>${str.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${str.district_id}">${str.name}</option>
                                                                 </c:forEach>
                                                             </select>
                                                         </div>

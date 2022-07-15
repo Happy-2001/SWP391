@@ -10,28 +10,34 @@ package model;
  * @author Administrator
  */
 public class project {
-    private String id,name,provinceID,districtID,lat,ing;
-
-    public project() {
-    }
+    private int id;
+    private String name;
+    private int _province_id;
+    private int _district_id;
+    private Double _lng;
+    private Double _lat;
     
-    public project(String id) {
+    public project(){
+        
+    }
+    public project(int id){
         this.id=id;
     }
-    public project(String id, String name, String provinceID, String districtID, String lat, String ing) {
+
+    public project(int id, String name, int _province_id, int _district_id, Double _lng, Double _lat) {
         this.id = id;
         this.name = name;
-        this.provinceID = provinceID;
-        this.districtID = districtID;
-        this.lat = lat;
-        this.ing = ing;
+        this._province_id = _province_id;
+        this._district_id = _district_id;
+        this._lng = _lng;
+        this._lat = _lat;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,37 +49,36 @@ public class project {
         this.name = name;
     }
 
-    public String getProvinceID() {
-        return provinceID;
+    public int getProvince_id() {
+        return _province_id;
     }
 
-    public void setProvinceID(String provinceID) {
-        this.provinceID = provinceID;
+    public void setProvince_id(int _province_id) {
+        this._province_id = _province_id;
     }
 
-    public String getDistrictID() {
-        return districtID;
+    public int getDistrict_id() {
+        return _district_id;
     }
 
-    public void setDistrictID(String districtID) {
-        this.districtID = districtID;
+    public void setDistrict_id(int _district_id) {
+        this._district_id = _district_id;
     }
 
-    public String getLat() {
-        return lat;
+    public Double getLng() {
+        return _lng;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
+    public void setLng(Double _lng) {
+        this._lng = _lng;
     }
 
-    public String getIng() {
-        return ing;
+    public Double getLat() {
+        return _lat;
     }
 
-    public void setIng(String ing) {
-        this.ing = ing;
+    public void setLat(Double _lat) {
+        this._lat = _lat;
     }
-    
     
 }

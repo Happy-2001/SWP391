@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.District;
 import model.Provinces;
+import model.Street;
 import model.SubDistrict;
 import model.SupDetail;
 import model.Supplier_address;
@@ -68,10 +69,25 @@ public class SupplierDetailController extends HttpServlet {
         }
         ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
         
+        int strid=0;
+        for(District ds : district){
+            if(ds.getDistrictID() == supAdd.getSup_add().getStreetID().getDistrict_id()){
+                strid = ds.getDistrictID();
+            }
+        }
+        ArrayList<Street> street = dbb.getStreet(strid);
+        
+        int proid=0;
+        for(District ds : district){
+            if(ds.getDistrictID() == supAdd.getSup_add().getProjectID().getDistrict_id()){
+                proid = ds.getDistrictID();
+            }
+        }
         request.setAttribute("sup", sup);
         request.setAttribute("supAdd", supAdd);
         request.setAttribute("district", district);
         request.setAttribute("ward", ward);
+        request.setAttribute("street", street);
         request.setAttribute("province", province);
         
         request.getRequestDispatcher("SupplierDetail.jsp").forward(request, response);
