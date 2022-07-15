@@ -8,15 +8,15 @@
             <nav class="navbar navbar-expand-lg navbar-light bootsnav">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="home"><img src="images/logo.png" class="logo" alt=""></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <!-- Start Top Search -->
-                    <form action="Search" method="POST">
-                        <div class="top-search">
+                    <div class="top-search">
+                        <form action="Search" method="POST">
                             <div class="input-group">
                                 <span class="input-group-text close-search"><i class="fa fa-times"></i></span>
                                 <input type="search" class="form-control" value="${txtS}" name="txt"  placeholder="Search...">
@@ -24,8 +24,8 @@
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <!-- End Top Search -->
                     <ul id="page-header" class="nav navbar-nav ms-auto">
                         <li class="nav-item active"><a class="nav-link" href="home" title="Home">Home</a></li>

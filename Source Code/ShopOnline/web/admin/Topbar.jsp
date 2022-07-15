@@ -42,7 +42,7 @@
                         </div>
                         <div class="dropdown-menu dropdown-menu-end">
                             <c:forEach var="tb" items="${rs.rows}">
-                                <a href="#" class="dropdown-item d-flex flex-column">
+                                <a href="OrderDetailController?id=${tb.order_id}" class="dropdown-item d-flex flex-column">
                                     <div class="d-flex align-items-center">
                                         <i class="fa-solid fa-circle fa-2xs" style="color: #0099c6;"></i>
                                         <span class="ps-3" style="font-size: 16px;">New order No. <strong>#${tb.order_id}</strong></span>

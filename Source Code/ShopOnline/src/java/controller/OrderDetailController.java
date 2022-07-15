@@ -5,39 +5,38 @@
  */
 package controller;
 
-import dal.CartDAO;
 import dal.OrderDAO;
-import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Orders;
-import model.Product;
 
 
-/**
- *
- * @author thund
- */
 public class OrderDetailController extends HttpServlet {
 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         OrderDAO dao = new OrderDAO();
         ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
@@ -58,32 +57,28 @@ public class OrderDetailController extends HttpServlet {
         request.getRequestDispatcher("OrderDetails.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        String rdate = request.getParameter("rdate");
+        String status = request.getParameter("status");
+        
+        OrderDAO dao = new OrderDAO();
+        
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");  
+        Date date = new Date();
+        
+        switch(status){
+            case "completed" : 
+                dao.updateStatusOrder(fm.format(date), null, status, Integer.parseInt(id));
+                break;
+            case "" :
+                dao.updateStatusOrder(rdate, fm.format(date), status, Integer.parseInt(id));
+                break;
+            default: 
+        }
+        
     }
 
     /**

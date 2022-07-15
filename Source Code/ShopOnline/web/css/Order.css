@@ -79,3 +79,6 @@
 .table tbody tr.tr-selected td {
     border-color: #ff6e40!important;
 }
+.saveBtn.close{
+    display: none;
+}

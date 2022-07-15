@@ -123,60 +123,65 @@
                                 <div class="card-body">
                                     <div class="mb-5 d-flex align-items-center justify-content-between">
                                         <span>Order No : <a href="#">#${order.orderID}</a></span>
-                                        <div class="dropdown ms-auto">
-                                            <c:choose>
-                                                <c:when test="${order.status eq 'pending'}">
-                                                    <span class="badge bg-primary">${order.status}</span>
-                                                </c:when>
-                                                <c:when test="${order.status eq 'shipped'}">
-                                                    <span class="badge bg-dark">${order.status}</span>
-                                                </c:when>
-                                                <c:when test="${order.status eq 'completed'}">
-                                                    <span class="badge bg-success">${order.status}</span>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span class="badge bg-danger">${order.status}</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <a href="#" data-bs-toggle="dropdown" class="btn btn-floating">
-                                                <i class="fa-solid fa-ellipsis"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle fa-2xs pe-2 text-primary"></i> Pending
-                                                </a>
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle fa-2xs pe-2 text-success"></i> Completed
-                                                </a>
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle fa-2xs pe-2"></i> Shipped
-                                                </a>
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle fa-2xs pe-2 text-warning"></i> Refunded
-                                                </a>
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="fa-solid fa-circle fa-2xs pe-2 text-danger"></i> Cancelled
-                                                </a>
+                                        <form action="" method="">
+                                            <input type="hidden" name="id" value="${order.orderID}">
+                                            <input type="hidden" name="rdate" value="${order.requireDate}">
+                                            <div class="ms-auto">
+                                                <c:choose>
+                                                    <c:when test="${order.status eq 'pending'}">
+                                                        <span class="badge bg-primary">${order.status}</span>
+                                                    </c:when>
+                                                    <c:when test="${order.status eq 'shipped'}">
+                                                        <span class="badge bg-dark">${order.status}</span>
+                                                    </c:when>
+                                                    <c:when test="${order.status eq 'completed'}">
+                                                        <span class="badge bg-success">${order.status}</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="badge bg-danger">${order.status}</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <button type="button" class="btn ms-2" id="statusBtn">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
+                                                <button type="submit" class="btn ms-2 saveBtn close">
+                                                    <i class="fa-regular fa-floppy-disk"></i>
+                                                </button>
+    
+                                                <select name="status" class="form-select mt-2" id="editArea" style="display: none;">
+                                                    <option>${order.status}</option>
+                                                    <option>${order.status}</option>
+                                                    <option>${order.status}</option>
+                                                    <option>${order.status}</option>
+                                                    <option>${order.status}</option>
+                                                </select>
+                                                <script type="text/javascript">
+                                                    var editBtn = document.getElementById("statusBtn");
+                                                    var saveBtn = document.querySelector(".saveBtn");
+                                                    var editArea = document.getElementById("editArea");
+                
+                                                    editBtn.addEventListener("click", function() {
+                                                        saveBtn.classList.toggle("close");
+                                                        editBtn.style.display = "none";
+                                                        editArea.style.display = "block";
+                                                    });
+                                                </script>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
 
-                                    <div class="row mb-5 g-4">
-                                        <div class="col-md-3 col-sm-6">
+                                    <div class="row mb-5 g-3">
+                                        <div class="col-md-4 col-sm-6">
                                             <p class="fw-bold">Order Created at</p>
                                             ${order.orderDate}
                                         </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <p class="fw-bold">Name</p>
-                                            Sayres Seater
+                                        <div class="col-md-4 col-sm-6">
+                                            <p class="fw-bold">Required Date</p>
+                                            ${order.requireDate}
                                         </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <p class="fw-bold">Email</p>
-                                            sayres@sayres.com
-                                        </div>
-                                        <div class="col-md-3 col-sm-6">
-                                            <p class="fw-bold">Contact No</p>
-                                            767-251-8637
+                                        <div class="col-md-4 col-sm-6">
+                                            <p class="fw-bold">Shipped Date</p>
+                                            ${order.shippedDate}
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +230,9 @@
                                     <h6 class="card-title mb-4">Price</h6>
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-4 text-end">Sub Total :</div>
-                                        <div class="col-4">$1.520,96</div>
+                                        <div class="col-4">
+                                            <fmt:formatNumber value="${total}" type="currency"/>
+                                        </div>
                                     </div>
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-4 text-end">Shipping :</div>
@@ -233,14 +240,16 @@
                                     </div>
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-4 text-end">Tax(10%) :</div>
-                                        <div class="col-4">$273,77</div>
+                                        <div class="col-4">
+                                            <fmt:formatNumber value="${vat}" type="currency"/>
+                                        </div>
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="col-4 text-end">
                                             <strong>Total :</strong>
                                         </div>
                                         <div class="col-4">
-                                            <strong>$1.794,73</strong>
+                                            <strong><fmt:formatNumber value="${sum}" type="currency"/></strong>
                                         </div>
                                     </div>
                                 </div>
