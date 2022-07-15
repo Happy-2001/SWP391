@@ -20,107 +20,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
+    <c:set var="OrdersActive" value="active"/>
     <%@include file="Topbar.jsp" %>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 menu-bar">
-                <div class="menu">
-                    <ul class="menu-links">
-                        <li class="nav-link">
-                            <a href="dashboard">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-chart-simple fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Dashboard</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a class="active" href="MyOrderController">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-receipt"></i>
-                                </span>
-                                <span class="text nav-text">Orders</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-box fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Products</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="CusController">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-user-group fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Customers</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="/ShopOnline/message">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-envelope fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Chats</span>
-                                <span class="badge bg-success rounded-circle ms-auto">1</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-bell fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Notifications</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="FeedbackAd">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-comment-dots fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Feedback</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="admin/userList.jsp">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-circle-user fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Accounts</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="SuppliersController">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Suppliers</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="/ShopOnline/slider">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-sliders fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Manage Slider</span>
-
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <%@include file="menuDashBoard.jsp" %>
+            
             <div class="col-lg-9 main">
                 <div aria-label="breadcrumb" class="mb-3">
                     <ul class="breadcrumb">
@@ -180,7 +86,7 @@
                                         <input class="form-check-input select-all" type="checkbox" data-select-all-target="#orders" id="defaultCheck1">
                                     </th>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Customer ID</th>
                                     <th>Date</th>
                                     <th>Total</th>
                                     <th>Status</th>
@@ -222,7 +128,7 @@
                                                         <i class="fa-solid fa-ellipsis"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a href="OrderDetailController?id=${u.orderID}" class="dropdown-item">View</a>
+                                                        <a href="OrderDetailController?id=${u.orderID}&cid=${u.customerId}" class="dropdown-item">View</a>
                                                         <a href="#" class="dropdown-item">Delete</a>
                                                     </div>
                                                 </div>
