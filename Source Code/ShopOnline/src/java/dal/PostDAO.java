@@ -199,8 +199,7 @@ public class PostDAO extends DBConnect{
     }
     public static void main(String[] args) {
         PostDAO p = new PostDAO();
-        p.deletePost(25);
-        //System.out.println(dao.loginUser("admin1", "123"));
+        p.update("", "", "", "", 1, "", 1);
         
     }
 }

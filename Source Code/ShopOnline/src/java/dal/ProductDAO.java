@@ -425,6 +425,15 @@ public class ProductDAO {
             mysqlConnect.disconnect();
         }
     }
+     public static void main(String[] args) {
+
+        ProductDAO product = new ProductDAO();
+        Product p = new Product();
+        p.setName("ok");
+        p.setId(1);
+        product.update(p);
+                
+     }
 
     public ArrayList<Product> findByName(String query) {
         ArrayList<Product> lc = new ArrayList<>();
@@ -480,12 +489,7 @@ public class ProductDAO {
         return null;
     }
 
-    public static void main(String[] args) {
-
-        ProductDAO product = new ProductDAO();
-        List<Product> Product = product.findByName("w");
-        System.out.println(Product);
-    }
+   
 
     public List<Product> getCourseByPageNumber(int pageNumber, String sort) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

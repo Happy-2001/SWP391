@@ -119,33 +119,46 @@
                 </ul>
             </div>
         </div>
-        <canvas id="myChart" style="width:100%;max-width:800px;margin-left: 500px"></canvas>
+        <div>
+            <div class="col-lg-3">
 
-        <script>
-            
-            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            </div>
+            <div class="col-lg-9">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                <body>
 
-            var yValues = [4, 3, 2, 2, 1, 0];
-            var barColors = ["red", "green", "blue", "orange", "brown"];
+                    <canvas id="myChart" style="width:100%;max-width:800px;margin-left: 500px"></canvas>
 
-            new Chart("myChart", {
-                type: "bar",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
-                },
-                options: {
-                    legend: {display: false},
-                    title: {
-                        display: true,
-                        text: "Top 5 Supplier 2022"
-                    }
-                }
-            });
-        </script>
+                    <script>
+                        var xValues = ["Nike", "Addidas AG", "Puma", "Converse", "Vans"];
+                        var yValues = [3, 2, 2, 1, 1,0];
+                        var barColors = ["red", "green", "blue", "orange", "brown"];
+
+                        new Chart("myChart", {
+                            type: "bar",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                            },
+                            options: {
+                                legend: {display: false},
+                                title: {
+                                    display: true,
+                                    text: "Top 5 Suppliers 2022"
+                                }
+                            }
+                        });
+                    </script>
+
+            </div>
+        </div>
+
+
+
+
 
     </body>
 </html>
