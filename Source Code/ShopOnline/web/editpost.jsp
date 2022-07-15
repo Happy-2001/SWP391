@@ -86,7 +86,7 @@
                 </div>
             </div>
             <input type="hidden" name="image" id="imagefile" value="">
-            <img id="imagedisplay" src="${product.img}"/>
+            <img id="imagedisplay" src="${post.image}"/>
             <button type="submit" class="btn btn-primary">Submit</button>
 
         </form>
