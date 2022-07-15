@@ -122,17 +122,28 @@
         <div>
             <div class="col-lg-3">
                 <c:forEach items="${suplist}" var="sup">
-                    <input class="form-check-input"  value="${sup.id}">
+                    <input class="form-check-input"  value="${sup.name}">
+                    <input class="form-check-output"  value="${sup.id}">
                 </c:forEach>
             </div>
             <div class="col-lg-9">
                 <canvas id="myChart" style="width:100%;max-width:800px;margin-left: 500px"></canvas>
 
                 <script>
+                    var x = new Array(6);
+                    var y = new Array(6);
                     var checkB = document.querySelectorAll(".form-check-input");
+                    var checkC = document.querySelectorAll(".form-check-output");
                     for (let j = 0; j < checkB.length; j++) {
 
-                        var x = checkB[j].value;
+                         x = checkB[j].value;
+                         x++;
+
+                    }
+                    for (let j = 0; j < checkC.length; j++) {
+
+                         y = checkC[j].value;
+                         y++;
 
                     }
                     var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
@@ -143,10 +154,10 @@
                     new Chart("myChart", {
                         type: "bar",
                         data: {
-                            labels: xValues,
+                            labels: x,
                             datasets: [{
                                     backgroundColor: barColors,
-                                    data: yValues
+                                    data: yValues;
                                 }]
                         },
                         options: {
