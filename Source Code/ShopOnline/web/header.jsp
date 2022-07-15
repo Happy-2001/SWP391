@@ -46,9 +46,6 @@
                                     <a href="login" title="Login"><i class="fa fa-shopping-bag"></i></a>
                                 </c:when>
                                 <c:when test="${sessionScope.userlogged ne null}">
-                                    <a href="CartController?userID=${sessionScope.userlogged.userid}" title="Cart">
-                                        <i class="fa fa-shopping-bag"></i>
-                                    </a>
                                     <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
                                         url="jdbc:mysql://localhost:3306/shop2"
                                         user="root"  password=""/>
@@ -57,6 +54,20 @@
                                         SELECT * FROM `cart_items` 
                                         WHERE cart_items.cartID = ${sessionScope.userlogged.userid};
                                     </sql:query>
+                                    
+                                    <c:set var="linkToRedirect">
+                                       <c:choose>
+                                            <c:when test="${rs.rowCount != 0}">
+                                                CartController?userID=${sessionScope.userlogged.userid}
+                                            </c:when>
+                                            <c:otherwise>
+                                                CartEmpty.jsp
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:set>
+                                    <a href="${linkToRedirect}" title="Cart"
+                                        <i class="fa fa-shopping-bag"></i>
+                                    </a>
                                     <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
                                 </c:when>
                             </c:choose>
