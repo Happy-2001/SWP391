@@ -73,8 +73,8 @@ public class SendEmail {
         boolean test = false;
 
         String toEmail = user.getEmail();
-        String fromEmail = "datvthe140503@fpt.edu.vn";
-        String password = "Datdeptrai!1";
+        String fromEmail = "hoangnvhe151236@fpt.edu.vn";
+        String password = "cubi9xld123";
 
         try {
 
