@@ -71,15 +71,6 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-bell fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Notifications</span>
-                            </a>
-                        </li>
-        
-                        <li class="nav-link">
                             <a href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
@@ -120,6 +111,14 @@
                                 <i class="fa-solid fa-sliders fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Post Manager</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="MyOrderController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-receipt fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Add Address</span>
                             </a>
                         </li>
                     </ul>

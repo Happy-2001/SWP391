@@ -110,7 +110,7 @@ svg rect {
 }*/
 .card-body {
 
-    padding: var(--bs-card-spacer-y);
+    padding : var(--bs-card-spacer-y);
 
 }
 /* --------------------------------------------------- */
@@ -307,8 +307,8 @@ p{
 }
 img .avatar .avatarSeen  {
 
-    height: 1rem;
-    width: 1rem;
+    height: 1rem !important;
+    width: 1rem !important;
 
 }
 .fa-solid .fa-circle{

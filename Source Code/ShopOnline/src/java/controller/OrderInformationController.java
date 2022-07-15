@@ -41,10 +41,10 @@ public class OrderInformationController extends HttpServlet {
         CartDAO cartDao = new CartDAO();
         // CartDAO cartDao = new CartDAO();
         List<Cart> carts = cartDao.listById(Integer.parseInt(id));
-        Orders o = dao.listOrderById(Integer.parseInt(id));
+        //Orders o = dao.listOrderById(Integer.parseInt(id));
         int total = cartDao.getAmountByID(Integer.parseInt(id));
         request.setAttribute("total", total);
-        request.setAttribute("order", o);
+        //request.setAttribute("order", o);
         request.setAttribute("carts", carts);
         request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
     }

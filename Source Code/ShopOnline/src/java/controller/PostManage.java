@@ -5,8 +5,7 @@
  */
 package controller;
 
-import dal.ProductCategoryDAO;
-import dal.ProductDAO;
+import dal.PostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -14,14 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.Product;
+import model.Blog;
 
 /**
  *
  * @author thund
  */
-public class Search extends HttpServlet {
+public class PostManage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +33,10 @@ public class Search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("txt");//get tu search
-        ProductDAO p = new ProductDAO();
-        ProductCategoryDAO dao1 = new ProductCategoryDAO();
-
-        List<Product> listP = p.findByName(txtSearch);
-        List<Category> listC = dao1.listAll();
-        request.setAttribute("listC", listC);
-        request.setAttribute("txtS", txtSearch);
-        request.setAttribute("productsForEachPage", listP);// luu tu đã đc search 
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
+        PostDAO pdb = new PostDAO();
+        List<Blog> posts = pdb.getBlogForHomePage();
+        request.setAttribute("posts", posts);
+        request.getRequestDispatcher("postManager.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

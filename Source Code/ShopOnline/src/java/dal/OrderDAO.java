@@ -12,10 +12,7 @@ import model.Orders;
 import model.Product;
 import model.User;
 
-/**
- *
- * @author dungk
- */
+
 public class OrderDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
@@ -265,7 +262,18 @@ public class OrderDAO extends DBConnect {
         }
     }
 
-    public Orders listOrderById(int parseInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateStatusOrder(String rdate, String sdate, String status, int cid){
+        String sql = "UPDATE `orders` SET `require_date`=?,`shipped_date`=?,`status`=? WHERE order_id = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, rdate);
+            statement.setString(2, sdate);
+            statement.setString(3, status);
+            statement.setInt(4, cid);
+            
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

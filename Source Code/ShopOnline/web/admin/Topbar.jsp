@@ -42,7 +42,7 @@
                         </div>
                         <div class="dropdown-menu dropdown-menu-end">
                             <c:forEach var="tb" items="${rs.rows}">
-                                <a href="#" class="dropdown-item d-flex flex-column">
+                                <a href="OrderDetailController?id=${tb.order_id}" class="dropdown-item d-flex flex-column">
                                     <div class="d-flex align-items-center">
                                         <i class="fa-solid fa-circle fa-2xs" style="color: #0099c6;"></i>
                                         <span class="ps-3" style="font-size: 16px;">New order No. <strong>#${tb.order_id}</strong></span>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="admin">
                         <div class="admin-avatar" data-bs-toggle="collapse" data-bs-target="#setting">
-                            <img src="../RetrieveImg?eaID=${sessionScope.userlogged.userid}" onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
+                            <img src="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tos-alisg-avt-0068/245d187674cbe8fccc5bda1d5e8da4a2.jpeg?x-expires=1658001600&x-signature=7eC%2B0yU%2FDf%2FDXEEefISG2aUgdfU%3D" onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
                             <span class="online"></span> 
                         </div>
                     </div>

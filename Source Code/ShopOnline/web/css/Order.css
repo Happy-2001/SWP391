@@ -79,3 +79,7 @@
 .table tbody tr.tr-selected td {
     border-color: #ff6e40!important;
 }
+.saveBtn.close,
+.form-select.close{
+    display: none;
+}

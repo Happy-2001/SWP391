@@ -29,10 +29,8 @@ public class HomeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-        }
+        
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -40,6 +38,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         ProductDAO pdb = new ProductDAO();
         BlogDAO bdb = new BlogDAO();
         SlideDAO slideDAO = new SlideDAO();
@@ -66,28 +65,31 @@ public class HomeController extends HttpServlet {
             String groupCusID = gdao.getGroupIDbyUserID(userID);
             ArrayList<Message> listMessages = mdao.getAllMessageofUser(groupCusID, userID);
             List<String> listUserAdminID = udao.listUserAdminID();
-          
+          for (Message message : listMessages) {
+                    if (listUserAdminID.contains(message.getFromID())) {
+                        if(message.getIsread().equals("0")){
+                            mdao.readMess(message.getToID(), message.getId());
+                        message.setIsread("1");
+                        }
+                        
+                    }
+            }
             request.setAttribute("listMess", listMessages);
             request.setAttribute("listUserAdminID", listUserAdminID);
             
             if(gdao.getGroupIDbyUserID(userID).equals("") && !listUserAdminID.contains(String.valueOf(u.getUserid()))){  // only for Customer role
+                
+                gdao.addGroup((u.getFullname()));
                 String maxGroupID = gdao.getMaxGroupIDb();
-                gdao.addGroup((u.getFullname()) +" CSKH"+u.getUserid());
+               
                 gdao.addUserGroup(userID,maxGroupID);
                 for (String string : listUserAdminID) {
                     gdao.addUserGroup(string,maxGroupID);
                 }
             }
-//            for (String string : listUserAdminID) {
-//                response.getWriter().print(string);
-//            }
-        }
 
-        String showChatBox =(String) request.getAttribute("showChatBox");
-        if(showChatBox != null){
-            request.setAttribute("showChatBox", showChatBox);
-        response.getWriter().print(showChatBox);
         }
+        
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         
     }
