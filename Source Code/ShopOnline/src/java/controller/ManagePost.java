@@ -117,8 +117,8 @@ public class ManagePost extends HttpServlet {
         p.setCreatedDate(productName);
         p.setCategoryId(Integer.parseInt(categoryId));
         p.setContent(productPrice);
-        p.setNoidung(description);
-        p.setDescription(productStock);
+        p.setNoidung(productStock);
+        p.setDescription(description);
         p.setUid(uid);
         switch (actionpage) {
             case "add":

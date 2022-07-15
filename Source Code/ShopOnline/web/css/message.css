@@ -110,7 +110,7 @@ svg rect {
 }*/
 .card-body {
 
-    padding: var(--bs-card-spacer-y);
+    padding : var(--bs-card-spacer-y);
 
 }
 /* --------------------------------------------------- */
