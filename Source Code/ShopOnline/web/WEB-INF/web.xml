@@ -188,6 +188,10 @@
         <servlet-name>SupplierListController</servlet-name>
         <servlet-class>controller.SupplierListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>controller.Search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -375,6 +379,10 @@
     <servlet-mapping>
         <servlet-name>SupplierListController</servlet-name>
         <url-pattern>/admin/SupplierListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

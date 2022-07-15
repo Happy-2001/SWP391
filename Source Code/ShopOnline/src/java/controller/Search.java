@@ -9,7 +9,6 @@ import dal.ProductCategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,12 +41,10 @@ public class Search extends HttpServlet {
 
         List<Product> listP = p.findByName(txtSearch);
         List<Category> listC = dao1.listAll();
-        request.setAttribute("productsForEachPage", listP);// luu tu đã đc search 
-
         request.setAttribute("listC", listC);
         request.setAttribute("txtS", txtSearch);
+        request.setAttribute("productsForEachPage", listP);// luu tu đã đc search 
         request.getRequestDispatcher("shop.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
