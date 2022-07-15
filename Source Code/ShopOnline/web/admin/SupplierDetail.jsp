@@ -350,7 +350,7 @@
                                                         <div class="d-flex gap-3">
                                                             <select class="form-select">
                                                                 <c:forEach items="${street}" var="str">
-                                                                    <c:if test="${str.district_id eq supAdd.sup_add.streetID.district_id}">
+                                                                    <c:if test="${str.district_id eq 333}">
                                                                         <option value="${str.district_id}" selected>${str.name}</option>
                                                                     </c:if>
                                                                     <option value="${str.district_id}">${str.name}</option>

@@ -288,11 +288,10 @@ public class AddressDAO {
                 project p = new project();
                 p.setId((rs.getString("id")));
                 p.setName(rs.getString("_name"));
-                p.setProvinceID(rs.getString("_province_id"));
-                p.setDistrictID(rs.getString("_district_id"));
-                p.setLat(rs.getString("_lat"));
-                p.setIng(rs.getString("_lng"));
-
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -315,10 +314,35 @@ public class AddressDAO {
                 project p = new project();
                 p.setId((rs.getString("id")));
                 p.setName(rs.getString("_name"));
-                p.setProvinceID(rs.getString("_province_id"));
-                p.setDistrictID(rs.getString("_district_id"));
-                p.setLat(rs.getString("_lat"));
-                p.setIng(rs.getString("_lng"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
+
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
+    public ArrayList<project> getProjectByDisID(int districtID) {
+        ArrayList<project> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `project` WHERE  `project`._district_id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, districtID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                project p = new project();
+                p.setId((rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
 
                 list.add(p);
             }
