@@ -20,88 +20,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
+    <c:set var="OrdersActive" value="active"/>
     <%@include file="Topbar.jsp" %>
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 menu-bar">
-                <div class="menu">
-                    <ul class="menu-links">
-                        <li class="nav-link">
-                            <a href="dashboard">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-chart-simple fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Dashboard</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a class="active" href="MyOrderController">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-receipt"></i>
-                                </span>
-                                <span class="text nav-text">Orders</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-box fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Products</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-user-group fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Customers</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="message">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-envelope fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Chats</span>
-                                <span class="badge bg-success rounded-circle ms-auto">1</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-bell fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Notifications</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="FeedbackAd">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-comment-dots fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Feedback</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="account.html">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-circle-user fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Accounts</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <%@include file="menuDashBoard.jsp" %>
+            
             <div class="col-lg-9 main">
                 <div class="content"> 
                     <div aria-label="breadcrumb" class="mb-3">
@@ -123,9 +48,10 @@
                                 <div class="card-body">
                                     <div class="mb-5 d-flex align-items-center justify-content-between">
                                         <span>Order No : <a href="#">#${order.orderID}</a></span>
-                                        <form action="" method="">
+                                        <form action="OrderDetailController" method="POST">
                                             <input type="hidden" name="id" value="${order.orderID}">
                                             <input type="hidden" name="rdate" value="${order.requireDate}">
+                                            <input type="hidden" name="sdate" value="${order.shippedDate}">
                                             <div class="ms-auto">
                                                 <c:choose>
                                                     <c:when test="${order.status eq 'pending'}">
@@ -141,29 +67,28 @@
                                                         <span class="badge bg-danger">${order.status}</span>
                                                     </c:otherwise>
                                                 </c:choose>
-                                                <button type="button" class="btn ms-2" id="statusBtn">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </button>
                                                 <button type="submit" class="btn ms-2 saveBtn close">
                                                     <i class="fa-regular fa-floppy-disk"></i>
                                                 </button>
+                                                <button type="button" class="btn ms-2" id="statusBtn">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
     
-                                                <select name="status" class="form-select mt-2" id="editArea" style="display: none;">
-                                                    <option>${order.status}</option>
-                                                    <option>${order.status}</option>
-                                                    <option>${order.status}</option>
-                                                    <option>${order.status}</option>
-                                                    <option>${order.status}</option>
+                                                <select name="status" class="form-select close mt-2">
+                                                    <option <c:if test="${order.status eq 'pending'}"> selected</c:if>>pending</option>
+                                                    <option <c:if test="${order.status eq 'completed'}"> selected</c:if>>completed</option>
+                                                    <option <c:if test="${order.status eq 'shipped'}"> selected</c:if>>shipped</option>
+                                                    <option>refunded</option>
+                                                    <option>cancelled</option>
                                                 </select>
                                                 <script type="text/javascript">
                                                     var editBtn = document.getElementById("statusBtn");
                                                     var saveBtn = document.querySelector(".saveBtn");
-                                                    var editArea = document.getElementById("editArea");
+                                                    var editArea = document.querySelector(".form-select");
                 
                                                     editBtn.addEventListener("click", function() {
                                                         saveBtn.classList.toggle("close");
-                                                        editBtn.style.display = "none";
-                                                        editArea.style.display = "block";
+                                                        editArea.classList.toggle("close");
                                                     });
                                                 </script>
                                             </div>
@@ -227,7 +152,7 @@
                         <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <h6 class="card-title mb-4">Price</h6>
+                                    <h5 class="mb-0">Price</h5>
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-4 text-end">Sub Total :</div>
                                         <div class="col-4">
@@ -258,13 +183,15 @@
                                 <div class="card-body d-flex flex-column gap-3">
                                     <div class="d-flex justify-content-between">
                                         <h5 class="mb-0">Address</h5>
-                                        <a href="#">Edit</a>
+                                        <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </div>
-                                    <div>Name: Home</div>
-                                    <div>Josephin Villa</div>
-                                    <div>81 Fulton Park, Brazil/Pedro Leopoldo</div>
                                     <div>
-                                        <i class="fa-solid fa-phone me-2"></i> 408-963-7769
+                                        <i class="fa-solid fa-user me-2"></i>${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}
+                                    </div>
+                                    <div><i class="fa-solid fa-location-dot me-2"></i>${ward.name}, ${district.name}, ${province.name}</div>
+                                    <div class="ms-4">${cus.uad.addressDetail}</div>
+                                    <div>
+                                        <i class="fa-solid fa-phone me-2"></i>${cus.us.phone}
                                     </div>
                                 </div>
                             </div>

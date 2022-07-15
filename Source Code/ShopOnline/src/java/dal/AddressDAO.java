@@ -122,6 +122,28 @@ public class AddressDAO {
         }
         return list;
     }
+    
+    public Provinces getProvince(int id) {
+        try {
+            String sql = "SELECT * FROM `province` WHERE id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Provinces p = new Provinces();
+                p.setId(Integer.parseInt(rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setCode(rs.getString("_code"));
+                
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
 
     public ArrayList<District> getDistrict() {
         ArrayList<District> list = new ArrayList<>();
@@ -167,7 +189,30 @@ public class AddressDAO {
         }
         return list;
     }
-public ArrayList<SubDistrict> getSubDistrict() {
+    
+    public District getDistrictByID(int id) {
+        try {
+            String sql = "SELECT * FROM `district` WHERE id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                District p = new District();
+                p.setDistrictID(Integer.parseInt(rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+    
+    public ArrayList<SubDistrict> getSubDistrict() {
         ArrayList<SubDistrict> list = new ArrayList<>();
         try {
             String sql = "SELECT * FROM `ward`";
@@ -183,12 +228,13 @@ public ArrayList<SubDistrict> getSubDistrict() {
                 list.add(p);
             }
         } catch (SQLException ex) {
-
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
         return list;
     }
+    
     public ArrayList<SubDistrict> getSubDistrict(int wid) {
         ArrayList<SubDistrict> list = new ArrayList<>();
         try {
@@ -211,6 +257,28 @@ public ArrayList<SubDistrict> getSubDistrict() {
             mysqlConnect.disconnect();
         }
         return list;
+    }
+    
+    public SubDistrict getWard(int id) {
+        try {
+            String sql = "SELECT * FROM `ward` WHERE id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                SubDistrict p = new SubDistrict();
+                p.setSubDistrictID(Integer.parseInt(rs.getString("id")));
+                p.setName(rs.getString("_name"));
+                p.setPrefix(rs.getString("_prefix"));
+                
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
     }
 
     public ArrayList<project> getProject() {
@@ -266,19 +334,19 @@ public ArrayList<SubDistrict> getSubDistrict() {
     }
     
     public ArrayList<Street> getStreet(int strid) {
-        ArrayList<SubDistrict> list = new ArrayList<>();
+        ArrayList<Street> list = new ArrayList<>();
         try {
             String sql = "SELECT * FROM `ward` WHERE `ward`.`_district_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, strid);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                SubDistrict p = new SubDistrict();
-                p.setSubDistrictID((rs.getInt("id")));
+                Street p = new Street();
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
                 p.setPrefix(rs.getString("_prefix"));
-                p.setProvinceID(rs.getInt("_province_id"));
-                p.setDistrictID(rs.getInt("_district_id"));
+                p.setProvine_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
                 list.add(p);
             }
         } catch (SQLException ex) {

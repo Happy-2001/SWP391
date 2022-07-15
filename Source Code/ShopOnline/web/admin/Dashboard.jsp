@@ -71,15 +71,6 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-bell fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Notifications</span>
-                            </a>
-                        </li>
-        
-                        <li class="nav-link">
                             <a href="FeedbackAd">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
