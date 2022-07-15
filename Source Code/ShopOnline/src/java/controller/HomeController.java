@@ -29,10 +29,8 @@ public class HomeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("HomePage.jsp").forward(request, response);
-        }
+        
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -40,6 +38,7 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         ProductDAO pdb = new ProductDAO();
         BlogDAO bdb = new BlogDAO();
         SlideDAO slideDAO = new SlideDAO();
@@ -79,8 +78,10 @@ public class HomeController extends HttpServlet {
             request.setAttribute("listUserAdminID", listUserAdminID);
             
             if(gdao.getGroupIDbyUserID(userID).equals("") && !listUserAdminID.contains(String.valueOf(u.getUserid()))){  // only for Customer role
-                String maxGroupID = gdao.getMaxGroupIDb();
+                
                 gdao.addGroup((u.getFullname()));
+                String maxGroupID = gdao.getMaxGroupIDb();
+               
                 gdao.addUserGroup(userID,maxGroupID);
                 for (String string : listUserAdminID) {
                     gdao.addUserGroup(string,maxGroupID);
@@ -88,8 +89,6 @@ public class HomeController extends HttpServlet {
             }
 
         }
-
-       
         
         request.getRequestDispatcher("HomePage.jsp").forward(request, response);
         

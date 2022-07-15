@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 function replyMessageS(content, id) {
     document.getElementById('replyMessR').style.height = '0';
     document.getElementById('replyMessR').style.width = '0';
@@ -29,16 +30,15 @@ function removeReplyR() {
     document.getElementById('replyMessR').style.width = '0';
 }
 
-function hindMessage(){
-    document.getElementsByClassName('message2').style.fontsize = '30px';
-    document.getElementsByClassName('message').style.height = '0';
-    document.getElementsByClassName('message').style.width = '0';
+
+function hindMessage() {
+    document.getElementById('message2').style.display = 'block';
+    document.getElementById('mess1').style.width = '0';
+    document.getElementById('mess1').style.height = '0';
 }
-function showMessage(){
-    alert('helllo');
-    document.getElementsByClassName('message2').style.fontsize = '0';
-    
-    document.getElementsByClassName('message').style.height = '460px !important';
-    document.getElementsByClassName('message').style.width = '340px';
+function showMessage() {
+    document.getElementById('message2').style.display = 'none';
+    document.getElementById('mess1').style.width = '340px';
+    document.getElementById('mess1').style.height = '460px';
 }
 

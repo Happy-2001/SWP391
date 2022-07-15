@@ -114,7 +114,7 @@ public class GroupDAO {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                groupID = rs.getString(1);
+                groupID = rs.getString("MAX(groupID)");
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -204,7 +204,7 @@ public class GroupDAO {
         String displayTime = "";
         GroupDAO gdao = new GroupDAO();
         ArrayList<GroupChat> list = gdao.getGroupChat();
-        System.out.println(list.get(0).getIsRead());
+        System.out.println(gdao.getMaxGroupIDb());
 
     }
 }
