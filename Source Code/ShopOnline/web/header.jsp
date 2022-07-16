@@ -98,6 +98,9 @@
                                                 <a href="CusFavouriteController" class="dropdown-item">
                                                     <i class="fa-regular fa-heart pe-2"></i> Favorites
                                                 </a>
+                                                 <a href="Notification" class="dropdown-item">
+                                                    <i class="fa-regular fa-bell pe-2"></i> Notification
+                                                </a>
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
