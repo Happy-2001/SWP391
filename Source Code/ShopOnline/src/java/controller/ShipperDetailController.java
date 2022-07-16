@@ -5,12 +5,21 @@
  */
 package controller;
 
+import dal.AddressDAO;
+import dal.ShipperDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.District;
+import model.Provinces;
+import model.Shipper_all;
+import model.Street;
+import model.SubDistrict;
+import model.project;
 
 /**
  *
@@ -30,9 +39,41 @@ public class ShipperDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
-           request.getRequestDispatcher("ShipperDetail.jsp").forward(request, response);
+        String id = request.getParameter("shipID");
         
+        ShipperDAO dao = new ShipperDAO();
+        Shipper_all ship = dao.getShipperById(Integer.parseInt(id));
+        
+        AddressDAO dbb = new AddressDAO();
+        ArrayList<Provinces> province = dbb.getProvince();
+        int prvid = 0;
+        for(Provinces pv : province){
+            if(pv.getName().equals(ship.getShip_add().getProvinceID().getName())){
+                prvid = pv.getId();
+            }
+        }
+        ArrayList<District> district = dbb.getDistrict(prvid);
+        
+        int wid = 0;
+        for(District ds : district){
+            if(ds.getDistrictID() == ship.getShip_add().getDisID().getDistrictID()){
+                wid = ds.getDistrictID();
+            }
+        }
+        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
+        
+        ArrayList<Street> street = dbb.getStreet(wid);
+        
+        ArrayList<project> project = dbb.getProjectByDisID(wid);
+        
+        request.setAttribute("shipAdd", ship);
+        request.setAttribute("district", district);
+        request.setAttribute("ward", ward);
+        request.setAttribute("street", street);
+        request.setAttribute("project", project);
+        request.setAttribute("province", province);
+        request.getRequestDispatcher("ShipperDetail.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

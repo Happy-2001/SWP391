@@ -35,7 +35,7 @@
                             <a href="dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="SuppliersController">Suppliers</a>
+                            <a href="ShipperController">Shipper</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Profile</li>
                     </ul>
@@ -44,13 +44,13 @@
                     <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=${supAdd.sup.id}" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=${shipAdd.ship.id}" alt="...">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
                             </figure>
                             <div class="flex-fill">
-                                <h5>${supAdd.sup.name}</h5>
+                                <h5>${shipAdd.ship.name}</h5>
                             </div>
                             <div class="del-btn">
                                 <a href="#" class="btn btn-icon" data-bs-toggle="tooltip" title="Remove Customers">
@@ -63,7 +63,7 @@
                                 <div class="edit-img">
                                     <span style="color: #fff;">For best results, use an image at least 256px by 256px in either .jpg or .png format</span>
                                     <div class="submit-file-box">
-                                        <input type="hidden" name="cusID" value="${supAdd.sup.id}">
+                                        <input type="hidden" name="cusID" value="${shipAdd.ship.id}">
                                         <input type="file" class="cus-file-input" name="photo" id="submit-file">
                                         <p class="text-center mb-0"><label class="trigger" for="submit-file">Click here</label> to upload file</p>
                                     </div>
@@ -137,16 +137,12 @@
                                                     <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Company Name</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup.name}">
+                                                            <label class="form-label">Shipper Name</label>
+                                                            <input type="text" class="form-control" value="${shipAdd.ship.name}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Contact Name</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup.contactName}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Contact Title</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup.contactTitle}">
+                                                            <label class="form-label">Creator</label>
+                                                            <input type="text" class="form-control" value="${shipAdd.ship.creator}">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Gender</label>
@@ -167,21 +163,18 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Creator</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup.creator}">
-                                                        </div>
+                                                        
                                                         <div class="mb-3">
                                                             <label class="form-label">Create On</label>
-                                                            <input type="date" class="form-control" value="${supAdd.sup.createOn}" readonly>
+                                                            <input type="date" class="form-control" value="${shipAdd.ship.createOn}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Update On</label>
-                                                            <input type="date" class="form-control" value="${supAdd.sup.updateOn}" readonly>
+                                                            <input type="date" class="form-control" value="${shipAdd.ship.updateOn}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
-                                                            <input type="date" class="form-control" value="${supAdd.sup.dob}">
+                                                            <input type="date" class="form-control" value="${shipAdd.ship.dob}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -212,8 +205,8 @@
                                                         <div class="d-flex gap-3">
                                                             <select class="form-select">
                                                                 <c:forEach items="${province}" var="prv">
-                                                                    <c:if test="${prv.name eq supAdd.sup_add.proID.name}">
-                                                                        <option value="${prv.id}" selected>${supAdd.sup_add.proID.name}</option>
+                                                                    <c:if test="${prv.name eq shipAdd.ship_add.provinceID.name}">
+                                                                        <option value="${prv.id}" selected>${shipAdd.ship_add.provinceID.name}</option>
                                                                     </c:if>
                                                                     <option value="${prv.id}">${prv.name}</option>
                                                                 </c:forEach>
@@ -226,8 +219,8 @@
                                                         <div class="d-flex gap-3">
                                                             <select class="form-select">
                                                                 <c:forEach items="${district}" var="dis">
-                                                                    <c:if test="${dis.districtID eq supAdd.sup_add.disID.districtID}">
-                                                                        <option value="${dis.districtID}" selected>${dis.name}</option>
+                                                                    <c:if test="${dis.districtID eq shipAdd.ship_add.disID.districtID}">
+                                                                        <option value="${dis.districtID}" selected>${dis.name}</option>           
                                                                     </c:if>
                                                                     <option value="${dis.districtID}">${dis.name}</option>
                                                                 </c:forEach>
@@ -240,7 +233,7 @@
                                                         <div class="d-flex gap-3">
                                                             <select class="form-select">
                                                                 <c:forEach items="${ward}" var="ward">
-                                                                    <c:if test="${ward.subDistrictID eq supAdd.sup_add.wardID.subDistrictID}">
+                                                                    <c:if test="${ward.subDistrictID eq shipAdd.ship_add.wardID.subDistrictID}">
                                                                         <option value="${ward.subDistrictID}" selected>${ward.prefix}  ${ward.name} </option>
                                                                     </c:if>
                                                                     <option value="${ward.subDistrictID}">${ward.prefix}  ${ward.name}</option>
@@ -256,7 +249,7 @@
                                                         <div class="d-flex gap-3">
                                                             <select class="form-select">
                                                                 <c:forEach items="${street}" var="str">
-                                                                    <c:if test="${str.id eq supAdd.sup_add.streetID.id}">
+                                                                    <c:if test="${str.id eq shipAdd.ship_add.streetID.id}">
                                                                         <option value="${str.id}" selected>${str.prefix}  ${str.name} </option>
                                                                     </c:if>
                                                                     <option value="${str.id}">${str.prefix}  ${str.name}</option>
@@ -270,7 +263,7 @@
                                                         <div class="d-flex gap-3">
                                                             <select class="form-select">
                                                                 <c:forEach items="${project}" var="pro">
-                                                                    <c:if test="${pro.id eq supAdd.sup_add.projectID.id}">
+                                                                    <c:if test="${pro.id eq shipAdd.ship_add.projectID.id}">
                                                                         <option value="${pro.id}" selected>${pro.name}</option>
                                                                     </c:if>
                                                                     <option value="${pro.id}">${pro.name}</option>
@@ -283,22 +276,22 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                             <label class="form-label">Phone</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup_add.telephone}">
+                                                            <input type="text" class="form-control" value="${shipAdd.ship_add.telephone}">
                                                         </div>
                                                     
                                                     <div class="mb-3">
                                                             <label class="form-label">Fax</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup_add.fax}">
+                                                            <input type="text" class="form-control" value="${shipAdd.ship_add.fax}">
                                                         </div>
                                                         
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup_add.email}">
+                                                            <input type="text" class="form-control" value="${shipAdd.ship_add.email}">
                                                         </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Address Detail</label>
-                                                    <input type="text" class="form-control" value="${supAdd.sup_add.addDetail}">
+                                                    <input type="text" class="form-control" value="${shipAdd.ship_add.addDetail}">
                                                 </div>
                                             </div>
                                             </div>
@@ -322,20 +315,7 @@
                                 <div class="card-body">
                                     <h6 class="card-title mb-3">Recent Order</h6>
                                     
-                                    <c:forEach items="${prolist}" var="prolist">
-                                        <div class="od-items">
-                                            <div class="items">
-                                                <div class="pd-img">
-                                                    <img src="../${prolist.img}">
-                                                </div>
-                                                <div class="d-flex flex-column qty pe-3">
-                                                    <h5 class="p-0">${prolist.name}</h5>
-                                                    <span>Price: ${prolist.price} </span>
-                                                    <span>Quantity: ${prolist.stock}</span>
-                                                </div> 
-                                            </div>
-                                        </div>
-                                    </c:forEach>
+                                    
                                 </div>
                             </div>
                         </div>
