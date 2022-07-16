@@ -163,7 +163,7 @@
                                         <input id="user-name" type="text" value="${sessionScope.user.username}" disabled>
                                     </div>
                                     <div class="options">
-                                        <input id="password" type="password" name="password" placeholder="Password">
+                                        <input id="password" type="password" name="password" placeholder="New Password">
                                     </div>
                                     <div class="options check__pass">
                                         <input id="password_confirmation" type="password" placeholder="Enter password again">
