@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                                <c:forEach items="${carts}" var="carts">
+                                <c:forEach items="${list}" var="carts">
                                     <tr>
                                         <td>
                                             <input id="buyItem" type="checkbox" name="item" value="${carts.itemId}">
