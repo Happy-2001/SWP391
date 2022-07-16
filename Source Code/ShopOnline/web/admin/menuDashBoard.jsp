@@ -76,6 +76,14 @@
                 </a>
             </li>
             <li class="nav-link">
+                <a class="${ShipperActive}" href="/ShopOnline/admin/ShipperController">
+                    <span class="nav-link-icon">
+                        <i class="fa-solid fa-circle-user <c:if test="${AccountsActive ne 'active'}">fa-xl</c:if>"></i>
+                    </span>
+                    <span class="text nav-text">Shipper</span>
+                </a>
+            </li>
+            <li class="nav-link">
                 <a class="${ManageSliderActive}" href="/ShopOnline/admin/slider">
                     <span class="nav-link-icon">
                         <i class="fa-solid fa-images <c:if test="${ManageSliderActive ne 'active'}">fa-xl</c:if>"></i>

@@ -204,6 +204,14 @@
         <servlet-name>Notification</servlet-name>
         <servlet-class>controller.Notification</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShipperController</servlet-name>
+        <servlet-class>controller.ShipperController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShipperDetailController</servlet-name>
+        <servlet-class>controller.ShipperDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -407,6 +415,14 @@
     <servlet-mapping>
         <servlet-name>Notification</servlet-name>
         <url-pattern>/Notification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShipperController</servlet-name>
+        <url-pattern>/admin/ShipperController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShipperDetailController</servlet-name>
+        <url-pattern>/admin/ShipperDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
