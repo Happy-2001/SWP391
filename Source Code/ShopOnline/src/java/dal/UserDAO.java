@@ -173,27 +173,23 @@ public class UserDAO extends DBConnect {
     }
 
     public User getUserByEmail(String email) {
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID\n"
-                + "WHERE email = ?";
+        String sql = "SELECT ua.user_name,ua.password,ua.first_name,ua.middle_name,ua.last_name,ua.gender,ea.telephone FROM user_accounts as ua\n"
+                + "INNER JOIN user_address as uad on ua.user_id=uad.userID\n"
+                + "INNER JOIN electronicaddress as ea on ea.eaID=uad.eaID\n"
+                + "where ea.email like ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 User u = new User();
-                u.setUserid(rs.getInt("user_id"));
-                u.setUsername(rs.getString("user_name"));
-                u.setPassword(rs.getString("password"));
-                u.setFirstname(rs.getString("first_name"));
-                u.setMiddlename(rs.getString("middle_name"));
-                u.setLastname(rs.getString("last_name"));
-                u.setGender(rs.getInt("gender"));
-                u.setPhone(rs.getString("phone"));
-                u.setEmail(rs.getString("email"));
-                u.setStatus(rs.getInt("status_id"));
+                u.setUsername(rs.getString("ua.user_name"));
+                u.setPassword(rs.getString("ua.password"));
+                u.setFirstname(rs.getString("ua.first_name"));
+                u.setMiddlename(rs.getString("ua.middle_name"));
+                u.setLastname(rs.getString("ua.last_name"));
+                u.setGender(rs.getInt("ua.gender"));
+                u.setPhone(rs.getString("ea.telephone"));
                 return u;
             }
         } catch (SQLException e) {
@@ -203,7 +199,7 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
-    
+
     public String getUserByUserName(String username) {
         String userID = "";
         String sql = "SELECT user_id FROM `user_accounts` WHERE user_name  = ?";
@@ -215,13 +211,13 @@ public class UserDAO extends DBConnect {
                 userID = rs.getString(1);
             }
         } catch (SQLException ex) {
-            
+
         } finally {
             mysqlConnect.disconnect();
         }
         return userID;
     }
-    
+
     public List<User> listUser() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n"
@@ -232,7 +228,7 @@ public class UserDAO extends DBConnect {
                 + "                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
                 + "                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n"
                 + "                INNER JOIN roles ON roles.roleID = rs3.roleID\n"
-                +                 "";
+                + "";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -482,11 +478,13 @@ public class UserDAO extends DBConnect {
 
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
-        List<String> list = udao.listUserAdminID();
-        List<User> listU = udao.listUser();
-        User u = new  User(0, "", "", "", "", "", "") ;
-        u.setUsername("hoangadma");
-        u.setEmail("hoangliu@gmail.com");
-        System.out.println(udao.getUserByUserName("hoangadma"));
+//        List<String> list = udao.listUserAdminID();
+//        List<User> listU = udao.listUser();
+//        User u = new User(0, "", "", "", "", "", "");
+//        u.setUsername("hoangadma");
+//        u.setEmail("hoangliu@gmail.com");
+//        System.out.println(udao.getUserByUserName("hoangadma"));
+        User a = udao.getUserByEmail("thachdp2808@gmail.com");
+        System.out.println(a.getPassword());
     }
 }

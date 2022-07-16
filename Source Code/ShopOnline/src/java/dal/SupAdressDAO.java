@@ -71,6 +71,6 @@ public class SupAdressDAO extends DBConnect {
     public static void main(String[] args) {
         SupAdressDAO dao = new SupAdressDAO();
         SupDetail a = dao.getSupAdressById(1);
-        System.out.println(a.getSup_add().getFax());
+        System.out.println(a.getSup_add().getStreetID().getName());
     }
 }

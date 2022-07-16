@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
-    <c:set var="SuppliersActive" value="active"/>
+    <c:set var="ShipperActive" value="active"/>
     <%@include file="Topbar.jsp" %>
     
     <div class="container-fluid">
@@ -32,12 +32,11 @@
                             <i class="fa-solid fa-globe fa-sm"></i>
                             <a href="dashboard">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Suppliers</li>
+                        <li class="breadcrumb-item active" aria-current="page">Shipper</li>
                         
                     </ul>
                     
                 </div>
-                <a href="SupplierListController" class="btn btn-success " >Top 5 Suppliers</a>
                 <div class="container-fluid">
                     
                     <div class="table-responsive cus-box">
@@ -49,37 +48,23 @@
                                     <input class="select-all" type="checkbox" value="deselect">
                                 </th>
                                 <th>ID</th>
-                                <th>Company Name</th>
-                                <th>Contact Name</th>
-                                <th>Contact Title</th>
-                                <th>Date</th>
+                                <th>Shipper Name</th>
+                                <th>Date Of Birth</th>
                                 <th>Gender</th>
-                                <th>Creator</th>
-                                <th>Creator</th>
-                                <th>Creator</th>
-                                <th class="text-end">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                               <c:forEach items="${suplist}" var="sup">
+                               <c:forEach items="${shiplist}" var="ship">
                                     <tr class="customers">
                                         <td>
-                                            <input class="form-check-input" type="checkbox" value="${sup.id}">
+                                            <input class="form-check-input" type="checkbox" value="${ship.id}">
                                         </td>
-                                        <td>${sup.id}</td>
-                                        <td>${sup.name}</td>
-                                        <td>${sup.contactName}</td>
-                                        <td>${sup.contactTitle}</td>
-                                        <td>${sup.dob}</td>
-                                        <td>${sup.gender}</td>
-                                        <td>${sup.creator}</td>
-                                        <td>${sup.createOn}</td>
-                                        <td>${sup.updateOn}</td>
-                                        <td class="text-end">
-                                            <div class="px-3">
-                                                <a href="#link"><i class="fa-solid fa-trash-can"></i></a>
-                                            </div>
-                                        </td>
+                                        <td>${ship.id}</td>
+                                        <td>${ship.name}</td>
+                                        <td>${ship.dob}</td>
+                                        <td>${ship.gender}</td>
+                                        
+                                        
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -97,7 +82,7 @@
                         </ul>
                     </div>
                 </div>
-                <script src="../js/list-selectSup.js"></script>
+                <script src="../js/list-select_1.js"></script>
             </div>
         </div>
     </div>

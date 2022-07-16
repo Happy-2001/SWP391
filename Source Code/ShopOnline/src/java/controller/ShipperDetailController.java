@@ -5,21 +5,27 @@
  */
 package controller;
 
-import dal.UserDAO;
-import emailverify.SendMail;
+import dal.AddressDAO;
+import dal.ShipperDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
+import model.District;
+import model.Provinces;
+import model.Shipper_all;
+import model.Street;
+import model.SubDistrict;
+import model.project;
 
 /**
  *
  * @author nguye
  */
-public class ForgotPassword extends HttpServlet {
+public class ShipperDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,19 +39,41 @@ public class ForgotPassword extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ForgotPassword</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ForgotPassword at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            //
+        String id = request.getParameter("shipID");
+        
+        ShipperDAO dao = new ShipperDAO();
+        Shipper_all ship = dao.getShipperById(Integer.parseInt(id));
+        
+        AddressDAO dbb = new AddressDAO();
+        ArrayList<Provinces> province = dbb.getProvince();
+        int prvid = 0;
+        for(Provinces pv : province){
+            if(pv.getName().equals(ship.getShip_add().getProvinceID().getName())){
+                prvid = pv.getId();
+            }
         }
+        ArrayList<District> district = dbb.getDistrict(prvid);
+        
+        int wid = 0;
+        for(District ds : district){
+            if(ds.getDistrictID() == ship.getShip_add().getDisID().getDistrictID()){
+                wid = ds.getDistrictID();
+            }
+        }
+        ArrayList<SubDistrict> ward = dbb.getSubDistrict(wid);
+        
+        ArrayList<Street> street = dbb.getStreet(wid);
+        
+        ArrayList<project> project = dbb.getProjectByDisID(wid);
+        
+        request.setAttribute("shipAdd", ship);
+        request.setAttribute("district", district);
+        request.setAttribute("ward", ward);
+        request.setAttribute("street", street);
+        request.setAttribute("project", project);
+        request.setAttribute("province", province);
+        request.getRequestDispatcher("ShipperDetail.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +88,7 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -74,31 +102,7 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mail = request.getParameter("email");
-        SendMail sendmail = new SendMail();
-        UserDAO userDAO = new UserDAO();
-        User acc = userDAO.getUserByEmail(mail);
-        String subject = "Your account has been processing.";
-        String message = "<!DOCTYPE html>\n"
-                + "<html lang=\"en\">\n"
-                + "\n"
-                + "<head>\n"
-                + "</head>\n"
-                + "\n"
-                + "<body>\n"
-                + "    <h3 style=\"color: blue;\">Your account has been processing.</h3>\n"
-                + "    <div>User Name : " + acc.getUsername() + "</div>\n"
-                + "    <div>Password : " + acc.getPassword() + "</div>\n"
-                + "    <div>Name : " + acc.getFirstname() +acc.getMiddlename() +acc.getLastname() + "</div>\n"
-                + "    <div>Gender : " + acc.getGender() + "</div>\n"
-                + "    <div>Phone : " + acc.getPhone() + "</div>\n"
-                + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
-                + "\n"
-                + "</body>\n"
-                + "\n"
-                + "</html>";
-        SendMail.send(mail, subject, message, "thachdphe151521@fpt.edu.vn", "Phucthach2k1");
-        response.sendRedirect("login");
+        processRequest(request, response);
     }
 
     /**
