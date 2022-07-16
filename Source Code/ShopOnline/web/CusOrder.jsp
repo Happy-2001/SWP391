@@ -22,7 +22,7 @@
     <body>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
-        <div class="col-lg-9 main">
+        <div class="main">
             <div aria-label="breadcrumb" class="mb-3">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -33,15 +33,16 @@
                 </ul>
             </div>
             <div class="container my-5">
-                <table  class="table table-dark table-striped">               
+                <table  class="table  table-striped">               
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Order Date</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
+                            <th>Required Date</th>
+                            <th>Shipped Date</th>
+                           
                             <th>Sub total</th>
+                            <th> </th>
 
                         </tr>
                     </thead>
@@ -53,13 +54,18 @@
 
                         <td>${u.orderDate}</td>
 
-                        <td>${u.product.name}</td>
+                        <td>${u.requireDate}</td>
 
-                        <td>${u.product.salePrice}</td>
 
-                        <td>${u.quantity}</td>
+                        <td>${u.shippedDate}</td>
 
                         <td>${u.quantity * u.product.salePrice}</td>
+                        
+                         <td> <a class="btn btn-success" href="OrderInformationController?id=${u.orderID}">
+                            view
+                            
+                            </a>
+                        </td>
 
                         </tr>
                     </c:forEach>
