@@ -276,22 +276,24 @@ public class OrderDAO extends DBConnect {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public ArrayList<Orders> getNotification() {
+     public ArrayList<Orders> getNotification(int id) {
         ArrayList<Orders> listOrder =new  ArrayList<>();
-        String sql = "SELECT * FROM `orders` WHERE status = 'completed'";
+        String sql = "SELECT * FROM `orders` WHERE customerID = ?"
+;
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();           
             while (rs.next()) {
                 Orders c = new Orders();
-                c.setOrderID(rs.getInt("o.order_id"));
-                c.setOrderDate(rs.getString("o.order_date"));
-                c.setRequireDate(rs.getString("o.require_date"));
-                c.setShippedDate(rs.getString("o.shipped_date"));
-                c.setStatus(rs.getString("o.status"));
-                c.setShiperId(rs.getInt("o.shipperID"));
-                c.setCustomerId(rs.getInt("o.customerID"));                                       
-                
+                c.setOrderID(rs.getInt(1));
+                c.setOrderDate(rs.getString(2));
+                c.setRequireDate(rs.getString(3));
+                c.setShippedDate(rs.getString(4));
+                c.setStatus(rs.getString(5));
+                c.setShiperId(rs.getInt(7));
+                c.setCustomerId(rs.getInt(8));                                       
+
                 listOrder.add(c);
             }
         } catch (SQLException ex) {
@@ -301,4 +303,5 @@ public class OrderDAO extends DBConnect {
         }
         return listOrder;
     }
+
 }

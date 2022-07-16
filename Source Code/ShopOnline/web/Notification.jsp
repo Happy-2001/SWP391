@@ -43,15 +43,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:set var="i" value="0"></c:set>
-                        <c:forEach items="${Orderlist}" var="u">
+                        
+                        <c:forEach items="${list}" var="u">
                             <tr>
-                        <a><td>${u.orderID}</td></a>
+                        <td>${u.orderID}</td>
 
                         <td>${u.orderDate}</td>
 
-                        <td>${u.product.name}</td>
-
+                        <td>Your order has been confirmed at ${u.requireDate}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
