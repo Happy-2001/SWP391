@@ -276,4 +276,29 @@ public class OrderDAO extends DBConnect {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public ArrayList<Orders> getNotification() {
+        ArrayList<Orders> listOrder =new  ArrayList<>();
+        String sql = "SELECT * FROM `orders` WHERE status = 'completed'";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setCustomerId(rs.getInt("o.customerID"));                                       
+                
+                listOrder.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return listOrder;
+    }
 }
