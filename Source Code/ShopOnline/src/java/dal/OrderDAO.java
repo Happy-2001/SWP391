@@ -276,4 +276,32 @@ public class OrderDAO extends DBConnect {
             Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     public ArrayList<Orders> getNotification(int id) {
+        ArrayList<Orders> listOrder =new  ArrayList<>();
+        String sql = "SELECT * FROM `orders` WHERE customerID = ?"
+;
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();           
+            while (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt(1));
+                c.setOrderDate(rs.getString(2));
+                c.setRequireDate(rs.getString(3));
+                c.setShippedDate(rs.getString(4));
+                c.setStatus(rs.getString(5));
+                c.setShiperId(rs.getInt(7));
+                c.setCustomerId(rs.getInt(8));                                       
+
+                listOrder.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return listOrder;
+    }
+
 }

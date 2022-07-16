@@ -20,7 +20,7 @@ import model.Slide;
  *
  * @author Administrator
  */
-@WebServlet(name = "ManageSlider", urlPatterns = {"/slider"})
+@WebServlet(name = "ManageSlider", urlPatterns = {"/admin/slider"})
 public class ManageSlider extends HttpServlet {
 
     /**
@@ -64,7 +64,7 @@ public class ManageSlider extends HttpServlet {
         SlideDAO sld = new SlideDAO();
         List<Slide> slides =  sld.listSlide();
         request.setAttribute("slides", slides);
-        request.getRequestDispatcher("admin/listslide.jsp").forward(request, response);
+        request.getRequestDispatcher("listslide.jsp").forward(request, response);
     }
 
     /**

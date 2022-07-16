@@ -16,7 +16,20 @@ public class Slide {
     private String namebutton;
     private String img;
     private String url;
-    private boolean status;
+    private int status;
+
+    public Slide() {
+    }
+
+    public Slide(int id, String heading, String description, String namebutton, String img, String url, int status) {
+        this.id = id;
+        this.heading = heading;
+        this.description = description;
+        this.namebutton = namebutton;
+        this.img = img;
+        this.url = url;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -66,11 +79,11 @@ public class Slide {
         this.namebutton = namebutton;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
-    }
+    }   
 }

@@ -76,9 +76,9 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a class="${ManageSliderActive}" href="/ShopOnline/slider">
+                <a class="${ManageSliderActive}" href="/ShopOnline/admin/slider">
                     <span class="nav-link-icon">
-                        <i class="fa-solid fa-sliders <c:if test="${ManageSliderActive ne 'active'}">fa-xl</c:if>"></i>
+                        <i class="fa-solid fa-images <c:if test="${ManageSliderActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>
                     <span class="text nav-text">Manage Slider</span>
 

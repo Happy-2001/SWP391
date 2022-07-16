@@ -81,8 +81,8 @@
         <servlet-class>controller.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>orderInformation</servlet-name>
-        <servlet-class>controller.orderInformationController</servlet-class>
+        <servlet-name>OrderInformationController</servlet-name>
+        <servlet-class>controller.OrderInformationController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
@@ -192,6 +192,18 @@
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.Search</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SliderDetailController</servlet-name>
+        <servlet-class>controller.SliderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderImgController</servlet-name>
+        <servlet-class>controller.SliderImgController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Notification</servlet-name>
+        <servlet-class>controller.Notification</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -273,8 +285,8 @@
         <url-pattern>/CartUpdateController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>orderInformation</servlet-name>
-        <url-pattern>/orderInformationController</url-pattern>
+        <servlet-name>OrderInformationController</servlet-name>
+        <url-pattern>/OrderInformationController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
@@ -383,6 +395,18 @@
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderDetailController</servlet-name>
+        <url-pattern>/admin/SliderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderImgController</servlet-name>
+        <url-pattern>/admin/SliderImgController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notification</servlet-name>
+        <url-pattern>/Notification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

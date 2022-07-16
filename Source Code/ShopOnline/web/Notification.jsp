@@ -23,52 +23,41 @@
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
         <div class="main">
-            <div aria-label="breadcrumb" class="mb-3">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <i class="fa-solid fa-globe fa-sm"></i>
-                        <a href="home">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page"> ${sessionScope.userlogged.username} Order</li>
-                </ul>
-            </div>
+            
             <div class="container my-5">
-                <table  class="table  table-striped">               
+                <table  class="table table-striped">               
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Order Date</th>
-                            <th>Required Date</th>
-                            <th>Shipped Date</th>
+                            <th>Date</th>
+                            <th>Content</th>
                            
-                            <th>Sub total</th>
-                            <th> </th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <c:set var="i" value="0"></c:set>
-                        <c:forEach items="${Orderlist}" var="u">
-                            <tr>
-                        <a><td>${u.orderID}</td></a>
-
-                        <td>${u.orderDate}</td>
-
-                        <td>${u.requireDate}</td>
-
-
-                        <td>${u.shippedDate}</td>
-
-                        <td>${u.quantity * u.product.salePrice}</td>
                         
-                         <td> <a class="btn btn-success" href="OrderInformationController?id=${u.orderID}">
-                            view
-                            
-                            </a>
-                        </td>
+                        <c:forEach items="${list}" var="u">
+                                    <tr>
+                                        <td>${u.orderID}</td>
 
-                        </tr>
-                    </c:forEach>
+                                        <td>${u.orderDate}</td>
+                                        
+                                        <c:choose>
+                                            <c:when test="${u.status eq 'completed'}">
+                                                <td>Your order has been confirmed at ${u.requireDate}</td>
+                                            </c:when>
+                                            <c:when test="${u.status eq 'shipped'}">
+                                                <td>Your order has been successfully delivered ${u.shippedDate}</td>
+                                            </c:when>
+                                                
+                                            <c:otherwise>
+                                                <td>
+                                                    
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </tr>
+                                </c:forEach>
                     </tbody>
                 </table>
                 <ul class="pagination justify-content-center">

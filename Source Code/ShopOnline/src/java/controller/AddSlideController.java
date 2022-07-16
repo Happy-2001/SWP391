@@ -36,7 +36,7 @@ public class AddSlideController extends HttpServlet {
         s.setHeading(heading);
         s.setDescription(description);
         s.setUrl(url);
-        s.setStatus(status.equals("1"));
+        s.setStatus(Integer.parseInt(status));
 
         SlideDAO sdb = new SlideDAO();
 
