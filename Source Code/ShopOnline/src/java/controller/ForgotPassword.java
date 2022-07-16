@@ -78,6 +78,10 @@ public class ForgotPassword extends HttpServlet {
         SendMail sendmail = new SendMail();
         UserDAO userDAO = new UserDAO();
         User acc = userDAO.getUserByEmail(mail);
+        if(acc==null){
+            request.setAttribute("ms1", "Check your Email!");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+        }
         String subject = "Your account has been processing.";
         String message = "<!DOCTYPE html>\n"
                 + "<html lang=\"en\">\n"

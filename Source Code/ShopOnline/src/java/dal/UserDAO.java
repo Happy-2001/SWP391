@@ -173,7 +173,7 @@ public class UserDAO extends DBConnect {
     }
 
     public User getUserByEmail(String email) {
-        String sql = "SELECT ua.user_name,ua.password,ua.first_name,ua.middle_name,ua.last_name,ua.gender,ea.telephone FROM user_accounts as ua\n"
+        String sql = "SELECT ua.user_name,ua.password,ua.first_name,ua.middle_name,ua.last_name,ua.gender,ea.telephone,ea.email FROM user_accounts as ua\n"
                 + "INNER JOIN user_address as uad on ua.user_id=uad.userID\n"
                 + "INNER JOIN electronicaddress as ea on ea.eaID=uad.eaID\n"
                 + "where ea.email like ?";
@@ -190,6 +190,8 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("ua.last_name"));
                 u.setGender(rs.getInt("ua.gender"));
                 u.setPhone(rs.getString("ea.telephone"));
+                u.setEmail(rs.getString("ea.email"));
+
                 return u;
             }
         } catch (SQLException e) {
@@ -485,6 +487,6 @@ public class UserDAO extends DBConnect {
 //        u.setEmail("hoangliu@gmail.com");
 //        System.out.println(udao.getUserByUserName("hoangadma"));
         User a = udao.getUserByEmail("thachdp2808@gmail.com");
-        System.out.println(a.getPassword());
+        System.out.println(a.getEmail());
     }
 }
