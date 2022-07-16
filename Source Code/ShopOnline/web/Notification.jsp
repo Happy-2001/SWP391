@@ -23,15 +23,7 @@
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
         <div class="main">
-            <div aria-label="breadcrumb" class="mb-3">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <i class="fa-solid fa-globe fa-sm"></i>
-                        <a href="home">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page"> ${sessionScope.userlogged.username}Notification</li>
-                </ul>
-            </div>
+            
             <div class="container my-5">
                 <table  class="table table-striped">               
                     <thead>
@@ -45,14 +37,27 @@
                     <tbody>
                         
                         <c:forEach items="${list}" var="u">
-                            <tr>
-                        <td>${u.orderID}</td>
+                                    <tr>
+                                        <td>${u.orderID}</td>
 
-                        <td>${u.orderDate}</td>
-
-                        <td>Your order has been confirmed at ${u.requireDate}</td>
-                        </tr>
-                    </c:forEach>
+                                        <td>${u.orderDate}</td>
+                                        
+                                        <c:choose>
+                                            <c:when test="${u.status eq 'completed'}">
+                                                <td>Your order has been confirmed at ${u.requireDate}</td>
+                                            </c:when>
+                                            <c:when test="${u.status eq 'shipped'}">
+                                                <td>Your order has been successfully delivered ${u.shippedDate}</td>
+                                            </c:when>
+                                                
+                                            <c:otherwise>
+                                                <td>
+                                                    
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </tr>
+                                </c:forEach>
                     </tbody>
                 </table>
                 <ul class="pagination justify-content-center">
