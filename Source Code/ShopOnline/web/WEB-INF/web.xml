@@ -81,8 +81,8 @@
         <servlet-class>controller.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>orderInformation</servlet-name>
-        <servlet-class>controller.orderInformationController</servlet-class>
+        <servlet-name>OrderInformationController</servlet-name>
+        <servlet-class>controller.OrderInformationController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
@@ -285,8 +285,8 @@
         <url-pattern>/CartUpdateController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>orderInformation</servlet-name>
-        <url-pattern>/orderInformationController</url-pattern>
+        <servlet-name>OrderInformationController</servlet-name>
+        <url-pattern>/OrderInformationController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
