@@ -56,6 +56,15 @@ public class UpdateProfileController extends HttpServlet {
         if(pass == null || pass.isEmpty()) {
             lname = u.getLastname();
         }
+        
+        String gender = request.getParameter("gender");
+        if(gender == null || gender.isEmpty()) {
+            gender = "1";
+        }
+        
+        db.updateProfile(Integer.parseInt(id), pass, fname, mdname, lname, Integer.parseInt(gender));
+       
+        response.sendRedirect("ProfileUser?userid="+id);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
