@@ -173,10 +173,10 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div>
-                                    <h5>Info</h5>
+                                    <h5>Information</h5>
                                     <div class="options">
                                         <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
+                                            <input type="text" name="fname" placeholder="First Name">
                                             <input type="text" name="mdname" placeholder="Middle Name">
                                             <input type="text" name="lname" placeholder="Last Name">
                                         </div>
