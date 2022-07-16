@@ -16,6 +16,9 @@ import model.User;
 public class UserDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDateTime now = LocalDateTime.now();
+    String getTime = (dtf.format(now));
 
     public User getUserRole(String username) { //phan nay can dung, dung ai xoa      Ok toi se khong xoa dau!!!
         try {
@@ -60,7 +63,7 @@ public class UserDAO extends DBConnect {
 
                 u.setUserid(rs.getInt(1));
                 u.setLastname(rs.getString(6));
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(RoleDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,7 +72,7 @@ public class UserDAO extends DBConnect {
         }
         return u;
     }
-    
+
     public User getUser(String email, String password) {  // cần update data cho table electoronicaddress, sau đó có thể sử dụng hàm này(sql hàm chưa làm lại) done
         String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
                 + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
@@ -200,16 +203,36 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
-
+    
+    public String getUserByUserName(String username) {
+        String userID = "";
+        String sql = "SELECT user_id FROM `user_accounts` WHERE user_name  = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                userID = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return userID;
+    }
+    
     public List<User> listUser() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
-                + "(SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
-                + "(SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
-                + "ON ua.userID = ac.user_id) AS rs1\n"
-                + "INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
-                + "INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id \n"
-                + "WHERE ur.roleID = 2";
+        String sql = "SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id FROM\n"
+                + "(SELECT roleID,user_id,user_name,`password`,first_name,middle_name,last_name,gender,phone,email,status_id AS status_id FROM\n"
+                + "                (SELECT user_id,user_name,`password`,first_name,middle_name,last_name,gender,telephone as phone,email,status_id FROM\n"
+                + "                (SELECT ua.*, ac.* FROM user_address AS ua INNER JOIN user_accounts as ac \n"
+                + "                ON ua.userID = ac.user_id) AS rs1\n"
+                + "                INNER JOIN electronicaddress AS ea ON ea.eaID = rs1.eaID) AS rs2\n"
+                + "                INNER JOIN user_role AS  ur ON ur.userID = rs2.user_id )AS rs3\n"
+                + "                INNER JOIN roles ON roles.roleID = rs3.roleID\n"
+                +                 "";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -309,6 +332,7 @@ public class UserDAO extends DBConnect {
         }
         return null;
     }
+
     //get list Admin id
     public List<String> listUserAdminID() {
         List<String> listUserAdminID = new ArrayList<>();
@@ -325,10 +349,10 @@ public class UserDAO extends DBConnect {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                
+
                 listUserAdminID.add(rs.getString(1));
             }
-            
+
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
@@ -352,8 +376,9 @@ public class UserDAO extends DBConnect {
 
     public void insert(User u) {
         try {
-            String sql = "INSERT INTO `user_account` (`user_name`, `password`, `first_name`, `middle_name`, `last_name`, `gender`, `phone`, `email`, `status_id`, `code`, `authority_id`) \n"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO `user_accounts` "
+                    + "(`user_name`, `password`, `first_name`, `middle_name`, `last_name`, `gender`,  `status_id`, `createdDate`) VALUES"
+                    + "( ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement s = mysqlConnect.connect().prepareStatement(sql);
             s.setString(1, u.getUsername());
             s.setString(2, u.getPassword());
@@ -361,10 +386,8 @@ public class UserDAO extends DBConnect {
             s.setString(4, u.getMiddlename());
             s.setString(5, u.getLastname());
             s.setInt(6, u.getGender());
-            s.setString(7, u.getPhone());
-            s.setString(8, u.getEmail());
-            s.setInt(9, u.getStatus());
-            s.setInt(11, 3);
+            s.setInt(7, 1);
+            s.setString(8, getTime);
             s.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -460,8 +483,10 @@ public class UserDAO extends DBConnect {
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
         List<String> list = udao.listUserAdminID();
-        for (String string : list) {
-            System.out.println(string);
-        }
+        List<User> listU = udao.listUser();
+        User u = new  User(0, "", "", "", "", "", "") ;
+        u.setUsername("hoangadma");
+        u.setEmail("hoangliu@gmail.com");
+        System.out.println(udao.getUserByUserName("hoangadma"));
     }
 }

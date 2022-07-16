@@ -79,7 +79,7 @@
                                                     <option <c:if test="${order.status eq 'completed'}"> selected</c:if>>completed</option>
                                                     <option <c:if test="${order.status eq 'shipped'}"> selected</c:if>>shipped</option>
                                                     <option>refunded</option>
-                                                    <option>cancelled</option>
+                                                    <option>canceled</option>
                                                 </select>
                                                 <script type="text/javascript">
                                                     var editBtn = document.getElementById("statusBtn");

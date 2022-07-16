@@ -26,101 +26,7 @@
         
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 menu-bar">
-                <div class="menu">
-                    <ul class="menu-links">
-                        <li class="nav-link">
-                            <a href="dashboard">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-chart-simple fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Dashboard</span>
-                            </a>
-                        </li>
-        
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-receipt fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Orders</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-box fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Products</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a class="active" href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-user-group"></i>
-                                </span>
-                                <span class="text nav-text">Customers</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-link">
-                            <a href="message">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-envelope fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Chats</span>
-                                <span class="badge bg-success rounded-circle ms-auto">1</span>
-                            </a>
-                        </li>
-        
-                        <li class="nav-link">
-                            <a href="#">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-bell fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Notifications</span>
-                            </a>
-                        </li>
-        
-                        <li class="nav-link">
-                            <a href="FeedbackAd">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-comment-dots fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Feedback</span>
-                            </a>
-                        </li>
-        
-                        <li class="nav-link">
-                            <a href="account.html">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-circle-user fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Accounts</span>
-                            </a>
-                        </li>
-                        
-                        <li class="nav-link">
-                            <a href="SuppliersController">
-                                <span class="nav-link-icon">
-                                    <i class="fa-solid fa-truck-arrow-right fa-xl"></i>
-                                </span>
-                                <span class="text nav-text">Suppliers</span>
-                            </a>
-                        </li>
-                        <li class="nav-link">
-                            <a href="slider">
-                                <span class="nav-link-icon">
-                                <i class="fa-solid fa-sliders"></i>
-                                </span>
-                                <span class="text nav-text">Manage Slider</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <%@include file="menuDashBoard.jsp" %>
             <div class="col-lg-9 main">
                 <div aria-label="breadcrumb" class="mb-3">
                     <ul class="breadcrumb">
@@ -267,11 +173,11 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Create On</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup.createOn}" readonly>
+                                                            <input type="date" class="form-control" value="${supAdd.sup.createOn}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Update On</label>
-                                                            <input type="text" class="form-control" value="${supAdd.sup.updateOn}" readonly>
+                                                            <input type="date" class="form-control" value="${supAdd.sup.updateOn}" readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Date of Birth</label>
@@ -335,9 +241,39 @@
                                                             <select class="form-select">
                                                                 <c:forEach items="${ward}" var="ward">
                                                                     <c:if test="${ward.subDistrictID eq supAdd.sup_add.wardID.subDistrictID}">
-                                                                        <option value="${ward.subDistrictID}" selected>${ward.name}</option>
+                                                                        <option value="${ward.subDistrictID}" selected>${ward.prefix}  ${ward.name} </option>
                                                                     </c:if>
-                                                                    <option value="${ward.subDistrictID}">${ward.name}</option>
+                                                                    <option value="${ward.subDistrictID}">${ward.prefix}  ${ward.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Street</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${street}" var="str">
+                                                                    <c:if test="${str.id eq supAdd.sup_add.streetID.id}">
+                                                                        <option value="${str.id}" selected>${str.prefix}  ${str.name} </option>
+                                                                    </c:if>
+                                                                    <option value="${str.id}">${str.prefix}  ${str.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Project</label>
+                                                        <div class="d-flex gap-3">
+                                                            <select class="form-select">
+                                                                <c:forEach items="${project}" var="pro">
+                                                                    <c:if test="${pro.id eq supAdd.sup_add.projectID.id}">
+                                                                        <option value="${pro.id}" selected>${pro.name}</option>
+                                                                    </c:if>
+                                                                    <option value="${pro.id}">${pro.name}</option>
                                                                 </c:forEach>
                                                             </select>
                                                         </div>
@@ -346,18 +282,23 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Post Code</label>
-                                                        <input type="text" class="form-control" value="1868" spellcheck="false" data-ms-editor="true">
-                                                    </div>
+                                                            <label class="form-label">Phone</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup_add.telephone}">
+                                                        </div>
                                                     
                                                     <div class="mb-3">
-                                                        <label class="form-label">Country</label>
-                                                        <input type="text" class="form-control" value="Việt Nam">
-                                                    </div>
+                                                            <label class="form-label">Fax</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup_add.fax}">
+                                                        </div>
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Email</label>
+                                                            <input type="text" class="form-control" value="${supAdd.sup_add.email}">
+                                                        </div>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" class="form-control" value="${cus.uad.addressDetail}">
+                                                    <label class="form-label">Address Detail</label>
+                                                    <input type="text" class="form-control" value="${supAdd.sup_add.addDetail}">
                                                 </div>
                                             </div>
                                             </div>
@@ -379,47 +320,22 @@
                         <div class="col-md-5">
                             <div class="card">
                                 <div class="card-body">
-                                    <h6 class="card-title mb-4">Order</h6>
-                                    <div class="od-items">
-                                        <div class="od-date">
-                                            20-06-2022
-                                        </div>
-                                        <div class="items">
-                                            <div class="pd-img">
-                                                <img src="/images/1.jpg">
-                                            </div>
-                                            <div class="qty pe-3">
-                                                <h5>Adidas</h5>
-                                                <span>200.000</span>
-                                                <input type="text" value="1" disabled>
-                                                <span>Size: 40</span>
-                                                <span>
-                                                    Color: 
-                                                    <i class="fa-solid fa-square" style="color: blue;"></i>
-                                                </span>
+                                    <h6 class="card-title mb-3">Recent Order</h6>
+                                    
+                                    <c:forEach items="${prolist}" var="prolist">
+                                        <div class="od-items">
+                                            <div class="items">
+                                                <div class="pd-img">
+                                                    <img src="../${prolist.img}">
+                                                </div>
+                                                <div class="d-flex flex-column qty pe-3">
+                                                    <h5 class="p-0">${prolist.name}</h5>
+                                                    <span>Price: ${prolist.price} </span>
+                                                    <span>Quantity: ${prolist.stock}</span>
+                                                </div> 
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="od-items">
-                                        <div class="od-date">
-                                            20-06-2022
-                                        </div>
-                                        <div class="items">
-                                            <div class="pd-img">
-                                                <img src="/images/1.jpg">
-                                            </div>
-                                            <div class="qty pe-3">
-                                                <h5>Adidas</h5>
-                                                <span>200.000</span>
-                                                <input type="text" value="1" disabled>
-                                                <span>Size: 40</span>
-                                                <span>
-                                                    Color: 
-                                                    <i class="fa-solid fa-square" style="color: blue;"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>

@@ -10,12 +10,16 @@ package model;
  * @author Administrator
  */
 public class ElectronicAddress {
-    private String eaID,website,telephone,fax,email;
+    private int eaID;
+    private String website,telephone,fax,email;
 
     public ElectronicAddress() {
     }
+    public ElectronicAddress(int eaID) {
+        this.eaID=eaID;
+    }
 
-    public ElectronicAddress(String eaID, String website, String telephone, String fax, String email) {
+    public ElectronicAddress(int eaID, String website, String telephone, String fax, String email) {
         this.eaID = eaID;
         this.website = website;
         this.telephone = telephone;
@@ -23,11 +27,11 @@ public class ElectronicAddress {
         this.email = email;
     }
 
-    public String getEaID() {
+    public int getEaID() {
         return eaID;
     }
 
-    public void setEaID(String eaID) {
+    public void setEaID(int eaID) {
         this.eaID = eaID;
     }
 

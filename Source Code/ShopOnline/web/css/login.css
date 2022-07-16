@@ -105,3 +105,12 @@ a:hover{
     color: #f00;
     box-shadow: 0 0 1px 0 #ffe6e6;
 }
+.form .desc {
+    text-align: center;
+    color: #636d77;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    line-height: 2.4rem;
+    margin-top: 16px;
+    font-weight: 300;
+}

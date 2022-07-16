@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.District;
+import model.ElectronicAddress;
 import model.Provinces;
 import model.Street;
 import model.SubDistrict;
@@ -58,21 +59,16 @@ public class AddressDAO {
         }
     }
 
-    public void insertUserAddress(String userID, String fullname, String provinceID, String districtID, String wardID, String projectID, String streetID, String eaID, String otherPhone, String detailAddress) {
-        String sql = "INSERT INTO `user_address` ( `userID`,`fullname`, `provinceID`, `districtID`, `wardID`, `streetID`, `projectID`, `eaID`,`otherPhone`, `addressDetail`) VALUES\n"
-                + "(?,?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    public void insertUserAddress(String userID, String fullname, String eaID) {
+        String sql = "INSERT INTO `user_address` ( `userID`,`fullname`, `eaID`) VALUES\n"
+                + "(?,?, ?);";
         try {
             PreparedStatement ps = mysqlConnect.connect().prepareStatement(sql);
             ps.setString(1, userID);
             ps.setString(2, fullname);
-            ps.setString(3, provinceID);
-            ps.setString(4, districtID);
-            ps.setString(5, wardID);
-            ps.setString(6, streetID);
-            ps.setString(7, projectID);
-            ps.setString(8, eaID);
-            ps.setString(9, otherPhone);
-            ps.setString(10, detailAddress);
+           
+            ps.setString(3, eaID);
+          
 
             ps.executeUpdate();
 
@@ -83,6 +79,8 @@ public class AddressDAO {
         }
     }
 
+    
+    
     public String getEaIDbyUserID(String UserID) {
         String eaID = "";
         String sql = "SELECT ea.eaID FROM `electronicaddress` ea INNER JOIN user_address ua \n"
@@ -289,13 +287,12 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString("id")));
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
-                p.setProvinceID(rs.getString("_province_id"));
-                p.setDistrictID(rs.getString("_district_id"));
-                p.setLat(rs.getString("_lat"));
-                p.setIng(rs.getString("_lng"));
-
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -316,12 +313,37 @@ public class AddressDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 project p = new project();
-                p.setId((rs.getString("id")));
+                p.setId((rs.getInt("id")));
                 p.setName(rs.getString("_name"));
-                p.setProvinceID(rs.getString("_province_id"));
-                p.setDistrictID(rs.getString("_district_id"));
-                p.setLat(rs.getString("_lat"));
-                p.setIng(rs.getString("_lng"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
+
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
+    public ArrayList<project> getProjectByDisID(int districtID) {
+        ArrayList<project> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `project` WHERE  `project`._district_id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, districtID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                project p = new project();
+                p.setId((rs.getInt("id")));
+                p.setName(rs.getString("_name"));
+                p.setProvince_id(rs.getInt("_province_id"));
+                p.setDistrict_id(rs.getInt("_district_id"));
+                p.setLat(rs.getDouble("_lat"));
+                p.setLng(rs.getDouble("_lng"));
 
                 list.add(p);
             }
@@ -336,7 +358,7 @@ public class AddressDAO {
     public ArrayList<Street> getStreet(int strid) {
         ArrayList<Street> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM `ward` WHERE `ward`.`_district_id` = ?";
+            String sql = "SELECT * FROM `street` WHERE `street`.`_district_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, strid);
             ResultSet rs = statement.executeQuery();
@@ -351,6 +373,30 @@ public class AddressDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddressDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return list;
+    }
+    
+    public ArrayList<ElectronicAddress> getEabyID(int eaID) {
+        ArrayList<ElectronicAddress> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `electronicaddress` WHERE `electronicaddress`.`eaID`=? ";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, eaID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                ElectronicAddress p = new ElectronicAddress();
+                p.setEaID(rs.getInt("eaID"));
+                p.setWebsite(rs.getString("webSite"));
+                p.setTelephone(rs.getString("telephone"));
+                p.setFax(rs.getString("fax"));
+                p.setEmail(rs.getString("email"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+
         } finally {
             mysqlConnect.disconnect();
         }
@@ -447,7 +493,6 @@ public class AddressDAO {
     public static void main(String[] args) {
         AddressDAO adao = new AddressDAO();
         ArrayList<UserAddress> list = adao.getUserAddress("1");
-        adao.insertUserAddress("3", "Đào Phúc Thạch", "24", "333", "5154", null, null, "3", "012312454543", "KTX HL");
         ArrayList<District> list2 = adao.getDistrict();
         System.out.println(list2.get(0).getName());
     }

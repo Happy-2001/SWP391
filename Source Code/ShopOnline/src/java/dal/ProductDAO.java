@@ -194,6 +194,30 @@ public class ProductDAO {
         }
         return products;
     }
+    public ArrayList<Product> listProductBySupID(int supid) {
+        ArrayList<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM `products` WHERE `products`.`supplierID`=?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, supid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getFloat("unit_price"));
+                p.setStock(rs.getInt("unitsln_stock"));
+                p.setImg(rs.getString("url"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return products;
+    }
+    
 
     public List<Product> listProductByColor(String cid) {
         List<Product> products = new ArrayList<>();
@@ -428,10 +452,10 @@ public class ProductDAO {
      public static void main(String[] args) {
 
         ProductDAO product = new ProductDAO();
-        Product p = new Product();
-        p.setName("ok");
-        p.setId(1);
-        product.update(p);
+        List<Product> p = product.listProductBySupID(1);
+        for(Product o : p){
+            System.out.println(o);
+        }
                 
      }
 
@@ -494,4 +518,5 @@ public class ProductDAO {
     public List<Product> getCourseByPageNumber(int pageNumber, String sort) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }
