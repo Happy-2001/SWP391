@@ -1,38 +1,34 @@
-
 package controller;
 
 import dal.ImageDAO;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author anhvo
  */
-public class RetrieveImg extends HttpServlet {
+@MultipartConfig(maxFileSize = 16177215)
+public class SliderImgController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userid = request.getParameter("eaID");
-        String sliderid = request.getParameter("id");
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
         ImageDAO upli = new ImageDAO();
-        try {
-            response.setContentType("image/gif");
-            OutputStream os = response.getOutputStream();
-            if (userid.isEmpty() || userid == null){
-                os.write(upli.SliderImg(Integer.parseInt(sliderid)));
-            }else{
-                os.write(upli.Retrieve(Integer.parseInt(userid)));
-            }
-            os.flush();
-            os.close();
-        }catch (Exception e){
-            
+        Part filePart = request.getPart("photo");
+        if (filePart != null) {
+            // obtains input stream of the upload file
+            InputStream inputStream = filePart.getInputStream();
+            upli.updateSliderImg(inputStream, Integer.parseInt(id));
         }
+        response.sendRedirect("SliderDetail?id="+id);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

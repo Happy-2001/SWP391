@@ -192,6 +192,14 @@
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.Search</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SliderDetailController</servlet-name>
+        <servlet-class>controller.SliderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderImgController</servlet-name>
+        <servlet-class>controller.SliderImgController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -383,6 +391,14 @@
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderDetailController</servlet-name>
+        <url-pattern>/admin/SliderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderImgController</servlet-name>
+        <url-pattern>/admin/SliderImgController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

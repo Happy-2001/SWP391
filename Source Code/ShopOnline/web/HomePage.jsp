@@ -33,9 +33,9 @@
         <div id="slides-shop" class="carousel slide" data-bs-ride="carousel" style="margin-top: 60px;">
             <div class="carousel-inner">
                 <c:forEach items="${slides}" var="s">
-                    <c:if test="${s.status}">
+                    <c:if test="${s.status == 1}">
                         <div class="cover-slides carousel-item">
-                            <img src="${s.img}">
+                            <img src="RetrieveImg?id=${s.id}&eaID=">
                             <div class="carousel-caption">
                                 <h1><strong>${s.heading}</strong></h1>
                                 <p>

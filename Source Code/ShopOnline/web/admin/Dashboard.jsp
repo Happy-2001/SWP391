@@ -97,9 +97,9 @@
                             </a>
                         </li>
                         <li class="nav-link">
-                            <a href="/ShopOnline/slider">
+                            <a href="slider">
                                 <span class="nav-link-icon">
-                                <i class="fa-solid fa-sliders fa-xl"></i>
+                                <i class="fa-solid fa-images fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Manage Slider</span>
                                
