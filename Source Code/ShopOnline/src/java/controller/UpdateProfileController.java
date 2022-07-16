@@ -36,11 +36,25 @@ public class UpdateProfileController extends HttpServlet {
         
             String id = request.getParameter("id");
         User u = db.getUserById(id);
- 
+        
         
         String pass = request.getParameter("password");
         if(pass == null || pass.isEmpty()) {
             pass = u.getPassword();
+        }
+        
+        String fname = request.getParameter("fname");
+        if(pass == null || pass.isEmpty()) {
+            fname = u.getFirstname();
+        }
+        
+        String mdname = request.getParameter("mdname");
+        if(pass == null || pass.isEmpty()) {
+            mdname = u.getMiddlename();
+        }
+        String lname = request.getParameter("lname");
+        if(pass == null || pass.isEmpty()) {
+            lname = u.getLastname();
         }
     }
 
