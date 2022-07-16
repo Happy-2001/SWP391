@@ -128,9 +128,10 @@
                 <body>
 
                     <canvas id="myChart" style="width:100%;max-width:800px;margin-left: 500px"></canvas>
-
+                    
                     <script>
-                        var xValues = ["Nike", "Addidas AG", "Puma", "Converse", "Vans"];
+                        alert("${suplist.get(1).name}");
+                        var xValues = ["${suplist.get(0).name}", "${suplist.get(1).name}", "${suplist.get(2).name}", "${suplist.get(3).name}", "${suplist.get(4).name}"];
                         var yValues = [3, 2, 2, 1, 1,0];
                         var barColors = ["red", "green", "blue", "orange", "brown"];
 
