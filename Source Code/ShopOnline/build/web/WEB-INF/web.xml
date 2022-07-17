@@ -228,6 +228,10 @@
         <servlet-name>PostEdit</servlet-name>
         <servlet-class>controller.PostEdit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddSupplierController</servlet-name>
+        <servlet-class>controller.AddSupplierController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -455,6 +459,10 @@
     <servlet-mapping>
         <servlet-name>PostEdit</servlet-name>
         <url-pattern>/PostEdit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSupplierController</servlet-name>
+        <url-pattern>/admin/AddSupplier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
