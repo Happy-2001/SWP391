@@ -20,6 +20,9 @@ public class Address {
         this.province = province;
         this.status = status;
     }
+    public Address(Provinces province) {
+        this.province = province;
+    }
     
     public Address(Provinces province, District district, SubDistrict ward, String addressDetail, String status) {
         this.province = province;
@@ -38,6 +41,8 @@ public class Address {
         this.addressDetail = addressDetail;
         this.status = status;
     }
+
+    
 
     public int getCountryID() {
         return countryID;
