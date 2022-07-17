@@ -430,7 +430,14 @@
                                                             <a href="productDetail?product_id=${product.id}">${product.name}</a>
                                                             <p class="text-muted">${product.brief_information}</p>
                                                             <span>${product.price} VND</span>
-                                                            <a href="#" class="btn">Add to Card</a>
+                                                            <c:choose>
+                                            <c:when test="${sessionScope.userlogged eq null}">
+                                                <a class="btn" href="login" title="Login">Add to Cart</a>
+                                            </c:when>
+                                            <c:when test="${sessionScope.userlogged ne null}">
+                                                <a class="btn" href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${product.id}">Add to Cart</a>
+                                            </c:when>
+                                        </c:choose>
                                                             <a href="favouriteController?id=${product.id}" class="btn"><i class="fa-regular fa-heart"></i></a>
                                                         </div>
                                                     </div>

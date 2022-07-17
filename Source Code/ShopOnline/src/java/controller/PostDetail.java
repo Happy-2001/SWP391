@@ -39,8 +39,6 @@ public class PostDetail extends HttpServlet {
             PostDAO pdb = new PostDAO();
             String id = request.getParameter("post_id");
             Post p = pdb.getPostByID(Integer.parseInt(id));
-            List<Post> posts = pdb.listPost(4);
-            request.setAttribute("posts", posts);
             request.setAttribute("PostDetail", p);
             request.getRequestDispatcher("postDetail.jsp").forward(request, response);
         }
