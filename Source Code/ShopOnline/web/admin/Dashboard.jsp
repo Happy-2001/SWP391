@@ -121,6 +121,14 @@
                                 <span class="text nav-text">Add Address</span>
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="/ShopOnline/PostController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-receipt fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Post Manager</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

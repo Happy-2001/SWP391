@@ -212,6 +212,10 @@
         <servlet-name>UpdateProfileController</servlet-name>
         <servlet-class>controller.UpdateProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BlogControllerAD</servlet-name>
+        <servlet-class>controller.BlogControllerAD</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -423,6 +427,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/UpdateProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogControllerAD</servlet-name>
+        <url-pattern>/PostController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
