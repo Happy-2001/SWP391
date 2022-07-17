@@ -110,7 +110,7 @@
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-sliders fa-xl"></i>
                                 </span>
-                                <span class="text nav-text">Post Manager</span>
+                                <span class="text nav-text">Blog Manager</span>
                             </a>
                         </li>
                         <li class="nav-link">
