@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/message.css">
 
-    <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null or sessionScope.role eq User}">
+    <c:if test="${sessionScope.role ne sessionScope.roleadmin or sessionScope.role eq null}">
         <!-- mess -->
         <div class="collapse show" id="mess">
             <div class="card message" id="mess1">
@@ -27,14 +27,14 @@
                 </div>
                 <div id="scroll-to-bottom" class="card-body">
                     <div class="content_message content_messageCUS">
-                        
+
                         <div class="slogans">
                             <img src="images/logo.png" width="60%">
                                 <h6>Wear your Best - A Moments of Your Style</h6>
                         </div>
                         <c:choose>
                             <c:when test="${listMess.isEmpty() or listMess == null}">
-                                
+
                                 <div class="autochat">
                                     <div>
                                         <input type="text" name="checkMess" hidden="" value="nullMessage" />
@@ -51,6 +51,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach items="${listMess}" var="mess">
+
                                     <c:choose>
                                         <c:when test="${listUserAdminID.contains(mess.fromID)}">
 
@@ -82,15 +83,16 @@
                                                     <div class="MYR" style="background-color: #f6f9fa;color: #CCCCCC;margin-bottom: -25px">
                                                         ${parentContent}
                                                     </div>
+                                                    
                                                 </div>
                                             </c:if>
 
 
                                             <div class="divMYR">
-                                                
-                                                
+
+
                                                 <c:if test="${mess.content ne null}">
-                                                    
+
                                                     <div class="dropdown dropdown-option-reply ">
                                                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                                             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -98,15 +100,15 @@
 
                                                         <ul class="dropdown-menu">
 
-                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
-                                                            <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=cus&&mrID=null">Delete All</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}&&r=cus&&mrID=null">Delete</a></li>
                                                         </ul>
                                                     </div>
-                                                        <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
+                                                    <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
                                                     <div class="MYR" title="${mess.createDate}">
                                                         ${mess.content}
                                                     </div>
-                                                    
+
                                                 </c:if>
                                                 <c:if test="${mess.content eq null}">
                                                     <div class="dropdown dropdown-option-reply ">
@@ -116,7 +118,7 @@
 
                                                         <ul class="dropdown-menu">
 
-                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=cus&&mrID=null">Delete All</a></li>
 
                                                         </ul>
                                                     </div>
@@ -125,7 +127,7 @@
                                                     </div>
 
 
-                                                    
+
                                                 </c:if>
                                             </div>
                                         </c:when>
@@ -183,8 +185,8 @@
 
                                                         <ul class="dropdown-menu">
 
-                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
-                                                            <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=cus&&mrID=null">Delete All</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}&&r=cus&&mrID=null">Delete</a></li>
                                                         </ul>
                                                     </div>
                                                 </c:if>
@@ -200,14 +202,28 @@
 
                                                         <ul class="dropdown-menu">
 
-                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+                                                            <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=cus&&mrID=null">Delete All</a></li>
 
                                                         </ul>
                                                     </div>
                                                 </c:if>
 
 
-                                            </div>
+                                            </div>      
+                                            <c:if test="${listMess.get(listMess.size()-1).content eq 'Bắt đầu'}">
+                                                <div class="divMYR">
+                                                        <div class="MYR">
+                                                        <div class="container dotjump-container">
+                                                            <div class="loader" >
+                                                                <div class="circle dotjump-circle" id="a"></div>
+                                                                <div class="circle dotjump-circle" id="b"></div>
+                                                                <div class="circle dotjump-circle" id="c"></div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                            </c:if>       
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
@@ -217,7 +233,8 @@
                 </div>
                 <div class="card-footer">
                     <div class="menu_message">
-                        <form action="message" method="post">
+                        <form action="message" method="post" >
+                            
                             <div id="replyMessS" class="replyMess row" >
                                 <div class="replyMess-left col-md-11">
                                     Answering yourself<br>
@@ -238,20 +255,25 @@
                                     <i onclick="removeReplyR()" class="fa-solid fa-xmark"></i>
                                 </div>
                             </div>
-                            <div class="row align-items-center">
-                                <div class="send col-md-10">
-                                    <input class="form-control" name="contentsend" type="text" placeholder="Viết gì đó...">
-                                        <input id="parentMessageID" name="parentMessageID" type="hidden"/>
+                            <c:if test="${!listMess.isEmpty()}">
+                                <div class="row align-items-center">
+                                    <div class="send col-md-10">
+                                        <input class="form-control" name="contentsend" type="text" placeholder="Viết gì đó...">
+                                            <input id="parentMessageID" name="parentMessageID" type="hidden"/>
+                                    </div>
+                                    <div class="send_button col-md-2">
+                                        <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;width: 0;height: 0"  title="Send"><i class="fa-solid fa-paper-plane" style="font-size: 20px"></i></button
+                                    </div>
                                 </div>
-                                <div class="send_button col-md-2">
-                                    <button name="getFROMandTO" value="${listMess.get(0).fromID};${listMess.get(0).toID}" type="submit" style="border: none;width: 0;height: 0"  title="Send"><i class="fa-solid fa-paper-plane" style="font-size: 20px"></i></button
-                                </div>
-                            </div>
+                            </c:if>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <form action="autochat" method="post" id="message-form">
+            <input name="autochat" id="autochatcontent" hidden/>
+        </form>
         <!-- end mess -->
         <i id="message2" onclick="showMessage()" class="fa-brands fa-facebook-messenger message2" ></i>
     </c:if>

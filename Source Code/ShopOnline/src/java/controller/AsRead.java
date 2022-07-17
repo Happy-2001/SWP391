@@ -5,27 +5,21 @@
  */
 package controller;
 
-import dal.GroupDAO;
 import dal.MessageDAO;
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Group;
-import model.User;
 
 /**
  *
  * @author Administrator
  */
-@WebServlet(name = "AutoChat", urlPatterns = {"/autochat"})
-public class AutoChat extends HttpServlet {
+@WebServlet(name = "AsRead", urlPatterns = {"/asread"})
+public class AsRead extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,8 +32,19 @@ public class AutoChat extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AsRead</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AsRead at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,25 +59,12 @@ public class AutoChat extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String mrID = request.getParameter("mrID");
+        String messID = request.getParameter("messID");
+        String groupID = request.getParameter("groupID");
         MessageDAO mdao = new MessageDAO();
-        UserDAO udao = new UserDAO();
-        GroupDAO gdao = new GroupDAO();
-        List<String> listUserAdminID = udao.listUserAdminID();
-
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("userlogged");
-        if (u != null) {
-            String userID = String.valueOf(u.getUserid());
-            mdao.addMessage(userID, "Bắt đầu");
-            String maxMessID = mdao.getMaxMessIDb(userID);
-            String groupID = gdao.getGroupIDbyUserID(userID);
-            mdao.addRecipientMessage(groupID, maxMessID);
-            response.sendRedirect("home");
-
-        } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-
-        }
+        mdao.readMess(groupID, messID);
+        response.sendRedirect("/ShopOnline/message?mrID="+mrID);
     }
 
     /**
@@ -86,23 +78,7 @@ public class AutoChat extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        UserDAO udao = new UserDAO();
-        GroupDAO gdao = new GroupDAO();
-        MessageDAO mdao = new MessageDAO();
-        User u = (User) session.getAttribute("userlogged");
-
-        String autochat = request.getParameter("autochat");
-        List<String> listUserAdminID = udao.listUserAdminID();
-        String maxMessID = "";
-        String groupID = gdao.getGroupIDbyUserID(String.valueOf(u.getUserid()));
-        if (autochat.equals("start")) {
-
-            mdao.addMessage(listUserAdminID.get(0), "ShopDep xin chào quý khách, chúng tôi có thể giúp gì cho quý khách");
-            maxMessID = mdao.getMaxMessIDb(listUserAdminID.get(0));
-            mdao.addRecipientMessage(groupID, maxMessID);
-            response.sendRedirect("home");
-        }
+        processRequest(request, response);
     }
 
     /**

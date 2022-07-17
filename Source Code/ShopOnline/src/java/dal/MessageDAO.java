@@ -196,11 +196,12 @@ public class MessageDAO {
     }
     
     //get max groupID 
-    public String getMaxMessIDb () {
+    public String getMaxMessIDb (String creatorID) {
         String messageID = "";
-        String sql = "SELECT MAX(messageID) FROM  `Messages`";
+        String sql = "SELECT MAX(messageID) FROM  `Messages` WHERE messages.creatorID = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, creatorID);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 messageID = rs.getString(1);
@@ -328,5 +329,9 @@ public class MessageDAO {
            System.out.println(ex == result);
            System.out.println(result.getId()+ " | "+ result.getFromID()+ " | "+ result.getToID()+ " | "+ result.getContent()+ " | "+ result.getCreateDate()+ " | "+ result.getParentMessageID()+ " | "+ result.getIsread() );
         
+           ArrayList<Message> listMessages = mdao.getAllMessageofUser("89", "5");
+           for (Message l : listMessages) {
+               System.out.println(l.getContent());
+        }
     }
 }

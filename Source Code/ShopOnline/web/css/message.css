@@ -108,11 +108,7 @@ svg rect {
     width: 5px;
     display: block;
 }*/
-.card-body {
 
-    padding : var(--bs-card-spacer-y);
-
-}
 /* --------------------------------------------------- */
 .message .slogans{
     color: #808080;
@@ -357,4 +353,47 @@ img .avatar .avatarSeen  {
 }
 .flex-grow- span:last-of-type{
     color: #BBB !important ;
+}
+
+/*//dot jump*/
+ .dotjump-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+
+  
+}
+.loader {
+/*  width: 200px;*/
+  height: 20px;
+/*  padding-top: 40vh;*/
+  
+  display: flex;
+}
+.dotjump-circle{
+  width: 5px;
+  height: 5px;
+  background: black;
+  border-radius: 100%;
+  animation: jump 2s linear infinite;
+  margin: 0 2px;
+ 
+}
+
+#b {
+  animation-delay: 0.4s;
+}
+#c {
+  animation-delay: 0.8s;
+}
+@keyframes jump {
+  0% {
+    margin-top: 0;
+  }
+  35% {
+    margin-top: -8px;
+  }
+  70% {
+    margin-top: 0px;
+  }
 }
