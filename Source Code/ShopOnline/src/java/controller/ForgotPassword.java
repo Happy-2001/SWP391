@@ -78,6 +78,10 @@ public class ForgotPassword extends HttpServlet {
         SendMail sendmail = new SendMail();
         UserDAO userDAO = new UserDAO();
         User acc = userDAO.getUserByEmail(mail);
+        if(acc==null){
+            request.setAttribute("ms1", "Check your Email!");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+        }
         String subject = "Your account has been processing.";
         String message = "<!DOCTYPE html>\n"
                 + "<html lang=\"en\">\n"
@@ -87,9 +91,9 @@ public class ForgotPassword extends HttpServlet {
                 + "\n"
                 + "<body>\n"
                 + "    <h3 style=\"color: blue;\">Your account has been processing.</h3>\n"
-                + "    <div>User Name :" + acc.getUsername() + "</div>\n"
-                + "    <div>Password :" + acc.getPassword() + "</div>\n"
-                + "    <div>Name : " + acc.getFullname() + "</div>\n"
+                + "    <div>User Name : " + acc.getUsername() + "</div>\n"
+                + "    <div>Password : " + acc.getPassword() + "</div>\n"
+                + "    <div>Name : " + acc.getFirstname() +acc.getMiddlename() +acc.getLastname() + "</div>\n"
                 + "    <div>Gender : " + acc.getGender() + "</div>\n"
                 + "    <div>Phone : " + acc.getPhone() + "</div>\n"
                 + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"

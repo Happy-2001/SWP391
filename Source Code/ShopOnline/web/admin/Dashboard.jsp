@@ -97,9 +97,9 @@
                             </a>
                         </li>
                         <li class="nav-link">
-                            <a href="/ShopOnline/slider">
+                            <a href="slider">
                                 <span class="nav-link-icon">
-                                <i class="fa-solid fa-sliders fa-xl"></i>
+                                <i class="fa-solid fa-images fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Manage Slider</span>
                                
@@ -109,6 +109,22 @@
                             <a href="/ShopOnline/PostMan">
                                 <span class="nav-link-icon">
                                 <i class="fa-solid fa-sliders fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Blog Manager</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="MyOrderController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-receipt fa-xl"></i>
+                                </span>
+                                <span class="text nav-text">Add Address</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="/ShopOnline/PostController">
+                                <span class="nav-link-icon">
+                                    <i class="fa-solid fa-receipt fa-xl"></i>
                                 </span>
                                 <span class="text nav-text">Post Manager</span>
                             </a>

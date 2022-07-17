@@ -81,16 +81,12 @@
         <servlet-class>controller.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>orderInformation</servlet-name>
-        <servlet-class>controller.orderInformationController</servlet-class>
+        <servlet-name>OrderInformationController</servlet-name>
+        <servlet-class>controller.OrderInformationController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
         <servlet-class>controller.CartController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateProfile</servlet-name>
-        <servlet-class>controller.UpdateProfile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeController</servlet-name>
@@ -192,6 +188,42 @@
         <servlet-name>Search</servlet-name>
         <servlet-class>controller.Search</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SliderDetailController</servlet-name>
+        <servlet-class>controller.SliderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderImgController</servlet-name>
+        <servlet-class>controller.SliderImgController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Notification</servlet-name>
+        <servlet-class>controller.Notification</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShipperController</servlet-name>
+        <servlet-class>controller.ShipperController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShipperDetailController</servlet-name>
+        <servlet-class>controller.ShipperDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProfileController</servlet-name>
+        <servlet-class>controller.UpdateProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchOrder</servlet-name>
+        <servlet-class>controller.SearchOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogControllerAD</servlet-name>
+        <servlet-class>controller.BlogControllerAD</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostEdit</servlet-name>
+        <servlet-class>controller.PostEdit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -273,16 +305,12 @@
         <url-pattern>/CartUpdateController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>orderInformation</servlet-name>
-        <url-pattern>/orderInformationController</url-pattern>
+        <servlet-name>OrderInformationController</servlet-name>
+        <url-pattern>/OrderInformationController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/CartController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateProfile</servlet-name>
-        <url-pattern>/UpdateProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -383,6 +411,42 @@
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderDetailController</servlet-name>
+        <url-pattern>/admin/SliderDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderImgController</servlet-name>
+        <url-pattern>/admin/SliderImgController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notification</servlet-name>
+        <url-pattern>/Notification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShipperController</servlet-name>
+        <url-pattern>/admin/ShipperController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShipperDetailController</servlet-name>
+        <url-pattern>/admin/ShipperDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileController</servlet-name>
+        <url-pattern>/UpdateProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrder</servlet-name>
+        <url-pattern>/SearchOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogControllerAD</servlet-name>
+        <url-pattern>/PostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostEdit</servlet-name>
+        <url-pattern>/PostEdit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

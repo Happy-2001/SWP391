@@ -10,6 +10,7 @@ import dal.OrderDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -68,7 +69,37 @@ public class MyOrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int index = Integer.parseInt(request.getParameter("filter"));
+        OrderDAO udb = new OrderDAO();
+//        List<Orders> Orderlist = udb.listAllOder();
+        List<Orders> Orderlist = new ArrayList<>();
+        if (index == -2) {
+           Orderlist = udb.listAllOderDESC();
+        } else if(index == 1){
+            Orderlist = udb.listAllOderASC();
+
+        }else if(index == 2){
+            Orderlist = udb.getStt2();
+
+        }else if(index == 3){
+            Orderlist = udb.getStt3();
+
+        }else if(index == 4){
+            Orderlist = udb.getStt4();
+
+        }else if(index == 5){
+            Orderlist = udb.getStt5();
+
+        }else if(index == 6){
+            Orderlist = udb.getStt6();
+
+        }
+        else{
+            Orderlist = udb.listAllOder();
+        }
+        
+        request.setAttribute("Orderlist", Orderlist);
+        request.getRequestDispatcher("MyOrder.jsp").forward(request, response);
                 
     }
 

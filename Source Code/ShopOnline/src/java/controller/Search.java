@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.OrderDAO;
 import dal.ProductCategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Category;
+import model.Orders;
 import model.Product;
 
 /**
@@ -45,6 +47,13 @@ public class Search extends HttpServlet {
         request.setAttribute("txtS", txtSearch);
         request.setAttribute("productsForEachPage", listP);// luu tu đã đc search 
         request.getRequestDispatcher("shop.jsp").forward(request, response);
+        
+        OrderDAO p1 = new OrderDAO();
+
+        List<Orders> listP1 = p1.findByName(txtSearch);
+        request.setAttribute("txtS", txtSearch);
+        request.setAttribute("Orderlist", listP1);
+        request.getRequestDispatcher("MyOrder.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

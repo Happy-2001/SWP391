@@ -18,11 +18,16 @@ public class RetrieveImg extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userid = request.getParameter("eaID");
+        String sliderid = request.getParameter("id");
         ImageDAO upli = new ImageDAO();
         try {
             response.setContentType("image/gif");
             OutputStream os = response.getOutputStream();
-            os.write(upli.Retrieve(Integer.parseInt(userid)));
+            if (userid.isEmpty() || userid == null){
+                os.write(upli.SliderImg(Integer.parseInt(sliderid)));
+            }else{
+                os.write(upli.Retrieve(Integer.parseInt(userid)));
+            }
             os.flush();
             os.close();
         }catch (Exception e){

@@ -102,6 +102,15 @@ public class User {
         this.username = username;
     }
 
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+    
+
     public String getPassword() {
         return password;
     }

@@ -109,7 +109,7 @@ public class SuppliersDAO extends DBConnect {
         SuppliersDAO dao = new SuppliersDAO();
         List<Suppliers> a = dao.listSupplierTop5();
         for (Suppliers o : a) {
-            System.out.println(o);
+            System.out.println(o.getName());
         }
     }
 }

@@ -5,10 +5,13 @@
  */
 package controller;
 
+import dal.AddressDAO;
 import dal.CartDAO;
+import dal.CustomerDAO;
 import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +19,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cart;
+import model.Customers;
+import model.District;
 import model.Orders;
+import model.Provinces;
+import model.SubDistrict;
 
 /**
  *
@@ -38,14 +45,12 @@ public class OrderInformationController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         OrderDAO dao = new OrderDAO();
-        CartDAO cartDao = new CartDAO();
-        // CartDAO cartDao = new CartDAO();
-        List<Cart> carts = cartDao.listById(Integer.parseInt(id));
-        //Orders o = dao.listOrderById(Integer.parseInt(id));
-        int total = cartDao.getAmountByID(Integer.parseInt(id));
-        request.setAttribute("total", total);
-        //request.setAttribute("order", o);
-        request.setAttribute("carts", carts);
+        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));      
+        double total = 0;
+        for (Orders od : o) {
+            total = total + od.getQuantity() * od.getProduct().getSalePrice();
+        }
+        request.setAttribute("list",o);
         request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
     }
 

@@ -22,7 +22,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(int post_id, String date, String content, String brief_infor, String description, String image) {
+    public Post(int post_id, String content,  String brief_infor, String description,String date, String image) {
         this.post_id = post_id;
         this.date = date;
         this.content = content;
@@ -31,14 +31,7 @@ public class Post {
         this.image = image;
     }
 
-    public Post(String date, String content, String description, String noidung, int categoryId, String image) {
-        this.date = date;
-        this.content = content;
-        this.description = description;
-        this.noidung = noidung;
-        this.categoryId = categoryId;
-        this.image = image;
-    }
+    
     
     public String getNoidung() {
         return noidung;

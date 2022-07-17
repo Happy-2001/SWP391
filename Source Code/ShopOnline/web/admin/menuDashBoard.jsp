@@ -59,11 +59,11 @@
             </li>
 
             <li class="nav-link">
-                <a class="${AccountsActive}" href="admin/userList.jsp">
+                <a class="${AccountsActive}" href="/ShopOnline/admin/UserList">
                     <span class="nav-link-icon">
                         <i class="fa-solid fa-circle-user <c:if test="${AccountsActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>
-                    <span class="text nav-text">Accounts</span>
+                    <span class="text nav-text">User List</span>
                 </a>
             </li>
 
@@ -76,9 +76,17 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a class="${ManageSliderActive}" href="/ShopOnline/slider">
+                <a class="${ShipperActive}" href="/ShopOnline/admin/ShipperController">
                     <span class="nav-link-icon">
-                        <i class="fa-solid fa-sliders <c:if test="${ManageSliderActive ne 'active'}">fa-xl</c:if>"></i>
+                        <i class="fa-solid fa-circle-user <c:if test="${AccountsActive ne 'active'}">fa-xl</c:if>"></i>
+                    </span>
+                    <span class="text nav-text">Shipper</span>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a class="${ManageSliderActive}" href="/ShopOnline/admin/slider">
+                    <span class="nav-link-icon">
+                        <i class="fa-solid fa-images <c:if test="${ManageSliderActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>
                     <span class="text nav-text">Manage Slider</span>
 

@@ -10,130 +10,131 @@ package model;
  * @author Administrator
  */
 public class UserAddress {
-    private String uaID,userID,fullname,pname,dname,wname,prname,strname,detailAddress,phone,otherPhone,email,status;
-
-    public UserAddress() {
+    private int uaID;
+    private String name;
+    private int userID;
+    Provinces proID;
+    SubDistrict disID;
+    Ward wardID;
+    project projectID;
+    ElectronicAddress eaID;
+    String otherphone;
+    String addDetail;
+    String status;
+    
+    public UserAddress(){
+        
     }
-
-    public UserAddress(String uaID, String userID, String fullname, String pname, String dname, String wname, String prname, String strname, String detailAddress, String phone, String otherPhone, String email,String status) {
+    public UserAddress(Provinces proID){
+        this.proID=proID;
+    }
+    public UserAddress(int uaID, String name, int userID, Provinces proID, SubDistrict disID, Ward wardID, project projectID, ElectronicAddress eaID, String otherphone, String addDetail, String status) {
         this.uaID = uaID;
+        this.name = name;
         this.userID = userID;
-        this.fullname = fullname;
-        this.pname = pname;
-        this.dname = dname;
-        this.wname = wname;
-        this.prname = prname;
-        this.strname = strname;
-        this.detailAddress = detailAddress;
-        this.phone = phone;
-        this.otherPhone = otherPhone;
-        this.email = email;
+        this.proID = proID;
+        this.disID = disID;
+        this.wardID = wardID;
+        this.projectID = projectID;
+        this.eaID = eaID;
+        this.otherphone = otherphone;
+        this.addDetail = addDetail;
         this.status = status;
     }
+    
+    public void setUaID(int uaID) {
+        this.uaID = uaID;
+    }
 
-    public String getStatus() {
-        return status;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setProID(Provinces proID) {
+        this.proID = proID;
+    }
+
+    public void setDisID(SubDistrict disID) {
+        this.disID = disID;
+    }
+
+    public void setWardID(Ward wardID) {
+        this.wardID = wardID;
+    }
+
+    public void setProjectID(project projectID) {
+        this.projectID = projectID;
+    }
+
+    public void setEaID(ElectronicAddress eaID) {
+        this.eaID = eaID;
+    }
+
+    public void setOtherphone(String otherphone) {
+        this.otherphone = otherphone;
+    }
+
+    public void setAddDetail(String addDetail) {
+        this.addDetail = addDetail;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getUaID() {
+    public int getUaID() {
         return uaID;
     }
 
-    public void setUaID(String uaID) {
-        this.uaID = uaID;
+    public String getName() {
+        return name;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public Provinces getProID() {
+        return proID;
     }
 
-    public String getFullname() {
-        return fullname;
+    public SubDistrict getDisID() {
+        return disID;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public Ward getWardID() {
+        return wardID;
     }
 
-    public String getPname() {
-        return pname;
+    public project getProjectID() {
+        return projectID;
     }
 
-    public void setPname(String pname) {
-        this.pname = pname;
+    public ElectronicAddress getEaID() {
+        return eaID;
     }
 
-    public String getDname() {
-        return dname;
+    public String getOtherphone() {
+        return otherphone;
     }
 
-    public void setDname(String dname) {
-        this.dname = dname;
+    public String getAddDetail() {
+        return addDetail;
     }
 
-    public String getWname() {
-        return wname;
+    public String getStatus() {
+        return status;
     }
 
-    public void setWname(String wname) {
-        this.wname = wname;
+    @Override
+    public String toString() {
+        return "UserAddress{" + "uaID=" + uaID + ", name=" + name + ", userID=" + userID + ", proID=" + proID + ", disID=" + disID + ", wardID=" + wardID + ", projectID=" + projectID + ", eaID=" + eaID + ", otherphone=" + otherphone + ", addDetail=" + addDetail + ", status=" + status + '}';
     }
-
-    public String getPrname() {
-        return prname;
-    }
-
-    public void setPrname(String prname) {
-        this.prname = prname;
-    }
-
-    public String getStrname() {
-        return strname;
-    }
-
-    public void setStrname(String strname) {
-        this.strname = strname;
-    }
-
-    public String getDetailAddress() {
-        return detailAddress;
-    }
-
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getOtherPhone() {
-        return otherPhone;
-    }
-
-    public void setOtherPhone(String otherPhone) {
-        this.otherPhone = otherPhone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    
 
     
     

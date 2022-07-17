@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Slide;
 
 /**
@@ -34,7 +36,7 @@ public class SlideDAO {
                 s.setDescription(rs.getString("description"));
                 s.setNamebutton(rs.getString("name_button"));
                 s.setUrl(rs.getString("url"));
-                s.setStatus(rs.getBoolean("status"));
+                s.setStatus(rs.getInt("status"));
                 slides.add(s);
             }
             return slides;
@@ -55,7 +57,7 @@ public void insert(Slide slide) {
             st.setString(3, slide.getDescription());
             st.setString(4, slide.getNamebutton());
             st.setString(5, slide.getUrl());
-            st.setBoolean(6, slide.isStatus());
+            st.setInt(6, slide.getStatus());
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -70,28 +72,27 @@ public void insert(Slide slide) {
             PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
             st.setInt(1, id);
             st.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(SlideDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
     }
 
-    public void update(Slide s) {
+    public void update(String heading, String description, String button, String url, int status, int id) {
         try {
-            String sql = "UPDATE `slides` SET `img` = ?, `heading` = ?, `description` = ?, `name_button` = ?, `url` = ?, `status` = ? WHERE `slide`.`slide_id` = ?";
+            String sql = "UPDATE `slides` SET `heading` = ?, `description` = ?, `name_button` = ?, `url` = ?, `status` = ? WHERE slide_id = ?";
             PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
-            st.setString(1, s.getImg());
-            st.setString(2, s.getHeading());
-            st.setString(3, s.getDescription());
-            st.setString(4, s.getNamebutton());
-            st.setString(5, s.getUrl());
-            st.setBoolean(6, s.isStatus());
-            st.setInt(7, s.getId());
+            st.setString(1, heading);
+            st.setString(2, description);
+            st.setString(3, button);
+            st.setString(4, url);
+            st.setInt(5, status);
+            st.setInt(6, id);
             st.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println(e);
+        } catch (SQLException ex) {
+            Logger.getLogger(SlideDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             mysqlConnect.disconnect();
         }
@@ -112,7 +113,7 @@ public void insert(Slide slide) {
                 s.setDescription(rs.getString("description"));
                 s.setNamebutton(rs.getString("name_button"));
                 s.setUrl(rs.getString("url"));
-                s.setStatus(rs.getBoolean("status"));
+                s.setStatus(rs.getInt("status"));
                 return s;
             }
 

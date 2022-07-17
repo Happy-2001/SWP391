@@ -163,7 +163,7 @@
                                         <input id="user-name" type="text" value="${sessionScope.user.username}" disabled>
                                     </div>
                                     <div class="options">
-                                        <input id="password" type="password" name="password" placeholder="Password">
+                                        <input id="password" type="password" name="password" placeholder="New Password">
                                     </div>
                                     <div class="options check__pass">
                                         <input id="password_confirmation" type="password" placeholder="Enter password again">
@@ -173,10 +173,10 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div>
-                                    <h5>Info</h5>
+                                    <h5>Information</h5>
                                     <div class="options">
                                         <div class="auth-actions">
-                                            <input type="text" name="fname" placeholder="Fist Name">
+                                            <input type="text" name="fname" placeholder="First Name">
                                             <input type="text" name="mdname" placeholder="Middle Name">
                                             <input type="text" name="lname" placeholder="Last Name">
                                         </div>
