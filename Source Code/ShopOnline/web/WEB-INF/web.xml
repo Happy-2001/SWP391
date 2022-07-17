@@ -213,8 +213,13 @@
         <servlet-class>controller.UpdateProfileController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>SearchOrder</servlet-name>
         <servlet-class>controller.SearchOrder</servlet-class>
+=======
+        <servlet-name>BlogControllerAD</servlet-name>
+        <servlet-class>controller.BlogControllerAD</servlet-class>
+>>>>>>> ae497f9a3a8b174f38ca7bbe96b19f1db52abed7
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -429,8 +434,13 @@
         <url-pattern>/UpdateProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>SearchOrder</servlet-name>
         <url-pattern>/SearchOrder</url-pattern>
+=======
+        <servlet-name>BlogControllerAD</servlet-name>
+        <url-pattern>/PostController</url-pattern>
+>>>>>>> ae497f9a3a8b174f38ca7bbe96b19f1db52abed7
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
