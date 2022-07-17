@@ -10,8 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Address;
+import model.Customers;
+import model.Provinces;
 import model.Role;
+import model.RoleUser;
 import model.User;
+import model.UserAddress;
 
 public class UserDAO extends DBConnect {
 
@@ -173,7 +178,7 @@ public class UserDAO extends DBConnect {
     }
 
     public User getUserByEmail(String email) {
-        String sql = "SELECT ua.user_name,ua.password,ua.first_name,ua.middle_name,ua.last_name,ua.gender,ea.telephone,ea.email FROM user_accounts as ua\n"
+        String sql = "SELECT ua.user_name,ua.password,ua.first_name,ua.middle_name,ua.last_name,ua.gender,ea.telephone FROM user_accounts as ua\n"
                 + "INNER JOIN user_address as uad on ua.user_id=uad.userID\n"
                 + "INNER JOIN electronicaddress as ea on ea.eaID=uad.eaID\n"
                 + "where ea.email like ?";
@@ -190,8 +195,6 @@ public class UserDAO extends DBConnect {
                 u.setLastname(rs.getString("ua.last_name"));
                 u.setGender(rs.getInt("ua.gender"));
                 u.setPhone(rs.getString("ea.telephone"));
-                u.setEmail(rs.getString("ea.email"));
-
                 return u;
             }
         } catch (SQLException e) {
@@ -283,6 +286,40 @@ public class UserDAO extends DBConnect {
                 u.setPhone(rs.getString("phone"));
                 u.setEmail(rs.getString("email"));
                 u.setStatus(rs.getInt("status_id"));
+                users.add(u);
+            }
+            return users;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
+    }
+
+    public List<User> listUserRoleUser() {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT ua.user_id,ua.user_name,ua.password,ua.first_name,ua.middle_name,ua.last_name,ua.gender,ua.DOB,ea.telephone,ea.email FROM `user_accounts` as ua \n"
+                + "inner join user_role as ur on ua.user_id=ur.userID\n"
+                + "inner join user_address as uad on ua.user_id=uad.uaID\n"
+                + "inner join electronicaddress as ea on ea.eaID=uad.eaID\n"
+                + "inner join roles on roles.roleID=ur.roleID\n"
+                + "where roles.roleID=3";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setUserid(rs.getInt("ua.user_id"));
+                u.setUsername(rs.getString("ua.user_name"));
+                u.setPassword(rs.getString("ua.password"));
+                u.setFirstname(rs.getString("ua.first_name"));
+                u.setMiddlename(rs.getString("ua.middle_name"));
+                u.setLastname(rs.getString("ua.last_name"));
+                u.setGender(rs.getInt("ua.gender"));
+                u.setDob(rs.getDate("ua.DOB"));
+                u.setPhone(rs.getString("ea.telephone"));
+                u.setEmail(rs.getString("ea.email"));
                 users.add(u);
             }
             return users;
@@ -478,6 +515,41 @@ public class UserDAO extends DBConnect {
         return null;
     }
 
+    public List<RoleUser> listAll() {
+        List<RoleUser> cus = new ArrayList<>();
+        String sql = "SELECT ur.roleID, ua.user_id, ua.user_name, ua.first_name,\n"
+                + "ua.middle_name, ua.last_name, ua.gender, ua.DOB, ua.status_id,\n"
+                + "uad._name, eca.email, eca.telephone, eca.photo\n"
+                + "FROM\n"
+                + "(((`user_accounts` AS ua INNER JOIN `user_role` AS ur ON ua.`user_id` = ur.`userID`)\n"
+                + "INNER JOIN\n"
+                + "(SELECT * FROM `province` JOIN `user_address`\n"
+                + "ON `province`.`id` = `user_address`.`provinceID`) AS uad\n"
+                + "ON ua.`user_id` = uad.`userID`)\n"
+                + "INNER JOIN `electronicaddress` AS eca ON ua.`user_id` = eca.`eaID`)\n"
+                + "WHERE ur.roleID = 3 ";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                RoleUser c = new RoleUser();
+                c.setUser(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"),
+                        rs.getString("ua.first_name"), rs.getString("ua.middle_name"),
+                        rs.getString("ua.last_name"), rs.getInt("ua.gender"),
+                        rs.getDate("ua.DOB"), rs.getInt("ua.status_id"),
+                        rs.getString("eca.email"), rs.getString("eca.telephone"),
+                        rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
+                c.setUser_add(new UserAddress(new Provinces(rs.getString("uad._name"))));
+                cus.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return cus;
+    }
+
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
 //        List<String> list = udao.listUserAdminID();
@@ -486,7 +558,11 @@ public class UserDAO extends DBConnect {
 //        u.setUsername("hoangadma");
 //        u.setEmail("hoangliu@gmail.com");
 //        System.out.println(udao.getUserByUserName("hoangadma"));
-        User a = udao.getUserByEmail("thachdp2808@gmail.com");
-        System.out.println(a.getEmail());
+//        User a = udao.getUserByEmail("thachdp2808@gmail.com");
+//        System.out.println(a.getPassword());
+        List<RoleUser> a = udao.listAll();
+        for (RoleUser o : a) {
+            System.out.println(o.getUser_add().getProID().getName());
+        }
     }
 }

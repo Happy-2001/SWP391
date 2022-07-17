@@ -59,11 +59,11 @@
             </li>
 
             <li class="nav-link">
-                <a class="${AccountsActive}" href="admin/userList.jsp">
+                <a class="${AccountsActive}" href="/ShopOnline/admin/UserList">
                     <span class="nav-link-icon">
                         <i class="fa-solid fa-circle-user <c:if test="${AccountsActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>
-                    <span class="text nav-text">Accounts</span>
+                    <span class="text nav-text">User List</span>
                 </a>
             </li>
 
