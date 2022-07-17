@@ -217,6 +217,10 @@
         <servlet-class>controller.SearchOrder</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>BlogControllerAD</servlet-name>
+        <servlet-class>controller.BlogControllerAD</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PostEdit</servlet-name>
         <servlet-class>controller.PostEdit</servlet-class>
     </servlet>
@@ -435,6 +439,10 @@
     <servlet-mapping>
         <servlet-name>SearchOrder</servlet-name>
         <url-pattern>/SearchOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogControllerAD</servlet-name>
+        <url-pattern>/PostController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PostEdit</servlet-name>
