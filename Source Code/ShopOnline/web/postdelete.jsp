@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset=UTF-8>
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!-- Mobile Metas -->
@@ -28,74 +28,56 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/custom.css">
 
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/Dashboard.css">
-        <link rel="stylesheet" href="css/card.css">
-        <script src="https://kit.fontawesome.com/a4edd5786f.js" crossorigin="anonymous"></script>
-        <script src="js/message.js" ></script>
+        <script src="js/fontAwesome.js"></script>
 
         <!-- Bootstrap 5 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
     </head>
-
     <body>
-
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
 
-        <div class="container" style="margin-top: 60px">
-            <a href="ManagePost?action=add" class="btn btn-success my-5">Add new post</a>
 
-            <table class="table  table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Brief Information</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${posts}" var="post">
-                        <tr>
-                            <td>${post.post_id}</td>
-                            <td>${post.date}</td>
-                            <td>${post.brief_infor}</td>
-                            <td>${post.description}</td>
-                            <td>${post.content}</td>                           
-                            <td>  <div 
-                                    class="image">
-                                     <img src="${post.image}" alt="" class="img-fluid">
-                                 </div> 
-                            </td>
-                            <td>
-                                <a class="btn btn-success" href="PostEdit?action=edit&id=${post.post_id}">Edit</a>
-                                <a class="btn btn-danger" onclick="deleteB('')">Delete</a>
-                            </td>
-                    </c:forEach>
-                </tbody>
-            </table>
+        <form class="container py-5" action="ManagePost" method="POST" id="fileUploadForm">
+            <input type="hidden" name="actionpage" value="edit">
+            <div class="mb-3">
+                <label for="name" class="form-label">ID</label>
+                <input value="${post.post_id}" type="text" class="form-control" id="name" name="id" required>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Date</label>
+                <input value="${post.date}" type="text" class="form-control" id="name" name="productName" required>
+            </div>
+           
+            <div class="mb-3">
+                <label for="price" class="form-label">Content</label>
+                <input value="${post.content}" type="text" class="form-control" id="price" name="productPrice" required>
+            </div>
+            <div class="mb-3">
+                <label for="stock" class="form-label">Brief Information</label>
+                <input value="${post.brief_infor}" type="text" class="form-control" id="stock" name="productStock" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" id="description" class="form-control"  rows="10">${post.description}</textarea>
+            </div>
 
-            <c:if test="${countPage != null}">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <c:forEach begin="1" end="${countPage}" var="p">
-                            <li class="page-item ${p == PAGE ? "active":""}"><a class="page-link" href="?page=${p}&sort=${sort}">${p}</a></li>
-                            </c:forEach>
-                    </ul>
-                </nav>
-                <!--END PAGING-->
-            </c:if>
+            <div id="inputfile" class="form-group mb-3">
+                <div class="form-group">
+                    <label for="file" class="form-label">Image url</label>
+                    <input class="form-control" type="file" name="file" id="file" />
+                </div>
+            </div>
+            <input type="hidden" name="image" id="imagefile" value="">
+            <img id="imagedisplay" src="${post.image}"/>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
-
-        </div>
-
+        </form>
 
         <!-- Start Footer  -->
         <footer>
@@ -161,7 +143,6 @@
         <!-- End copyright  -->
 
         <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
         <!-- ALL JS FILES -->
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
@@ -178,18 +159,42 @@
         <script src="js/form-validator.min.js"></script>
         <script src="js/contact-form-script.js"></script>
         <script src="js/custom.js"></script>
-        <script type="text/javascript">
-                                    function goPage() {
-                                        var selectBox = document.getElementById("selectBox");
-                                        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                        window.location.href = "listproduct?sort=" + selectedValue;
-                                    }
-                                    function deleteB(id) {
-                                        var option = confirm("Delete blog with id: " + id + " ?");
-                                        if (option === true) {
-                                            window.location.href = 'ManagePost?action=delete&id=' + id;
-                                        }
-                                    }
+
+        <script>
+            $("#imagedisplay").css("display", "none");
+            $(document).ready(function () {
+                $("input[name='file']").change(function () {
+                    //stop submit the form, we will post it manually.
+                    //event.preventDefault();
+                    // Get form
+                    var form = $('#fileUploadForm')[0];
+                    // Create an FormData object 
+                    var data = new FormData(form);
+                    // disabled the submit button
+                    $.ajax({
+                        type: "POST",
+                        enctype: 'multipart/form-data',
+                        url: "UploadServlet",
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        timeout: 600000,
+                        success: function (data) {
+                            $("#imagecover").text(data);
+                            console.log("SUCCESS : ", data);
+                            document.getElementById('imagefile').value = data;
+                            $("#inputfile").css("display", "none");
+                            $("#imagedisplay").attr("src", "upload/" + data);
+                            $("#imagedisplay").css("display", "block");
+                        },
+                        error: function (e) {
+                            $("#imagecover").text(e.responseText);
+                            console.log("ERROR : ", e);
+                        }
+                    });
+                });
+            });
         </script>
     </body>
 </html>

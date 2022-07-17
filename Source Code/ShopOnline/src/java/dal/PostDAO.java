@@ -103,7 +103,7 @@ public class PostDAO extends DBConnect{
         return posts;
     }
     public Post getPostByID(int id) {
-        String sql = "SELECT * FROM `post` WHERE post_id = ?";
+        String sql = "SELECT * FROM `posts` WHERE post_id = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
