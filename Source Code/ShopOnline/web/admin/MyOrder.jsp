@@ -41,12 +41,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex gap-4 align-items-center">
-                                    <div class="d-none d-md-flex">All Orders</div>
 
+                                    <form action="MyOrderController" method="POST">
 
-                                    <div class="row g-3">
-                                        <form action="MyOrderController" method="POST">
-                                            <div class="col-md-3">
+                                        <div class="row g-3">
+                                            <div class="col-md-12">
                                                 <select class="form-select" name="filter">
                                                     <option value="0" ${param.filter==0 ? 'selected' : ''} selected>Sort by</option>
                                                     <option value="-2" ${param.filter==-2 ? 'selected' : ''}>ASC</option>
@@ -57,13 +56,14 @@
                                                     <option value="5" ${param.filter==5 ? 'selected' : ''}>Refunded</option>
                                                     <option value="6" ${param.filter==6 ? 'selected' : ''}>Canceled</option>
                                                 </select>
-                                                <div class="why-text py-0">
-                                                    <button type="submit" class="btn m-0">Sort</button>
-                                                </div>
                                             </div>
-                                        </form>
-                                        
-                                    </div>
+                                            <div style="margin: 10px; text-align: right; margin-top: -38px; margin-left:70px" class="why-text py-0">
+                                                <button type="submit" class="btn m-0">Sort</button>
+                                            </div>
+
+
+                                        </div>
+                                    </form>
 
                                 </div>
                             </div>
