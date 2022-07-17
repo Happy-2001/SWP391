@@ -319,11 +319,14 @@ public class MessageDAO {
         }
     }
     public static void main(String[] args) {
-        MessageDAO m = new MessageDAO();
-        ArrayList<Message> list = m.getAllMessageofUser("1", "5");
-        System.out.println(list.isEmpty());
-        for (Message message : list) {
-            System.out.println(message.getIsread());
-        }
+        MessageDAO mdao = new MessageDAO();
+        String list = mdao.getCreatorbyMessageID("3");
+        
+           Message result = mdao.getLastMessage("2", "2");
+           System.out.println(result.getIsread() == null);
+           Message ex = new Message("83","1","2","xin chào quý khách", "2022-07-17 15:45:36", null, null);
+           System.out.println(ex == result);
+           System.out.println(result.getId()+ " | "+ result.getFromID()+ " | "+ result.getToID()+ " | "+ result.getContent()+ " | "+ result.getCreateDate()+ " | "+ result.getParentMessageID()+ " | "+ result.getIsread() );
+        
     }
 }
