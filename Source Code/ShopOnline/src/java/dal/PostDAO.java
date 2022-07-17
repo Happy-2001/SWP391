@@ -58,12 +58,11 @@ public class PostDAO extends DBConnect{
         }
         return lc;
     }
-    public List<Post> listPost(int quantity) {
+    public List<Post> listPost() {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT * FROM `post` LIMIT ?";
+        String sql = "SELECT * FROM 'posts' ";
         try {
-            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-            statement.setInt(1, quantity);
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);         
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Post p = new Post();
@@ -199,7 +198,7 @@ public class PostDAO extends DBConnect{
     }
     public static void main(String[] args) {
         PostDAO p = new PostDAO();
-        p.update("", "", "", "", 1, "", 1);
-        
+         List<Post> posts = p.listAllPost();
+        System.out.println(posts);
     }
 }
