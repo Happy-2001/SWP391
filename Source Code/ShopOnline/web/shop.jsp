@@ -25,118 +25,118 @@
     <body>
         <%@include file="topbar.jsp" %>
         <div id="header" class="bg-light">
-    <header>
-        <!-- Start Navigation -->
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bootsnav">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="home"><img src="images/logo.png" class="logo" alt=""></a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <!-- Start Top Search -->
-                    <div class="top-search">
-                        <form action="Search" method="POST">
-                            <div class="input-group">
-                                <span class="input-group-text close-search"><i class="fa fa-times"></i></span>
-                                <input type="search" class="form-control" value="${txtS}" name="txt"  placeholder="Search...">
-                                <button type="submit" class="input-group-text">
-                                    <i class="fa fa-search"></i>
-                                </button>
+            <header>
+                <!-- Start Navigation -->
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light bootsnav">
+                        <!-- Start Header Navigation -->
+                        <div class="navbar-header">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a class="navbar-brand" href="home"><img src="images/logo.png" class="logo" alt=""></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-menu">
+                            <!-- Start Top Search -->
+                            <div class="top-search">
+                                <form action="Search" method="POST">
+                                    <div class="input-group">
+                                        <span class="input-group-text close-search"><i class="fa fa-times"></i></span>
+                                        <input type="search" class="form-control" value="${txtS}" name="txt"  placeholder="Search...">
+                                        <button type="submit" class="input-group-text">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
-                    <!-- End Top Search -->
-                    <ul id="page-header" class="nav navbar-nav ms-auto">
-                        <li class="nav-item active"><a class="nav-link" href="home" title="Home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog" title="Blogs">Blogs</a></li>                       
-                        <li class="nav-item"><a class="nav-link" href="ProductController" title="Products">Product</a></li>
-                    </ul>
-                </div>
+                            <!-- End Top Search -->
+                            <ul id="page-header" class="nav navbar-nav ms-auto">
+                                <li class="nav-item active"><a class="nav-link" href="home" title="Home">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="blog" title="Blogs">Blogs</a></li>                       
+                                <li class="nav-item"><a class="nav-link" href="ProductController" title="Products">Product</a></li>
+                            </ul>
+                        </div>
 
-                <div class="account-header">
-                    <ul class="nav navbar-nav">
-                        <li class="search">
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </li>
-                            
-                        <li class="side-menu">
-                            <c:choose>
-                                <c:when test="${sessionScope.userlogged eq null}">
-                                    <a href="login" title="Login"><i class="fa fa-shopping-bag"></i></a>
-                                </c:when>
-                                <c:when test="${sessionScope.userlogged ne null}">
-                                    <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
-                                        url="jdbc:mysql://localhost:3306/shop2"
-                                        user="root"  password=""/>
- 
-                                    <sql:query dataSource="${db}" var="rs">
-                                        SELECT * FROM `cart_items` 
-                                        WHERE cart_items.cartID = ${sessionScope.userlogged.userid};
-                                    </sql:query>
-                                    
-                                    <c:set var="linkToRedirect">
-                                       <c:choose>
-                                            <c:when test="${rs.rowCount != 0}">
-                                                CartController?userID=${sessionScope.userlogged.userid}
-                                            </c:when>
-                                            <c:otherwise>
-                                                CartEmpty.jsp
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:set>
-                                    <a href="${linkToRedirect}" title="Cart"
-                                        <i class="fa fa-shopping-bag"></i>
-                                    </a>
-                                    <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
-                                </c:when>
-                            </c:choose>
-                        </li>
-                        <li class="account dropdown">
-                            <c:choose>
-                                <c:when test="${sessionScope.userlogged eq null}">
-                                    <a href="login" title="Login"><i class="fa fa-user"></i></a>
-                                </c:when>
-                                <c:when test="${sessionScope.userlogged ne null}">
+                        <div class="account-header">
+                            <ul class="nav navbar-nav">
+                                <li class="search">
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </li>
+
+                                <li class="side-menu">
                                     <c:choose>
-                                        <c:when test="${sessionScope.Arole.authority.id == 1}">
-                                            <a href="admin/dashboard" style="border-left: 2px solid #d33b33;">
-                                                <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
+                                        <c:when test="${sessionScope.userlogged eq null}">
+                                            <a href="login" title="Login"><i class="fa fa-shopping-bag"></i></a>
+                                            </c:when>
+                                            <c:when test="${sessionScope.userlogged ne null}">
+                                                <sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver"
+                                                                   url="jdbc:mysql://localhost:3306/shop2"
+                                                                   user="root"  password=""/>
+
+                                            <sql:query dataSource="${db}" var="rs">
+                                                SELECT * FROM `cart_items` 
+                                                WHERE cart_items.cartID = ${sessionScope.userlogged.userid};
+                                            </sql:query>
+
+                                            <c:set var="linkToRedirect">
+                                                <c:choose>
+                                                    <c:when test="${rs.rowCount != 0}">
+                                                        CartController?userID=${sessionScope.userlogged.userid}
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        CartEmpty.jsp
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:set>
+                                            <a href="${linkToRedirect}" title="Cart"
+                                               <i class="fa fa-shopping-bag"></i>
                                             </a>
+                                            <span class="badge-num"><c:out value="${rs.rowCount}"/></span>
                                         </c:when>
-                                        <c:otherwise>
-                                            <a href="#" data-bs-toggle="dropdown" style="border-left: 2px solid #d33b33;">
-                                                <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a href="ProfileUser?userid=${sessionScope.userlogged.userid}" class="dropdown-item">
-                                                    <i class="fa-regular fa-circle-user pe-2"></i> Profile
-                                                </a>
-                                                <a href="CusOrderController?cid=${sessionScope.userlogged.userid}" class="dropdown-item">
-                                                    <i class="fa-solid fa-box pe-2"></i> My order
-                                                </a>
-                                                <a href="CusFavouriteController" class="dropdown-item">
-                                                    <i class="fa-regular fa-heart pe-2"></i> Favorites
-                                                </a>
-                                            </div>
-                                        </c:otherwise>
                                     </c:choose>
-                                    
-                                    <a href="logout" style="border-left: 2px solid #d33b33;" title="Logout"><i class="fa-solid fa-power-off"></i></a>
-                                </c:when>
-                            </c:choose>
-                        </li>
-                    </ul>
+                                </li>
+                                <li class="account dropdown">
+                                    <c:choose>
+                                        <c:when test="${sessionScope.userlogged eq null}">
+                                            <a href="login" title="Login"><i class="fa fa-user"></i></a>
+                                            </c:when>
+                                            <c:when test="${sessionScope.userlogged ne null}">
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.Arole.authority.id == 1}">
+                                                    <a href="admin/dashboard" style="border-left: 2px solid #d33b33;">
+                                                        <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="#" data-bs-toggle="dropdown" style="border-left: 2px solid #d33b33;">
+                                                        <i class="fa-solid fa-circle-user"></i> ${sessionScope.userlogged.username}
+                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        <a href="ProfileUser?userid=${sessionScope.userlogged.userid}" class="dropdown-item">
+                                                            <i class="fa-regular fa-circle-user pe-2"></i> Profile
+                                                        </a>
+                                                        <a href="CusOrderController?cid=${sessionScope.userlogged.userid}" class="dropdown-item">
+                                                            <i class="fa-solid fa-box pe-2"></i> My order
+                                                        </a>
+                                                        <a href="CusFavouriteController" class="dropdown-item">
+                                                            <i class="fa-regular fa-heart pe-2"></i> Favorites
+                                                        </a>
+                                                    </div>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                            <a href="logout" style="border-left: 2px solid #d33b33;" title="Logout"><i class="fa-solid fa-power-off"></i></a>
+                                            </c:when>
+                                        </c:choose>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
                 </div>
-                
-            </nav>
+                <!-- End Navigation -->
+            </header>
         </div>
-        <!-- End Navigation -->
-    </header>
-</div>
         <script>
             const navMenu = document.getElementById("navbar-menu"),
                     searchBtn = document.querySelector(".search"),
@@ -430,7 +430,14 @@
                                                             <a href="productDetail?product_id=${product.id}">${product.name}</a>
                                                             <p class="text-muted">${product.brief_information}</p>
                                                             <span>${product.price} VND</span>
-                                                            <a href="#" class="btn">Add to Card</a>
+                                                            <c:choose>
+                                                                <c:when test="${sessionScope.userlogged eq null}">
+                                                                    <a class="btn" href="login" title="Login">Add to Cart</a>
+                                                                </c:when>
+                                                                <c:when test="${sessionScope.userlogged ne null}">
+                                                                    <a class="btn" href="AddToCart?cid=${sessionScope.userlogged.userid}&pid=${product.id}">Add to Cart</a>
+                                                                </c:when>
+                                                            </c:choose>
                                                             <a href="favouriteController?id=${product.id}" class="btn"><i class="fa-regular fa-heart"></i></a>
                                                         </div>
                                                     </div>

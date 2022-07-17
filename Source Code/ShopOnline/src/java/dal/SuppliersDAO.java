@@ -105,6 +105,26 @@ public class SuppliersDAO extends DBConnect {
         return null;
     }
 
+    public void addSuppliers(Suppliers p) {
+        try {
+            String sql = "INSERT INTO `suppliers`( `companyName`, `contactName`, `contactTitle`, `DOB`, `gender`, `creator`, `createOn`, `updateOn`)\n"
+                    + "VALUES ('?','?','?','?','?','?','?','?','?')";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, p.getName());
+            statement.setString(2, p.getContactName());
+            statement.setString(3, p.getContactTitle());
+            statement.setDate(4, p.getDob());
+            statement.setInt(5, p.getGender());
+            statement.setInt(6,p.getCreator());
+            statement.setDate(7, p.getCreateOn());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+
     public static void main(String[] args) {
         SuppliersDAO dao = new SuppliersDAO();
         List<Suppliers> a = dao.listSupplierTop5();
