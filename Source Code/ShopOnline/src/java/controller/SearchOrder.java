@@ -23,7 +23,7 @@ import model.Product;
  *
  * @author thund
  */
-public class Search extends HttpServlet {
+public class SearchOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +38,11 @@ public class Search extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String txtSearch = request.getParameter("txt");//get tu search
-        ProductDAO p = new ProductDAO();
-        ProductCategoryDAO dao1 = new ProductCategoryDAO();
+        OrderDAO p = new OrderDAO();
 
-        List<Product> listP = p.findByName(txtSearch);
-        List<Category> listC = dao1.listAll();
-        request.setAttribute("listC", listC);
+        List<Orders> listP = p.findByName(txtSearch);
         request.setAttribute("txtS", txtSearch);
-        request.setAttribute("productsForEachPage", listP);// luu tu đã đc search 
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
-        
-        OrderDAO p1 = new OrderDAO();
-
-        List<Orders> listP1 = p1.findByName(txtSearch);
-        request.setAttribute("txtS", txtSearch);
-        request.setAttribute("Orderlist", listP1);
+        request.setAttribute("Orderlist", listP);
         request.getRequestDispatcher("MyOrder.jsp").forward(request, response);
     }
 

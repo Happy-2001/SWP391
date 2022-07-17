@@ -213,8 +213,8 @@
         <servlet-class>controller.UpdateProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BlogControllerAD</servlet-name>
-        <servlet-class>controller.BlogControllerAD</servlet-class>
+        <servlet-name>SearchOrder</servlet-name>
+        <servlet-class>controller.SearchOrder</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PostEdit</servlet-name>
@@ -433,8 +433,8 @@
         <url-pattern>/UpdateProfile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BlogControllerAD</servlet-name>
-        <url-pattern>/PostController</url-pattern>
+        <servlet-name>SearchOrder</servlet-name>
+        <url-pattern>/SearchOrder</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PostEdit</servlet-name>

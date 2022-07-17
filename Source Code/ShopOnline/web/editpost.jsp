@@ -47,7 +47,7 @@
             <input type="hidden" name="actionpage" value="edit">
             <div class="mb-3">
                 <label for="name" class="form-label">ID</label>
-                <input value="${post.id}" type="text" class="form-control" id="name" name="id" required>
+                <input value="${post.id}" type="text" class="form-control" id="name" name="id" readonly="true">
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Date</label>

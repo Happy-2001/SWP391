@@ -391,7 +391,7 @@
                                         <div class="filter-button-group">
                                             <span>Sort by </span>
                                             <select id="basic" class="form-select" name="filter">
-                                                <option value="-2" ${param.filter==-1 ? 'selected' : ''} selected>Nothing</option>
+                                                <option value="-2" ${param.filter==-2 ? 'selected' : ''} selected>Nothing</option>
                                                 <option value="-1" ${param.filter==-1 ? 'selected' : ''}>High Price → High Price</option>
                                                 <option value="0" ${param.filter==0 ? 'selected' : ''}>Low Price → High Price</option>
                                             </select>
