@@ -9,6 +9,10 @@
         <servlet-class>controller.ListUserController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UserListController</servlet-name>
+        <servlet-class>controller.UserListController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PostDetail</servlet-name>
         <servlet-class>controller.PostDetail</servlet-class>
     </servlet>
@@ -443,6 +447,10 @@
     <servlet-mapping>
         <servlet-name>BlogControllerAD</servlet-name>
         <url-pattern>/PostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserListController</servlet-name>
+        <url-pattern>/admin/UserList</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PostEdit</servlet-name>

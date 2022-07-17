@@ -21,7 +21,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </head>
     <body>
-        <c:set var="CustomersActive" value="active"/>
+        <c:set var="UserListActive" value="active"/>
         <%@include file="Topbar.jsp" %>
 
         <div class="container-fluid">
@@ -109,71 +109,7 @@
                             </ul>
                         </div>
                     </div>
-                    <form action="UpdateProfile" method="POST">
-                        <div class="Popup" id="myModal">
-                            <span class="close">&times;</span>
-                            <div class="container Popup-body">
-                                <div class="Pop-title">
-                                    <h3>Edit Profile</h3>
-                                </div>
-                                <div class="options-divider"></div>
-                                <input type="hidden" name="id" value="">
-                                <div class="Set-pop">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div style="border-right: 1px solid #231f20;">
-                                                <h5>Account</h5>
-                                                <div class="options">
-                                                    <input id="user-name" type="text" value="" disabled>
-                                                </div>
-                                                <div class="options">
-                                                    <input id="password" type="password" name="password" placeholder="New Password">
-                                                </div>
-                                                <div class="options check__pass">
-                                                    <input id="password_confirmation" type="password" placeholder="Enter password again">
-                                                    <span id="check-err"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <div>
-                                                <h5>Information</h5>
-                                                <div class="options">
-                                                    <div class="auth-actions">
-                                                        <input type="text" name="fname" placeholder="First Name">
-                                                        <input type="text" name="mdname" placeholder="Middle Name">
-                                                        <input type="text" name="lname" placeholder="Last Name">
-                                                    </div>
-                                                </div>
-                                                <div class="options">
-                                                    <input id="phone" type="tel" name="phone" value="" disabled>
-                                                </div>
-                                                <div class="options">
-                                                    <input id="email" type="text" value="" disabled>
-                                                </div>
-                                                <div class="save-pass">
-                                                    <div class="auth-actions">
-                                                        <label class="save-pass-container">Male
-                                                            <input class="checkbox" name="gender" type="radio" value="1">
-                                                            <span class="radio-mark"></span>
-                                                        </label>
-                                                        <label class="save-pass-container">Female
-                                                            <input class="checkbox" name="gender" type="radio" value="0">
-                                                            <span class="radio-mark"></span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="options-divider"></div>
-                                        <div class="options">
-                                            <button class="opt-btn" type="submit">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    
                     <script>
                         var checkArea = document.getElementById('check-err');
                         var passIn = document.getElementById('password');
@@ -194,8 +130,8 @@
 
 
                     </script>
-                    <script src="../js/Popup.js"></script>
                     
+                    <script src="../js/list-select.js"></script>
                 </div>
             </div>
         </div>
