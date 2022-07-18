@@ -23,6 +23,7 @@ import model.Provinces;
 import model.SubDistrict;
 import model.User;
 import model.UserAddress;
+import model.UsersAddress;
 import model.project;
 
 /**
@@ -87,15 +88,15 @@ public class AddressController extends HttpServlet {
                 ArrayList<Provinces> listProvince = adao.getProvince();
                     ArrayList<District> listDistrict = adao.getDistrict();
                     ArrayList<SubDistrict> listSubDistrict = adao.getSubDistrict();
-                    ArrayList<UserAddress> listUserAddress = adao.getUserAddress(String.valueOf(user.getUserid()));
+                    ArrayList<UsersAddress> listUserAddress = adao.getUserAddress(String.valueOf(user.getUserid()));
                 String accessType = request.getParameter("accesstype");
                 if (accessType.equals("settings")) {
                     String settingtype = request.getParameter("settingtype");
                     if(settingtype.equalsIgnoreCase("editaddress")){
                         
                         String uaid = request.getParameter("uaid");
-                        UserAddress uadd = null;
-                        for (UserAddress ua : listUserAddress) {
+                        UsersAddress uadd = null;
+                        for (UsersAddress ua : listUserAddress) {
                             if(ua.getUaID().equals(uaid)){
                                 uadd = ua;
                             }
@@ -103,7 +104,7 @@ public class AddressController extends HttpServlet {
                     request.setAttribute("fullname", uadd.getFullname());
                     request.setAttribute("phone", uadd.getPhone());
                     request.setAttribute("listUserAddress", listUserAddress);
-                    request.setAttribute("adddetail", uadd.getDetailAddress());
+                    request.setAttribute("adddetail", uadd.getDetailAdress());
                     request.setAttribute("valueAddress", uadd.getPname()+" "+uadd.getDname()+" "+uadd.getWname());
                     
                     

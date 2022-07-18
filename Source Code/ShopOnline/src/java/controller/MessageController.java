@@ -116,7 +116,7 @@ public class MessageController extends HttpServlet {
             }
 //            response.getWriter().print(fromid+"||"+toid+"||"+content+"|"+parentMessageID.equals(""));
 
-            String maxMessID = mdao.getMaxMessIDb();
+            String maxMessID = mdao.getMaxMessIDb(String.valueOf(u.getUserid()));
             mdao.addRecipientMessage(toid, maxMessID);
             String maxmrID = mdao.getMaxmrID();
             if (getFROMandTOsplit.length == 4) {           //Admin      // check chuyển hướng sang message.jsp  tính nhắn gần nhất

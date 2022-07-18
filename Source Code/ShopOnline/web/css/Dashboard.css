@@ -125,7 +125,7 @@ ul, li{
 .menu-bar .menu{
     position: fixed;
     height: 100%;
-    width: 350px;
+    width: inherit;
 }
 .menu-links li a {
     display: flex;

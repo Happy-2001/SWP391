@@ -137,7 +137,7 @@
                                                                             </a>
                                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                                 <a href="ProfileUser?userid=${listGroupChat.customerID}" class="dropdown-item">Profile</a>
-                                                                                <a href="#" class="dropdown-item">Mark as read</a>
+                                                                                <a href="asread?mrID=${mrID}&&messID=${listGroupChat.messageID}&&groupID=${listGroupChat.groupID}" class="dropdown-item">Mark as read</a>
                                                                                 <a href="#" class="dropdown-item">Delete</a>
                                                                             </div>
                                                                         </div>
@@ -203,7 +203,7 @@
                                                                             </a>
                                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                                 <a href="ProfileUser?userid=${listGroupChat.customerID}" class="dropdown-item">Profile</a>
-                                                                                <a href="#" class="dropdown-item">Mark as read</a>
+                                                                                <a href="asread?mrID=${mrID}&&messID=${listGroupChat.messageID}&&groupID=${listGroupChat.groupID}" class="dropdown-item">Mark as read</a>
                                                                                 <a href="#" class="dropdown-item">Delete</a>
                                                                             </div>
                                                                         </div>
@@ -320,8 +320,8 @@
 
                                                                     <ul class="dropdown-menu">
 
-                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
-                                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=admin&&mrID=${mrID}">Delete All</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}&&r=admin&&mrID=${mrID}">Delete</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </c:if>
@@ -338,7 +338,7 @@
 
                                                                     <ul class="dropdown-menu">
 
-                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=admin&&mrID=${mrID}">Delete All</a></li>
 
                                                                     </ul>
                                                                 </div>
@@ -397,8 +397,8 @@
 
                                                                     <ul class="dropdown-menu">
 
-                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
-                                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}">Delete</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=admin&&mrID=${mrID}">Delete All</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=delete&&messid=${mess.id}&&r=admin&&mrID=${mrID}">Delete</a></li>
                                                                     </ul>
                                                                 </div>
                                                                 <i onclick="replyMessageR('${mess.content}',${mess.id})" class="fa-solid fa-reply" title="reply"></i>
@@ -416,7 +416,7 @@
 
                                                                     <ul class="dropdown-menu">
 
-                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}">Delete All</a></li>
+                                                                        <li><a class="dropdown-item" href="messageedits?type=deleteAll&&messid=${mess.id}&&r=admin&&mrID=${mrID}">Delete All</a></li>
 
                                                                     </ul>
                                                                 </div>

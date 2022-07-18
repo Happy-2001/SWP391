@@ -18,6 +18,7 @@ import model.Provinces;
 import model.Street;
 import model.SubDistrict;
 import model.UserAddress;
+import model.UsersAddress;
 import model.project;
 
 /**
@@ -164,6 +165,8 @@ public class AddressDAO {
         }
         return list;
     }
+    
+    
 
     public ArrayList<District> getDistrict(int prvID) {
         ArrayList<District> list = new ArrayList<>();
@@ -403,8 +406,8 @@ public class AddressDAO {
         return list;
     }
     
-    public ArrayList<UserAddress> getUserAddress(String userID) {
-        ArrayList<UserAddress> list = new ArrayList<>();
+    public ArrayList<UsersAddress> getUserAddress(String userID) {
+        ArrayList<UsersAddress> list = new ArrayList<>();
         try {
             String sql = "SELECT uaID,userID,pname,dname,wname, prname,strname,addressDetail,ela.telephone,ela.email,fullname,otherPhone,status FROM\n"
                     + "(SELECT status,fullname,otherPhone,eaID,uaID,userID,pname,dname,wname, prname,concat(str._prefix,' ',str._name) AS strname,addressDetail FROM\n"
@@ -419,7 +422,7 @@ public class AddressDAO {
 
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                UserAddress p = new UserAddress();
+                UsersAddress p = new UsersAddress();
                 p.setUaID((rs.getString("uaID")));
                 p.setUserID(rs.getString("userID"));
                 p.setPname(rs.getString("pname"));
@@ -427,7 +430,7 @@ public class AddressDAO {
                 p.setWname(rs.getString("wname") == null ? "" : rs.getString("wname") + ",");
                 p.setPrname(rs.getString("prname") == null ? "" : rs.getString("prname") + ",");
                 p.setStrname(rs.getString("strname") == null ? "" : rs.getString("strname") + ",");
-                p.setDetailAddress(rs.getString("addressDetail") == null ? "" : rs.getString("addressDetail") + ",");
+                p.setDetailAdress(rs.getString("addressDetail") == null ? "" : rs.getString("addressDetail") + ",");
                 p.setPhone(rs.getString("telephone") == null ? "" : rs.getString("telephone"));
                 p.setEmail(rs.getString("email") == null ? "" : rs.getString("email"));
                 p.setFullname(rs.getString("fullname") == null ? "" : rs.getString("fullname"));
@@ -492,7 +495,7 @@ public class AddressDAO {
     }
     public static void main(String[] args) {
         AddressDAO adao = new AddressDAO();
-        ArrayList<UserAddress> list = adao.getUserAddress("1");
+       
         ArrayList<District> list2 = adao.getDistrict();
         System.out.println(list2.get(0).getName());
     }

@@ -35,15 +35,12 @@ public class PostDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        
             PostDAO pdb = new PostDAO();
-            String id = request.getParameter("post_id");
-            Post p = pdb.getPostByID(Integer.parseInt(id));
-            List<Post> posts = pdb.listPost(4);
-            request.setAttribute("posts", posts);
-            request.setAttribute("PostDetail", p);
+            List<Post> post = pdb.listAllPost();
+            request.setAttribute("PostDetail", post);
             request.getRequestDispatcher("postDetail.jsp").forward(request, response);
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -49,7 +49,7 @@
         <div class="container my-5">
             <a href="ManagePost?action=add" class="btn btn-success my-5">Add new post</a>
 
-            <table class="table table-dark table-striped">
+            <table class="table  table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>

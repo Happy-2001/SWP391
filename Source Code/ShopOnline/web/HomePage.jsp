@@ -190,7 +190,18 @@
         <script>
             let scroll_to_bottom = document.getElementById('scroll-to-bottom');
             scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
+            // for autochat
+            <c:if test="${!listMess.isEmpty()}">
+                <c:if test="${listMess.get(listMess.size()-1).content eq 'Bắt đầu'}">
+            var delayInMilliseconds = 3000; //1 second
 
+            setTimeout(function () {
+                document.getElementById('autochatcontent').value = 'start';
+                document.getElementById('message-form').submit();
+            }, delayInMilliseconds);
+
+                </c:if>
+            </c:if>
         </script>
     </body>
 </html>

@@ -66,10 +66,17 @@ public class MessageEdits extends HttpServlet {
         MessageDAO mdao = new MessageDAO();
         String type = request.getParameter("type");
         String messID = request.getParameter("messid");
+        String role = request.getParameter("r");
+        String mrID = request.getParameter("mrID");
         if(type.equalsIgnoreCase("delete")){
-            
+           
             mdao.deleteMessages2(messID);
-            response.sendRedirect("home");
+            
+            if(role.equals("admin")){
+                response.sendRedirect("/ShopOnline/message?mrID="+mrID);
+            }else{
+                response.sendRedirect("home");
+            }
         }else{
             ArrayList<String> listMessages = mdao.getMrIDbyMessageID(messID);
             for (String listMessage : listMessages) {
@@ -77,7 +84,12 @@ public class MessageEdits extends HttpServlet {
                 
             }
             mdao.deleteMessages(messID);
-            response.sendRedirect("home");
+            
+            if(role.equals("admin")){
+                response.sendRedirect("/ShopOnline/message?mrID="+mrID);
+            }else{
+                response.sendRedirect("home");
+            }
         }
     }
 

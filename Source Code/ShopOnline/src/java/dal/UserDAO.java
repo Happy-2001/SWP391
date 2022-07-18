@@ -561,8 +561,9 @@ public class UserDAO extends DBConnect {
 //        User a = udao.getUserByEmail("thachdp2808@gmail.com");
 //        System.out.println(a.getPassword());
         List<RoleUser> a = udao.listAll();
-        for (RoleUser o : a) {
-            System.out.println(o.getUser_add().getProID().getName());
+       List<String> list2 = udao.listUserAdminID();
+        for (String o : list2) {
+            System.out.println(o);
         }
     }
 }
