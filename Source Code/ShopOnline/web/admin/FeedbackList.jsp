@@ -78,7 +78,19 @@
                                                 <input class="form-check-input" id="form-check" type="checkbox" value="${feedb.fbID}">
                                             </div>
                                             <div class="flex-shrink-0">
-                                                <i class="fa-regular fa-star"></i>
+                                                <c:choose>
+                                                    <c:when test="${feedb.favo == 0}">
+                                                        <a href="FeedbackAd?act=favo&fbID=${feedb.fbID}&fv=1" style="color: #666;">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </a>
+                                                    </c:when>
+                                                    <c:when test="${feedb.favo == 1}">
+                                                        <a href="FeedbackAd?act=favo&fbID=${feedb.fbID}&fv=0" style="color: #666;">
+                                                            <i class="fa-solid fa-star favorite" style="color: #faae42;"></i>
+                                                        </a>
+                                                    </c:when>
+                                                </c:choose>
+                                                
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="d-flex justify-content-between align-items-center">

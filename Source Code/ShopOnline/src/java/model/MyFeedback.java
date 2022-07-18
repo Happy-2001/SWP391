@@ -17,6 +17,7 @@ public class MyFeedback {
     private String description;
     private String note;
     private int status;
+    private int favo;
     User user;
     Orders order;
     private String createDate;
@@ -86,6 +87,14 @@ public class MyFeedback {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getFavo() {
+        return favo;
+    }
+
+    public void setFavo(int favo) {
+        this.favo = favo;
     }
 
     public User getUser() {

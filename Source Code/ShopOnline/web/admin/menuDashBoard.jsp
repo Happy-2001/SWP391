@@ -50,7 +50,7 @@
             </li>
 
             <li class="nav-link">
-                <a class="${FeedbackActive}" href="FeedbackAd">
+                <a class="${FeedbackActive}" href="FeedbackAd?act=view">
                     <span class="nav-link-icon">
                         <i class="fa-solid fa-comment-dots <c:if test="${FeedbackActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>

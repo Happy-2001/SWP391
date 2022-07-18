@@ -87,18 +87,18 @@ public class FeedbackDAO extends DBConnect {
         List<MyFeedback> listAll = new ArrayList<>();
         try {
             String sql = "SELECT * FROM\n" +
-                    "(SELECT ROW_NUMBER() OVER (ORDER BY f.createDate DESC) as rownum,\n" +
-                    "f.feedback_id, f.description,\n" +
-                    "f.status, f.createDate, f.star_rating,\n" +
-                    "f.user_id, f.first_name, f.middle_name,\n" +
-                    "f.last_name FROM\n" +
-                    "(SELECT fb.feedback_id, fb.description,\n" +
-                    "fb.status, fb.createDate, fb.star_rating,\n" +
-                    "ua.user_id, ua.first_name, ua.middle_name,\n" +
-                    "ua.last_name FROM `feedbacks` AS fb\n" +
-                    "INNER JOIN `user_accounts` AS ua\n" +
-                    "ON fb.`userID` = ua.`user_id`) AS f) as pPaging\n" +
-                    "WHERE rownum BETWEEN ? AND ?";
+                        "(SELECT ROW_NUMBER() OVER (ORDER BY f.createDate DESC) as rownum,\n" +
+                        "f.feedback_id, f.description, f.status,\n" +
+                        "f.favor, f.createDate, f.star_rating,\n" +
+                        "f.user_id, f.first_name, f.middle_name,\n" +
+                        "f.last_name FROM\n" +
+                        "(SELECT fb.feedback_id, fb.description,\n" +
+                        "fb.status, fb.favor, fb.createDate, fb.star_rating,\n" +
+                        "ua.user_id, ua.first_name, ua.middle_name,\n" +
+                        "ua.last_name FROM `feedbacks` AS fb\n" +
+                        "INNER JOIN `user_accounts` AS ua\n" +
+                        "ON fb.`userID` = ua.`user_id`) AS f) as pPaging\n" +
+                        "WHERE rownum BETWEEN ? AND ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, ((pageNumber - 1) * 9) + 1);
             statement.setInt(2, (pageNumber * 9));
@@ -108,10 +108,11 @@ public class FeedbackDAO extends DBConnect {
                 mf.setFbID(rs.getInt(2));
                 mf.setDescription(rs.getString(3));
                 mf.setStatus(rs.getInt(4));
-                mf.setCreateDate(rs.getString(5));
-                mf.setRating(rs.getInt(6));
-                mf.setUser(new User(rs.getInt(7), rs.getString(8),
-                                    rs.getString(9), rs.getString(10)));
+                mf.setFavo(rs.getInt(5));
+                mf.setCreateDate(rs.getString(6));
+                mf.setRating(rs.getInt(7));
+                mf.setUser(new User(rs.getInt(8), rs.getString(9),
+                                    rs.getString(10), rs.getString(11)));
                 
                 listAll.add(mf);
             }
@@ -159,38 +160,7 @@ public class FeedbackDAO extends DBConnect {
         }
         return countPage;
     }
-    
-    //SELECT * FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY star_rating DESC) AS seq FROM `feedback`) as x WHERE seq BETWEEN 1 AND 2
-//    public List<MyFeedback> getFbBySortRatePaging(int pageNumber, String order, String sort) {
-//        List<MyFeedback> statuses = new ArrayList<>();
-//        String sql = "SELECT * FROM (SELECT user_account.full_name, user_account.email, user_account.phone, products.product_name, products.url, feedback.star_rating,feedback.status,feedback.description, feedback.feedback_id, feedback.User_Account_user_id, ROW_NUMBER() OVER (ORDER BY " + order + " " + sort + ") AS seq FROM feedback JOIN products products ON feedback.products_product_id = products.product_id JOIN user_account ON feedback.User_Account_user_id = user_account.user_id) as x WHERE seq BETWEEN ? AND ?";
-//        try {
-//            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
-//            statement.setInt(1, ((pageNumber - 1) * 2) + 1);
-//            statement.setInt(2, (pageNumber * 2));
-//            ResultSet rs = statement.executeQuery();
-//            while (rs.next()) {
-//                MyFeedback s = new MyFeedback();
-//                s.setFeedback_id(rs.getInt("feedback_id"));
-//                s.setUserid(rs.getInt("User_Account_user_id"));
-//                s.setFull_name(rs.getString("full_name"));
-//                s.setUrl(rs.getString("url"));
-//                s.setProduct_name(rs.getString("product_name"));
-//                s.setStar_rating(rs.getInt("star_rating"));
-//                s.setDescription(rs.getString("description"));
-//                s.setUsemail(rs.getString("email"));
-//                s.setPhone(rs.getInt("phone"));
-//                s.setStatus(rs.getInt("status"));
-//                statuses.add(s);
-//            }
-//            return statuses;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            mysqlConnect.disconnect();
-//        }
-//        return null;
-//    }
+  
 
     public void addFB(String des, int uid, int pid, int rate) {
         String sql = "INSERT INTO `feedback` (`description`, `User_Account_user_id`, `products_product_id`, `star_rating`,`note`, `status` ) VALUES (?, ?, ?, ?, ?, ?)";
@@ -313,6 +283,18 @@ public class FeedbackDAO extends DBConnect {
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(query);
             statement.setInt(1, st);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void feedbackFavor(int fav, int id) {
+        String query = "UPDATE `feedbacks` SET `favor`=? WHERE `feedback_id` = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(query);
+            statement.setInt(1, fav);
             statement.setInt(2, id);
             statement.executeUpdate();
         } catch (Exception ex) {

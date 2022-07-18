@@ -17,6 +17,36 @@ public class FeedbackAdController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("act");
+        switch (action) {
+            case "view":
+                view(request, response);
+                break;
+            case "favo":
+                favo(request, response);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    
+    protected void view(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String page = request.getParameter("page");
         FeedbackDAO db = new FeedbackDAO();
         
@@ -40,36 +70,38 @@ public class FeedbackAdController extends HttpServlet {
         
         request.getRequestDispatcher("FeedbackList.jsp").forward(request, response);
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    
+    protected void favo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        String id = request.getParameter("fbID");
+        String favo = request.getParameter("fv");
+        String page = request.getParameter("page");
+        
+        FeedbackDAO db = new FeedbackDAO();
+        
+        db.feedbackFavor(Integer.parseInt(favo), Integer.parseInt(id));
+        
+        if (page == null || page.isEmpty()) {
+            page = "" + 1;
+        }
+        request.setAttribute("PAGE", page);
+        int pageNumber = Integer.parseInt(page);
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        int countPage = db.countPage();
+        request.setAttribute("countPage", countPage);
+        
+        int task = db.CountTask();
+        request.setAttribute("AllTask", task);
+        
+        int work = db.TaskWork(1);
+        request.setAttribute("Done", work);
+        
+        List<MyFeedback> list = db.ListAllFeedback(pageNumber);   
+        request.setAttribute("fblist", list);
+        
+        request.getRequestDispatcher("FeedbackList.jsp").forward(request, response);
     }
-
+    
     /**
      * Returns a short description of the servlet.
      *

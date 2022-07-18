@@ -71,7 +71,7 @@
                         </li>
         
                         <li class="nav-link">
-                            <a href="FeedbackAd">
+                            <a href="FeedbackAd?act=view">
                                 <span class="nav-link-icon">
                                     <i class="fa-solid fa-comment-dots fa-xl"></i>
                                 </span>
