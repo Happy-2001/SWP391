@@ -13,198 +13,255 @@
         <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/HomePage.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/Feedback.css">
 
         <script src="js/fontAwesome.js"></script>
-        <script src="js/message.js"></script>
         
         <!-- Bootstrap 5 -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     </head>
-    <body>
-        <%@include file="topbar.jsp" %>
-        <%@include file="header.jsp" %>
-        <div class="rt-container">
-            <div class="col-rt-12">
-                <div class="Scriptcontent">
-
-
-                    <div class="feedback" style="margin-top: 60px">
-                        <p>Dear Customer,<br>
-                            Thank you for your support and use of our products. We want to know the quality of our products. Please take a moment to give us your valuable feedback as it will help us improve our product. </p>
-                        </br>
-                        <h4>Please rate your service experience for the following parameters</h4>
-
-                        <form method="post" action="Feedback">
-                            <label> Product quality ?</label><br>
-
-                            <span class="star-rating">
-                                <input type="radio" name="rating1" value="1"><i></i>
-                                <input type="radio" name="rating1" value="2"><i></i>
-                                <input type="radio" name="rating1" value="3"><i></i>
-                                <input type="radio" name="rating1" value="4"><i></i>
-                                <input type="radio" name="rating1" value="5"><i></i>
-                            </span>
-                            </br>
-                            </br>
-                            <div class="clear"></div> 
-                            <label for="m_3189847521540640526commentText"> Any Other suggestions:</label><br/><br/>
-                            <textarea cols="75" name="des" rows="5"></textarea><br>
-                            <br>
-                            <div class="clear"></div> 
-                            <input type="hidden" value="${pid}" name="pid"/>
-                            <input style="background:#43a7d5;color:#fff;padding:12px;border:0" type="submit" value="Submit your review">&nbsp;
-                        </form>
-                    </div>
-
-                </div>
+<body>
+    <%@include file="topbar.jsp" %>
+    <%@include file="header.jsp" %>
+    
+    <div class="container">
+        <div class="all-title-box" style="margin-top: 60px;">
+            <div aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="HomePage.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Feedback</li>
+                </ul>
             </div>
         </div>
-        <style>
-            .feedback{
-                width: 100%;
-                max-width: 780px;
-                background: #fff;
-                margin: 0 auto;
-                padding: 15px;
-                box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.3);
-            }
-            .survey-hr{
-                margin:10px 0;
-                border: .5px solid #ddd;
-            }
-            .star-rating {
-                margin: 25px 0 0px;
-                font-size: 0;
-                white-space: nowrap;
-                display: inline-block;
-                width: 175px;
-                height: 35px;
-                overflow: hidden;
-                position: relative;
-                background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-                background-size: contain;
-            }
-            .star-rating i {
-                opacity: 0;
-                position: absolute;
-                left: 0;
-                top: 0;
-                height: 100%;
-                width: 20%;
-                z-index: 1;
-                background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-                background-size: contain;
-            }
-            .star-rating input {
-                -moz-appearance: none;
-                -webkit-appearance: none;
-                opacity: 0;
-                display: inline-block;
-                width: 20%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                z-index: 2;
-                position: relative;
-            }
-            .star-rating input:hover + i,
-            .star-rating input:checked + i {
-                opacity: 1;
-            }
-            .star-rating i ~ i {
-                width: 40%;
-            }
-            .star-rating i ~ i ~ i {
-                width: 60%;
-            }
-            .star-rating i ~ i ~ i ~ i {
-                width: 80%;
-            }
-            .star-rating i ~ i ~ i ~ i ~ i {
-                width: 100%;
-            }
-            .choice {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                text-align: center;
-                padding: 20px;
-                display: block;
-            }
-            span.scale-rating{
-                margin: 5px 0 15px;
-                display: inline-block;
+        <div class="row d-flex justify-content-center" style="margin-bottom: 60px;">
+            <div class="fb-box col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="invoice p-5">
+                            <h5>Hello, ${order.user.firstname} ${order.user.middlename} ${order.user.lastname}</h5>
+                            <span>Thank you for your support and use of our products. We want to know the quality of our products. Please take a moment to give us your valuable feedback as it will help us improve our product.</span>
+                            <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="py-2">
+                                                    <span class="d-block text-muted">Order Date</span>
+                                                    <span>12 Jan,2018</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="py-2">
+                                                    <span class="d-block text-muted">Order No</span>
+                                                    <span>MT12332345</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="py-2">
+                                                    <span class="d-block text-muted">Shiping Address</span>
+                                                    <span>414 Advert Avenue, NY,USA</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="Attachments mb-3">
+                                <h6 class="mb-3">Attachments</h6>
+                                <form id="uploadImg" action="FeedbackUploadImage" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="orderID" value="${order.orderID}">
+                                    <div class="d-flex gap-3">
+                                        <div class="image">
+                                            <img src="FeedbackUploadImage?act=image1&fbid=${myfb.fbID}" id="image1">
+                                            <div class="file-upload">
+                                                <div class="edit-img">
+                                                    <div class="submit-file-box">
+                                                        <input type="file" class="cus-file-input" name="img1" id="submit-file-1">
+                                                        <p class="text-center mb-0">
+                                                            <label class="trigger" for="submit-file-1">
+                                                                <i class="fa-solid fa-camera fa-2xl"></i>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="image">
+                                            <img src="FeedbackUploadImage?act=image2&fbid=${myfb.fbID}" id="image2">
+                                            <div class="file-upload">
+                                                <div class="edit-img">
+                                                    <div class="submit-file-box">
+                                                        <input type="file" class="cus-file-input" name="img2" id="submit-file-2">
+                                                        <p class="text-center mb-0">
+                                                            <label class="trigger" for="submit-file-2">
+                                                                <i class="fa-solid fa-camera fa-2xl"></i>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <script type="text/javascript">
+                                    var fileInput1 = document.getElementById("submit-file-1"),
+                                        fileInput2 = document.getElementById("submit-file-2"),
+                                        button = document.querySelectorAll(".trigger"),
+                                        showDemo1 = document.getElementById("image1"),
+                                        showDemo2 = document.getElementById("image2"),
+                                        submitBtn = document.getElementById("uploadImg");
+                                        
+                                        button[0].addEventListener("click", function(vent) {
+                                            fileInput1.focus();
+                                            return false;
+                                        });
+                                        fileInput1.addEventListener("change", function(event) {
+                                            showDemo1.style.display = "block";
 
-                width: 100%;
+                                            if (this.files && this.files[0]) {
+                                                let reader = new FileReader();
 
-            }
-            span.scale-rating>label {
-                position:relative;
-                -webkit-appearance: none;
-                outline:0 !important;
-                border: 1px solid grey;
-                height:33px;
-                margin: 0 5px 0 0;
-                width: calc(10% - 7px);
-                float: left;
-                cursor:pointer;
-            }
-            span.scale-rating label {
-                position:relative;
-                -webkit-appearance: none;
-                outline:0 !important;
-                height:33px;
+                                                reader.onload = function (e) {
+                                                    showDemo1.src =  e.target.result;
+                                                };
+                                                reader.readAsDataURL(this.files[0]);
+                                                submitBtn.submit();
+                                            }
+                                        });
 
-                margin: 0 5px 0 0;
-                width: calc(10% - 7px);
-                float: left;
-                cursor:pointer;
-            }
-            span.scale-rating input[type=radio] {
-                position:absolute;
-                -webkit-appearance: none;
-                opacity:0;
-                outline:0 !important;
-                /*border-right: 1px solid grey;*/
-                height:33px;
+                                        button[1].addEventListener("click", function(vent) {
+                                            fileInput2.focus();
+                                            return false;
+                                        });
+                                        fileInput2.addEventListener("change", function(event) {                                          
+                                            showDemo2.style.display = "block";
 
-                margin: 0 5px 0 0;
+                                            if (this.files && this.files[0]) {
+                                                let reader = new FileReader();
 
-                width: 100%;
-                float: left;
-                cursor:pointer;
-                z-index:3;
-            }
-            span.scale-rating label:hover{
-                background:#fddf8d;
-            }
-            span.scale-rating input[type=radio]:last-child{
-                border-right:0;
-            }
-            span.scale-rating label input[type=radio]:checked ~ label{
-                -webkit-appearance: none;
+                                                reader.onload = function (e) {
+                                                    showDemo2.src =  e.target.result;
+                                                };
+                                                reader.readAsDataURL(this.files[0]);
+                                                submitBtn.submit();
+                                            }
+                                        });
+                                </script>
+                            </div>
+                            <form action="Feedback" method="POST">
+                                <input type="hidden" name="uid" value="${order.user.userid}">
+                                <input type="hidden" name="orderID" value="${order.orderID}">
+                                <div class="rating-form py-3">
+                                    <h6>Please rate your service experience for the following parameters</h6>
+                                    <!-- RATING - Form -->
+                                    <div class="form-item">
+                                        <input id="rating-5" name="rating" type="radio" value="5" />
+                                        <label for="rating-5" data-value="5">
+                                            <span class="rating-star">
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            <span class="ir">5</span>
+                                        </label>
+                                        <input id="rating-4" name="rating" type="radio" value="4" />
+                                        <label for="rating-4" data-value="4">
+                                            <span class="rating-star">
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            <span class="ir">4</span>
+                                        </label>
+                                        <input id="rating-3" name="rating" type="radio" value="3" />
+                                        <label for="rating-3" data-value="3">
+                                            <span class="rating-star">
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            <span class="ir">3</span>
+                                        </label>
+                                        <input id="rating-2" name="rating" type="radio" value="2" />
+                                        <label for="rating-2" data-value="2">
+                                            <span class="rating-star">
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            <span class="ir">2</span>
+                                        </label>
+                                        <input id="rating-1" name="rating" type="radio" value="1" />
+                                        <label for="rating-1" data-value="1">
+                                            <span class="rating-star">
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            <span class="ir">1</span>
+                                        </label>
+                                        <c:if test="${myfb.rating eq null}">
+                                            <div class="form-action">
+                                                <input class="btn-reset" type="reset" value="Reset" />   
+                                            </div>
+                                        </c:if>
 
-                margin: 0;
-                background:#fddf8d;
-            }
-            span.scale-rating label:before
-            {
-                content:attr(value);
-                top: 7px;
-                width: 100%;
-                position: absolute;
-                left: 0;
-                right: 0;
-                text-align: center;
-                vertical-align: middle;
-                z-index:2;
-            }
-        </style>
-        <%@include file="footer.jsp" %>
-    </body>
+                                        <div class="form-output">
+                                            ? / 5
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-4">
+                                    <h6 class="mb-3">Any Other suggestions:</h6>
+                                    <c:choose>
+                                        <c:when test="${myfb.description ne null}">
+                                            <div class="mb-3 p-3" style="border: 1px dashed #666;;">
+                                                <span class="text-muted">${myfb.createDate}</span>
+                                                <p class="p-0 m-0">${myfb.description}</p>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="fb-reply mb-3">
+                                                <textarea name="reply" id="ql-editor" placeholder="Type something... " onkeyup="req()"></textarea>
+                                                <span id="left">Remaining 1000 fillable characters</span>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="why-text text-center">
+                                        <button type="submit" class="btn">Send</button>
+                                    </div>
+                                </div>
+                                <script>
+                                    const messArea = document.getElementById("ql-editor"),
+                                    num = document.getElementById("left"),
+                                    rateVal = document.getElementsByName("rating");
+                            
+                                    var v = 5 - ${myfb.rating};
+                                    rateVal[v].checked = true;
+        
+                                    function req(){
+                                        var mess = messArea.value;
+                                        var required = 1000;
+                                        var left = required - mess.length;
+            
+                                        if(left > 0){
+                                            num.innerHTML = "Remaining " + left + " fillable characters";
+                                            return false;
+                                        }
+            
+                                        num.innerHTML = "0";
+                                        return true;
+                                    };
+                                </script>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between p-3">
+                        <span>Need Help? visit our <a href="#"> help center</a></span>
+                        <span>12 June, 2020</span>
+                    </div>
+                </div>    
+            </div>        
+        </div> 
+    </div>
+        
+    <%@include file="footer.jsp" %>
+</body>
 </html>

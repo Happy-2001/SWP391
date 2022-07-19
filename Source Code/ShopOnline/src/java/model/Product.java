@@ -13,7 +13,7 @@ public class Product {
 
     private int id;
     private String name;
-    private int categoryid;
+    Category category;
     private float price;
     private float salePrice;
     private int stock;
@@ -24,6 +24,10 @@ public class Product {
     private String supplierID,view,like;
     
     public Product() {
+    }
+    
+    public Product(Category category) {
+        this.category = category;
     }
     
     public Product(String name, float salePrice, String img) {
@@ -51,10 +55,10 @@ public class Product {
         this.sortdesc = sortdesc;
     }
     
-    public Product(int id, String name, int categoryid, float price, float salePrice, int stock, String brief_information, String description, String img) {
+    public Product(int id, String name, Category category, float price, float salePrice, int stock, String brief_information, String description, String img) {
         this.id = id;
         this.name = name;
-        this.categoryid = categoryid;
+        this.category = category;
         this.price = price;
         this.salePrice = salePrice;
         this.stock = stock;
@@ -63,10 +67,10 @@ public class Product {
         this.img = img;
     }
 
-    public Product(int id, String name, int categoryid, float price, float salePrice, int stock, String brief_information, String description, String img, String sortdesc, String supplierID) {
+    public Product(int id, String name, Category category, float price, float salePrice, int stock, String brief_information, String description, String img, String sortdesc, String supplierID) {
         this.id = id;
         this.name = name;
-        this.categoryid = categoryid;
+        this.category = category;
         this.price = price;
         this.salePrice = salePrice;
         this.stock = stock;
@@ -77,10 +81,10 @@ public class Product {
         this.supplierID = supplierID;
     }
 
-    public Product(int id, String name, int categoryid, float price, float salePrice, int stock, String brief_information, String description, String img, String sortdesc, String supplierID, String view, String like) {
+    public Product(int id, String name, Category category, float price, float salePrice, int stock, String brief_information, String description, String img, String sortdesc, String supplierID, String view, String like) {
         this.id = id;
         this.name = name;
-        this.categoryid = categoryid;
+        this.category = category;
         this.price = price;
         this.salePrice = salePrice;
         this.stock = stock;
@@ -149,12 +153,12 @@ public class Product {
         this.name = name;
     }
 
-    public int getCategoryid() {
-        return categoryid;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryid(int categoryid) {
-        this.categoryid = categoryid;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public float getPrice() {
@@ -199,7 +203,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", categoryid=" + categoryid + ", price=" + price + ", salePrice=" + salePrice + ", stock=" + stock + ", brief_information=" + brief_information + ", description=" + description + ", img=" + img + ", sortdesc=" + sortdesc + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", salePrice=" + salePrice + ", stock=" + stock + ", brief_information=" + brief_information + ", description=" + description + ", img=" + img + ", sortdesc=" + sortdesc + '}';
     }
 
 }

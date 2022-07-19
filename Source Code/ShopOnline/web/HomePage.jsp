@@ -27,6 +27,7 @@
 
     </head>
     <body>
+        <c:set var="HomeActive" value="active"/>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
         <!-- Start Slider -->

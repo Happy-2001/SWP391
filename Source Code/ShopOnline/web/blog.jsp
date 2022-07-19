@@ -22,6 +22,7 @@
         
     </head>
     <body>
+        <c:set var="BlogActive" value="active"/>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
 

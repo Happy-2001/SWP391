@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cart;
 import model.CartContact;
+import model.Category;
 import model.Product;
 
 /**
@@ -46,7 +47,7 @@ public class CartDAO {
                 Cart c = new Cart();
                 c.setItemId(rs.getInt("rs.item_id"));
                 c.setProduct(new Product(rs.getInt("p.product_id"), rs.getString("p.product_name"), 
-                                        rs.getInt("p.category_id"), rs.getFloat("p.unit_price"),
+                                        new Category(rs.getInt("p.category_id")), rs.getFloat("p.unit_price"),
                                         rs.getFloat("p.sale_price"), rs.getInt("p.unitsln_stock"),
                                         rs.getString("p.brief_information"), rs.getString("p.description"), rs.getString("p.url")));
                 c.setQuantity(rs.getInt("rs.quantity"));
@@ -84,7 +85,7 @@ public class CartDAO {
                 Cart c = new Cart();
                 c.setItemId(rs.getInt("rs1.item_id"));
                 c.setProduct(new Product(rs.getInt("pd.product_id"), rs.getString("pd.product_name"), 
-                                        rs.getInt("pd.category_id"), rs.getFloat("pd.unit_price"),
+                                        new Category(rs.getInt("p.category_id")), rs.getFloat("pd.unit_price"),
                                         rs.getFloat("pd.sale_price"), rs.getInt("pd.unitsln_stock"),
                                         rs.getString("pd.brief_information"), rs.getString("pd.description"),
                                         rs.getString("pd.url")));
@@ -171,7 +172,7 @@ public class CartDAO {
                 Cart c = new Cart();
                 c.setItemId(rs.getInt("rs.item_id"));
                 c.setProduct(new Product(rs.getInt("p.product_id"), rs.getString("p.product_name"), 
-                                        rs.getInt("p.category_id"), rs.getFloat("p.unit_price"),
+                                        new Category(rs.getInt("p.category_id")), rs.getFloat("p.unit_price"),
                                         rs.getFloat("p.sale_price"), rs.getInt("p.unitsln_stock"),
                                         rs.getString("p.brief_information"), rs.getString("p.description"), rs.getString("p.url")));
                 c.setQuantity(rs.getInt("rs.quantity"));

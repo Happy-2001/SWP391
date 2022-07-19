@@ -23,8 +23,8 @@
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
         <div class="container main ">
-            
-           <div class="order-items">
+
+            <div class="order-items">
                 <table  class="table table-striped">               
                     <thead>
                         <tr>
@@ -33,45 +33,44 @@
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
-                                <c:forEach items="${list}" var="o">
-                                    <tr>
-                                        <td>
-                                            <input id="buyItem" type="checkbox" name="item" value="${carts.itemId}">
-                                        </td>
-                                        <td class="d-flex flex-row me-3">
-                                            <div class="image">
-                                                <img src="${o.product.img}" class="img-fluid">
-                                            </div>                                                                     
-                                        </td>
-                                        <td>
-                                            
-         <input id="qtyV" type="text" name="qty" value="${o.product.name}" class="form-control">                                                    
-                                        </td>
-                                        <td>                                            
-         <input id="qtyV" type="text" name="qty" value="${o.quantity}" class="form-control">                                                    
-                                        </td>
-                                        <td>
-                                            <div class="d-flex flex-column">
-                                                <span><strong>${o.product.salePrice}</strong><i class="fa-solid fa-dong-sign"></i></span>
-                                                
-                                            </div>
-                                        </td>
-                                        
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
+                        <c:forEach items="${list}" var="o">
+                            <tr>
+                                <td>
+                                    <input id="buyItem" type="checkbox" name="item" value="${carts.itemId}">
+                                </td>
+                                <td class="d-flex flex-row me-3">
+                                    <div class="image">
+                                        <img src="${o.product.img}" class="img-fluid">
+                                    </div>                                                                     
+                                </td>
+                                <td>
+
+                                    <input id="qtyV" type="text" name="qty" value="${o.product.name}" class="form-control">                                                    
+                                </td>
+                                <td>                                            
+                                    <input id="qtyV" type="text" name="qty" value="${o.quantity}" class="form-control">                                                    
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span><strong>${o.product.salePrice}</strong><i class="fa-solid fa-dong-sign"></i></span>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </c:forEach>
+                    </tbody>
                 </table>
-                
+            </div>
+            <div class="why-text text-center">
+                <a href="Feedback?orderId=${orderID}" class="btn">Send Feedback</a>
             </div>
         </div>
         <script src="js/list-select.js"></script>
-    </div>
-</div>
-</div>
 </body>
 </html>
 <%@include file="footer.jsp" %>

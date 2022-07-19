@@ -24,6 +24,7 @@
 
     </head>
     <body>
+        <c:set var="ProductActive" value="active"/>
         <%@include file="topbar.jsp" %>
         <%@include file="header.jsp" %>
 

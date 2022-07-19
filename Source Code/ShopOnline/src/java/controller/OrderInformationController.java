@@ -51,8 +51,8 @@ public class OrderInformationController extends HttpServlet {
             total = total + od.getQuantity() * od.getProduct().getSalePrice();
         }
         request.setAttribute("list",o);
+        request.setAttribute("orderID",id);
         request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

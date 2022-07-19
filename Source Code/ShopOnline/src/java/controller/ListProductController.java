@@ -87,7 +87,7 @@ public class ListProductController extends HttpServlet {
 
         Product p = new Product(); 
         p.setName(productName);
-        p.setCategoryid(Integer.parseInt(categoryId));
+        p.setCategory(new Category(Integer.parseInt(categoryId)));
         p.setPrice(Float.parseFloat(productPrice));
         p.setStock(Integer.parseInt(productStock));
         p.setDescription(description);

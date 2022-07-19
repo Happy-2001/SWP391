@@ -13,6 +13,7 @@ import model.Product;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Category;
 
 /**
  *
@@ -32,7 +33,7 @@ public class ProductDAO {
                 Product p = new Product();
                 p.setId(rs.getInt(1));
                 p.setName(rs.getString(2));
-                p.setCategoryid(rs.getInt(3));
+                p.setCategory(new Category(rs.getInt(3)));
                 p.setPrice(rs.getFloat(4));
                 p.setSalePrice(rs.getFloat(5));
                 p.setStock(rs.getInt(6));
@@ -59,7 +60,7 @@ public class ProductDAO {
                 Product p = new Product();
                 p.setId(rs.getInt(1));
                 p.setName(rs.getString(2));
-                p.setCategoryid(rs.getInt(3));
+                p.setCategory(new Category(rs.getInt(3)));
                 p.setPrice(rs.getFloat(4));
                 p.setSalePrice(rs.getFloat(5));
                 p.setStock(rs.getInt(6));
@@ -86,7 +87,7 @@ public class ProductDAO {
                 Product p = new Product();
                 p.setId(rs.getInt(1));
                 p.setName(rs.getString(2));
-                p.setCategoryid(rs.getInt(3));
+                p.setCategory(new Category(rs.getInt(3)));
                 p.setPrice(rs.getFloat(4));
                 p.setSalePrice(rs.getFloat(5));
                 p.setStock(rs.getInt(6));
@@ -332,7 +333,7 @@ public class ProductDAO {
                 Product p = new Product();
                 p.setId(rs.getInt(1));
                 p.setName(rs.getString(2));
-                p.setCategoryid(rs.getInt(3));
+                p.setCategory(new Category(rs.getInt(3)));
                 p.setPrice(rs.getFloat(4));
                 p.setSalePrice(rs.getFloat(5));
                 p.setStock(rs.getInt(6));
@@ -368,7 +369,7 @@ public class ProductDAO {
                     + "(?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?);";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, p.getName());
-            statement.setInt(2, p.getCategoryid());
+            statement.setInt(2, p.getCategory().getId());
             statement.setFloat(3, p.getPrice());
             statement.setFloat(4, p.getSalePrice());
             statement.setInt(5, p.getStock());
@@ -400,7 +401,7 @@ public class ProductDAO {
                 
                 p.setId(rs.getInt("product_id"));
                 p.setName(rs.getString("product_name"));
-                p.setCategoryid(rs.getInt("category_id"));
+                p.setCategory(new Category(rs.getInt("category_id")));
                 p.setSalePrice(rs.getFloat("sale_price"));
                 p.setPrice(rs.getFloat("unit_price"));
                 p.setStock(rs.getInt("unitsln_stock"));
@@ -433,7 +434,7 @@ public class ProductDAO {
                     + "WHERE `products`.`product_id` = ?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, p.getName());
-            statement.setInt(2, p.getCategoryid());
+            statement.setInt(2, p.getCategory().getId());
             statement.setFloat(3, p.getPrice());
             statement.setInt(4, p.getStock());
             statement.setString(5, p.getDescription());
@@ -496,7 +497,7 @@ public class ProductDAO {
                 Product p = new Product();
                 p.setId(rs.getInt("product_id"));
                 p.setName(rs.getString("product_name"));
-                p.setCategoryid(rs.getInt("category_id"));
+                p.setCategory(new Category(rs.getInt("category_id")));
                 p.setSalePrice(rs.getFloat("sale_price"));
                 p.setPrice(rs.getFloat("unit_price"));
                 p.setStock(rs.getInt("unitsln_stock"));
