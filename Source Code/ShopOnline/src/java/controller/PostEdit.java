@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import model.Blog;
 import model.BlogCategory;
 import model.Post;
+import model.Post_Category;
 
 /**
  *
@@ -77,6 +78,8 @@ public class PostEdit extends HttpServlet {
             default:
                 break;
         }
+
+        response.sendRedirect("PostController");
     }
 
     /**
@@ -91,29 +94,30 @@ public class PostEdit extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String actionpage = request.getParameter("actionpage");
-        String productName = request.getParameter("productName");
-        String categoryId = request.getParameter("categoryId");
-        String productPrice = request.getParameter("productPrice");
-        String productStock = request.getParameter("productStock");
-        String description = request.getParameter("description");
+        String content = request.getParameter("content");
+        String brief = request.getParameter("brief");
+        String des = request.getParameter("description");
+        String date = request.getParameter("date");
+        String categoryID = request.getParameter("categoryId");
         String image = request.getParameter("file");
         BlogDAO productDAO = new BlogDAO();
+        PostDAO post = new PostDAO();
         HttpSession session = request.getSession();
 
         int uid = (int) session.getAttribute("userid");
 
-        Blog p = new Blog();
+        Post p = new Post();
 
-        p.setCreatedDate(productName);
-        p.setCategoryId(Integer.parseInt(categoryId));
-        p.setContent(productPrice);
-        p.setNoidung(productStock);
-        p.setDescription(description);
+        p.setContent(content);
+        p.setBrief_infor(brief);
+        p.setDescription(des);
+        p.setDate(date);
+        p.setCategoryId(Integer.parseInt(categoryID));
         p.setUid(uid);
         switch (actionpage) {
             case "add":
                 p.setImage("images/" + image);
-                productDAO.addBlog(p);
+                post.addBlog(p);
                 break;
             case "edit":
                 String id = request.getParameter("id");
@@ -121,14 +125,17 @@ public class PostEdit extends HttpServlet {
                 p.setImage("images/" + image);
                 String a = p.getImage();
                 //productDAO.update(p);
-                dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), a, Integer.parseInt(id));
+//                dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), a, Integer.parseInt(id));
                 break;
         }
-        response.sendRedirect("PostEdit");
+        response.sendRedirect("PostController");
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PostDAO postDAO = new PostDAO();
+        List<Post_Category> post = postDAO.listAllPost_Category();
+        request.setAttribute("category",post);
         request.getRequestDispatcher("Postadd2.jsp").forward(request, response);
     }
 
@@ -136,7 +143,7 @@ public class PostEdit extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         PostDAO postDAO = new PostDAO();
-        postDAO.deletePost(Integer.parseInt(id));
+        postDAO.deleteBlog(Integer.parseInt(id));
     }
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)

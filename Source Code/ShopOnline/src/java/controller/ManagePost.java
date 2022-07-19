@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import model.Blog;
 import model.BlogCategory;
 import model.Category;
 import model.Post;
+import model.Post_Category;
 import model.Product;
 
 /**
@@ -139,6 +141,7 @@ public class ManagePost extends HttpServlet {
 
     protected void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         request.getRequestDispatcher("addPost.jsp").forward(request, response);
     }
 
