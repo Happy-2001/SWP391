@@ -38,6 +38,13 @@ public class Notification extends HttpServlet {
             ArrayList<Orders> list = dao.getNotification(Integer.parseInt(id));
              request.setAttribute("list", list);
              request.getRequestDispatcher("Notification.jsp").forward(request, response);
+             /*
+             OrderDAO dao = new OrderDAO();
+            String id = request.getParameter("userID");
+            ArrayList<Orders> list = dao.getNotification(Integer.parseInt(id));
+             request.setAttribute("list", list);
+             request.getRequestDispatcher("Notification.jsp").forward(request, response);
+             */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
