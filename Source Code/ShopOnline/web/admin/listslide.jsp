@@ -65,8 +65,8 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end" style="margin: 0px;">
                                                     <a class="dropdown-item" href="SliderDetail?id=${s.id}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hide</a>
-                                                    <a class="dropdown-item" href="#">Show</a>
+                                                    <a class="dropdown-item" href="slider?act=hide&id=${s.id}">Hide</a>
+                                                    <a class="dropdown-item" href="slider?act=show&id=${s.id}">Show</a>
                                                 </div>
                                             </div>
                                         </td>

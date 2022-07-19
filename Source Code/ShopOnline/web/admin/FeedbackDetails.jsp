@@ -47,7 +47,7 @@
                             <div class="d-flex align-items-center my-4">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar me-3">
-                                        <img src="../RetrieveImg?eaID=${mfb.user.userid}" class="rounded-circle" alt="image">
+                                        <img src="../RetrieveImg?eaID=${mfb.user.userid}" class="rounded-circle" alt="image" onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
                                     </div>
                                     <div>
                                         <h6 class="mb-1 p-0">
@@ -110,10 +110,10 @@
                                     <h6 class="mb-3">Attachments</h6>
                                     <div class="d-flex gap-3">
                                         <div class="image">
-                                            <img src="${mfb.photo1}" onError="this.onerror=null;this.src='../images/camera-icon-bg.jpg';">
+                                            <img src="../FeedbackUploadImage?act=image1&fbid=${mfb.fbID}" onError="this.onerror=null;this.src='../images/camera-icon-bg.jpg';">
                                         </div>
                                         <div class="image">
-                                            <img src="${mfb.photo2}" onError="this.onerror=null;this.src='../images/camera-icon-bg.jpg';">
+                                            <img src="../FeedbackUploadImage?act=image2&fbid=${mfb.fbID}" onError="this.onerror=null;this.src='../images/camera-icon-bg.jpg';">
                                         </div>
                                     </div>
                                 </div>

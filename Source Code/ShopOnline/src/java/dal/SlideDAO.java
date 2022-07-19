@@ -47,7 +47,8 @@ public class SlideDAO {
         }
         return null;
     }
-public void insert(Slide slide) {
+
+    public void insert(Slide slide) {
         try {
             String sql = "INSERT INTO `slides` (`img`, `heading`, `description`, `name_button`, `url`, `status`) "
                     + "VALUES (?, ?, ?, ?, ?, ?)";
@@ -98,7 +99,22 @@ public void insert(Slide slide) {
         }
     }
     
-        public Slide getById(String id) {
+    public void updateStatus(int status, int id) {
+        try {
+            String sql = "UPDATE `slides` SET `status`= ? WHERE `slide_id` = ?";
+            PreparedStatement st = mysqlConnect.connect().prepareStatement(sql);
+            st.setInt(1, status);
+            st.setInt(2, id);
+            st.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SlideDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+
+    public Slide getById(String id) {
         try {
             String sql = "SELECT * FROM `slides` "
                     + "WHERE `slides`.`slide_id` = ?";
@@ -124,6 +140,7 @@ public void insert(Slide slide) {
         }
         return null;
     }
+
     public static void main(String[] args) {
         SlideDAO slideDAO = new SlideDAO();
 

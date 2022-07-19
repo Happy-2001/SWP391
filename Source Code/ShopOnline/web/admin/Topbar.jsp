@@ -65,7 +65,7 @@
                     <div class="dropdown-ls collapse" id="setting">
                         <ul class="menu-links">
                             <li class="nav-link">
-                                <a href="ProfileUser?userid=${sessionScope.userlogged.userid}">
+                                <a href="/ShopOnline/ProfileUser?userid=${sessionScope.userlogged.userid}">
                                     <span class="nav-link-icon">
                                         <i class="fa fa-eyedropper"></i>
                                     </span>

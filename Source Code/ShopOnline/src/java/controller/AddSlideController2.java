@@ -19,7 +19,7 @@ import model.Slide;
  *
  * @author Administrator
  */
-@WebServlet(name = "AddSlideController2", urlPatterns = {"/addslide"})
+@WebServlet(name = "AddSlideController2", urlPatterns = {"/admin/addslide"})
 public class AddSlideController2 extends HttpServlet {
 
     /**
@@ -60,7 +60,7 @@ public class AddSlideController2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("admin/addslide.jsp").forward(request, response);
+        request.getRequestDispatcher("addslide.jsp").forward(request, response);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class AddSlideController2 extends HttpServlet {
 
         sdb.insert(s);
 
-        response.sendRedirect("listslide");
+        response.sendRedirect("slider?act=view");
 
     }
 

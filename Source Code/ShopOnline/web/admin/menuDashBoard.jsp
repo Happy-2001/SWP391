@@ -50,7 +50,7 @@
             </li>
 
             <li class="nav-link">
-                <a class="${FeedbackActive}" href="FeedbackAd?act=view">
+                <a class="${FeedbackActive}" href="/ShopOnline/admin/FeedbackAd?act=view">
                     <span class="nav-link-icon">
                         <i class="fa-solid fa-comment-dots <c:if test="${FeedbackActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>
@@ -84,7 +84,7 @@
                 </a>
             </li>
             <li class="nav-link">
-                <a class="${ManageSliderActive}" href="/ShopOnline/admin/slider">
+                <a class="${ManageSliderActive}" href="/ShopOnline/admin/slider?act=view">
                     <span class="nav-link-icon">
                         <i class="fa-solid fa-images <c:if test="${ManageSliderActive ne 'active'}">fa-xl</c:if>"></i>
                     </span>

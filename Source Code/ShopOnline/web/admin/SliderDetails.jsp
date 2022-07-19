@@ -30,7 +30,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
                             <i class="fa-solid fa-globe fa-sm"></i>
-                            <a href="slider">Manage Slider</a>
+                            <a href="slider?act=view">Manage Slider</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Edits slide</li>
                     </ul>
