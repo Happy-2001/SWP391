@@ -11,43 +11,23 @@ import java.sql.Date;
  *
  * @author nguye
  */
-public class Suppliers {
+public class Supplier {
+
     private int id;
     private String name;
     private String contactName;
     private String contactTitle;
-    private Date dob;
+    private String dob;
     private int gender;
     private int creator;
-    private Date createOn;
-    private Date updateOn;
+    private String createOn;
+    private String updateOn;
 
-    public Suppliers(){
-        
+    public Supplier() {
+
     }
 
-    public Suppliers(String name, String contactName,String contactTitle, Date dob, int gender, int creator) {
-        this.name = name;
-        this.contactName = contactName;
-        this.contactTitle=contactTitle;
-        this.dob = dob;
-        this.gender = gender;
-        this.creator = creator;
-    }
-    
-    public Suppliers(int id, String name, String contactName, String contactTitle, Date dob, int gender, int creator, Date createOn, Date updateOn) {
-        this.id = id;
-        this.name = name;
-        this.contactName = contactName;
-        this.contactTitle = contactTitle;
-        this.dob = dob;
-        this.gender = gender;
-        this.creator = creator;
-        this.createOn = createOn;
-        this.updateOn = updateOn;
-    }
-    public Suppliers(int id, String name, String contactName, String contactTitle, Date dob, int gender, int creator) {
-        this.id = id;
+    public Supplier(String name, String contactName, String contactTitle, String dob, int gender, int creator) {
         this.name = name;
         this.contactName = contactName;
         this.contactTitle = contactTitle;
@@ -88,11 +68,11 @@ public class Suppliers {
         this.contactTitle = contactTitle;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -112,29 +92,32 @@ public class Suppliers {
         this.creator = creator;
     }
 
-    public Date getCreateOn() {
+    public String getCreateOn() {
         return createOn;
     }
 
-    public void setCreateOn(Date createOn) {
+    public void setCreateOn(String createOn) {
         this.createOn = createOn;
     }
 
-    public Date getUpdateOn() {
+    public String getUpdateOn() {
         return updateOn;
     }
 
-    public void setUpdateOn(Date updateOn) {
+    public void setUpdateOn(String updateOn) {
         this.updateOn = updateOn;
     }
 
-    @Override
-    public String toString() {
-        return "Suppliers{" + "id=" + id + ", name=" + name + ", contactName=" + contactName + ", contactTitle=" + contactTitle + ", dob=" + dob + ", gender=" + gender + ", creator=" + creator + ", createOn=" + createOn + ", updateOn=" + updateOn + '}';
+    public Supplier(int id, String name, String contactName, String contactTitle, String dob, int gender, int creator, String createOn, String updateOn) {
+        this.id = id;
+        this.name = name;
+        this.contactName = contactName;
+        this.contactTitle = contactTitle;
+        this.dob = dob;
+        this.gender = gender;
+        this.creator = creator;
+        this.createOn = createOn;
+        this.updateOn = updateOn;
     }
-    
 
-    
-    
-    
 }

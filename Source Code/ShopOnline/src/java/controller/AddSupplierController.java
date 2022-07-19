@@ -6,6 +6,7 @@
 package controller;
 
 import dal.AddressDAO;
+import dal.PostDAO;
 import dal.ProductCategoryDAO;
 import dal.SuppliersDAO;
 import java.io.IOException;
@@ -19,8 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.Category;
 import model.District;
 import model.ElectronicAddress;
+import model.Post;
+import model.Post_Category;
 import model.Provinces;
 import model.SubDistrict;
+import model.Supplier;
 import model.Suppliers;
 import model.Ward;
 
@@ -57,15 +61,22 @@ public class AddSupplierController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AddressDAO dao = new AddressDAO();
-        List<Provinces> provinces = dao.getProvince();
-        List<District> District = dao.getDistrict();
-        List<SubDistrict> Ward = dao.getSubDistrict();
-        
-        request.setAttribute("provinces", provinces);
-        request.setAttribute("district", District);
-        request.setAttribute("ward", Ward);
-        request.getRequestDispatcher("AddSupplier.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        switch (action) {
+            case "add":
+                add(request, response);
+                break;
+            case "delete":
+                delete(request, response);
+                break;
+            case "edit":
+                edit(request, response);
+                break;
+            default:
+                break;
+        }
+
+        response.sendRedirect("/admin/SuppliersController");
     }
 
     /**
@@ -79,25 +90,59 @@ public class AddSupplierController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String actionpage = request.getParameter("actionpage");
         String companyName = request.getParameter("companyName");
         String ccontactName = request.getParameter("contactName");
         String contactTitle = request.getParameter("contactTitle");
         String DOB = request.getParameter("DOB");
         String gender = request.getParameter("gender");
         String creator = request.getParameter("creator");
-        String createOn = request.getParameter("createOn");
         SuppliersDAO supDAO = new SuppliersDAO();
         
-        Suppliers sup = new Suppliers();
+        Supplier sup = new Supplier();
         sup.setName(companyName);
         sup.setContactName(ccontactName);
         sup.setContactTitle(contactTitle);
-        sup.setDob(Date.valueOf(DOB));
+        sup.setDob(DOB);
         sup.setGender(Integer.parseInt(gender));
         sup.setCreator(Integer.parseInt(creator));
-        sup.setCreateOn(Date.valueOf(createOn));
-        supDAO.addSuppliers(sup);
+        switch (actionpage) {
+            case "add":
+                
+                supDAO.addSuppliers(sup);
+                break;
+            case "edit":
+//                String id = request.getParameter("id");
+//                PostDAO dao = new PostDAO();
+//                p.setImage("images/" + image);
+//                String a = p.getImage();
+                //productDAO.update(p);
+//                dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), a, Integer.parseInt(id));
+                break;
+        }
         response.sendRedirect("SuppliersController");
+    }
+    
+    protected void add(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        request.getRequestDispatcher("AddSupplier.jsp").forward(request, response);
+    }
+
+    protected void delete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+        PostDAO postDAO = new PostDAO();
+        postDAO.deleteBlog(Integer.parseInt(id));
+    }
+
+    protected void edit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PostDAO postDAO = new PostDAO();
+        String productId = request.getParameter("id");
+      Post post = postDAO.getPostByID(Integer.parseInt(productId));
+        request.setAttribute("post", post);
+        request.getRequestDispatcher("postdelete.jsp").forward(request, response);
     }
     
     /**
