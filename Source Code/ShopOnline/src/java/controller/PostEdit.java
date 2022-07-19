@@ -77,6 +77,8 @@ public class PostEdit extends HttpServlet {
             default:
                 break;
         }
+
+        response.sendRedirect("PostController");
     }
 
     /**
@@ -124,7 +126,7 @@ public class PostEdit extends HttpServlet {
                 dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), a, Integer.parseInt(id));
                 break;
         }
-        response.sendRedirect("PostEdit");
+        response.sendRedirect("PostController");
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response)
@@ -136,7 +138,7 @@ public class PostEdit extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         PostDAO postDAO = new PostDAO();
-        postDAO.deletePost(Integer.parseInt(id));
+        postDAO.deleteBlog(Integer.parseInt(id));
     }
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)

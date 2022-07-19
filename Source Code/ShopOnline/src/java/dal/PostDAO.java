@@ -149,6 +149,18 @@ public class PostDAO extends DBConnect{
             mysqlConnect.disconnect();
         }
     }
+    public void deleteBlog(int id) {
+        try {
+            String sql = "DELETE FROM `posts` WHERE  `blog_id`= ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
     
     public void addPost(String date, String content, String description, String noidung, int categoryId, String image) {
         try {

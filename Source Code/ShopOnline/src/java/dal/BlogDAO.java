@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import model.Blog;
 import model.BlogCategory;
 import model.Category;
+import model.Post;
 import model.Product;
 
 /**
@@ -32,7 +33,28 @@ public class BlogDAO {
 
     public void addBlog(Blog p) {
         try {
-            String sql = "INSERT INTO `blogs`(`create_date`,`userID` ,`content`, `description`, `noidung`, `blogCategoryID`, `img`) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `blogs`(`create_date`,`userID` ,`content`, `description`, `noidung`, `blogCategoryID`, `img`) "
+                    + "VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, p.getCreatedDate()); //name
+            statement.setInt(2, p.getUid()); //category id
+            statement.setString(3, p.getContent()); //category id
+            statement.setString(4, p.getDescription()); //unit price
+            statement.setString(5, p.getNoidung()); //stock
+            statement.setInt(6, p.getCategoryId()); //description
+            statement.setString(7, p.getImage()); // image
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    
+    public void addPost(Post p) {
+        try {
+            String sql = "INSERT INTO `blogs`(`create_date`,`userID` ,`content`, `description`, `noidung`, `blogCategoryID`, `img`) "
+                    + "VALUES (?,?,?,?,?,?,?)";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, p.getCreatedDate()); //name
             statement.setInt(2, p.getUid()); //category id
