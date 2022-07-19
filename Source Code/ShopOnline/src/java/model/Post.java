@@ -18,10 +18,33 @@ public class Post {
     private String noidung;
     private String image;
     private int categoryId;
+    private int uid;
 
     public Post() {
     }
 
+    public Post( String content, String brief_infor, String description,String date, String image, int categoryId, int uid) {
+        
+        this.content = content;
+        this.brief_infor = brief_infor;
+        this.description = description;
+        this.date = date;
+        this.image = image;
+        this.categoryId = categoryId;
+        this.uid = uid;
+    }
+
+    
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+    
+    
     public Post(int post_id, String content,  String brief_infor, String description,String date, String image) {
         this.post_id = post_id;
         this.date = date;
@@ -30,6 +53,8 @@ public class Post {
         this.description = description;
         this.image = image;
     }
+    
+    
 
     
     

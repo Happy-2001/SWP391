@@ -47,7 +47,7 @@
         <%@include file="header.jsp" %>
 
         <div class="container" style="margin-top: 60px">
-            <a href="PostController?action=add" class="btn btn-success my-5">Add new post</a>
+            <a href="PostEdit?action=add" class="btn btn-success my-5">Add new post</a>
 
             <table class="table  table-striped">
                 <thead>

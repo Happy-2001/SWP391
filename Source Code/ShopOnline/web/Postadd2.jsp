@@ -43,34 +43,36 @@
         <%@include file="header.jsp" %>
 
 
-        <form class="container py-5" action="ManagePost" method="POST" id="fileUploadForm">
+        <form class="container py-5" action="PostEdit" method="POST" id="fileUploadForm">
             <input type="hidden" name="actionpage" value="add">
+            
+                        
             <div class="mb-3">
-                <label for="name" class="form-label">Date</label>
-                <input type="text" class="form-control" id="name" name="productName" required>
-            </div>
-             <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <select class="form-select form-control" name="categoryId">
-                        <option value="1">news</option>
-                        <option value="2">event</option>
-                        <c:forEach items="${categories}" var="c">
-                            <option value="${c.id}">${c.name}</option>
-                        </c:forEach>
-                    </select>
-                </div>            <div class="mb-3">
-                <label for="price" class="form-label">Content</label>
-                <input type="text" class="form-control" id="price" name="productPrice" required>
+                <label for="content" class="form-label">Content</label>
+                <input type="text" class="form-control" id="content" name="content" required>
             </div>
             <div class="mb-3">
-                <label for="stock" class="form-label">Brief Information</label>
-                <input type="text" class="form-control" id="stock" name="productStock" required>
+                <label for="brief" class="form-label">Brief Information</label>
+                <input type="text" class="form-control" id="brief" name="brief" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea name="description" id="description" class="form-control"  rows="10"></textarea>
             </div>
-          
+            <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="text" class="form-control" id="date" name="date" required>
+            </div>
+          <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select form-control" name="categoryId">
+                        <option value="1">news</option>
+                        <option value="2">event</option>
+                        <c:forEach items="${category}" var="c">
+                            <option value="${c.id}">${c.name}</option>
+                        </c:forEach>
+                    </select>
+                </div> 
             <div id="inputfile" class="form-group mb-3">
                 <div class="form-group">
                     <label for="file" class="form-label">Image url</label>

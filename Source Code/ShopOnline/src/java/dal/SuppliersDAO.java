@@ -5,14 +5,22 @@
  */
 package dal;
 
+import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.SupDetail;
+import model.Supplier;
 import model.Supplier_address;
 import model.Suppliers;
 
@@ -105,18 +113,17 @@ public class SuppliersDAO extends DBConnect {
         return null;
     }
 
-    public void addSuppliers(Suppliers p) {
+    public void addSuppliers(Supplier p) {
         try {
-            String sql = "INSERT INTO `suppliers`( `companyName`, `contactName`, `contactTitle`, `DOB`, `gender`, `creator`, `createOn`, `updateOn`)\n"
-                    + "VALUES ('?','?','?','?','?','?','?','?','?')";
+            String sql = "INSERT INTO `suppliers`( `companyName`, `contactName`, `contactTitle`, `DOB`, `gender`, `creator`)\n"
+                    + "VALUES (?,?,?,?,?,?)";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setString(1, p.getName());
             statement.setString(2, p.getContactName());
             statement.setString(3, p.getContactTitle());
-            statement.setDate(4, p.getDob());
+            statement.setString(4, p.getDob());
             statement.setInt(5, p.getGender());
-            statement.setInt(6,p.getCreator());
-            statement.setDate(7, p.getCreateOn());
+            statement.setInt(6, p.getCreator());
             statement.executeUpdate();
         } catch (SQLException ex) {
 
@@ -124,12 +131,18 @@ public class SuppliersDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
     }
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDateTime now = LocalDateTime.now();
+    String getTime = (dtf.format(now));
 
     public static void main(String[] args) {
         SuppliersDAO dao = new SuppliersDAO();
-        List<Suppliers> a = dao.listSupplierTop5();
-        for (Suppliers o : a) {
-            System.out.println(o.getName());
-        }
+
+        //        List<Suppliers> a = dao.listSupplierTop5();
+//        for (Suppliers o : a) {
+//            System.out.println(o.getName());
+//        }
+        dao.addSuppliers(new Supplier("a", "a", "a", "2022-09-20", 1, 1));
+
     }
 }

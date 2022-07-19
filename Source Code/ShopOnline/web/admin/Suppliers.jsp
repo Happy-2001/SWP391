@@ -38,7 +38,7 @@
                     
                 </div>
                 <a href="SupplierListController" class="btn btn-success " >Top 5 Suppliers</a>
-                <a href="/ShopOnline/admin/AddSupplier" class="btn btn-success " >Add Suppliers</a>
+                <a href="AddSupplier?action=add" class="btn btn-success my-5">Add Suppliers</a>
                 <div class="container-fluid">
                     
                     <div class="table-responsive cus-box">
