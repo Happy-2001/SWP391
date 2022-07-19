@@ -38,6 +38,7 @@
                     
                 </div>
                 <a href="SupplierListController" class="btn btn-success " >Top 5 Suppliers</a>
+                <a href="/ShopOnline/admin/AddSupplier" class="btn btn-success " >Add Suppliers</a>
                 <div class="container-fluid">
                     
                     <div class="table-responsive cus-box">
