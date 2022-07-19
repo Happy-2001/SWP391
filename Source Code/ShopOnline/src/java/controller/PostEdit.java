@@ -129,7 +129,7 @@ public class PostEdit extends HttpServlet {
 
     protected void add(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("addPost2.jsp").forward(request, response);
+        request.getRequestDispatcher("Postadd2.jsp").forward(request, response);
     }
 
     protected void delete(HttpServletRequest request, HttpServletResponse response)
