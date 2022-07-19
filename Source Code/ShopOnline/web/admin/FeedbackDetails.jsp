@@ -37,7 +37,7 @@
                                 <a href="dashboard">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="FeedbackAd">Feedback</a>
+                                <a href="FeedbackAd?act=view">Feedback</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Feedback Details</li>
                         </ul>
@@ -58,9 +58,18 @@
                                     </div>
                                 </div>
                                 <div class="ms-auto d-none d-md-flex align-items-center gap-3">
-                                    <a href="#" style="color: #666;">
-                                        <i class="fa-solid fa-star favorite" style="color: #faae42;"></i>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${mfb.favo == 0}">
+                                            <a href="#" style="color: #666;">
+                                                <i class="fa-regular fa-star"></i>
+                                            </a>
+                                        </c:when>
+                                        <c:when test="${mfb.favo == 1}">
+                                            <a href="#" style="color: #666;">
+                                                <i class="fa-solid fa-star favorite" style="color: #faae42;"></i>
+                                            </a>
+                                        </c:when>
+                                    </c:choose>
                                     <span class="text-muted">${mfb.createDate}</span>
                                     <div class="dropdown">
                                         <a href="#" data-bs-toggle="dropdown" class="btn btn-sm">

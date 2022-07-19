@@ -45,7 +45,7 @@ public class OrderInformationController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         OrderDAO dao = new OrderDAO();
-        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));      
+        ArrayList<Orders> o = dao.listOrderById(Integer.parseInt(id));      
         double total = 0;
         for (Orders od : o) {
             total = total + od.getQuantity() * od.getProduct().getSalePrice();

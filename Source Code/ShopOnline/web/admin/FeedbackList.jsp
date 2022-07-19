@@ -94,8 +94,8 @@
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <h6 class="text-truncate p-0 m-0" style="color: #05b171;">
-                                                        ${feedb.user.firstname} ${feedb.user.middlename} ${feedb.user.lastname}
+                                                    <h6 class="text-truncate p-0 m-0">
+                                                        <a href="FeedbackDetails?fbID=${feedb.fbID}" style="color: #05b171;">${feedb.user.firstname} ${feedb.user.middlename} ${feedb.user.lastname}</a>
                                                     </h6>
                                                     <div class="ps-3 d-flex">
                                                         <span class="text-nowrap text-muted">${feedb.createDate}</span>
@@ -105,10 +105,18 @@
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-end" style="margin: 0px;">
                                                                 <a class="dropdown-item" href="FeedbackDetails?fbID=${feedb.fbID}">View</a>
-                                                                <a class="dropdown-item" href="#">Mark as unread</a>
-                                                                <a class="dropdown-item" href="#">Done</a>
-                                                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                <a class="dropdown-item" href="FeedbackAd?act=status&fbID=${feedb.fbID}&status=0">Mark as unread</a>
+                                                                <a class="dropdown-item" href="FeedbackAd?act=status&fbID=${feedb.fbID}&status=1">Done</a>
+                                                                <a class="dropdown-item text-danger" href="#" onclick="warning(${feedb.fbID})">Delete</a>
                                                             </div>
+                                                            <script>
+                                                                function warning(uid){
+                                                                    var option = confirm('Do you want to continue?');
+                                                                    if(option === true){
+                                                                        window.location.href = 'FeedbackAd?act=del&fbID='+uid;
+                                                                    }
+                                                                };
+                                                            </script>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,8 +169,9 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">
+                                            <a class="nav-link d-flex align-items-center" href="#">
                                                 <i class="fa-regular fa-heart fa-sm me-3"></i>Favorites
+                                                <span class="badge bg-primary ms-auto">${Favorite}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">

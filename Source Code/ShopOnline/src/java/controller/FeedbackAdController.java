@@ -27,13 +27,20 @@ public class FeedbackAdController extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("act");
         switch (action) {
-            case "view":
-                view(request, response);
-                break;
             case "favo":
                 favo(request, response);
+                view(request, response);
+                break;
+            case "status":
+                status(request, response);
+                view(request, response);
+                break;
+            case "del":
+                delete(request, response);
+                view(request, response);
                 break;
             default:
+                view(request, response);
                 break;
         }
     }
@@ -65,6 +72,9 @@ public class FeedbackAdController extends HttpServlet {
         int work = db.TaskWork(1);
         request.setAttribute("Done", work);
         
+        int favorite = db.Favorite(1);
+        request.setAttribute("Favorite", favorite);
+        
         List<MyFeedback> list = db.ListAllFeedback(pageNumber);   
         request.setAttribute("fblist", list);
         
@@ -75,31 +85,28 @@ public class FeedbackAdController extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("fbID");
         String favo = request.getParameter("fv");
-        String page = request.getParameter("page");
         
         FeedbackDAO db = new FeedbackDAO();
         
         db.feedbackFavor(Integer.parseInt(favo), Integer.parseInt(id));
+    }
+    
+    protected void status(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("fbID");
+        String status = request.getParameter("status");
         
-        if (page == null || page.isEmpty()) {
-            page = "" + 1;
-        }
-        request.setAttribute("PAGE", page);
-        int pageNumber = Integer.parseInt(page);
-
-        int countPage = db.countPage();
-        request.setAttribute("countPage", countPage);
+        FeedbackDAO db = new FeedbackDAO();
         
-        int task = db.CountTask();
-        request.setAttribute("AllTask", task);
+        db.updateFbStatus(Integer.parseInt(status), Integer.parseInt(id));
+    }
+    
+    protected void delete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("fbID");
+        FeedbackDAO db = new FeedbackDAO();
         
-        int work = db.TaskWork(1);
-        request.setAttribute("Done", work);
-        
-        List<MyFeedback> list = db.ListAllFeedback(pageNumber);   
-        request.setAttribute("fblist", list);
-        
-        request.getRequestDispatcher("FeedbackList.jsp").forward(request, response);
+        db.deleFeedbackByID(Integer.parseInt(id));
     }
     
     /**

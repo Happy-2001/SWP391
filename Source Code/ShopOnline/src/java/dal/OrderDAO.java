@@ -111,13 +111,6 @@ public class OrderDAO extends DBConnect {
         return Orderlist;
     }
 
-    public static void main(String[] args) {
-        OrderDAO o = new OrderDAO();
-        List<Orders> Orderlist = o.getStt2();
-        
-        System.out.println(Orderlist);
-    }
-
     // phân trang 
     public int countPage() {
         ArrayList<Product> dummies = new ArrayList<>();
@@ -141,7 +134,7 @@ public class OrderDAO extends DBConnect {
         return 0;
     }
 
-    public ArrayList<Orders> getOrderById(int id) {
+    public ArrayList<Orders> listOrderById(int id) {
         ArrayList<Orders> listOrder = new ArrayList<>();
         String sql = "SELECT o.order_id, o.order_date, o.require_date,\n"
                 + "o.shipped_date, o.status, o.shipperID, o.customerID,\n"
@@ -179,13 +172,7 @@ public class OrderDAO extends DBConnect {
 
     public ArrayList<Orders> getOrderByCusID(int cid) {
         ArrayList<Orders> listOrder = new ArrayList<>();
-        String sql = "SELECT o.order_id, o.order_date, o.require_date, \n"
-                + "o.shipped_date, o.status, o.shipperID, o.customerID,\n"
-                + "d.quantity, d.productID, p.product_name, p.unit_price, p.url\n"
-                + "FROM orders o\n"
-                + "JOIN oder_details d on o.order_id = d.orderID\n"
-                + "JOIN products p on p.product_id = d.productID\n"
-                + "WHERE customerID = ?";
+        String sql = "SELECT * FROM orders o WHERE customerID = ?";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, cid);
@@ -199,9 +186,6 @@ public class OrderDAO extends DBConnect {
                 c.setStatus(rs.getString("o.status"));
                 c.setShiperId(rs.getInt("o.shipperID"));
                 c.setCustomerId(rs.getInt("o.customerID"));
-                c.setQuantity(rs.getInt("d.quantity"));
-                c.setProduct(new Product(rs.getString("p.product_name"),
-                        rs.getFloat("p.unit_price"), rs.getString("p.url")));
 
                 listOrder.add(c);
             }
@@ -211,6 +195,37 @@ public class OrderDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
         return listOrder;
+    }
+    
+    public Orders getOrderByID(int oid) {
+        String sql = "SELECT o.order_id, o.order_date, o.require_date,\n" +
+                    "o.shipped_date, o.status, o.shipperID, o.customerID,\n" +
+                    "ua.first_name, ua.middle_name, ua.last_name\n" +
+                    "FROM orders o\n" +
+                    "INNER JOIN user_accounts ua ON o.customerID = ua.user_id\n" +
+                    "WHERE order_id = ?";
+        try {
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, oid);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Orders c = new Orders();
+                c.setOrderID(rs.getInt("o.order_id"));
+                c.setOrderDate(rs.getString("o.order_date"));
+                c.setRequireDate(rs.getString("o.require_date"));
+                c.setShippedDate(rs.getString("o.shipped_date"));
+                c.setStatus(rs.getString("o.status"));
+                c.setShiperId(rs.getInt("o.shipperID"));
+                c.setUser(new User(rs.getInt("o.customerID"), rs.getString("ua.first_name"),
+                        rs.getString("ua.middle_name"), rs.getString("ua.last_name")));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+        return null;
     }
 
     public Orders getOrderLatest() {

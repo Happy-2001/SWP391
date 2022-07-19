@@ -50,7 +50,7 @@ public class CusDetailController extends HttpServlet {
         
         OrderDAO odb = new OrderDAO();
         Orders od = odb.getLatestByCusID(Integer.parseInt(id));
-        ArrayList<Orders> order = odb.getOrderById(od.getOrderID());
+        ArrayList<Orders> order = odb.listOrderById(od.getOrderID());
         
         request.setAttribute("cus", cus);
         request.setAttribute("province", province);

@@ -1,6 +1,5 @@
 package controller;
 
-import dal.MessageDAO;
 import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Message;
 import model.Role;
 import model.User;
 
@@ -50,10 +48,12 @@ public class LoginController extends HttpServlet {
             if (remember != null) {
                 Cookie c_user = new Cookie("username", username);
                 Cookie c_pass = new Cookie("password", password);
+                Cookie r_pass = new Cookie("remember", remember);
                 c_user.setMaxAge(3600 * 24 * 30);
                 c_pass.setMaxAge(3600 * 24 * 30);
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
+                response.addCookie(r_pass);
             }
             
             //phan nay da chay k can fix lai

@@ -49,7 +49,7 @@ public class OrderDetailController extends HttpServlet {
         District district = dbb.getDistrictByID(cus.getUad().getDistrict().getDistrictID());
         SubDistrict ward = dbb.getWard(cus.getUad().getWard().getSubDistrictID());
 
-        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
+        ArrayList<Orders> o = dao.listOrderById(Integer.parseInt(id));
         Orders oder = dao.getLatestByID(Integer.parseInt(id));
 
         double total = 0;
@@ -97,7 +97,7 @@ public class OrderDetailController extends HttpServlet {
         }
 
         Orders oder = dao.getLatestByID(Integer.parseInt(id));
-        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));
+        ArrayList<Orders> o = dao.listOrderById(Integer.parseInt(id));
 
         double total = 0;
         for (Orders od : o) {

@@ -33,7 +33,7 @@ public class CartCompletion extends HttpServlet {
             odb.insertOrderD(o.getQuantity(), od.getOrderID(), o.getProduct().getId());
         }
         
-        ArrayList<Orders> order = odb.getOrderById(od.getOrderID());
+        ArrayList<Orders> order = odb.listOrderById(od.getOrderID());
         db.deleteByCartID(Integer.parseInt(id));
         
         request.setAttribute("name", od.getUser().getFullname());

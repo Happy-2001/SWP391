@@ -19,7 +19,7 @@ import model.Slide;
  *
  * @author Administrator
  */
-@WebServlet(name = "AddSlideController2", urlPatterns = {"addslide"})
+@WebServlet(name = "AddSlideController2", urlPatterns = {"/addslide"})
 public class AddSlideController2 extends HttpServlet {
 
     /**

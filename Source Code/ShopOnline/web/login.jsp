@@ -19,6 +19,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <%
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cooky : cookies) {
+                if (cooky.getName().equals("username")) {
+                    request.setAttribute("u_name", cooky.getValue());
+                }
+                if (cooky.getName().equals("password")) {
+                    request.setAttribute("u_pass", cooky.getValue());
+                }
+                if (cooky.getName().equals("remember")) {
+                    request.setAttribute("r_pass", cooky.getValue());
+                }
+            }
+        }
+    %>
+
 </head>
 <body>
     <div class="Popup" id="myModal">
@@ -32,15 +49,15 @@
                         <p class="alert alert-danger">${ms1}</p>
                     </c:if>
                     <div class="options">
-                        <input id="user-name" type="text" name="username" placeholder="Email or User Name" required>
+                        <input id="user-name" type="text" name="username" placeholder="Email or User Name" value="${u_name}" required>
                     </div>
                     <div class="options">
-                        <input id="user-pass" type="password" name="password" placeholder="Password" required>
+                        <input id="user-pass" type="password" name="password" placeholder="Password" value="${u_pass}" required>
                         <i class="fa-regular fa-eye-slash showPass"></i>
                     </div>
                     <div class="save-pass">
                         <label class="save-pass-container">Remember password
-                            <input type="checkbox" name="remember">
+                            <input type="checkbox" name="remember" <c:if test="${r_pass eq 'on'}">checked</c:if>>
                             <span class="checkmark"></span>
                         </label>
                     </div>
