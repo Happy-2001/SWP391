@@ -52,18 +52,7 @@ public class OrderInformationController extends HttpServlet {
         }
         request.setAttribute("list",o);
         request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
-        /*
-        response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        OrderDAO dao = new OrderDAO();
-        ArrayList<Orders> o = dao.getOrderById(Integer.parseInt(id));      
-        double total = 0;
-        for (Orders od : o) {
-            total = total + od.getQuantity() * od.getProduct().getSalePrice();
-        }
-        request.setAttribute("list",o);
-        request.getRequestDispatcher("orderInformation.jsp").forward(request, response);
-        */
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
