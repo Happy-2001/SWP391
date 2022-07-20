@@ -78,8 +78,8 @@
                                         <td>${sup.updateOn}</td>
                                         <td>
                                            
-                                            <a class="btn btn-danger" href="#" onclick="deleteSupplier('${sup.id}')">Delete</a>
-                                        </td>
+                                             
+                                       </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -99,19 +99,7 @@
                 </div>
                 
                 <script src="../js/list-selectSup.js"></script>
-                <script type="text/javascript">
-                                                function goPage() {
-                                                    var selectBox = document.getElementById("selectBox");
-                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                                                    window.location.href = "listproduct?sort=" + selectedValue;
-                                                }
-                                                function deleteSupplier(id) {
-                                                    var option = confirm("Delete supplier with id: " + id + " ?");
-                                                    if (option === true) {
-                                                        window.location.href = 'AddSupplier?action=delete&id=' + id;
-                                                    }
-                                                }
-        </script>
+                
             </div>
         </div>
     </div>
