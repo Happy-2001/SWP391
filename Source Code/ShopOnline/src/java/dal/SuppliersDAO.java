@@ -131,10 +131,20 @@ public class SuppliersDAO extends DBConnect {
             mysqlConnect.disconnect();
         }
     }
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDateTime now = LocalDateTime.now();
-    String getTime = (dtf.format(now));
+    
+    public void deleteSupplier(int id) {
+        try {
+            String sql = "DELETE FROM `suppliers` WHERE `suppliers`.`supplierID`=?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
 
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    
     public static void main(String[] args) {
         SuppliersDAO dao = new SuppliersDAO();
 

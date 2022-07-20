@@ -76,10 +76,9 @@
                                         <td>${sup.creator}</td>
                                         <td>${sup.createOn}</td>
                                         <td>${sup.updateOn}</td>
-                                        <td class="text-end">
-                                            <div class="px-3">
-                                                <a href="#link"><i class="fa-solid fa-trash-can"></i></a>
-                                            </div>
+                                        <td>
+                                           
+                                            <a class="btn btn-danger" href="#" onclick="deleteSupplier('${sup.id}')">Delete</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -100,6 +99,19 @@
                 </div>
                 
                 <script src="../js/list-selectSup.js"></script>
+                <script type="text/javascript">
+                                                function goPage() {
+                                                    var selectBox = document.getElementById("selectBox");
+                                                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                                                    window.location.href = "listproduct?sort=" + selectedValue;
+                                                }
+                                                function deleteSupplier(id) {
+                                                    var option = confirm("Delete supplier with id: " + id + " ?");
+                                                    if (option === true) {
+                                                        window.location.href = 'AddSupplier?action=delete&id=' + id;
+                                                    }
+                                                }
+        </script>
             </div>
         </div>
     </div>
