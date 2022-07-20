@@ -76,7 +76,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-success" href="PostEdit?action=edit&id=${post.post_id}">Edit</a>
-                                <a class="btn btn-danger" onclick="deleteB('')">Delete</a>
+                                <a class="btn btn-danger" onclick="deleteB(${post.post_id})">Delete</a>
                             </td>
                     </c:forEach>
                 </tbody>
@@ -187,7 +187,7 @@
                                     function deleteB(id) {
                                         var option = confirm("Delete blog with id: " + id + " ?");
                                         if (option === true) {
-                                            window.location.href = 'ManagePost?action=delete&id=' + id;
+                                            window.location.href = 'PostEdit?action=delete&id=' + id;
                                         }
                                     }
         </script>
