@@ -49,13 +49,13 @@
                                                 <td>
                                                     <div class="py-2">
                                                         <span class="d-block text-muted">Order Date</span>
-                                                        <span>12 Jan,2018</span>
+                                                        <span>${order.orderDate}</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="py-2">
                                                         <span class="d-block text-muted">Order No</span>
-                                                        <span>MT12332345</span>
+                                                        <span>${order.orderID}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -76,7 +76,7 @@
                                             <div class="image">
                                                 <img src="FeedbackUploadImage?act=image1&fbid=${myfb.fbID}" id="image1" style="display: block">
                                                 <input name="myfeedbackID" value="${myfb.fbID}" hidden/>
-                                                <div class="file-upload" id="uploadImg1" style="display: none">
+                                                <div class="file-upload" id="uploadImg1" style="background: none">
                                                     <div class="edit-img">
                                                         <div class="submit-file-box">
                                                             <input type="file" class="cus-file-input" name="img1" id="submit-file-1">
@@ -91,7 +91,7 @@
                                             </div>
                                             <div class="image">
                                                 <img src="FeedbackUploadImage?act=image2&fbid=${myfb.fbID}" id="image2" style="display: block">
-                                                <div class="file-upload" id="uploadImg2" style="display: none">
+                                                <div class="file-upload" id="uploadImg2" style="background: none">
                                                     <div class="edit-img">
                                                         <div class="submit-file-box">
                                                             <input type="file" class="cus-file-input" name="img2" id="submit-file-2">
@@ -103,16 +103,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </form>
                                     
                                 </div>
                                 <form action="Feedback" method="POST">
+                                   <input name="myfeedbackID" value="${myfb.fbID}" hidden/>
                                     <input type="hidden" name="uid" value="${order.user.userid}">
                                     <input type="hidden" name="orderID" value="${order.orderID}">
                                     <div class="rating-form py-3">
-                                        <h6>Please rate your service experience for the following parameters</h6>
+                                        <h6>Please rate your service experience for the following parameters </h6>
                                         <!-- RATING - Form -->
                                         <div class="form-item">
                                             <input id="rating-5" name="rating" type="radio" value="5" />
@@ -168,20 +170,10 @@
                                     </div>
                                     <div class="pt-4">
                                         <h6 class="mb-3">Any Other suggestions:</h6>
-                                        <c:choose>
-                                            <c:when test="${myfb.description ne null}">
-                                                <div class="mb-3 p-3" style="border: 1px dashed #666;;">
-                                                    <span class="text-muted">${myfb.createDate}</span>
-                                                    <p class="p-0 m-0">${myfb.description}</p>
-                                                </div>
-                                            </c:when>
-                                            <c:otherwise>
                                                 <div class="fb-reply mb-3">
-                                                    <textarea name="reply" id="ql-editor" placeholder="Type something... " onkeyup="req()"></textarea>
+                                                    <textarea name="reply" id="ql-editor" placeholder="Type something... " onkeyup="req()">${myfb.description}</textarea>
                                                     <span id="left">Remaining 1000 fillable characters</span>
                                                 </div>
-                                            </c:otherwise>
-                                        </c:choose>
                                         <div class="why-text text-center">
                                             <button type="submit" class="btn">Send</button>
                                         </div>
@@ -249,11 +241,9 @@
                                         
                                         img.addEventListener('error', function handleError() {
                                             document.getElementById('image1').style.display = 'none';
-                                            document.getElementById('uploadImg1').style.display = 'block';
                                         });
                                         img2.addEventListener('error', function handleError() {
                                             document.getElementById('image2').style.display = 'none';
-                                            document.getElementById('uploadImg2').style.display = 'block';
                                         });
                                         
                                         const messArea = document.getElementById("ql-editor"),

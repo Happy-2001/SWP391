@@ -3,6 +3,8 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,7 +20,9 @@ import model.User;
 public class FeedbackDAO extends DBConnect {
 
     DBConnect mysqlConnect = new DBConnect();
-    
+     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDateTime now = LocalDateTime.now();
+    String getTime = (dtf.format(now));
     public List<MyFeedback> ListAllFeedback() {
         List<MyFeedback> listAll = new ArrayList<>();
         try {
@@ -277,7 +281,21 @@ public class FeedbackDAO extends DBConnect {
         }
         return null;
     }
-
+public void updateFbforCus( String desc,String star_rating, String id) {
+        try {
+            String sql = "UPDATE `feedbacks` SET `updateDate`= ? , star_rating = ?, description = ? WHERE `feedback_id`= ? ";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, getTime);
+            statement.setString(2, star_rating);
+            statement.setString(3, desc);
+             statement.setString(4, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
     public void updateFb(String note, String date, int id) {
         try {
             String sql = "UPDATE `feedbacks` SET `note`=?,`status`=1,`updateDate`=? WHERE `feedback_id`=?";
@@ -331,5 +349,6 @@ public class FeedbackDAO extends DBConnect {
         FeedbackDAO fb = new FeedbackDAO();
         MyFeedback myfb = fb.getFeedbackById(3);
         System.out.println(myfb.getFbID());
+        fb.updateFbforCus( "oke","3", "1");
     }
 }
