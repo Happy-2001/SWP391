@@ -31,7 +31,7 @@
                         <li class="nav-item ${HomeActive}"><a class="nav-link" href="home" title="Home">Home</a></li>
                         <li class="nav-item ${BlogActive}"><a class="nav-link" href="blog" title="Blogs">Blogs</a></li>                       
                         <li class="nav-item ${ProductActive}"><a class="nav-link" href="ProductController" title="Products">Product</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog" title="Blogs">Post</a></li>   
+                        <li class="nav-item"><a class="nav-link" href="postDetail" title="Blogs">Post</a></li>   
                     </ul>
                 </div>
 
