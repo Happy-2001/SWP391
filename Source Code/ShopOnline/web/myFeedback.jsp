@@ -106,50 +106,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <script type="text/javascript">
-                                        var fileInput1 = document.getElementById("submit-file-1"),
-                                                fileInput2 = document.getElementById("submit-file-2"),
-                                                button = document.querySelectorAll(".trigger"),
-                                                showDemo1 = document.getElementById("image1"),
-                                                showDemo2 = document.getElementById("image2"),
-                                                submitBtn = document.getElementById("uploadImg");
-
-                                        button[0].addEventListener("click", function (vent) {
-                                            fileInput1.focus();
-                                            return false;
-                                        });
-                                        fileInput1.addEventListener("change", function (event) {
-                                            showDemo1.style.display = "block";
-
-                                            if (this.files && this.files[0]) {
-                                                let reader = new FileReader();
-
-                                                reader.onload = function (e) {
-                                                    showDemo1.src = e.target.result;
-                                                };
-                                                reader.readAsDataURL(this.files[0]);
-                                                submitBtn.submit();
-                                            }
-                                        });
-
-                                        button[1].addEventListener("click", function (vent) {
-                                            fileInput2.focus();
-                                            return false;
-                                        });
-                                        fileInput2.addEventListener("change", function (event) {
-                                            showDemo2.style.display = "block";
-
-                                            if (this.files && this.files[0]) {
-                                                let reader = new FileReader();
-
-                                                reader.onload = function (e) {
-                                                    showDemo2.src = e.target.result;
-                                                };
-                                                reader.readAsDataURL(this.files[0]);
-                                                submitBtn.submit();
-                                            }
-                                        });
-                                    </script>
+                                    
                                 </div>
                                 <form action="Feedback" method="POST">
                                     <input type="hidden" name="uid" value="${order.user.userid}">
@@ -229,7 +186,62 @@
                                             <button type="submit" class="btn">Send</button>
                                         </div>
                                     </div>
-                                    <script>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between p-3">
+                            <span>Need Help? visit our <a href="#"> help center</a></span>
+                            <span>12 June, 2020</span>
+                        </div>
+                    </div>    
+                </div>        
+            </div> 
+        </div>
+                                    <script type="text/javascript">
+                                        var fileInput1 = document.getElementById("submit-file-1"),
+                                                fileInput2 = document.getElementById("submit-file-2"),
+                                                button = document.querySelectorAll(".trigger"),
+                                                showDemo1 = document.getElementById("image1"),
+                                                showDemo2 = document.getElementById("image2"),
+                                                submitBtn = document.getElementById("uploadImg");
+
+                                        button[0].addEventListener("click", function (vent) {
+                                            fileInput1.focus();
+                                            return false;
+                                        });
+                                        fileInput1.addEventListener("change", function (event) {
+                                            showDemo1.style.display = "block";
+
+                                            if (this.files && this.files[0]) {
+                                                let reader = new FileReader();
+
+                                                reader.onload = function (e) {
+                                                    showDemo1.src = e.target.result;
+                                                };
+                                                reader.readAsDataURL(this.files[0]);
+                                                submitBtn.submit();
+                                            }
+                                        });
+
+                                        button[1].addEventListener("click", function (vent) {
+                                            fileInput2.focus();
+                                            return false;
+                                        });
+                                        fileInput2.addEventListener("change", function (event) {
+                                            showDemo2.style.display = "block";
+
+                                            if (this.files && this.files[0]) {
+                                                let reader = new FileReader();
+
+                                                reader.onload = function (e) {
+                                                    showDemo2.src = e.target.result;
+                                                };
+                                                reader.readAsDataURL(this.files[0]);
+                                                submitBtn.submit();
+                                            }
+                                        });
+                                        //hind img if img cannot load
                                         const img = document.getElementById('image1');
                                         const img2 = document.getElementById('image2');
 
@@ -243,6 +255,7 @@
                                             document.getElementById('image2').style.display = 'none';
                                             document.getElementById('uploadImg2').style.display = 'block';
                                         });
+                                        
                                         const messArea = document.getElementById("ql-editor"),
                                                 num = document.getElementById("left"),
                                                 rateVal = document.getElementsByName("rating");
@@ -265,18 +278,6 @@
                                         }
                                         ;
                                     </script>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between p-3">
-                            <span>Need Help? visit our <a href="#"> help center</a></span>
-                            <span>12 June, 2020</span>
-                        </div>
-                    </div>    
-                </div>        
-            </div> 
-        </div>
-
         <%@include file="footer.jsp" %>
     </body>
 </html>
