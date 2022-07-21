@@ -77,17 +77,17 @@ public class FeedbackUploadImage extends HttpServlet {
         if (filePart1 != null && filePart2 == null) {    
             upli.addFeedbackImg("image1", filePart1.getInputStream());
         }
-//        else if(filePart1 != null){
-//            upli.updateFeedbackImg("image1", filePart1.getInputStream(), fbid);
-//        }
+        else if(filePart1 != null){
+            upli.updateFeedbackImg("image1", filePart1.getInputStream(), fbid);
+        }
         
         if (filePart1 == null && filePart2 != null) {    
             upli.addFeedbackImg("image2", filePart2.getInputStream());
         }
-//        else if(filePart2 != null){
-//            // obtains input stream of the upload file
-//            upli.updateFeedbackImg("image2", filePart2.getInputStream(), fbid);
-//        }
+        else if(filePart2 != null){
+            // obtains input stream of the upload file
+            upli.updateFeedbackImg("image2", filePart2.getInputStream(), fbid);
+        }
 
         request.getRequestDispatcher("myFeedback.jsp").forward(request, response);
     }

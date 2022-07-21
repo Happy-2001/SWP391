@@ -50,7 +50,7 @@ public class ImageDAO {
     }
     
     public void addFeedbackImg(String img, InputStream inputStream) {
-        String sql = "INSERT INTO `feedbacks`(`"+img+"`, `status`) (?,0)";
+        String sql = "INSERT INTO `feedbacks`(`"+img+"`, `status`) VALUES (?,0)";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             
