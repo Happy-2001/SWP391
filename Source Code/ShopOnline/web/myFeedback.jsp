@@ -75,7 +75,7 @@
                                         <div class="d-flex gap-3">
                                             <div class="image">
                                                 <img src="FeedbackUploadImage?act=image1&fbid=${myfb.fbID}" id="image1" style="display: block">
-
+                                                <input name="myfeedbackID" value="${myfb.fbID}" hidden/>
                                                 <div class="file-upload" id="uploadImg1" style="display: none">
                                                     <div class="edit-img">
                                                         <div class="submit-file-box">

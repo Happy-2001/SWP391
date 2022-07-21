@@ -74,19 +74,27 @@ public class FeedbackUploadImage extends HttpServlet {
         
         Part filePart1 = request.getPart("img1");
         Part filePart2 = request.getPart("img2");
-        if (filePart1 != null && filePart2 == null) {    
+        String img1 = request.getParameter("img1");
+        String img2 = request.getParameter("img2");
+        response.getWriter().print(img1+"|"+img2);
+        if (img1 == null && img2 != null && fbid == 0) {    
             upli.addFeedbackImg("image1", filePart1.getInputStream());
+response.getWriter().print("case1");
         }
-        else if(filePart1 != null){
+         if(img1 == null && img2 != null && fbid != 0){
             upli.updateFeedbackImg("image1", filePart1.getInputStream(), fbid);
+response.getWriter().print("case2");
         }
         
-        if (filePart1 == null && filePart2 != null) {    
+        if (img1 != null && img2 == null && fbid == 0) {    
             upli.addFeedbackImg("image2", filePart2.getInputStream());
+response.getWriter().print("case3");
         }
-        else if(filePart2 != null){
-            // obtains input stream of the upload file
+        
+         if(img1 != null && img2 == null && fbid != 0){
+           
             upli.updateFeedbackImg("image2", filePart2.getInputStream(), fbid);
+response.getWriter().print("case4");
         }
 
         request.getRequestDispatcher("myFeedback.jsp").forward(request, response);

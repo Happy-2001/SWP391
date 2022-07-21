@@ -327,4 +327,9 @@ public class FeedbackDAO extends DBConnect {
             Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public static void main(String[] args) {
+        FeedbackDAO fb = new FeedbackDAO();
+        MyFeedback myfb = fb.getFeedbackById(3);
+        System.out.println(myfb.getFbID());
+    }
 }
