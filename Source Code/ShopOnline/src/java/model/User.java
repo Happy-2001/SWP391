@@ -14,14 +14,14 @@ import java.sql.Date;
 public class User {
     private int userid;
     private String username;
-    String password;
-    String firstname;
-    String middlename;
-    String lastname;
-    Date dob;
+    private String password;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private String dob;
 
     private String photo;
-    int gender;
+    private int gender;
     private String phone;
     private String email;
     private int status;
@@ -31,7 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(int userid, String username, String firstname, String middlename, String lastname,  int gender, Date dob, int status, String email, String phone, String photo, Role authority) {
+    public User(int userid, String username, String firstname, String middlename, String lastname,  int gender, String dob, int status, String email, String phone, String photo, Role authority) {
         this.userid = userid;
         this.username = username;
         this.firstname = firstname;
@@ -42,6 +42,22 @@ public class User {
         this.gender = gender;
         this.email = email;
         this.phone = phone;
+        this.status = status;
+        this.authority = authority;
+    }
+    
+    public User(int userid, String username, String password, String firstname, String middlename, String lastname, int gender, String dob, int status, String email, String phone, String photo, Role authority) {
+        this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.photo = photo;
+        this.gender = gender;
+        this.dob = dob;
+        this.phone = phone;
+        this.email = email;
         this.status = status;
         this.authority = authority;
     }
@@ -102,15 +118,14 @@ public class User {
         this.username = username;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
     
-
     public String getPassword() {
         return password;
     }

@@ -44,7 +44,7 @@
                     <div class="profile-cover bg-image mb-4" style="background: url(&quot;../images/profile-bg.jpg&quot;);">
                         <div class="avatar-profile">
                             <figure class="ava me-4 flex-shrink-0">
-                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=${cus.us.userid}" alt="...">
+                                <img width="120" height="120" class="rounded-pill" src="../RetrieveImg?eaID=${cus.us.userid}" alt="..." onError="this.onerror=null;this.src='../images/default-avatar.jpg';">
                                 <span class="edit" data-bs-toggle="collapse" data-bs-target="#e-ava">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </span>
@@ -120,11 +120,12 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade active show" id="profile">
                                     <div class="mb-4">
-                                        <form action="" method="">
+                                        <form action="CusDetail" method="POST">
                                             <div class="card mb-4">
                                                 <div class="card-body">
                                                     <div class="card-title mb-4">
                                                         <h6>Basic Information</h6>
+                                                        <input type="hidden" name="cusID" class="form-control" value="${cus.us.userid}">
                                                         <span class="d-flex">
                                                             <button type="submit" class="btn save-btn close">
                                                                 <i class="fa-regular fa-floppy-disk"></i> Save
@@ -135,61 +136,66 @@
                                                         </span>
                                                     </div>
                                                     <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
+                                                        <div class="col-md-12">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" value="${cus.us.firstname} ${cus.us.middlename} ${cus.us.lastname}">
+                                                            <div class="d-flex gap-2 mb-3">
+                                                                <input type="text" name="fname" class="form-control" value="${cus.us.firstname}">
+                                                                <input type="text" name="mdname" class="form-control" value="${cus.us.middlename}">
+                                                                <input type="text" name="lname" class="form-control" value="${cus.us.lastname}">
+                                                            </div>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" class="form-control" value="${cus.us.username}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" value="${cus.us.email}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Gender</label>
-                                                            <div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input type="radio" id="inlineRadio1" name="inlineRadio" class="form-check-input">
-                                                                    <label class="form-check-label" for="inlineRadio1">Male</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input type="radio" id="inlineRadio2" name="inlineRadio" class="form-check-input">
-                                                                    <label class="form-check-label" for="inlineRadio2">Female</label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input type="radio" id="inlineRadio3" name="inlineRadio" class="form-check-input">
-                                                                    <label class="form-check-label" for="inlineRadio3">Other</label>
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Role</label>
+                                                                <select class="form-select">
+                                                                    <option value="">All</option>
+                                                                    <option value="">Admin</option>
+                                                                    <option value="">User</option>
+                                                                    <option value="" selected>Customer</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Username</label>
+                                                                <input type="text" class="form-control" value="${cus.us.username}">
+                                                                <input type="hidden" name="pass" class="form-control" value="${cus.us.password}">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Email</label>
+                                                                <input type="text" class="form-control" value="${cus.us.email}">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Gender</label>
+                                                                <div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input type="radio" id="inlineRadio1" name="gender" class="form-check-input" value="1" <c:if test="${cus.us.gender == 1}">checked</c:if>>
+                                                                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input type="radio" id="inlineRadio2" name="gender" class="form-check-input" value="0" <c:if test="${cus.us.gender == 0}">checked</c:if>>
+                                                                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input type="radio" id="inlineRadio3" name="gender" class="form-check-input" value="2" <c:if test="${cus.us.gender == 2}">checked</c:if>>
+                                                                        <label class="form-check-label" for="inlineRadio3">Other</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Role</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="">Admin</option>
-                                                                <option value="">User</option>
-                                                                <option value="" selected>Customer</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Status</label>
-                                                            <select class="form-select">
-                                                                <option value="">All</option>
-                                                                <option value="" selected>Active</option>
-                                                                <option value="">Blocked</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Date of Birth</label>
-                                                            <input type="date" class="form-control" value="">
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Status</label>
+                                                                <select class="form-select">
+                                                                    <option value="">All</option>
+                                                                    <option value="" selected>Active</option>
+                                                                    <option value="">Blocked</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Date of Birth</label>
+                                                                <input type="date" name="date" class="form-control" value="${cus.us.dob}">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </form>

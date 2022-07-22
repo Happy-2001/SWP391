@@ -317,7 +317,7 @@ public class UserDAO extends DBConnect {
                 u.setMiddlename(rs.getString("ua.middle_name"));
                 u.setLastname(rs.getString("ua.last_name"));
                 u.setGender(rs.getInt("ua.gender"));
-                u.setDob(rs.getDate("ua.DOB"));
+                u.setDob(rs.getString("ua.DOB"));
                 u.setPhone(rs.getString("ea.telephone"));
                 u.setEmail(rs.getString("ea.email"));
                 users.add(u);
@@ -445,14 +445,15 @@ public class UserDAO extends DBConnect {
         }
     }
 
-    public void updateProfile(int id, String pass, String fname, String dname, String lname, int gender) {
+    public void updateProfile(int id, String pass, String fname, String dname, String lname, int gender, String dob) {
         try {
             String sql = "UPDATE `user_accounts` SET \n"
                     + "`password` = ?,         \n"
                     + "`first_name` = ?,       \n"
                     + "`middle_name` = ?,      \n"
                     + "`last_name` = ?,        \n"
-                    + "`gender` = ?            \n"
+                    + "`gender` = ?,           \n"
+                    + "`DOB` = ?               \n"
                     + "WHERE user_id = ?;";
             PreparedStatement s = mysqlConnect.connect().prepareStatement(sql);
             s.setString(1, pass);
@@ -460,7 +461,8 @@ public class UserDAO extends DBConnect {
             s.setString(3, dname);
             s.setString(4, lname);
             s.setInt(5, gender);
-            s.setInt(6, id);
+            s.setString(6, dob);
+            s.setInt(7, id);
 
             s.executeUpdate();
         } catch (SQLException ex) {
@@ -536,7 +538,7 @@ public class UserDAO extends DBConnect {
                 c.setUser(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"),
                         rs.getString("ua.first_name"), rs.getString("ua.middle_name"),
                         rs.getString("ua.last_name"), rs.getInt("ua.gender"),
-                        rs.getDate("ua.DOB"), rs.getInt("ua.status_id"),
+                        rs.getString("ua.DOB"), rs.getInt("ua.status_id"),
                         rs.getString("eca.email"), rs.getString("eca.telephone"),
                         rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
                 c.setUser_add(new UserAddress(new Provinces(rs.getString("uad._name"))));
