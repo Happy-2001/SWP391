@@ -152,7 +152,8 @@ public class SuppliersDAO extends DBConnect {
 //        for (Suppliers o : a) {
 //            System.out.println(o.getName());
 //        }
-        dao.addSuppliers(new Supplier("a", "a", "a", "2022-09-20", 1, 1));
+//        dao.addSuppliers(new Supplier("a", "a", "a", "2022-09-20", 1, 1));
+        dao.deleteSupplier(17);
 
     }
 }

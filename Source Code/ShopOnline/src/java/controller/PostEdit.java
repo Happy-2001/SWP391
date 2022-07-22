@@ -93,12 +93,11 @@ public class PostEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
-        String date = request.getParameter("date");
+        String actionpage = request.getParameter("actionpage");
         String content = request.getParameter("content");
-        String brief = request.getParameter("brief_infor");
+        String brief = request.getParameter("brief");
         String des = request.getParameter("description");
-//        String actionpage = request.getParameter("actionpage");
+        String date = request.getParameter("date");
         String categoryID = request.getParameter("categoryId");
         String image = request.getParameter("file");
         BlogDAO productDAO = new BlogDAO();
@@ -109,8 +108,27 @@ public class PostEdit extends HttpServlet {
 
         Post p = new Post();
 
-        post.updatepost(Integer.parseInt(id), content, brief, des, date, image);
-        edit(request, response);
+        p.setContent(content);
+        p.setBrief_infor(brief);
+        p.setDescription(des);
+        p.setDate(date);
+        p.setCategoryId(Integer.parseInt(categoryID));
+        p.setUid(uid);
+        switch (actionpage) {
+            case "add":
+                p.setImage("images/" + image);
+                post.addBlog(p);
+                break;
+            case "edit":
+                String id = request.getParameter("id");
+                PostDAO dao = new PostDAO();
+                p.setImage("images/" + image);
+                String a = p.getImage();
+                //productDAO.update(p);
+//                dao.update(productName, productPrice, productStock, description, Integer.parseInt(categoryId), a, Integer.parseInt(id));
+                break;
+        }
+        response.sendRedirect("PostController");
     }
 
     protected void add(HttpServletRequest request, HttpServletResponse response)

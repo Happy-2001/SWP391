@@ -135,6 +135,7 @@ public class AddSupplierController extends HttpServlet {
         String id = request.getParameter("id");
        SuppliersDAO supDAO = new SuppliersDAO();
         supDAO.deleteSupplier(Integer.parseInt(id));
+        request.getRequestDispatcher("SuppliersController").forward(request, response);
     }
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)
