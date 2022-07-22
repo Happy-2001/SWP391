@@ -197,6 +197,43 @@
                             </div>
                         </div>
                     </div>
+                     <div class="col-lg-4 col-md-12">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex mb-4">
+                                    <h6 class="card-title mb-0">Customer Rating</h6>
+                                    <div class="dropdown ms-auto">
+                                        <a href="#" data-bs-toggle="dropdown" class="btn btn-sm">
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a href="#" class="dropdown-item">View Detail</a>
+                                            <a href="#" class="dropdown-item">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="display-6">
+                                        <strong>${average}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center gap-3 my-3">
+                                        <c:forEach begin="1" end="${average}">
+                                            <i class="fa-solid fa-star" style="color: #faae42;"></i>
+                                        </c:forEach>
+                                        <c:forEach begin="1" end="${5 - average}">
+                                            <i class="fa-regular fa-star"></i>
+                                        </c:forEach>
+                                        <span>(${starTotal})</span>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-primary btn-icon">
+                                        <i class="fa-solid fa-download"></i> Download Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div> 
+                     </div> 
                     <div class="col-lg-5 col-md-12">
                         <div class="card widget">
                             <div class="card-header">

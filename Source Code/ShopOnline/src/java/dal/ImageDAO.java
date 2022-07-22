@@ -50,7 +50,7 @@ public class ImageDAO {
     }
     
     public void addFeedbackImg(String img, InputStream inputStream) {
-        String sql = "INSERT INTO `feedbacks`(`"+img+"`, `status`) (?,0)";
+        String sql = "INSERT INTO `feedbacks`(`"+img+"`, `status`) VALUES (?,0)";
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             
@@ -70,10 +70,10 @@ public class ImageDAO {
         try {
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             
-            if (inputStream != null) {
+            
                 // fetches input stream of the upload file for the blob column
                 statement.setBlob(1, inputStream);
-            }
+            
             
             statement.setInt(2, id);
             statement.executeUpdate();

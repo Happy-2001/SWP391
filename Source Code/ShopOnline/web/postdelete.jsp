@@ -43,7 +43,7 @@
         <%@include file="header.jsp" %>
 
 
-        <form class="container py-5" action="ManagePost" method="POST" id="fileUploadForm">
+        <form class="container py-5" action="PostEdit" method="POST" id="fileUploadForm">
             <input type="hidden" name="actionpage" value="edit">
             <div class="mb-3">
                 <label for="name" class="form-label">ID</label>
@@ -51,16 +51,16 @@
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Date</label>
-                <input value="${post.date}" type="text" class="form-control" id="name" name="productName" required>
+                <input value="${post.date}" type="text" class="form-control" id="name" name="date" required>
             </div>
            
             <div class="mb-3">
                 <label for="price" class="form-label">Content</label>
-                <input value="${post.content}" type="text" class="form-control" id="price" name="productPrice" required>
+                <input value="${post.content}" type="text" class="form-control" id="price" name="content" required>
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">Brief Information</label>
-                <input value="${post.brief_infor}" type="text" class="form-control" id="stock" name="productStock" required>
+                <input value="${post.brief_infor}" type="text" class="form-control" id="stock" name="brief_infor" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>

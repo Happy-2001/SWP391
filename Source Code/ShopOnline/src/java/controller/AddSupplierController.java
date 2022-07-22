@@ -43,6 +43,7 @@ public class AddSupplierController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -132,8 +133,9 @@ public class AddSupplierController extends HttpServlet {
     protected void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-        PostDAO postDAO = new PostDAO();
-        postDAO.deleteBlog(Integer.parseInt(id));
+       SuppliersDAO supDAO = new SuppliersDAO();
+        supDAO.deleteSupplier(Integer.parseInt(id));
+        request.getRequestDispatcher("SuppliersController").forward(request, response);
     }
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)

@@ -61,28 +61,31 @@
                             <label for="companyName" class="form-label">Company Name</label>
                             <input type="text" class="form-control" id="companyName" name="companyName" required>
                         </div>
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="contactName" class="form-label">Contact Name</label>
                             <input type="text" class="form-control" id="contactName" name="contactName" required>
                         </div>
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="contactTitle" class="form-label">Contact Title</label>
                             <input type="text" class="form-control" id="contactTitle" name="contactTitle" required>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label for="dob" class="form-label">Date Of Birth</label>
                             <input type="text" class="form-control" id="dob" name="dob" required>
                         </div>
                         <div class="mb-3">
                             <label for="gender" class="form-label">Gender</label>
-                            <input type="number" class="form-control" id="gender" name="gender" required>
-                        </div>
+                            <select class="form-select form-control" name="gender">
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div> 
                         <div class="mb-3">
                             <label for="creator" class="form-label">Creator</label>
                             <input type="number" class="form-control" id="creator" name="creator" required>
                         </div>
-                       
+
 
                         <div id="inputfile" class="form-group mb-3">
                             <div class="form-group">

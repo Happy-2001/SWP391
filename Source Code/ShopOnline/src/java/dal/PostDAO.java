@@ -181,7 +181,7 @@ public class PostDAO extends DBConnect {
 
     public void deleteBlog(int id) {
         try {
-            String sql = "DELETE FROM `posts` WHERE `posts`.`post_id`=?";
+            String sql = "DELETE FROM `posts` WHERE `post_id`=?";
             PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -252,6 +252,25 @@ public class PostDAO extends DBConnect {
             statement.setInt(5, categoryId);
             statement.setString(6, image);
             statement.setInt(7, id);
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+
+        } finally {
+            mysqlConnect.disconnect();
+        }
+    }
+    
+    public void updatepost( int id,String content,String brief_information,String description, String date,String image) {
+        try {
+            String sql = "UPDATE `posts` SET `content`=?,`brief_information`=?,`description`=?,`create_date`=?,`image`=? WHERE post_id = ?";
+            PreparedStatement statement = mysqlConnect.connect().prepareStatement(sql);
+            statement.setString(1, content);
+            statement.setString(2, brief_information);
+            statement.setString(3, description);
+            statement.setString(4, date);
+            statement.setString(5, image);
+            statement.setInt(6, id);
             statement.executeUpdate();
 
         } catch (SQLException ex) {
