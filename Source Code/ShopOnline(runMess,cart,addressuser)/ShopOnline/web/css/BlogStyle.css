@@ -1,0 +1,94 @@
+.div-content {
+    display: block;
+    margin: 0 20%;
+    margin-top: 60px;
+}
+.div-content img{
+    width: 100%;
+}
+.div-title, .title-all{
+    padding: 40px 0 20px;
+}
+.div-title h2{
+    font-size: 60px;
+    color: #000;
+    margin-bottom: 0px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.1;
+    font-weight: 700;
+}
+.main-content .divider {
+    border-bottom: #000 3px solid;
+    margin-bottom: 0px;
+}
+.main-content .divider-1 {
+    background-color: #fff;
+    background: url(../images/bg_divider.png) repeat-x 7px;
+    height: 1px;
+    margin-bottom: 0px;
+}
+.main-content .cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    padding: 7px 10px;
+}
+.main-content .date-left, .date-right {
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+}
+.main-content .date-left .date {
+    font-size: 16px;
+    color: #808080;
+}
+.main-content .date-right a{
+    cursor: pointer;
+    background-color: #f00;
+    padding: 0 10px;
+    border-radius: 4px;
+}
+.main-content .date-right a:hover{
+    color: #fff;
+}
+.main-content .detail-cont .des{
+    font-size: 20px;
+    padding: 20px 0;
+}
+.main-content .detail-cont h3{
+    font-size: 18px;
+}
+
+.blog-box .blog-img{
+    width: 415px;
+    height: 230px;
+    background-color: #e5e5e5;
+}
+.blog-box .blog-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.blog-content{
+    max-height: 300px;
+    position: relative;
+}
+.title-blog{
+    padding: 30px 0;
+    height: 100%;
+}
+.title-blog h3{
+    font-size: 20px;
+    font-weight: 700;
+    color: #010101;
+}
+.title-blog p{
+    margin: 0px;
+    padding-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+

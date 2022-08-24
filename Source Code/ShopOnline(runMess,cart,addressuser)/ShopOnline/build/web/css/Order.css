@@ -1,0 +1,86 @@
+.form-select {
+    width: 1000px;
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #ffb7a0 !important;
+    box-shadow: 0 0 0 1px #ff6e40 !important;
+}
+.del-btn .btn {
+    background-color: #ff470d;
+    color: #fff;
+}
+.del-btn .btn:hover {
+    background: rgba(255, 71, 13, 0.8);
+    border-color: rgba(255, 71, 13, 0.8);
+}
+/* ---------------------------------------------------------- */
+.cus-box{
+    font-family: Poppins,sans-serif;
+    width: 100%;
+}
+.cus-box a {
+    text-decoration: none;
+    color: #ff470d;
+}
+.cus-box a:hover{
+    color: #000;
+}
+.table {
+/*    --bs-table-bg: transparent;
+    --bs-table-striped-color: #212529;
+    --bs-table-striped-bg: rgba(0,0,0,0.05);
+    --bs-table-active-color: #212529;
+    --bs-table-active-bg: rgba(0,0,0,0.1);
+    --bs-table-hover-color: #212529;
+    --bs-table-hover-bg: rgba(0,0,0,0.075);*/
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    width: 100%;
+    border-spacing: 0 15px;
+    border-collapse: separate;
+}
+.table thead th {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+.table td {
+    padding: 1.3rem 0.75rem !important;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 15px;
+}
+.table tbody tr {
+    background: #fff;
+    cursor: pointer;
+}
+.table tbody tr td {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+.table tbody tr td:first-child {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    padding-left: 15px;
+    border-left: 1px solid transparent;
+}
+.table tbody tr td:last-child {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding-right: 15px;
+    border-right: 1px solid transparent;
+}
+.table tbody tr.tr-selected td {
+    border-color: #ff6e40!important;
+}
+.saveBtn.close,
+.form-select.close{
+    display: none;
+}

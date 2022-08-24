@@ -1,0 +1,144 @@
+.input-group-text {
+    padding: 0.675rem 1.25rem !important;
+    font-size: .875rem !important;
+    border-top-left-radius: 0.5rem !important;
+    border-bottom-left-radius: 0.5rem !important;
+}
+.form-check-input {
+    width: 1.2em !important;
+    height: 1.2em !important;
+}
+.form-check-input:focus,
+.btn:focus {
+    border-color: #ffb7a0 !important;
+    box-shadow: 0 0 0 1px #ff6e40 !important;
+}
+.form-check-input:checked {
+    background-color: #ff6e40 !important;
+    border-color: #ff6e40 !important;
+}
+.input-group .btn.btn-light {
+    border-color: #ced4da;
+}
+.form-control:focus{
+    background-color: #fff;
+    border-color: #ffb7a0 !important;
+    outline: 0;
+    box-shadow: 0 0 0 1px #ff6e40 !important;
+}
+.list-group .list-group-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border-radius: 0.5rem !important;
+    padding: 15px 20px !important;
+    border-width: 0!important;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.list-group .list-group-item:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,.125);
+}
+.list-group .list-group-item.todo-completed {
+    -webkit-box-shadow: 0 0 0 1px #05b171;
+    box-shadow: 0 0 0 1px #05b171;
+    border-color: transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+.nav-link:not(.active) {
+    color: #666;
+}
+.nav-pills .nav-link {
+    border-radius: 0.5rem;
+}
+.nav.nav-pills .nav-item .nav-link.active {
+    background: rgba(255,110,64,.15);
+    color: #ff6e40;
+}
+.nav.nav-pills .nav-item .nav-link .bg-primary {
+    background-color: #ff6e40 !important;
+}
+
+/* -------------------------------------------------------------------------- */
+.page-item:not(.active) .page-link {
+    color: #ff6e40;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ff6e40;
+    border-color: #ff6e40;
+}
+.favorite:hover{
+    color: #faae42;
+}
+/* ===================================================================================================== */
+h6{
+    padding: 0;
+}
+.card{
+    border: 0 !important;
+    border-radius: 1rem !important;
+}
+.avatar {
+    display: inline-block;
+    margin-bottom: 0;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.star-rate{
+    color: #faae42;
+}
+
+.Attachments .image{
+    width: 180px;
+    height: 180px;
+    border: 1px dashed #666;
+}
+.Attachments .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.fb-reply{
+    height: auto;
+    position: relative;
+}
+.fb-reply #ql-editor {
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    line-height: 1.42;
+    overflow-y: auto;
+    padding: 12px 15px;
+    tab-size: 4;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.fb-reply #left{
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    font-weight: 500;
+    color: #05b171;
+}
+.del-btn .btn{
+    background-color: #ff470d;
+    color: #fff;
+    transition: all ease-in-out 0.2s;
+}
+.del-btn .btn:hover{
+    background: rgba(255, 71, 13, 0.8);
+    border-color: rgba(255, 71, 13, 0.8);
+}
