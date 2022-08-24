@@ -43,7 +43,7 @@ public class CustomerDAO {
                 c.setUs(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"),
                                 rs.getString("ua.first_name"),rs.getString("ua.middle_name"), 
                                 rs.getString("ua.last_name"), rs.getInt("ua.gender"),
-                                rs.getDate("ua.DOB"), rs.getInt("ua.status_id"), 
+                                rs.getString("ua.DOB"), rs.getInt("ua.status_id"), 
                                 rs.getString("eca.email"), rs.getString("eca.telephone"),
                                 rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
                 c.setUad(new Address(new Provinces(rs.getString("uad._name")), rs.getString("uad.status")));
@@ -59,7 +59,7 @@ public class CustomerDAO {
     
     public Customers getCusByUserId(int id) {
         String sql = "SELECT ur.roleID, ua.user_id, ua.user_name,\n" +
-                    "ua.first_name, ua.middle_name, ua.last_name,\n" +
+                    "ua.password, ua.first_name, ua.middle_name, ua.last_name,\n" +
                     "ua.gender, ua.DOB, ua.status_id, uad._name,\n" +
                     "uad.districtID, uad.wardID, uad.addressDetail,\n" +
                     "uad.status, eca.email, eca.telephone,\n" +
@@ -77,10 +77,10 @@ public class CustomerDAO {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 Customers c = new Customers();
-                c.setUs(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"),
+                c.setUs(new User(rs.getInt("ua.user_id"), rs.getString("ua.user_name"), rs.getString("ua.password"),
                                 rs.getString("ua.first_name"),rs.getString("ua.middle_name"), 
                                 rs.getString("ua.last_name"), rs.getInt("ua.gender"),
-                                rs.getDate("ua.DOB"), rs.getInt("ua.status_id"), 
+                                rs.getString("ua.DOB"), rs.getInt("ua.status_id"), 
                                 rs.getString("eca.email"), rs.getString("eca.telephone"),
                                 rs.getString("eca.photo"), new Role(rs.getInt("ur.roleID"))));
                 c.setUad(new Address(new Provinces(rs.getString("uad._name")),

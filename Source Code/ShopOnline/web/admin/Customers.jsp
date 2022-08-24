@@ -88,7 +88,7 @@
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <ul class="pagination justify-content-center">
+<!--                        <ul class="pagination justify-content-center">
                             <li class="page-item">
                                 <a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a>
                             </li>
@@ -98,7 +98,7 @@
                             <li class="page-item">
                                 <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                 </div>
                 <script src="../js/list-select.js"></script>

@@ -62,7 +62,7 @@ public class UpdateProfileController extends HttpServlet {
             gender = "1";
         }
         
-        db.updateProfile(Integer.parseInt(id), pass, fname, mdname, lname, Integer.parseInt(gender));
+        db.updateProfile(Integer.parseInt(id), pass, fname, mdname, lname, Integer.parseInt(gender),"2001-04-22");
        
         response.sendRedirect("ProfileUser?userid="+id);
     }

@@ -3,6 +3,7 @@ package controller;
 import dal.AddressDAO;
 import dal.CustomerDAO;
 import dal.OrderDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -24,6 +25,14 @@ public class CusDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String id = request.getParameter("cusID");
         
         CustomerDAO db = new CustomerDAO();
@@ -62,33 +71,22 @@ public class CusDetailController extends HttpServlet {
         request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("cusID");
+        String fname = request.getParameter("fname");
+        String mdname = request.getParameter("mdname");
+        String lname = request.getParameter("lname");
+        String gender = request.getParameter("gender");
+        String pass = request.getParameter("pass");
+        String date = request.getParameter("date");
+        
+        UserDAO udb = new UserDAO();
+        
+        udb.updateProfile(Integer.parseInt(id), pass, fname, mdname, lname, Integer.parseInt(gender), date);
+        
+        response.sendRedirect("CusDetail?cusID="+Integer.parseInt(id));
     }
 
     /**
